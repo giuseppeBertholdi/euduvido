@@ -31,6 +31,13 @@ O app lembra as perguntas que já saíram neste celular (`played`, salvo localme
 ## Convite por link
 `euduvido://join/1234` (rota `src/app/join/[pin].tsx`) abre a tela de PIN preenchida e entra sozinho se o nome já é conhecido. No Expo Go o link é `exp://<IP>:8081/--/join/1234`. O convite compartilhado leva o link e o PIN (WhatsApp não deixa links `euduvido://` clicáveis). Pra um link https clicável em qualquer app: um domínio com Universal Links (`associatedDomains` no app.json + `apple-app-site-association` no site).
 
+## Viral: lance exato, zoeira, sons e +18
+- **Lance exato** (`engine.ts`): se a dúvida revela que o lance era exatamente a resposta, quem lançou recupera um "!" (até o máximo do começo). Carimbo "NA MOSCA!", fanfarra e cartão pra compartilhar (`src/components/ShareCard.tsx`, `react-native-view-shot` + `expo-sharing`).
+- **Zoeira** (online): reações com emoji e som (`src/features/online/zoeira.tsx`) via Realtime Broadcast (não grava no banco); só reações conhecidas, de quem está na sala, 1 a cada 1,2 s.
+- **Sons** (`src/services/sound.ts`, `expo-audio`): sintetizados por `python3 scripts/gen-sounds.py` (sem samples de terceiros). Respeitam o silencioso; liga/desliga em Ajustes.
+- **+18**: pacotes com `adult: true` pedem confirmação de idade uma vez (`src/features/packs/adult.ts`). Conteúdo picante é humor sugestivo, não explícito; na App Store, marque "temas sugestivos/maduros" na classificação.
+- `content/perguntas-3.csv`: lote inicial escrito pelo Claude (futebol BR, anos 90/2000, memes, picante). Revise e amplie no mesmo formato.
+
 ## Timer e Ajustes
 Timer opcional por vez (15, 30 ou 60 s), na configuração da partida e em Ajustes: estourou, perde um "!" (`TIMEOUT` no motor). Ajustes (`src/app/settings.tsx`, engrenagem na Home): nome no online, vidas e timer padrão, vibração, pro (restaurar, gerenciar assinatura), como joga, rever introdução, termos, privacidade e contato (links do `.env`).
 

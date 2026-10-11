@@ -8,6 +8,8 @@
  *  - Na sua vez: aumenta o lance (no mínimo +1) ou grita "eu duvido!" do último lance.
  *  - Duvidou: revela a resposta. Se o lance passou da resposta, quem deu o lance perde uma vida;
  *    se não passou, quem duvidou perde.
+ *  - Lance exato: se a dúvida revela que o lance era EXATAMENTE a resposta, quem lançou recupera uma vida
+ *    (até o máximo do começo). Evento raro, rende print.
  *  - Com timer: estourou o tempo da vez, perde uma vida.
  *  - Sem vidas, sai da partida. O último que sobrar ganha. Quem perdeu a vida abre a próxima rodada.
  */
@@ -33,6 +35,10 @@ export type RoundResult = {
   doubterId: string | null;
   loserId: string;
   eliminated: boolean;
+  /** O lance contestado era exatamente a resposta ("na mosca"). */
+  exact: boolean;
+  /** Quem ganhou um "!" de volta pelo lance exato (null se já estava com todos). */
+  bonusId: string | null;
 };
 
 export type Match = {
@@ -144,8 +150,11 @@ export function minBid(m: Pick<Match, 'bids'>): number {
 const deadlineFrom = (m: Match, now: number) => (m.turnSeconds ? now + m.turnSeconds * 1000 : null);
 
 /** Fecha a rodada: `loserId` perde uma vida. */
-function endRound(m: Match, info: Omit<RoundResult, 'eliminated' | 'answer'>): Match {
+function endRound(m: Match, info: Omit<RoundResult, 'eliminated' | 'answer' | 'exact' | 'bonusId'>): Match {
   const lives = { ...m.lives, [info.loserId]: Math.max(0, m.lives[info.loserId] - 1) };
+  const exact = info.outcome === 'ok' && info.bid !== null && info.bid.value === m.question.answer;
+  const bonusId = exact && info.bid && lives[info.bid.playerId] > 0 && lives[info.bid.playerId] < m.startLives ? info.bid.playerId : null;
+  if (bonusId) lives[bonusId] += 1;
   const eliminated = lives[info.loserId] === 0;
   const out = eliminated ? [...m.out, info.loserId] : m.out;
   const alive = m.players.filter((p) => lives[p.id] > 0);
@@ -155,7 +164,7 @@ function endRound(m: Match, info: Omit<RoundResult, 'eliminated' | 'answer'>): M
     out,
     phase: 'result',
     deadline: null,
-    result: { ...info, answer: m.question.answer, eliminated },
+    result: { ...info, answer: m.question.answer, eliminated, exact, bonusId },
     winnerId: alive.length === 1 ? alive[0].id : null,
   };
 }

@@ -1,7 +1,7 @@
 import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
+import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BangMark, Lives, Stamp } from '@/components/brand';
 import { Icon } from '@/components/Icon';
@@ -30,6 +30,10 @@ function After({ ms, children }: { ms: number; children: React.ReactNode }) {
 
 export default function Onboarding() {
   const insets = useSafeAreaInsets();
+  const { height } = useWindowDimensions();
+  const compact = height < 740;
+  // folga do botão: nunca colado na borda nem na barrinha de gesto do iPhone
+  const bottom = Math.max(insets.bottom + 10, 24);
   const [i, setI] = useState(0);
   const app = useApp();
   const [name, setName] = useState(app.name);
@@ -42,7 +46,7 @@ export default function Onboarding() {
   const next = () => (i < LAST ? setI(i + 1) : finish());
 
   return (
-    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={[styles.root, { paddingTop: insets.top + 8, paddingBottom: insets.bottom + 14 }]}>
+    <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={[styles.root, { paddingTop: insets.top + 8 }]}>
       <StatusBar style="dark" />
       <View style={styles.top}>
         <View style={styles.dots} accessible accessibilityLabel={`passo ${i + 1} de ${LAST + 1}`}>
@@ -55,7 +59,7 @@ export default function Onboarding() {
         </Pressable>
       </View>
 
-      <View key={i} style={styles.body}>
+      <ScrollView key={i} style={{ flex: 1 }} contentContainerStyle={styles.body} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
         {i === 0 && (
           <>
             <View style={styles.center}>
@@ -98,15 +102,15 @@ export default function Onboarding() {
                 {DEMO_BIDS.map(([who, n], k) => (
                   <After key={who} ms={500 + k * 450}>
                     <Enter from={12}>
-                      <View style={[styles.bid, { alignSelf: k % 2 ? 'flex-end' : 'flex-start' }]}>
+                      <View style={[styles.bid, compact && { paddingVertical: 4 }, { alignSelf: k % 2 ? 'flex-end' : 'flex-start' }]}>
                         <Text style={styles.bidWho}>{who}</Text>
-                        <Text style={styles.bidVal}>{n} ou mais</Text>
+                        <Text style={[styles.bidVal, compact && { fontSize: 18 }]}>{n} ou mais</Text>
                       </View>
                     </Enter>
                   </After>
                 ))}
                 <After ms={500 + 3 * 450 + 200}>
-                  <Stamp size={30} style={{ marginTop: 6 }} />
+                  <Stamp size={compact ? 24 : 30} style={{ marginTop: 6 }} />
                 </After>
               </View>
             </View>
@@ -152,9 +156,11 @@ export default function Onboarding() {
             </Enter>
           </>
         )}
-      </View>
+      </ScrollView>
 
-      <Btn label={i === 0 ? 'Bora' : i === LAST ? 'Começar' : 'Saquei'} variant={i === 0 ? 'primary' : 'dark'} disabled={i === LAST && !name.trim()} onPress={next} height={62} />
+      <View style={[styles.footer, { paddingBottom: bottom }]}>
+        <Btn label={i === 0 ? 'Bora' : i === LAST ? 'Começar' : 'Saquei'} variant={i === 0 ? 'primary' : 'dark'} disabled={i === LAST && !name.trim()} onPress={next} height={62} />
+      </View>
     </KeyboardAvoidingView>
   );
 }
@@ -166,7 +172,8 @@ const styles = StyleSheet.create({
   dot: { height: 8, borderRadius: 4, backgroundColor: colors.ink },
   skip: { minHeight: 44, justifyContent: 'center', paddingHorizontal: 4 },
   skipText: { fontFamily: fonts.ui700, fontSize: 15, color: colors.inkSoft },
-  body: { flex: 1, paddingTop: 18 },
+  body: { flexGrow: 1, paddingTop: 18, paddingBottom: 12 },
+  footer: { paddingTop: 10 },
   center: { flex: 1, alignItems: 'center', justifyContent: 'center' },
   hint: { textAlign: 'center', fontFamily: fonts.ui600, fontSize: 14, color: colors.inkMuted, marginBottom: 14 },
   demo: { flex: 1, justifyContent: 'center', gap: 8 },

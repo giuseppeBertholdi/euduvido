@@ -99,6 +99,8 @@ const FIX_2 = {
 const SOURCES = [
   { file: 'content/perguntas.csv', prefix: 'q', exclude: EXCLUDE, fix: FIX },
   { file: 'content/perguntas-2.csv', prefix: 'n', exclude: EXCLUDE_2, fix: FIX_2 },
+  // lote inicial escrito pelo Claude (fatos estáveis, com fonte): futebol, anos 90/2000, memes, picante
+  { file: 'content/perguntas-3.csv', prefix: 'c', exclude: {}, fix: {} },
 ];
 
 /** Metadados dos pacotes (ordem de exibição). */
@@ -111,6 +113,10 @@ const PACKS = [
   { id: 'comida', name: 'comida & bebida', title: 'comida & bebida', tagline: 'a mesa também mente', premium: true, isNew: true, icon: 'cup', tint: '#FFE08A' },
   { id: 'esporte', name: 'esporte & velocidade', title: 'esporte & velocidade', tagline: 'pra quem acha que entende de regra', premium: true, isNew: true, icon: 'bolt', tint: '#A8E6FF' },
   { id: 'ciencia', name: 'ciência & espaço', title: 'ciência & espaço', tagline: 'o universo é grande demais', premium: true, isNew: true, icon: 'planet', tint: '#D9C8FF' },
+  { id: 'futebol', name: 'futebol BR', title: 'futebol BR', tagline: 'resenha de boteco, agora valendo', premium: true, isNew: true, icon: 'ball', tint: '#B6E59E' },
+  { id: 'anos90', name: 'anos 90/2000', title: 'anos 90/2000', tagline: 'nostalgia com tamagotchi', premium: true, isNew: true, icon: 'cassette', tint: '#FFC2E0' },
+  { id: 'memes', name: 'memes', title: 'memes', tagline: 'cronicamente online, nível 2', premium: true, isNew: true, icon: 'meme', tint: '#C5F0EA' },
+  { id: 'picante', name: 'picante', title: 'picante +18', tagline: 'só com a galera certa', premium: true, isNew: true, adult: true, icon: 'pepper', tint: '#FF9C8A' },
 ];
 
 function parseCsv(text) {
@@ -176,7 +182,9 @@ export type Pack = {
   premium: boolean;
   isNew?: boolean;
   /** Ícone (ver \`src/components/Icon.tsx\`) e cor do pacote. */
-  icon: 'bulb' | 'brasil' | 'paw' | 'heart' | 'cursor' | 'cup' | 'bolt' | 'planet';
+  icon: 'bulb' | 'brasil' | 'paw' | 'heart' | 'cursor' | 'cup' | 'bolt' | 'planet' | 'ball' | 'cassette' | 'meme' | 'pepper';
+  /** Conteúdo +18: só aparece depois da confirmação de idade. */
+  adult?: boolean;
   tint: string;
   questions: Question[];
 };

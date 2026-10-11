@@ -25,12 +25,23 @@ if (supabase) {
   });
 }
 
-/** Garante uma sessão (login anônimo) e devolve o id do usuário. */
-export async function ensureUserId(): Promise<string> {
-  if (!supabase) throw new Error('offline_disabled');
-  const { data } = await supabase.auth.getSession();
-  if (data.session?.user) return data.session.user.id;
-  const { data: signed, error } = await supabase.auth.signInAnonymously();
-  if (error || !signed.user) throw error ?? new Error('auth_failed');
-  return signed.user.id;
+/**
+ * Garante uma sessão (login anônimo) e devolve o id do usuário.
+ * Chamadas ao mesmo tempo dividem o mesmo login: sem isso, o primeiro uso do app criava DOIS usuários anônimos
+ * (a sala nascia com um e a tela usava o outro, e o host não era reconhecido).
+ */
+let pendingUser: Promise<string> | null = null;
+export function ensureUserId(): Promise<string> {
+  if (!supabase) return Promise.reject(new Error('offline_disabled'));
+  const db = supabase;
+  pendingUser ??= (async () => {
+    const { data } = await db.auth.getSession();
+    if (data.session?.user) return data.session.user.id;
+    const { data: signed, error } = await db.auth.signInAnonymously();
+    if (error || !signed.user) throw error ?? new Error('auth_failed');
+    return signed.user.id;
+  })().finally(() => {
+    pendingUser = null;
+  });
+  return pendingUser;
 }

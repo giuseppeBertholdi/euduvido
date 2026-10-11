@@ -180,6 +180,21 @@ export default function Settings() {
 
         <Section title="sensações">
           <Row
+            icon="megaphone"
+            label="Sons"
+            detail="carimbo, na mosca e zoeira (respeita o silencioso)"
+            right={
+              <Switch
+                value={app.sounds}
+                onValueChange={(v) => app.set({ sounds: v })}
+                trackColor={{ true: colors.ink, false: colors.line }}
+                thumbColor={app.sounds ? colors.yellow : colors.surface}
+                ios_backgroundColor={colors.line}
+                accessibilityLabel="sons"
+              />
+            }
+          />
+          <Row
             icon="sparkle"
             label="Vibração"
             detail="nos toques, no carimbo e no timer"

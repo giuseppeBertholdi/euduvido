@@ -2,6 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createContext, useCallback, useContext, useEffect, useMemo, useState, type ReactNode } from 'react';
 import type { Match, Player } from '@/game/engine';
 import { setHapticsEnabled } from '@/services/haptics';
+import { setSoundEnabled } from '@/services/sound';
 
 const KEY = 'euduvido:v1';
 const MAX_PLAYED = 2000;
@@ -17,12 +18,15 @@ type Saved = {
   /** Nome no online (salas com PIN). */
   name: string;
   haptics: boolean;
+  sounds: boolean;
+  /** Confirmou ter 18+ (libera o pacote picante). */
+  adultOk: boolean;
   /** Pular perguntas que já saíram neste celular. */
   avoidRepeats: boolean;
   /** Ids das perguntas que já saíram (mais recentes no fim). */
   played: string[];
 };
-const DEFAULTS: Saved = { onboarded: false, premium: false, lastPlayers: [], lives: 3, timer: null, packs: ['classico'], name: '', haptics: true, avoidRepeats: true, played: [] };
+const DEFAULTS: Saved = { onboarded: false, premium: false, lastPlayers: [], lives: 3, timer: null, packs: ['classico'], name: '', haptics: true, sounds: true, adultOk: false, avoidRepeats: true, played: [] };
 
 type Ctx = Saved & {
   ready: boolean;
@@ -47,6 +51,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
         if (!raw) return;
         const loaded = { ...DEFAULTS, ...(JSON.parse(raw) as Partial<Saved>) };
         setHapticsEnabled(loaded.haptics);
+        setSoundEnabled(loaded.sounds);
         setSaved(loaded);
       })
       .catch(() => undefined)
@@ -57,6 +62,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setSaved((prev) => {
       const next = { ...prev, ...patch };
       setHapticsEnabled(next.haptics);
+      setSoundEnabled(next.sounds);
       AsyncStorage.setItem(KEY, JSON.stringify(next)).catch(() => undefined);
       return next;
     });

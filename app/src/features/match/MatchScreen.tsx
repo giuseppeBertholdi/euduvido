@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { ActivityIndicator, Modal, Pressable, ScrollView, StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { StatusBar } from 'expo-status-bar';
@@ -7,10 +7,13 @@ import { Icon } from '@/components/Icon';
 import { Keypad } from '@/components/Keypad';
 import { MAX_DIGITS } from '@/components/keypadRules';
 import { Enter } from '@/components/motion';
+import { ShareCard, shareCard } from '@/components/ShareCard';
 import { TurnTimer } from '@/components/TurnTimer';
 import { Body, Btn, Chip, Label, Raised, Title } from '@/components/ui';
 import { formatDigits, formatValue, isActive, lastBid, minBid, playerById, standings, type Action, type PublicMatch } from '@/game/engine';
 import { PACKS, packTitleOf } from '@/game/questions';
+import { haptic } from '@/services/haptics';
+import { playSound } from '@/services/sound';
 import { colors, fonts, radii } from '@/theme';
 
 /**
@@ -32,6 +35,8 @@ export type MatchScreenProps = {
   onHome: () => void;
   showUpsell?: boolean;
   onUpsell?: () => void;
+  /** Barra de zoeira (só no online), mostrada na vez, no resultado e no fim. */
+  zoeira?: ReactNode;
   /** Chamado quando uma pergunta aparece (pra lembrar que já saiu). */
   onSeen?: (questionId: string) => void;
 };
@@ -149,7 +154,7 @@ function Intro({ m, me, hostId, busy, error, onAction, onQuit, onSeen }: MatchSc
 }
 
 /* ---------- a vez: aumenta ou duvida ---------- */
-function Turn({ m, me, hostId, busy, error, now, onAction, onQuit }: MatchScreenProps) {
+function Turn({ m, me, hostId, busy, error, now, onAction, onQuit, zoeira }: MatchScreenProps) {
   const insets = useSafeAreaInsets();
   const [bidding, setBidding] = useState(false);
   const mine = me === null || me === m.turnId;
@@ -223,6 +228,7 @@ function Turn({ m, me, hostId, busy, error, now, onAction, onQuit }: MatchScreen
           <TurnTimer key={`${m.deadline}`} deadline={m.deadline} seconds={m.turnSeconds} now={now} onExpire={canExpire ? () => onAction({ type: 'TIMEOUT' }) : undefined} />
         </View>
       )}
+      {zoeira}
       <ErrorLine error={error} />
       {mine ? (
         <View style={styles.actions}>
@@ -302,83 +308,118 @@ function BidSheet({ m, onClose, onBid }: { m: PublicMatch; onClose: () => void; 
 }
 
 /* ---------- duvidou (ou estourou o tempo): carimbo, resposta contando e veredito ---------- */
-function Result({ m, me, busy, error, onAction }: MatchScreenProps) {
+function Result({ m, me, busy, error, onAction, zoeira }: MatchScreenProps) {
   const insets = useSafeAreaInsets();
   const [stage, setStage] = useState<0 | 1 | 2>(0);
+  const cardRef = useRef<View>(null);
   const r = m.result;
   useEffect(() => {
+    playSound(r?.outcome === 'timeout' ? 'buzina' : 'duvido');
     const t = setTimeout(() => setStage(1), 1100);
     return () => clearTimeout(t);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  useEffect(() => {
+    if (stage !== 2 || !r) return;
+    if (r.exact) {
+      playSound('mosca');
+      haptic.success();
+    } else playSound('perdeu');
+  }, [stage, r]);
   if (!r) return null;
   const q = m.question;
   const timeout = r.outcome === 'timeout';
   const over = r.outcome === 'over';
   const loser = nameOf(m, r.loserId);
-  const title = timeout ? 'Estourou o tempo!' : over ? `${nameOf(m, r.bid?.playerId)} blefou!` : 'O lance tava certo!';
-  const why = timeout ? `${loser} enrolou demais.` : over ? `${formatValue(r.bid?.value ?? 0, q.unit)} passou da resposta.` : `${nameOf(m, r.doubterId)} duvidou à toa.`;
+  const bidder = nameOf(m, r.bid?.playerId);
+  const title = r.exact ? `${bidder} cravou na mosca!` : timeout ? 'Estourou o tempo!' : over ? `${bidder} blefou!` : 'O lance tava certo!';
+  const why = r.exact
+    ? r.bonusId
+      ? `Lance exato: ${me === r.bonusId ? 'você recupera' : `${bidder} recupera`} um “!”.`
+      : `Lance exato! ${bidder} já tava com todos os “!”.`
+    : timeout
+      ? `${loser} enrolou demais.`
+      : over
+        ? `${formatValue(r.bid?.value ?? 0, q.unit)} passou da resposta.`
+        : `${nameOf(m, r.doubterId)} duvidou à toa.`;
   return (
     <View style={[styles.screen, { paddingTop: insets.top + 8, paddingBottom: insets.bottom + 14 }]}>
       <StatusBar style="dark" />
-      <View style={{ marginTop: 34 }}>
-        <Stamp size={34} text={timeout ? 'TEMPO!' : 'EU DUVIDO!'} />
-        <Enter delay={250}>
-          <Body color={colors.ink} style={{ textAlign: 'center', marginTop: 14 }}>
-            {timeout ? (
-              <>
-                <Text style={{ fontFamily: fonts.ui800 }}>{loser}</Text> não jogou a tempo.
-              </>
-            ) : (
-              <>
-                <Text style={{ fontFamily: fonts.ui800 }}>{nameOf(m, r.doubterId)}</Text> duvidou de <Text style={{ fontFamily: fonts.ui800 }}>{nameOf(m, r.bid?.playerId)}</Text>:{' '}
-                {formatValue(r.bid?.value ?? 0, q.unit)} {q.unit} ou mais?
-              </>
-            )}
-          </Body>
-        </Enter>
-      </View>
+      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
+        <View style={{ marginTop: 34 }}>
+          <Stamp size={34} text={timeout ? 'TEMPO!' : 'EU DUVIDO!'} />
+          <Enter delay={250}>
+            <Body color={colors.ink} style={{ textAlign: 'center', marginTop: 14 }}>
+              {timeout ? (
+                <>
+                  <Text style={{ fontFamily: fonts.ui800 }}>{loser}</Text> não jogou a tempo.
+                </>
+              ) : (
+                <>
+                  <Text style={{ fontFamily: fonts.ui800 }}>{nameOf(m, r.doubterId)}</Text> duvidou de <Text style={{ fontFamily: fonts.ui800 }}>{bidder}</Text>:{' '}
+                  {formatValue(r.bid?.value ?? 0, q.unit)} {q.unit} ou mais?
+                </>
+              )}
+            </Body>
+          </Enter>
+        </View>
 
-      <View style={{ flex: 1, justifyContent: 'center' }}>
-        {stage >= 1 && (
-          <Enter>
-            <Raised face={colors.surface}>
-              <View style={{ padding: 18 }}>
-                <Label color={colors.ink}>a resposta é</Label>
-                <View style={styles.bidRow}>
-                  <CountUp to={r.answer} unit={q.unit} style={styles.answer} onDone={() => setStage(2)} />
-                  <Text style={styles.bidUnit}>{q.unit}</Text>
+        <View style={{ flex: 1, justifyContent: 'center', paddingVertical: 12 }}>
+          {stage >= 1 && (
+            <Enter>
+              <Raised face={r.exact && stage === 2 ? colors.yellow : colors.surface}>
+                <View style={{ padding: 18 }}>
+                  <Label color={colors.ink}>a resposta é</Label>
+                  <View style={styles.bidRow}>
+                    <CountUp to={r.answer} unit={q.unit} style={styles.answer} onDone={() => setStage(2)} />
+                    <Text style={styles.bidUnit}>{q.unit}</Text>
+                  </View>
+                  {stage === 2 && q.fact && <Body size={15}>{q.fact}</Body>}
+                  {stage === 2 && q.source && <Text style={styles.source}>fonte: {q.source}</Text>}
                 </View>
-                {stage === 2 && q.fact && <Body size={15}>{q.fact}</Body>}
-                {stage === 2 && q.source && <Text style={styles.source}>fonte: {q.source}</Text>}
+              </Raised>
+              {r.exact && stage === 2 && <Stamp size={24} text="NA MOSCA!" style={styles.moscaStamp} />}
+            </Enter>
+          )}
+          {stage === 2 && (
+            <Enter delay={120}>
+              <View style={[styles.verdict, { backgroundColor: r.exact ? colors.yellowSoft : over || timeout ? colors.pinkSoft : colors.greenSoft }]} accessibilityLiveRegion="polite">
+                <Text style={styles.verdictTitle}>{title}</Text>
+                <Text style={styles.verdictText}>
+                  {why} {me === r.loserId ? 'Você' : loser} {r.eliminated ? 'perdeu o último “!” e tá fora.' : 'perde um “!”.'}
+                </Text>
+                {r.exact && r.bid && (
+                  <Pressable
+                    onPress={() => void shareCard(cardRef)}
+                    style={({ pressed }) => [styles.shareBtn, pressed && { backgroundColor: colors.yellow }]}
+                    accessibilityRole="button"
+                    accessibilityLabel="compartilhar o na mosca"
+                  >
+                    <Icon name="share" size={18} accent="none" />
+                    <Text style={styles.shareText}>compartilhar o print</Text>
+                  </Pressable>
+                )}
               </View>
-            </Raised>
-          </Enter>
-        )}
-        {stage === 2 && (
-          <Enter delay={120}>
-            <View style={[styles.verdict, { backgroundColor: over || timeout ? colors.pinkSoft : colors.greenSoft }]} accessibilityLiveRegion="polite">
-              <Text style={styles.verdictTitle}>{title}</Text>
-              <Text style={styles.verdictText}>
-                {why} {me === r.loserId ? 'Você' : loser} {r.eliminated ? 'perdeu o último “!” e tá fora.' : 'perde um “!”.'}
-              </Text>
-            </View>
-          </Enter>
-        )}
-      </View>
+            </Enter>
+          )}
+        </View>
+      </ScrollView>
 
       {stage === 2 && (
         <Enter delay={250}>
           <Board m={m} losingId={r.loserId} me={me} />
+          {zoeira}
           <ErrorLine error={error} />
-          <Btn label={m.winnerId ? 'Ver quem ganhou' : 'Próxima rodada'} icon={m.winnerId ? 'trophy' : undefined} variant="dark" disabled={busy} onPress={() => onAction({ type: 'NEXT_ROUND' })} style={{ marginTop: 14 }} />
+          <Btn label={m.winnerId ? 'Ver quem ganhou' : 'Próxima rodada'} icon={m.winnerId ? 'trophy' : undefined} variant="dark" disabled={busy} onPress={() => onAction({ type: 'NEXT_ROUND' })} style={{ marginTop: 12 }} />
         </Enter>
       )}
+      {r.exact && r.bid && <ShareCard ref={cardRef} name={bidder} value={r.bid.value} unit={q.unit} question={q.text} />}
     </View>
   );
 }
 
 /* ---------- fim ---------- */
-function End({ m, me, hostId, busy, onRematch, onHome, showUpsell, onUpsell }: MatchScreenProps) {
+function End({ m, me, hostId, busy, onRematch, onHome, showUpsell, onUpsell, zoeira }: MatchScreenProps) {
   const insets = useSafeAreaInsets();
   const table = standings(m);
   const winner = table[0];
@@ -426,6 +467,7 @@ function End({ m, me, hostId, busy, onRematch, onHome, showUpsell, onUpsell }: M
           </Raised>
         )}
       </ScrollView>
+      {zoeira}
       <View style={{ gap: 8, marginTop: 12 }}>
         {onRematch ? <Btn label="Revanche" icon="refresh" right={null} disabled={busy} onPress={onRematch} /> : <Waiting text={`esperando ${nameOf(m, hostId)} chamar a revanche…`} />}
         <Btn label="Voltar pro início" variant="secondary" right={null} height={54} onPress={onHome} />
@@ -475,6 +517,9 @@ const styles = StyleSheet.create({
   quickVal: { fontFamily: fonts.display, fontSize: 15, color: colors.ink },
   answer: { flexShrink: 1, color: colors.ink, fontFamily: fonts.display, fontSize: 64, lineHeight: 72, letterSpacing: -3 },
   source: { fontFamily: fonts.ui600, fontSize: 12, color: colors.inkMuted, marginTop: 6 },
+  moscaStamp: { position: 'absolute', right: -8, top: -30 },
+  shareBtn: { flexDirection: 'row', alignItems: 'center', gap: 6, alignSelf: 'flex-start', marginTop: 10, borderRadius: 999, borderWidth: 2, borderColor: colors.ink, backgroundColor: colors.surface, paddingHorizontal: 12, minHeight: 36 },
+  shareText: { fontFamily: fonts.ui800, fontSize: 14, color: colors.ink },
   verdict: { borderRadius: radii.card, borderWidth: 2.5, borderColor: colors.ink, padding: 16, marginTop: 14 },
   verdictTitle: { fontFamily: fonts.display, fontSize: 24, letterSpacing: -0.6, color: colors.ink },
   verdictText: { fontFamily: fonts.ui600, fontSize: 15, lineHeight: 21, color: colors.ink, marginTop: 4 },

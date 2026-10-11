@@ -1,10 +1,11 @@
 import { Redirect, router, useLocalSearchParams } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Alert, StyleSheet, Text, View } from 'react-native';
 import { BangMark } from '@/components/brand';
 import { Btn } from '@/components/ui';
 import { MatchScreen } from '@/features/match/MatchScreen';
 import { useRoom } from '@/features/online/useRoom';
+import { useZoeira, ZoeiraBar, ZoeiraLayer } from '@/features/online/zoeira';
 import type { Action } from '@/game/engine';
 import { act, leaveRoom, RoomError, serverNow, type RoomAction } from '@/services/rooms';
 import { useApp } from '@/state/app';
@@ -15,6 +16,8 @@ export default function OnlineMatch() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const { premium, markPlayed } = useApp();
   const { room, me, error: watchError } = useRoom(id ?? null);
+  const names = useMemo(() => Object.fromEntries((room?.players ?? []).map((p) => [p.userId, p.name])), [room?.players]);
+  const { feed, send: sendZoeira } = useZoeira(room?.id ?? null, me, names);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -68,7 +71,8 @@ export default function OnlineMatch() {
     ]);
 
   return (
-    <MatchScreen
+    <View style={{ flex: 1 }}>
+      <MatchScreen
       m={room.state}
       me={me}
       hostId={room.hostId}
@@ -82,7 +86,10 @@ export default function OnlineMatch() {
       showUpsell={!premium}
       onUpsell={() => router.push({ pathname: '/paywall', params: { source: 'pack' } })}
       onSeen={markPlayed}
-    />
+        zoeira={<ZoeiraBar onSend={sendZoeira} />}
+      />
+      <ZoeiraLayer feed={feed} />
+    </View>
   );
 }
 

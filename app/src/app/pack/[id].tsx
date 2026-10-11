@@ -21,6 +21,20 @@ export default function PackDetail() {
   const insets = useSafeAreaInsets();
   const [answers, setAnswers] = useState(false);
   if (!pack) return <Redirect href="/" />;
+  if (pack.adult && !app.adultOk)
+    return (
+      <View style={[styles.root, { paddingTop: insets.top + 6, paddingHorizontal: 20, paddingBottom: insets.bottom + 14 }]}>
+        <TopBar onBack={() => (router.canGoBack() ? router.back() : router.replace('/'))} />
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', gap: 14 }}>
+          <Icon name={pack.icon} size={64} accent={pack.tint} />
+          <Title size={34} style={{ textAlign: 'center' }}>
+            {pack.title}
+          </Title>
+          <Text style={[styles.tagline, { textAlign: 'center' }]}>Perguntas picantes, com humor de adulto. Só pra maiores de 18.</Text>
+        </View>
+        <Btn label="Tenho 18 anos ou mais" right={null} onPress={() => app.set({ adultOk: true })} />
+      </View>
+    );
 
   const locked = pack.premium && !app.premium;
   const visible = locked ? pack.questions.slice(0, PREVIEW) : pack.questions;

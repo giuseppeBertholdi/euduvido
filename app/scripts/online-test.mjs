@@ -165,6 +165,21 @@ assert.equal(tr.state.result.outcome, 'timeout');
 assert.equal(tr.state.result.loserId, lateBy);
 step('timer: depois do prazo, quem estava na vez perde um “!”');
 
+// ── zoeira (Realtime Broadcast, sem banco) ──
+{
+  const got = [];
+  const rx = a.db.channel(`zoeira:${roomId}`, { config: { broadcast: { self: false } } }).on('broadcast', { event: 'react' }, ({ payload }) => got.push(payload));
+  const tx = b.db.channel(`zoeira:${roomId}`, { config: { broadcast: { self: false } } });
+  await new Promise((res) => rx.subscribe((st) => st === 'SUBSCRIBED' && res()));
+  await new Promise((res) => tx.subscribe((st) => st === 'SUBSCRIBED' && res()));
+  await tx.send({ type: 'broadcast', event: 'react', payload: { from: b.id, id: 'buzina' } });
+  for (let i = 0; i < 30 && got.length === 0; i++) await new Promise((res) => setTimeout(res, 100));
+  assert.deepEqual(got[0], { from: b.id, id: 'buzina' });
+  await a.db.removeChannel(rx);
+  await b.db.removeChannel(tx);
+  step('zoeira: a buzina do Léo chegou no celular da Bia');
+}
+
 // ── pular repetidas ──
 const { PACKS } = await import('../src/game/questions.ts');
 const classicIds = PACKS.find((p) => p.id === 'classico').questions.map((q) => q.id);

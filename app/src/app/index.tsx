@@ -6,13 +6,14 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { EasyPaywall } from '@/components/EasyPaywall';
 import { Icon } from '@/components/Icon';
 import { Body, Label, Logo, Raised } from '@/components/ui';
+import { confirmAdult } from '@/features/packs/adult';
 import { PACKS } from '@/game/questions';
 import { useApp } from '@/state/app';
 import { visits } from '@/state/visits';
 import { colors, fonts, maxScale, radii } from '@/theme';
 
 export default function Home() {
-  const { onboarded, premium, set } = useApp();
+  const { onboarded, premium, set, adultOk } = useApp();
   const insets = useSafeAreaInsets();
   const [easy, setEasy] = useState(false);
 
@@ -110,7 +111,7 @@ export default function Home() {
           {PACKS.map((p) => {
             const locked = p.premium && !premium;
             return (
-              <Raised key={p.id} onPress={() => router.push(`/pack/${p.id}`)} lift={3} radius={radii.tile} face={p.tint} style={{ width: 150 }} accessibilityLabel={`${p.title}, ${p.questions.length} perguntas${locked ? ', bloqueado' : ''}`}
+              <Raised key={p.id} onPress={() => (p.adult ? confirmAdult(adultOk, () => set({ adultOk: true }), () => router.push(`/pack/${p.id}`)) : router.push(`/pack/${p.id}`))} lift={3} radius={radii.tile} face={p.tint} style={{ width: 150 }} accessibilityLabel={`${p.title}, ${p.questions.length} perguntas${locked ? ', bloqueado' : ''}`}
                 accessibilityHint="Ver as perguntas">
                 <View style={styles.pack}>
                   <View style={styles.packIcon}>
@@ -123,7 +124,12 @@ export default function Home() {
                     <Text style={styles.packCount}>{p.questions.length} perguntas</Text>
                     {locked && <Icon name="lock" size={16} accent="none" strokeWidth={2.4} />}
                   </View>
-                  {p.isNew && (
+                  {p.adult && (
+                    <View style={styles.adultTag}>
+                      <Text style={[styles.newText, { color: colors.surface }]}>+18</Text>
+                    </View>
+                  )}
+                  {p.isNew && !p.adult && (
                     <View style={styles.newTag}>
                       <Text style={styles.newText}>novo</Text>
                     </View>
@@ -199,6 +205,7 @@ const styles = StyleSheet.create({
   packFoot: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   packCount: { fontFamily: fonts.ui700, fontSize: 13, color: colors.ink },
   newTag: { position: 'absolute', right: 10, top: 12, backgroundColor: colors.ink, borderRadius: 999, paddingHorizontal: 8, paddingVertical: 2, transform: [{ rotate: '6deg' }] },
+  adultTag: { position: 'absolute', right: 10, top: 12, backgroundColor: colors.pinkInk, borderRadius: 999, paddingHorizontal: 8, paddingVertical: 2, transform: [{ rotate: '6deg' }] },
   newText: { color: colors.yellow, fontFamily: fonts.ui800, fontSize: 11 },
   how: { flexDirection: 'row', alignItems: 'center', gap: 14, padding: 16 },
   footBtn: { marginTop: 10, alignSelf: 'center', minHeight: 44, justifyContent: 'center' },

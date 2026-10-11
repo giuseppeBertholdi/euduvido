@@ -8,7 +8,9 @@ export type Pack = {
   premium: boolean;
   isNew?: boolean;
   /** Ícone (ver `src/components/Icon.tsx`) e cor do pacote. */
-  icon: 'bulb' | 'brasil' | 'paw' | 'heart' | 'cursor' | 'cup' | 'bolt' | 'planet';
+  icon: 'bulb' | 'brasil' | 'paw' | 'heart' | 'cursor' | 'cup' | 'bolt' | 'planet' | 'ball' | 'cassette' | 'meme' | 'pepper';
+  /** Conteúdo +18: só aparece depois da confirmação de idade. */
+  adult?: boolean;
   tint: string;
   questions: Question[];
 };
@@ -3407,6 +3409,491 @@ export const PACKS: Pack[] = [
         "unit": "km/h",
         "fact": "Velocidade de rotação da superfície terrestre.",
         "source": "NASA Earth Facts"
+      }
+    ]
+  },
+  {
+    "id": "futebol",
+    "title": "futebol BR",
+    "tagline": "resenha de boteco, agora valendo",
+    "premium": true,
+    "isNew": true,
+    "icon": "ball",
+    "tint": "#B6E59E",
+    "questions": [
+      {
+        "id": "c2",
+        "text": "Em que ano o Brasil ganhou sua primeira Copa do Mundo?",
+        "answer": 1958,
+        "unit": "ano",
+        "fact": "Na Suécia. Pelé tinha só 17 anos.",
+        "source": "FIFA"
+      },
+      {
+        "id": "c3",
+        "text": "Quantos gols Pelé marcou em Copas do Mundo?",
+        "answer": 12,
+        "unit": "gols",
+        "fact": "Em 14 jogos de Copa.",
+        "source": "FIFA"
+      },
+      {
+        "id": "c4",
+        "text": "Quantos gols Ronaldo Fenômeno marcou em Copas do Mundo?",
+        "answer": 15,
+        "unit": "gols",
+        "fact": "Foi o maior artilheiro das Copas até 2014.",
+        "source": "FIFA"
+      },
+      {
+        "id": "c5",
+        "text": "Quantos anos Pelé tinha quando ganhou sua primeira Copa do Mundo?",
+        "answer": 17,
+        "unit": "anos",
+        "fact": "Ainda é o mais jovem a marcar numa final de Copa.",
+        "source": "FIFA"
+      },
+      {
+        "id": "c6",
+        "text": "Quantas Copas do Mundo Pelé ganhou como jogador?",
+        "answer": 3,
+        "unit": "Copas",
+        "fact": "1958, 1962 e 1970. Ninguém ganhou mais.",
+        "source": "FIFA"
+      },
+      {
+        "id": "c7",
+        "text": "Em que ano Pelé marcou o seu milésimo gol (pela contagem dele)?",
+        "answer": 1969,
+        "unit": "ano",
+        "fact": "De pênalti, contra o Vasco, no Maracanã.",
+        "source": "Santos FC"
+      },
+      {
+        "id": "c8",
+        "text": "Em que ano Romário comemorou o seu milésimo gol (pela contagem dele)?",
+        "answer": 2007,
+        "unit": "ano",
+        "fact": "Também de pênalti, contra o Sport.",
+        "source": "CBF"
+      },
+      {
+        "id": "c9",
+        "text": "Em que ano aconteceu o Maracanaço (Brasil perdeu a final para o Uruguai)?",
+        "answer": 1950,
+        "unit": "ano",
+        "fact": "O Brasil só precisava de um empate.",
+        "source": "FIFA"
+      },
+      {
+        "id": "c10",
+        "text": "Quantos gols Zico marcou pelo Flamengo?",
+        "answer": 508,
+        "unit": "gols",
+        "fact": "É o maior artilheiro da história do clube.",
+        "source": "Clube de Regatas do Flamengo"
+      },
+      {
+        "id": "c11",
+        "text": "Em que ano o Corinthians ganhou o primeiro Mundial de Clubes da FIFA?",
+        "answer": 2000,
+        "unit": "ano",
+        "fact": "A final foi contra o Vasco, no Maracanã, nos pênaltis.",
+        "source": "FIFA"
+      },
+      {
+        "id": "c12",
+        "text": "Quantos títulos de Copa América a Seleção masculina tem?",
+        "answer": 9,
+        "unit": "títulos",
+        "fact": "O primeiro foi em 1919.",
+        "source": "CONMEBOL"
+      },
+      {
+        "id": "c13",
+        "text": "Em que ano o Brasil ganhou o primeiro ouro olímpico no futebol masculino?",
+        "answer": 2016,
+        "unit": "ano",
+        "fact": "No Maracanã, nos pênaltis, contra a Alemanha.",
+        "source": "COI"
+      },
+      {
+        "id": "c14",
+        "text": "Quantas vezes Marta foi eleita a melhor jogadora do mundo pela FIFA?",
+        "answer": 6,
+        "unit": "vezes",
+        "fact": "Cinco seguidas (2006 a 2010) e mais uma em 2018.",
+        "source": "FIFA"
+      },
+      {
+        "id": "c15",
+        "text": "Quantos gols Marta marcou em Copas do Mundo?",
+        "answer": 17,
+        "unit": "gols",
+        "fact": "É a maior artilheira de Copas entre homens e mulheres.",
+        "source": "FIFA"
+      },
+      {
+        "id": "c16",
+        "text": "Quantos jogos Pelé disputou pela Seleção Brasileira (contagem da FIFA)?",
+        "answer": 92,
+        "unit": "jogos",
+        "fact": "Marcou 77 gols nesses jogos.",
+        "source": "FIFA"
+      }
+    ]
+  },
+  {
+    "id": "anos90",
+    "title": "anos 90/2000",
+    "tagline": "nostalgia com tamagotchi",
+    "premium": true,
+    "isNew": true,
+    "icon": "cassette",
+    "tint": "#FFC2E0",
+    "questions": [
+      {
+        "id": "c17",
+        "text": "Em que ano o Tamagotchi foi lançado no Japão?",
+        "answer": 1996,
+        "unit": "ano",
+        "fact": "Vendeu mais de 80 milhões de unidades.",
+        "source": "Bandai"
+      },
+      {
+        "id": "c18",
+        "text": "Em que ano estreou o primeiro filme Toy Story?",
+        "answer": 1995,
+        "unit": "ano",
+        "fact": "Foi o primeiro longa feito todo em computação gráfica.",
+        "source": "Pixar"
+      },
+      {
+        "id": "c19",
+        "text": "Em que ano o filme Titanic estreou nos cinemas?",
+        "answer": 1997,
+        "unit": "ano",
+        "fact": "Ficou 12 anos como a maior bilheteria da história.",
+        "source": "Box Office Mojo"
+      },
+      {
+        "id": "c20",
+        "text": "Quantos Oscars o filme Titanic ganhou?",
+        "answer": 11,
+        "unit": "Oscars",
+        "fact": "Empatado com Ben-Hur e O Retorno do Rei.",
+        "source": "Academia de Artes e Ciências Cinematográficas"
+      },
+      {
+        "id": "c21",
+        "text": "Em que ano o MSN Messenger foi lançado?",
+        "answer": 1999,
+        "unit": "ano",
+        "fact": "Começou como MSN Messenger Service, da Microsoft.",
+        "source": "Microsoft"
+      },
+      {
+        "id": "c22",
+        "text": "Quantos integrantes tinha a banda Mamonas Assassinas?",
+        "answer": 5,
+        "unit": "integrantes",
+        "fact": "A banda durou menos de um ano de sucesso nacional.",
+        "source": "Wikipédia (Mamonas Assassinas)"
+      },
+      {
+        "id": "c23",
+        "text": "Em que ano o Nokia 3310 foi lançado?",
+        "answer": 2000,
+        "unit": "ano",
+        "fact": "Vendeu cerca de 126 milhões de unidades.",
+        "source": "Nokia"
+      },
+      {
+        "id": "c24",
+        "text": "Em que ano o Game Boy Color foi lançado?",
+        "answer": 1998,
+        "unit": "ano",
+        "fact": "Foi o primeiro Game Boy com tela colorida.",
+        "source": "Nintendo"
+      },
+      {
+        "id": "c25",
+        "text": "Quantos Power Rangers tinha a formação original de 1993?",
+        "answer": 5,
+        "unit": "Rangers",
+        "fact": "O Ranger Verde só chegou depois.",
+        "source": "Saban / Hasbro"
+      },
+      {
+        "id": "c26",
+        "text": "Em que ano foi exibido o último episódio de Friends?",
+        "answer": 2004,
+        "unit": "ano",
+        "fact": "O final teve mais de 52 milhões de espectadores nos EUA.",
+        "source": "NBC"
+      },
+      {
+        "id": "c27",
+        "text": "Em que ano o Windows 95 foi lançado?",
+        "answer": 1995,
+        "unit": "ano",
+        "fact": "Foi o sistema que trouxe o botão Iniciar.",
+        "source": "Microsoft"
+      },
+      {
+        "id": "c28",
+        "text": "Em que ano o PlayStation 2 foi lançado no Japão?",
+        "answer": 2000,
+        "unit": "ano",
+        "fact": "É o console mais vendido da história.",
+        "source": "Sony Interactive Entertainment"
+      },
+      {
+        "id": "c29",
+        "text": "Quantas integrantes tinham as Spice Girls?",
+        "answer": 5,
+        "unit": "integrantes",
+        "fact": "Baby, Ginger, Scary, Sporty e Posh.",
+        "source": "Wikipédia (Spice Girls)"
+      },
+      {
+        "id": "c30",
+        "text": "Em que ano estreou o primeiro filme do Shrek?",
+        "answer": 2001,
+        "unit": "ano",
+        "fact": "Ganhou o primeiro Oscar de Melhor Animação da história.",
+        "source": "DreamWorks"
+      },
+      {
+        "id": "c31",
+        "text": "Em que ano o Google foi fundado?",
+        "answer": 1998,
+        "unit": "ano",
+        "fact": "Começou numa garagem na Califórnia.",
+        "source": "Google"
+      }
+    ]
+  },
+  {
+    "id": "memes",
+    "title": "memes",
+    "tagline": "cronicamente online, nível 2",
+    "premium": true,
+    "isNew": true,
+    "icon": "meme",
+    "tint": "#C5F0EA",
+    "questions": [
+      {
+        "id": "c32",
+        "text": "Quantos segundos dura Me at the zoo, o primeiro vídeo do YouTube?",
+        "answer": 19,
+        "unit": "segundos",
+        "fact": "Foi postado por Jawed Karim, um dos fundadores.",
+        "source": "YouTube"
+      },
+      {
+        "id": "c33",
+        "text": "Em que ano foi lançada Never Gonna Give You Up, a música do Rickroll?",
+        "answer": 1987,
+        "unit": "ano",
+        "fact": "O Rickroll virou meme só em 2007.",
+        "source": "Wikipédia (Rickrolling)"
+      },
+      {
+        "id": "c34",
+        "text": "Em que ano foi postado o vídeo Charlie bit my finger?",
+        "answer": 2007,
+        "unit": "ano",
+        "fact": "O vídeo foi vendido como NFT em 2021.",
+        "source": "YouTube"
+      },
+      {
+        "id": "c35",
+        "text": "Em que ano foi tirada a foto da Kabosu que virou o meme Doge?",
+        "answer": 2010,
+        "unit": "ano",
+        "fact": "A Kabosu era uma shiba inu do Japão.",
+        "source": "Know Your Meme"
+      },
+      {
+        "id": "c36",
+        "text": "Quantos anos tinha a Kabosu (a cachorrinha do Doge) quando morreu em 2024?",
+        "answer": 18,
+        "unit": "anos",
+        "fact": "O meme inspirou até uma criptomoeda.",
+        "source": "Know Your Meme"
+      },
+      {
+        "id": "c37",
+        "text": "Em que ano o clipe de Gangnam Style foi lançado?",
+        "answer": 2012,
+        "unit": "ano",
+        "fact": "Foi o primeiro vídeo a passar de 1 bilhão de views.",
+        "source": "YouTube"
+      },
+      {
+        "id": "c38",
+        "text": "Quantas visualizações Gangnam Style tinha quando estourou o contador do YouTube?",
+        "answer": 2147483647,
+        "unit": "views",
+        "fact": "É o maior número que cabe num inteiro de 32 bits.",
+        "source": "Google / YouTube (2014)"
+      },
+      {
+        "id": "c39",
+        "text": "Em que ano viralizou o Harlem Shake?",
+        "answer": 2013,
+        "unit": "ano",
+        "fact": "Milhares de versões foram postadas em poucas semanas.",
+        "source": "Know Your Meme"
+      },
+      {
+        "id": "c40",
+        "text": "Em que ano viralizou o desafio do balde de gelo (Ice Bucket Challenge)?",
+        "answer": 2014,
+        "unit": "ano",
+        "fact": "Arrecadou mais de 100 milhões de dólares para a pesquisa da ELA.",
+        "source": "ALS Association"
+      },
+      {
+        "id": "c41",
+        "text": "Quantos anos viveu a Grumpy Cat?",
+        "answer": 7,
+        "unit": "anos",
+        "fact": "Seu nome de verdade era Tardar Sauce.",
+        "source": "Know Your Meme"
+      },
+      {
+        "id": "c42",
+        "text": "Em que ano viralizou o vestido azul e preto (ou branco e dourado)?",
+        "answer": 2015,
+        "unit": "ano",
+        "fact": "O vestido era azul e preto.",
+        "source": "Wikipédia (The dress)"
+      },
+      {
+        "id": "c43",
+        "text": "Em que ano foi lançado o vídeo Baby Shark Dance?",
+        "answer": 2016,
+        "unit": "ano",
+        "fact": "Virou o vídeo mais visto da história do YouTube.",
+        "source": "Pinkfong"
+      },
+      {
+        "id": "c44",
+        "text": "Em que ano o sapo Pepe apareceu pela primeira vez nos quadrinhos?",
+        "answer": 2005,
+        "unit": "ano",
+        "fact": "Na revista Boy's Club de Matt Furie.",
+        "source": "Know Your Meme"
+      },
+      {
+        "id": "c45",
+        "text": "Em que ano foi tirada a foto do namorado distraído (Distracted Boyfriend)?",
+        "answer": 2015,
+        "unit": "ano",
+        "fact": "O fotógrafo é Antonio Guillem, de Barcelona.",
+        "source": "Know Your Meme"
+      }
+    ]
+  },
+  {
+    "id": "picante",
+    "title": "picante +18",
+    "tagline": "só com a galera certa",
+    "premium": true,
+    "isNew": true,
+    "adult": true,
+    "icon": "pepper",
+    "tint": "#FF9C8A",
+    "questions": [
+      {
+        "id": "c46",
+        "text": "Quantas horas durou o beijo mais longo do mundo (recorde do Guinness)?",
+        "answer": 58,
+        "unit": "horas",
+        "fact": "Um casal na Tailândia, em 2013. Ganharam até um prêmio em dinheiro.",
+        "source": "Guinness World Records"
+      },
+      {
+        "id": "c47",
+        "text": "Em que ano o Viagra foi aprovado nos Estados Unidos?",
+        "answer": 1998,
+        "unit": "ano",
+        "fact": "O remédio nasceu de uma pesquisa para o coração.",
+        "source": "FDA"
+      },
+      {
+        "id": "c48",
+        "text": "Em que ano a primeira pílula anticoncepcional foi aprovada nos Estados Unidos?",
+        "answer": 1960,
+        "unit": "ano",
+        "fact": "Mudou a história do comportamento no século 20.",
+        "source": "FDA"
+      },
+      {
+        "id": "c49",
+        "text": "Quantas posições sexuais o Kama Sutra descreve na lista mais famosa?",
+        "answer": 64,
+        "unit": "posições",
+        "fact": "Na verdade são 64 artes do amor; o livro fala muito mais de relacionamento.",
+        "source": "Kama Sutra (Vatsyayana)"
+      },
+      {
+        "id": "c50",
+        "text": "Em que ano o Tinder foi lançado?",
+        "answer": 2012,
+        "unit": "ano",
+        "fact": "O swipe virou verbo em várias línguas.",
+        "source": "Match Group"
+      },
+      {
+        "id": "c51",
+        "text": "Em que ano estreou nos cinemas o filme Cinquenta Tons de Cinza?",
+        "answer": 2015,
+        "unit": "ano",
+        "fact": "O livro vendeu mais de 150 milhões de cópias.",
+        "source": "Universal Pictures"
+      },
+      {
+        "id": "c52",
+        "text": "Em que ano estreou a série Sex and the City?",
+        "answer": 1998,
+        "unit": "ano",
+        "fact": "Foram 6 temporadas e 94 episódios.",
+        "source": "HBO"
+      },
+      {
+        "id": "c53",
+        "text": "Em que ano saiu a primeira edição da revista Playboy?",
+        "answer": 1953,
+        "unit": "ano",
+        "fact": "A capa era a Marilyn Monroe.",
+        "source": "Playboy Enterprises"
+      },
+      {
+        "id": "c54",
+        "text": "Quantos anos Marilyn Monroe tinha quando foi capa da primeira Playboy?",
+        "answer": 27,
+        "unit": "anos",
+        "fact": "As fotos tinham sido feitas anos antes para um calendário.",
+        "source": "Playboy Enterprises"
+      },
+      {
+        "id": "c55",
+        "text": "Em que ano o Grindr foi lançado?",
+        "answer": 2009,
+        "unit": "ano",
+        "fact": "Foi um dos primeiros apps de encontro por localização.",
+        "source": "Grindr"
+      },
+      {
+        "id": "c56",
+        "text": "Em que ano foi inventada a camisinha de látex?",
+        "answer": 1920,
+        "unit": "ano",
+        "fact": "Antes eram feitas de borracha grossa ou de tripa animal.",
+        "source": "Smithsonian"
       }
     ]
   }

@@ -163,3 +163,36 @@ test('pular repetidas: tira as já jogadas; se sobrar pouco, volta a usar tudo',
   assert.equal(back.recycled, true);
   assert.equal(back.pool.length, pool.length);
 });
+
+test('lance exato: quem cravou recupera um "!" (até o máximo); quem duvidou perde', () => {
+  // Bia perde uma vida antes, depois crava 100
+  let m = started(3);
+  m = reduce(m, { type: 'BID', value: 500 }); // Bia blefa
+  m = reduce(m, { type: 'DOUBT' }); // Léo duvida → Bia 2
+  assert.equal(m.lives.a, 2);
+  m = reduce(m, { type: 'NEXT_ROUND' }); // Bia abre
+  m = reduce(m, { type: 'START_TURN' });
+  m = reduce(m, { type: 'BID', value: 100 }); // Bia crava a resposta
+  m = reduce(m, { type: 'DOUBT' }); // Léo duvida à toa
+  assert.equal(m.result?.exact, true);
+  assert.equal(m.result?.bonusId, 'a');
+  assert.equal(m.lives.a, 3, 'Bia volta a ter 3');
+  assert.equal(m.lives.b, 2, 'Léo perde um');
+});
+
+test('lance exato com vidas cheias: é na mosca, mas sem passar do máximo', () => {
+  let m = started(3);
+  m = reduce(m, { type: 'BID', value: 100 });
+  m = reduce(m, { type: 'DOUBT' });
+  assert.equal(m.result?.exact, true);
+  assert.equal(m.result?.bonusId, null);
+  assert.equal(m.lives.a, 3);
+});
+
+test('lance abaixo da resposta não é exato', () => {
+  let m = started(3);
+  m = reduce(m, { type: 'BID', value: 99 });
+  m = reduce(m, { type: 'DOUBT' });
+  assert.equal(m.result?.outcome, 'ok');
+  assert.equal(m.result?.exact, false);
+});

@@ -33,7 +33,16 @@
           "resizeMode": "contain"
         }
       ],
-      "expo-router"
+      "expo-router",
+      "expo-sharing",
+      [
+        "expo-audio",
+        {
+          "microphonePermission": false,
+          "enableBackgroundPlayback": false,
+          "enableBackgroundRecording": false
+        }
+      ]
     ],
     "scheme": "euduvido",
     "backgroundColor": "#FBF5EA",

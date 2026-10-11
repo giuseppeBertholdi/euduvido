@@ -155,6 +155,33 @@ const ICONS = {
       <Path d="M6.3 14.2C3 16.5 1.8 18.4 2.5 19.3c1.2 1.5 6.8-.7 12.4-5s9.3-9.1 8.1-10.6c-.7-.9-2.9-.4-5.7 1" stroke={k} />
     </>
   ),
+  ball: (k, a) => (
+    <>
+      <Circle cx={12} cy={12} r={9} fill={a} stroke={k} />
+      <Path d="M12 7.5l3.3 2.4-1.3 3.9h-4l-1.3-3.9zM12 7.5V3M15.3 9.9l4.3-1.5M14 13.8l2.6 3.7M10 13.8l-2.6 3.7M8.7 9.9L4.4 8.4" stroke={k} />
+    </>
+  ),
+  cassette: (k, a) => (
+    <>
+      <Rect x={2.5} y={5} width={19} height={14} rx={2.5} fill={a} stroke={k} />
+      <Circle cx={8.5} cy={11} r={1.8} stroke={k} />
+      <Circle cx={15.5} cy={11} r={1.8} stroke={k} />
+      <Path d="M10.3 11h3.4M6.5 19l1.5-3h8l1.5 3" stroke={k} />
+    </>
+  ),
+  meme: (k, a) => (
+    <>
+      <Circle cx={12} cy={12} r={9} fill={a} stroke={k} />
+      <Path d="M8 9.5l1.6 1M16 9.5l-1.6 1M7.5 14c1.2 2.2 2.8 3.2 4.5 3.2s3.3-1 4.5-3.2z" stroke={k} />
+      <Path d="M12 17.2v-1.6" stroke={k} />
+    </>
+  ),
+  pepper: (k, a) => (
+    <>
+      <Path d="M8 8.5c-2.8 1.2-4.6 4.4-4.4 8 .1 2 1.6 3.4 3.4 2.8 4.8-1.5 9.6-5.4 11-9.7.6-1.9-.6-3.4-2.5-3.3-2.6.2-5 1-7.5 2.2z" fill={a} stroke={k} />
+      <Path d="M16 6.3c.2-1.6 1.2-2.8 2.8-3.3M14.5 6.2c1.2-.8 2.6-.8 3.6.2" stroke={k} />
+    </>
+  ),
 } satisfies Record<string, Draw>;
 
 export type IconName = keyof typeof ICONS;
