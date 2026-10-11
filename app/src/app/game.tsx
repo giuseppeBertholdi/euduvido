@@ -1,5 +1,7 @@
 import { Redirect, router } from 'expo-router';
 import { Alert } from 'react-native';
+import { RemindersAsk } from '@/features/engagement/RemindersAsk';
+import { useMatchEnd } from '@/features/engagement/useMatchEnd';
 import { MatchScreen } from '@/features/match/MatchScreen';
 import { createMatch, publicState, reduce, type Action } from '@/game/engine';
 import { freshPool } from '@/game/played';
@@ -11,6 +13,8 @@ const localNow = () => Date.now();
 /** Partida local: um celular só, o motor roda aqui mesmo. */
 export default function Game() {
   const { match, setMatch, premium, packs, played, avoidRepeats, markPlayed } = useApp();
+  // partida local: a galera jogou junta até o fim, é sempre um momento bom
+  useMatchEnd(match ? `${match.players.map((p) => p.id).join(',')}:${match.deck[0]?.id}` : null, match?.phase === 'end', true);
   if (!match) return <Redirect href="/" />;
 
   const onAction = (a: Action) => setMatch(reduce(match, a, { now: Date.now() }));
@@ -41,6 +45,7 @@ export default function Game() {
       showUpsell={!premium}
       onUpsell={() => router.push({ pathname: '/paywall', params: { source: 'pack' } })}
       onSeen={markPlayed}
+      endExtra={<RemindersAsk />}
     />
   );
 }

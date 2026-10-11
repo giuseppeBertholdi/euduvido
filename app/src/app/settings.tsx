@@ -9,6 +9,7 @@ import { Icon, type IconName } from '@/components/Icon';
 import { Label, Raised, Title, TopBar, tapLight } from '@/components/ui';
 import { links } from '@/config/links';
 import { LIVES_OPTIONS, TIMER_OPTIONS } from '@/game/engine';
+import { askReminderPermission, rescheduleReminders } from '@/services/engagement/reminders';
 import { purchases } from '@/services/purchases';
 import { onlineEnabled } from '@/services/rooms';
 import { useApp } from '@/state/app';
@@ -178,6 +179,39 @@ export default function Settings() {
           />
         </Section>
 
+        <Section title="lembretes">
+          <Row
+            icon="timer"
+            label="Lembrar da próxima resenha"
+            detail="no máximo 3 avisos à noite, só se você sumir"
+            last
+            right={
+              <Switch
+                value={app.remindersOn}
+                onValueChange={async (v) => {
+                  if (!v) {
+                    app.set({ remindersOn: false, remindersAsked: true });
+                    await rescheduleReminders(false);
+                    return;
+                  }
+                  const granted = await askReminderPermission();
+                  app.set({ remindersOn: granted, remindersAsked: true });
+                  await rescheduleReminders(granted);
+                  if (!granted)
+                    Alert.alert('Notificações desligadas', 'Libera as notificações do Eu Duvido! nos Ajustes do iPhone pra receber os lembretes.', [
+                      { text: 'Agora não', style: 'cancel' },
+                      { text: 'Abrir Ajustes', onPress: () => void Linking.openSettings() },
+                    ]);
+                }}
+                trackColor={{ true: colors.ink, false: colors.line }}
+                thumbColor={app.remindersOn ? colors.yellow : colors.surface}
+                ios_backgroundColor={colors.line}
+                accessibilityLabel="lembretes"
+              />
+            }
+          />
+        </Section>
+
         <Section title="sensações">
           <Row
             icon="megaphone"
@@ -215,7 +249,16 @@ export default function Settings() {
         <Section title="pro">
           <Row icon="crown" label={app.premium ? 'Você é pro' : 'Conhecer o pro'} detail={app.premium ? 'todos os pacotes liberados' : '3 dias grátis'} onPress={() => router.push({ pathname: '/paywall', params: { source: 'settings' } })} />
           <Row icon="refresh" label="Restaurar compras" onPress={restore} right={restoring ? <ActivityIndicator color={colors.ink} /> : undefined} />
-          <Row icon="timer" label="Gerenciar assinatura" detail="cancelar ou trocar de plano" onPress={() => void Linking.openURL(links.manageSubscriptions)} last />
+          <Row icon="timer" label="Gerenciar assinatura" detail="cancelar ou trocar de plano" onPress={() => void Linking.openURL(links.manageSubscriptions)} last={!__DEV__} />
+          {__DEV__ && (
+            <Row
+              icon="eye"
+              label={app.premium ? 'Testar como free' : 'Testar como pro'}
+              detail="só aparece em desenvolvimento (a compra ainda é simulada)"
+              last
+              onPress={() => app.set({ premium: !app.premium })}
+            />
+          )}
         </Section>
 
         <Section title="sobre">

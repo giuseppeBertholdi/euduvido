@@ -9,7 +9,8 @@ import { BangMark } from './brand';
 import { DelayedClose } from './DelayedClose';
 import { Btn, Title } from './ui';
 
-const CLOSE_AFTER_MS = 4000;
+/** O ✕ do paywall de entrada aparece em 3 s. */
+const CLOSE_AFTER_MS = 3000;
 
 const PERKS: [IconName, string][] = [
   ['sparkle', `+${PACKS.filter((p) => p.premium).length} pacotes (absurdos BR, ciência, comida…)`],

@@ -7,7 +7,6 @@ import { Lives } from '@/components/brand';
 import { Icon } from '@/components/Icon';
 import { Btn, Label, Raised, Title, TopBar, tapLight } from '@/components/ui';
 import { createMatch, LIVES_OPTIONS, MAX_PLAYERS, MIN_PLAYERS, TIMER_OPTIONS, type Player } from '@/game/engine';
-import { confirmAdult } from '@/features/packs/adult';
 import { freshPool } from '@/game/played';
 import { PACKS } from '@/game/questions';
 import { useApp } from '@/state/app';
@@ -38,9 +37,7 @@ export default function Setup() {
   const togglePack = (id: string, premium: boolean) => {
     tapLight();
     if (premium && !app.premium) return router.push(`/pack/${id}`);
-    const flip = () => setPacks((cur) => (cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id]));
-    if (PACKS.find((p) => p.id === id)?.adult && !packs.includes(id)) return confirmAdult(app.adultOk, () => app.set({ adultOk: true }), flip);
-    flip();
+    setPacks((cur) => (cur.includes(id) ? cur.filter((x) => x !== id) : [...cur, id]));
   };
 
   const start = () => {
@@ -146,8 +143,7 @@ export default function Setup() {
                   <View style={{ flex: 1 }}>
                     <Text style={styles.packTitle}>{p.title}</Text>
                     <Text style={styles.packSub}>
-                      {p.adult ? '+18 · ' : ''}
-                  {p.questions.length} perguntas · {p.tagline}
+                      {p.questions.length} perguntas · {p.tagline}
                     </Text>
                   </View>
                   {locked ? (

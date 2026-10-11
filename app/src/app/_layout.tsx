@@ -9,6 +9,7 @@ import { StatusBar } from 'expo-status-bar';
 import { useEffect } from 'react';
 import { AppState } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { rescheduleReminders } from '@/services/engagement/reminders';
 import { AppProvider, useApp } from '@/state/app';
 import { visits } from '@/state/visits';
 import { colors } from '@/theme';
@@ -16,7 +17,7 @@ import { colors } from '@/theme';
 void SplashScreen.preventAutoHideAsync();
 
 function Root() {
-  const { ready } = useApp();
+  const { ready, remindersOn } = useApp();
   const [fontsLoaded, fontError] = useFonts({ Syne_800ExtraBold, RethinkSans_500Medium, RethinkSans_600SemiBold, RethinkSans_700Bold, RethinkSans_800ExtraBold });
   const loaded = ready && (fontsLoaded || !!fontError);
 
@@ -24,6 +25,14 @@ function Root() {
     const sub = AppState.addEventListener('change', (s) => visits.onAppState(s, Date.now()));
     return () => sub.remove();
   }, []);
+
+  // lembretes: refaz o plano ao abrir e ao voltar pro app (quem joga sempre nunca recebe)
+  useEffect(() => {
+    if (!ready) return;
+    void rescheduleReminders(remindersOn);
+    const sub = AppState.addEventListener('change', (s) => s === 'active' && void rescheduleReminders(remindersOn));
+    return () => sub.remove();
+  }, [ready, remindersOn]);
 
   useEffect(() => {
     if (loaded) void SplashScreen.hideAsync();

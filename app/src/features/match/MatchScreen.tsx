@@ -35,6 +35,8 @@ export type MatchScreenProps = {
   onHome: () => void;
   showUpsell?: boolean;
   onUpsell?: () => void;
+  /** Conteúdo extra no fim da partida (ex.: convite pros lembretes). */
+  endExtra?: ReactNode;
   /** Barra de zoeira (só no online), mostrada na vez, no resultado e no fim. */
   zoeira?: ReactNode;
   /** Chamado quando uma pergunta aparece (pra lembrar que já saiu). */
@@ -419,7 +421,7 @@ function Result({ m, me, busy, error, onAction, zoeira }: MatchScreenProps) {
 }
 
 /* ---------- fim ---------- */
-function End({ m, me, hostId, busy, onRematch, onHome, showUpsell, onUpsell, zoeira }: MatchScreenProps) {
+function End({ m, me, hostId, busy, onRematch, onHome, showUpsell, onUpsell, zoeira, endExtra }: MatchScreenProps) {
   const insets = useSafeAreaInsets();
   const table = standings(m);
   const winner = table[0];
@@ -455,6 +457,7 @@ function End({ m, me, hostId, busy, onRematch, onHome, showUpsell, onUpsell, zoe
             </View>
           </Enter>
         ))}
+        {endExtra}
         {showUpsell && onUpsell && (
           <Raised onPress={onUpsell} face={colors.pinkSoft} style={{ marginTop: 6 }} accessibilityLabel="Conhecer os pacotes pro">
             <View style={styles.upsell}>

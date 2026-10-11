@@ -19,14 +19,21 @@ type Saved = {
   name: string;
   haptics: boolean;
   sounds: boolean;
-  /** Confirmou ter 18+ (libera o pacote picante). */
-  adultOk: boolean;
+  /** Lembretes locais ligados (a pessoa disse "quero" e deu permissão). */
+  remindersOn: boolean;
+  /** Já perguntamos sobre lembretes (só uma vez, depois da primeira partida). */
+  remindersAsked: boolean;
+  /** Partidas que chegaram ao fim neste celular. */
+  matchesFinished: number;
+  firstOpenAt: number | null;
+  /** Quando pedimos avaliação na App Store. */
+  reviewAsks: number[];
   /** Pular perguntas que já saíram neste celular. */
   avoidRepeats: boolean;
   /** Ids das perguntas que já saíram (mais recentes no fim). */
   played: string[];
 };
-const DEFAULTS: Saved = { onboarded: false, premium: false, lastPlayers: [], lives: 3, timer: null, packs: ['classico'], name: '', haptics: true, sounds: true, adultOk: false, avoidRepeats: true, played: [] };
+const DEFAULTS: Saved = { onboarded: false, premium: false, lastPlayers: [], lives: 3, timer: null, packs: ['classico'], name: '', haptics: true, sounds: true, remindersOn: false, remindersAsked: false, matchesFinished: 0, firstOpenAt: null, reviewAsks: [], avoidRepeats: true, played: [] };
 
 type Ctx = Saved & {
   ready: boolean;
@@ -50,12 +57,16 @@ export function AppProvider({ children }: { children: ReactNode }) {
       .then((raw) => {
         if (!raw) return;
         const loaded = { ...DEFAULTS, ...(JSON.parse(raw) as Partial<Saved>) };
+        if (loaded.firstOpenAt === null) loaded.firstOpenAt = Date.now();
         setHapticsEnabled(loaded.haptics);
         setSoundEnabled(loaded.sounds);
         setSaved(loaded);
       })
       .catch(() => undefined)
-      .finally(() => setReady(true));
+      .finally(() => {
+        setSaved((prev) => (prev.firstOpenAt === null ? { ...prev, firstOpenAt: Date.now() } : prev));
+        setReady(true);
+      });
   }, []);
 
   const set = useCallback((patch: Partial<Saved>) => {

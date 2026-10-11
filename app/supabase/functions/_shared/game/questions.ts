@@ -10,8 +10,6 @@ export type Pack = {
   isNew?: boolean;
   /** Ícone (ver `src/components/Icon.tsx`) e cor do pacote. */
   icon: 'bulb' | 'brasil' | 'paw' | 'heart' | 'cursor' | 'cup' | 'bolt' | 'planet' | 'ball' | 'cassette' | 'meme' | 'pepper';
-  /** Conteúdo +18: só aparece depois da confirmação de idade. */
-  adult?: boolean;
   tint: string;
   questions: Question[];
 };
@@ -3800,11 +3798,10 @@ export const PACKS: Pack[] = [
   },
   {
     "id": "picante",
-    "title": "picante +18",
+    "title": "picante",
     "tagline": "só com a galera certa",
     "premium": true,
     "isNew": true,
-    "adult": true,
     "icon": "pepper",
     "tint": "#FF9C8A",
     "questions": [

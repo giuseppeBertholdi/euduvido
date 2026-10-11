@@ -2,6 +2,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useState } from 'react';
 import { ActivityIndicator, Linking, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ProView } from '@/features/paywall/ProView';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Icon, type IconName } from '@/components/Icon';
 import { BangMark } from '@/components/brand';
@@ -14,7 +15,7 @@ import { useApp } from '@/state/app';
 import { colors, fonts } from '@/theme';
 
 /** O ✕ demora pra aparecer: mais na primeira vez (fim da introdução) e ao abrir o app. */
-const CLOSE_AFTER_MS: Record<string, number> = { onboarding: 6000, launch: 5000 };
+const CLOSE_AFTER_MS: Record<string, number> = { onboarding: 6000, launch: 3000 };
 const CLOSE_DEFAULT_MS = 3500;
 
 const TITLES: Record<string, string> = {
@@ -31,7 +32,7 @@ const PERKS: [IconName, string][] = [
 
 export default function Paywall() {
   const { source = 'home' } = useLocalSearchParams<{ source?: string }>();
-  const { set } = useApp();
+  const { set, premium } = useApp();
   const insets = useSafeAreaInsets();
   const onboarding = source === 'onboarding';
   const [plan, setPlan] = useState<PlanId>('annual');
@@ -68,6 +69,9 @@ export default function Paywall() {
       leave();
     }
   };
+
+  // quem já assina não vê oferta: vê o que tem e como gerenciar
+  if (premium && !onboarding) return <ProView onClose={leave} onRestore={restore} busy={busy} />;
 
   return (
     <View style={[styles.root, { paddingTop: insets.top + 6 }]}>

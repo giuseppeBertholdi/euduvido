@@ -4,6 +4,8 @@ import { ActivityIndicator, Alert, StyleSheet, Text, View } from 'react-native';
 import { BangMark } from '@/components/brand';
 import { Btn } from '@/components/ui';
 import { MatchScreen } from '@/features/match/MatchScreen';
+import { RemindersAsk } from '@/features/engagement/RemindersAsk';
+import { useMatchEnd } from '@/features/engagement/useMatchEnd';
 import { useRoom } from '@/features/online/useRoom';
 import { useZoeira, ZoeiraBar, ZoeiraLayer } from '@/features/online/zoeira';
 import type { Action } from '@/game/engine';
@@ -18,6 +20,10 @@ export default function OnlineMatch() {
   const { room, me, error: watchError } = useRoom(id ?? null);
   const names = useMemo(() => Object.fromEntries((room?.players ?? []).map((p) => [p.userId, p.name])), [room?.players]);
   const { feed, send: sendZoeira } = useZoeira(room?.id ?? null, me, names);
+  const st = room?.state;
+  // online: momento bom = ganhou, ou cravou na mosca na última rodada
+  const happy = !!st && !!me && (st.winnerId === me || (st.result?.exact === true && st.result.bid?.playerId === me));
+  useMatchEnd(room && st ? `${room.id}:${st.round}:${st.question.id}` : null, st?.phase === 'end', happy);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -86,6 +92,7 @@ export default function OnlineMatch() {
       showUpsell={!premium}
       onUpsell={() => router.push({ pathname: '/paywall', params: { source: 'pack' } })}
       onSeen={markPlayed}
+        endExtra={<RemindersAsk />}
         zoeira={<ZoeiraBar onSend={sendZoeira} />}
       />
       <ZoeiraLayer feed={feed} />
