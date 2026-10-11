@@ -464,7 +464,7 @@ function End({ m, me, hostId, busy, onRematch, onHome, showUpsell, onUpsell, zoe
               <Icon name="sparkle" size={28} accent={colors.yellow} />
               <View style={{ flex: 1 }}>
                 <Text style={styles.upsellTitle}>curtiu? tem mais {PACKS.filter((p) => p.premium).length} pacotes</Text>
-                <Text style={styles.upsellText}>{PACKS.filter((p) => p.premium).reduce((n, p) => n + p.questions.length, 0)} perguntas novas. 3 dias grátis.</Text>
+                <Text style={styles.upsellText}>{PACKS.filter((p) => p.premium).reduce((n, p) => n + p.questions.length, 0)} perguntas novas te esperando no pro.</Text>
               </View>
             </View>
           </Raised>

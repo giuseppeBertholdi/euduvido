@@ -8,13 +8,11 @@ import { Enter } from '@/components/motion';
 import { Body, Btn, IconBtn, Label, Title } from '@/components/ui';
 import { links } from '@/config/links';
 import { PACKS } from '@/game/questions';
-import { useApp } from '@/state/app';
 import { colors, fonts, radii } from '@/theme';
 
 /** "Paywall" de quem já assina: nada de oferta; mostra o que está liberado e como gerenciar. */
 export function ProView({ onClose, onRestore, busy }: { onClose: () => void; onRestore: () => void; busy: boolean }) {
   const insets = useSafeAreaInsets();
-  const app = useApp();
   const premiumPacks = PACKS.filter((p) => p.premium);
   const total = PACKS.reduce((n, p) => n + p.questions.length, 0);
   return (
@@ -72,12 +70,6 @@ export function ProView({ onClose, onRestore, busy }: { onClose: () => void; onR
             <Text style={styles.rowText}>Restaurar compras</Text>
             {busy ? <ActivityIndicator color={colors.ink} /> : <Icon name="arrowRight" size={18} accent="none" />}
           </Pressable>
-          {__DEV__ && (
-            <Pressable onPress={() => app.set({ premium: false })} style={[styles.row, styles.dev]} accessibilityRole="button">
-              <Icon name="eye" size={22} accent={colors.pinkSoft} />
-              <Text style={styles.rowText}>Testar como free (só em desenvolvimento)</Text>
-            </Pressable>
-          )}
         </View>
       </ScrollView>
       <View style={[styles.footer, { paddingBottom: Math.max(insets.bottom + 10, 24) }]}>
@@ -99,6 +91,5 @@ const styles = StyleSheet.create({
   packText: { fontFamily: fonts.ui800, fontSize: 13, color: colors.ink },
   row: { flexDirection: 'row', alignItems: 'center', gap: 12, minHeight: 54, paddingHorizontal: 14, borderRadius: radii.button, backgroundColor: colors.surface, borderWidth: 2, borderColor: colors.line },
   rowText: { flex: 1, fontFamily: fonts.ui800, fontSize: 16, color: colors.ink },
-  dev: { borderStyle: 'dashed', borderColor: colors.pinkInk, marginTop: 8 },
   footer: { paddingHorizontal: 20, paddingTop: 10, borderTopWidth: 2, borderColor: colors.line },
 });

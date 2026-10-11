@@ -17,6 +17,8 @@ Deno.serve(
 
     // limpeza barata: salas vencidas liberam o PIN
     await db.from('rooms').update({ status: 'closed' }).lt('expires_at', new Date().toISOString()).neq('status', 'closed');
+    // e some de vez 1 dia depois de vencer (jogadores, nomes e estado vão junto, em cascata): é o que a Privacidade promete
+    await db.from('rooms').delete().lt('expires_at', new Date(Date.now() - 24 * 3600 * 1000).toISOString());
     // fecha salas antigas deste host e limita abusos
     const { count } = await db.from('rooms').select('id', { count: 'exact', head: true }).eq('host_id', user.id).neq('status', 'closed');
     if ((count ?? 0) >= MAX_OPEN_ROOMS_PER_USER) {

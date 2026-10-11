@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { ActivityIndicator, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Linking, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { links } from '@/config/links';
 import { PACKS } from '@/game/questions';
 import { usePlans } from '@/features/paywall/usePlans';
 import { purchases } from '@/services/purchases';
@@ -21,7 +22,7 @@ const PERKS: [IconName, string][] = [
 
 /**
  * O "easy paywall": uma folha curta que sobe toda vez que a pessoa entra (quem não assina).
- * Um plano só (anual com teste), um botão; o ✕ aparece depois de 2 s; "ver todos os planos" abre o paywall completo.
+ * Um plano só (anual com teste), um botão; o ✕ aparece depois de 3 s; "ver todos os planos" abre o paywall completo.
  */
 export function EasyPaywall({ visible, onClose, onSeeAll, onPurchased }: { visible: boolean; onClose: () => void; onSeeAll: () => void; onPurchased: () => void }) {
   const insets = useSafeAreaInsets();
@@ -65,11 +66,9 @@ export function EasyPaywall({ visible, onClose, onSeeAll, onPurchased }: { visib
             <Icon name="timer" size={28} accent={colors.surface} />
             {annual ? (
               <View style={{ flex: 1 }}>
-                <Text style={styles.offerBig}>{annual.trialDays ? `${annual.trialDays} dias grátis` : `${annual.price} por ano`}</Text>
-                <Text style={styles.offerSmall}>
-                  {annual.trialDays ? `depois ${annual.price}/ano` : 'o plano mais em conta'}
-                  {annual.perMonth ? ` · ${annual.perMonth}` : ''}
-                </Text>
+                {annual.trialDays ? <Text style={styles.offerKicker}>{annual.trialDays} dias grátis, depois</Text> : null}
+                <Text style={styles.offerBig}>{annual.price}/ano</Text>
+                {annual.perWeek ? <Text style={styles.offerWeek}>só {annual.perWeek} por semana</Text> : null}
               </View>
             ) : (
               <ActivityIndicator color={colors.ink} style={{ flex: 1 }} />
@@ -86,7 +85,16 @@ export function EasyPaywall({ visible, onClose, onSeeAll, onPurchased }: { visib
           <Pressable onPress={onSeeAll} hitSlop={10} style={styles.linkBtn} accessibilityRole="button">
             <Text style={styles.link}>ver todos os planos</Text>
           </Pressable>
-          <Text style={styles.legal}>Renova sozinho. Cancela quando quiser nos Ajustes do iPhone.</Text>
+          <Text style={styles.legal}>
+            {annual ? `${annual.trialDays ? `${annual.trialDays} dias grátis, depois ` : ''}${annual.price}/ano. ` : ''}Renova sozinho até você cancelar nos Ajustes do iPhone.{' '}
+            <Text style={styles.legalLink} onPress={() => void Linking.openURL(links.terms)} accessibilityRole="link">
+              Termos de Uso
+            </Text>
+            {' · '}
+            <Text style={styles.legalLink} onPress={() => void Linking.openURL(links.privacy)} accessibilityRole="link">
+              Privacidade
+            </Text>
+          </Text>
         </View>
       </View>
     </Modal>
@@ -104,8 +112,10 @@ const styles = StyleSheet.create({
   perkText: { color: colors.inkSoft, fontFamily: fonts.ui700, fontSize: 16, flex: 1 },
   offer: { flexDirection: 'row', alignItems: 'center', gap: 14, marginTop: 4, borderRadius: radii.card, backgroundColor: colors.yellowSoft, paddingVertical: 14, paddingHorizontal: 16 },
   offerBig: { color: colors.ink, fontFamily: fonts.display, fontSize: 24, letterSpacing: -0.8 },
-  offerSmall: { color: colors.inkSoft, fontFamily: fonts.ui600, fontSize: 14, marginTop: 2 },
+  offerKicker: { color: colors.inkSoft, fontFamily: fonts.ui700, fontSize: 14 },
+  offerWeek: { color: colors.pinkInk, fontFamily: fonts.ui800, fontSize: 15, marginTop: 2 },
   linkBtn: { minHeight: 40, justifyContent: 'center', alignSelf: 'center' },
   link: { color: colors.ink, fontFamily: fonts.ui700, fontSize: 15, textDecorationLine: 'underline' },
-  legal: { color: colors.inkMuted, fontFamily: fonts.ui500, fontSize: 12, textAlign: 'center' },
+  legal: { color: colors.inkMuted, fontFamily: fonts.ui500, fontSize: 12, lineHeight: 16, textAlign: 'center' },
+  legalLink: { textDecorationLine: 'underline', color: colors.ink },
 });

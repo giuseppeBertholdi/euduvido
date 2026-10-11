@@ -6,6 +6,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { EasyPaywall } from '@/components/EasyPaywall';
 import { Icon } from '@/components/Icon';
 import { Body, Label, Logo, Raised } from '@/components/ui';
+import { usePlans } from '@/features/paywall/usePlans';
 import { PACKS } from '@/game/questions';
 import { useApp } from '@/state/app';
 import { visits } from '@/state/visits';
@@ -15,6 +16,7 @@ export default function Home() {
   const { onboarded, premium, set } = useApp();
   const insets = useSafeAreaInsets();
   const [easy, setEasy] = useState(false);
+  const trialDays = usePlans().plans?.find((p) => p.id === 'annual')?.trialDays;
 
   // easy paywall a cada visita, pra quem não assina
   useEffect(() => {
@@ -146,7 +148,7 @@ export default function Home() {
           </Raised>
           {!premium && (
             <Pressable onPress={() => paywall('home')} style={styles.footBtn} hitSlop={8} accessibilityRole="button">
-              <Text style={styles.footLink}>✦ 3 dias grátis de pro</Text>
+              <Text style={styles.footLink}>{trialDays ? `✦ ${trialDays} dias grátis de pro` : '✦ conhecer o pro'}</Text>
             </Pressable>
           )}
         </View>

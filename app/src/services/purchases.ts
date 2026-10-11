@@ -2,7 +2,8 @@
  * Compras atrás de uma interface (as telas não sabem qual está ativa).
  *  - `revenuecat`: build nativo (dev client ou produção) com EXPO_PUBLIC_REVENUECAT_IOS_KEY. Preço, período e teste
  *    grátis vêm da App Store via RevenueCat; o entitlement `pro` decide quem é premium.
- *  - `mock`: Expo Go, web ou sem chave. Comprar só liga o premium no aparelho; os preços são os de referência abaixo.
+ *  - `mock`: Expo Go, web ou sem chave. Em desenvolvimento, comprar só liga o premium no aparelho (preços de referência
+ *    abaixo); fora dele a compra falha, pra um build sem chave nunca liberar o pro de graça.
  * O usuário do RevenueCat é o mesmo id do Supabase, pra o servidor conferir a assinatura (create-room).
  */
 import Constants, { ExecutionEnvironment } from 'expo-constants';
@@ -17,6 +18,8 @@ export type Plan = {
   price: string;
   period: string | null;
   perMonth?: string;
+  /** Quanto sai por semana (só no anual, pra comparar com o semanal). */
+  perWeek?: string;
   badge?: string;
   trialDays?: number;
   featured?: boolean;
@@ -31,7 +34,7 @@ export const ENTITLEMENT = 'pro';
  * Anual vs. semanal o ano todo (52 × R$ 9,90 = R$ 514,80): R$ 69,90 é 86% mais barato.
  */
 export const PLANS: Plan[] = [
-  { id: 'annual', title: 'anual', price: 'R$ 69,90', period: 'ano', perMonth: 'R$ 5,83/mês', badge: '-86%', trialDays: 3, featured: true },
+  { id: 'annual', title: 'anual', price: 'R$ 69,90', period: 'ano', perMonth: 'R$ 5,83/mês', perWeek: 'R$ 1,34', badge: '-86%', trialDays: 3, featured: true },
   { id: 'weekly', title: 'semanal', price: 'R$ 9,90', period: 'semana', featured: true },
   { id: 'monthly', title: 'mensal', price: 'R$ 19,90', period: 'mês' },
   { id: 'lifetime', title: 'vitalício', price: 'R$ 149,90', period: null },
@@ -61,7 +64,7 @@ const mock: PurchasesService = {
   },
   async purchase() {
     await wait(700);
-    return { ok: true, premium: true };
+    return __DEV__ ? { ok: true, premium: true } : { ok: false, premium: false };
   },
   async restore() {
     await wait(500);
@@ -122,6 +125,7 @@ function createRevenueCat(): PurchasesService {
           price: p.priceString,
           period: META[id].period,
           perMonth: id === 'annual' && p.pricePerMonthString ? `${p.pricePerMonthString}/mês` : undefined,
+          perWeek: id === 'annual' ? (p.pricePerWeekString ?? undefined) : undefined,
           badge: savings > 0 ? `-${savings}%` : undefined,
           trialDays,
           featured: id === 'annual' || id === 'weekly',

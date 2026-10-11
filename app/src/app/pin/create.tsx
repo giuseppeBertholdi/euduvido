@@ -29,7 +29,7 @@ export default function CreateRoom() {
   }, [room]);
 
   if (!app.premium) return <Redirect href="/" />;
-  if (!onlineEnabled) return <OnlineNotice title="Online desligado" text="Falta configurar o Supabase neste app (EXPO_PUBLIC_SUPABASE_URL e ANON_KEY no .env)." onBack={() => router.back()} />;
+  if (!onlineEnabled) return <OnlineNotice title="Online fora do ar" text="As salas com PIN não estão disponíveis agora. Dá pra jogar no mesmo celular enquanto isso." onBack={() => router.back()} />;
 
   const create = async () => {
     const clean = name.trim();

@@ -7,11 +7,12 @@ import { Icon } from '@/components/Icon';
 import { Enter } from '@/components/motion';
 import { Btn, Chip, Raised, Title, TopBar, tapLight } from '@/components/ui';
 import { formatValue } from '@/game/engine';
+import { showcase } from '@/game/highlights';
 import { packById } from '@/game/questions';
 import { useApp } from '@/state/app';
 import { colors, fonts, radii } from '@/theme';
 
-/** Quantas perguntas de um pacote bloqueado dá pra espiar antes de assinar. */
+/** Quantas perguntas de um pacote bloqueado dá pra espiar antes de assinar (as de destaque). */
 const PREVIEW = 3;
 
 export default function PackDetail() {
@@ -23,7 +24,8 @@ export default function PackDetail() {
   if (!pack) return <Redirect href="/" />;
 
   const locked = pack.premium && !app.premium;
-  const visible = locked ? pack.questions.slice(0, PREVIEW) : pack.questions;
+  const ordered = showcase(pack);
+  const visible = locked ? ordered.slice(0, PREVIEW) : ordered;
   const hidden = locked ? pack.questions.length - PREVIEW : 0;
 
   const play = () => {

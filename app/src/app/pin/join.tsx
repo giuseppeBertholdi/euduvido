@@ -60,7 +60,7 @@ export default function JoinPin() {
     return () => clearTimeout(t);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [invited]);
-  if (!onlineEnabled) return <OnlineNotice title="Online desligado" text="Falta configurar o Supabase neste app (EXPO_PUBLIC_SUPABASE_URL e ANON_KEY no .env)." onBack={() => router.back()} />;
+  if (!onlineEnabled) return <OnlineNotice title="Online fora do ar" text="As salas com PIN não estão disponíveis agora. Dá pra jogar no mesmo celular enquanto isso." onBack={() => router.back()} />;
 
 
   if (roomId && room && me)

@@ -11,7 +11,6 @@ import { links } from '@/config/links';
 import { LIVES_OPTIONS, TIMER_OPTIONS } from '@/game/engine';
 import { askReminderPermission, rescheduleReminders } from '@/services/engagement/reminders';
 import { purchases } from '@/services/purchases';
-import { onlineEnabled } from '@/services/rooms';
 import { useApp } from '@/state/app';
 import { colors, fonts, radii } from '@/theme';
 
@@ -84,18 +83,6 @@ export default function Settings() {
     Alert.alert(r.premium ? 'Pro restaurado!' : 'Nada pra restaurar', r.premium ? 'Tudo liberado de novo.' : 'Não achamos uma assinatura nesta conta da App Store.');
   };
 
-  const replayIntro = () =>
-    Alert.alert('Rever a introdução?', 'Você volta pro começo do app. Nada é apagado.', [
-      { text: 'Cancelar', style: 'cancel' },
-      {
-        text: 'Rever',
-        onPress: () => {
-          app.set({ onboarded: false });
-          router.replace('/onboarding');
-        },
-      },
-    ]);
-
   return (
     <View style={[styles.root, { paddingTop: insets.top + 6 }]}>
       <StatusBar style="dark" />
@@ -108,7 +95,7 @@ export default function Settings() {
         </Title>
 
         <Section title="você">
-          <View style={[styles.row, styles.rowLine]}>
+          <View style={styles.row}>
             <Icon name="users" size={22} accent={colors.yellow} />
             <View style={{ flex: 1 }}>
               <Text style={styles.rowDetail}>nome nas salas online</Text>
@@ -125,7 +112,6 @@ export default function Settings() {
               />
             </View>
           </View>
-          <Row icon="pin" label="Online com PIN" detail={onlineEnabled ? 'ligado' : 'desligado neste app'} last />
         </Section>
 
         <Section title="partida">
@@ -247,26 +233,16 @@ export default function Settings() {
         </Section>
 
         <Section title="pro">
-          <Row icon="crown" label={app.premium ? 'Você é pro' : 'Conhecer o pro'} detail={app.premium ? 'todos os pacotes liberados' : '3 dias grátis'} onPress={() => router.push({ pathname: '/paywall', params: { source: 'settings' } })} />
+          <Row icon="crown" label={app.premium ? 'Você é pro' : 'Conhecer o pro'} detail={app.premium ? 'todos os pacotes liberados' : 'todos os pacotes e salas com PIN'} onPress={() => router.push({ pathname: '/paywall', params: { source: 'settings' } })} />
           <Row icon="refresh" label="Restaurar compras" onPress={restore} right={restoring ? <ActivityIndicator color={colors.ink} /> : undefined} />
-          <Row icon="timer" label="Gerenciar assinatura" detail="cancelar ou trocar de plano" onPress={() => void Linking.openURL(links.manageSubscriptions)} last={!__DEV__} />
-          {__DEV__ && (
-            <Row
-              icon="eye"
-              label={app.premium ? 'Testar como free' : 'Testar como pro'}
-              detail="só aparece em desenvolvimento (a compra ainda é simulada)"
-              last
-              onPress={() => app.set({ premium: !app.premium })}
-            />
-          )}
+          <Row icon="timer" label="Gerenciar assinatura" detail="cancelar ou trocar de plano" onPress={() => void Linking.openURL(links.manageSubscriptions)} last />
         </Section>
 
         <Section title="sobre">
           <Row icon="help" label="Como joga" onPress={() => router.push('/how-to-play')} />
-          <Row icon="eye" label="Rever a introdução" onPress={replayIntro} last={!links.terms && !links.privacy && !links.supportEmail} />
-          {links.terms && <Row icon="lock" label="Termos de uso" onPress={() => void Linking.openURL(links.terms as string)} last={!links.privacy && !links.supportEmail} />}
-          {links.privacy && <Row icon="lock" label="Privacidade" onPress={() => void Linking.openURL(links.privacy as string)} last={!links.supportEmail} />}
-          {links.supportEmail && <Row icon="megaphone" label="Fale com a gente" detail={links.supportEmail} onPress={() => void Linking.openURL(`mailto:${links.supportEmail}?subject=Eu%20Duvido!`)} last />}
+          <Row icon="lock" label="Termos de uso" onPress={() => void Linking.openURL(links.terms)} />
+          <Row icon="lock" label="Privacidade" onPress={() => void Linking.openURL(links.privacy)} />
+          <Row icon="megaphone" label="Fale com a gente" detail={links.supportEmail} onPress={() => void Linking.openURL(`mailto:${links.supportEmail}?subject=Eu%20Duvido!`)} last />
         </Section>
 
         <Text style={styles.version}>eu duvido! · versão {version}</Text>
