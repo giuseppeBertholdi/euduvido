@@ -48,6 +48,12 @@ export default function CreateRoom() {
       });
       setRoomId(created.roomId);
     } catch (e) {
+      if (e instanceof RoomError && e.code === 'pro_required') {
+        // o servidor não achou a assinatura (ex.: venceu): manda pro paywall
+        app.set({ premium: false });
+        router.replace({ pathname: '/paywall', params: { source: 'pin' } });
+        return;
+      }
       setError(e instanceof RoomError ? e.message : 'Sem conexão. Tenta de novo.');
       creating.current = false;
     } finally {

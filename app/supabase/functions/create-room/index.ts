@@ -1,4 +1,5 @@
 import { adminClient, requireUser } from '../_shared/clients.ts';
+import { hasPro } from '../_shared/entitlement.ts';
 import { HttpError, serveJson } from '../_shared/http.ts';
 import { parseConfig, parseName } from '../_shared/rooms.ts';
 
@@ -11,6 +12,8 @@ Deno.serve(
     const user = await requireUser(req, db);
     const name = parseName(body.name);
     const config = parseConfig(body);
+    // criar sala é do pro (quem entra com PIN não precisa assinar)
+    if (!(await hasPro(user.id))) throw new HttpError(403, 'pro_required');
 
     // limpeza barata: salas vencidas liberam o PIN
     await db.from('rooms').update({ status: 'closed' }).lt('expires_at', new Date().toISOString()).neq('status', 'closed');

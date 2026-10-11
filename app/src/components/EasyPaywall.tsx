@@ -2,7 +2,8 @@ import { useState } from 'react';
 import { ActivityIndicator, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { PACKS } from '@/game/questions';
-import { purchases, PLANS } from '@/services/purchases';
+import { usePlans } from '@/features/paywall/usePlans';
+import { purchases } from '@/services/purchases';
 import { colors, fonts, radii } from '@/theme';
 import { Icon, type IconName } from './Icon';
 import { BangMark } from './brand';
@@ -25,14 +26,15 @@ const PERKS: [IconName, string][] = [
 export function EasyPaywall({ visible, onClose, onSeeAll, onPurchased }: { visible: boolean; onClose: () => void; onSeeAll: () => void; onPurchased: () => void }) {
   const insets = useSafeAreaInsets();
   const [busy, setBusy] = useState(false);
-  const annual = PLANS[0];
-
+  const { plans } = usePlans();
+  const annual = plans?.find((p) => p.id === 'annual') ?? null;
 
   const buy = async () => {
+    if (!annual) return;
     setBusy(true);
-    const r = await purchases.purchase(annual.id);
+    const r = await purchases.purchase(annual);
     setBusy(false);
-    if (r.ok) onPurchased();
+    if (r.ok && r.premium) onPurchased();
   };
 
   return (
@@ -61,15 +63,26 @@ export function EasyPaywall({ visible, onClose, onSeeAll, onPurchased }: { visib
 
           <View style={styles.offer}>
             <Icon name="timer" size={28} accent={colors.surface} />
-            <View style={{ flex: 1 }}>
-              <Text style={styles.offerBig}>{annual.trialDays} dias grátis</Text>
-              <Text style={styles.offerSmall}>
-                depois {annual.price}/{annual.period} · {annual.perMonth}
-              </Text>
-            </View>
+            {annual ? (
+              <View style={{ flex: 1 }}>
+                <Text style={styles.offerBig}>{annual.trialDays ? `${annual.trialDays} dias grátis` : `${annual.price} por ano`}</Text>
+                <Text style={styles.offerSmall}>
+                  {annual.trialDays ? `depois ${annual.price}/ano` : 'o plano mais em conta'}
+                  {annual.perMonth ? ` · ${annual.perMonth}` : ''}
+                </Text>
+              </View>
+            ) : (
+              <ActivityIndicator color={colors.ink} style={{ flex: 1 }} />
+            )}
           </View>
 
-          <Btn label={`Testar ${annual.trialDays} dias grátis`} onPress={buy} disabled={busy} busy={busy ? <ActivityIndicator color={colors.ink} /> : undefined} height={62} />
+          <Btn
+            label={!annual ? 'Carregando…' : annual.trialDays ? `Testar ${annual.trialDays} dias grátis` : `Assinar por ${annual.price}`}
+            onPress={buy}
+            disabled={busy || !annual}
+            busy={busy ? <ActivityIndicator color={colors.ink} /> : undefined}
+            height={62}
+          />
           <Pressable onPress={onSeeAll} hitSlop={10} style={styles.linkBtn} accessibilityRole="button">
             <Text style={styles.link}>ver todos os planos</Text>
           </Pressable>

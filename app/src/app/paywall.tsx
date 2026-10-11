@@ -10,7 +10,8 @@ import { DelayedClose } from '@/components/DelayedClose';
 import { Btn, Label, Raised, Title } from '@/components/ui';
 import { links } from '@/config/links';
 import { PACKS } from '@/game/questions';
-import { PLANS, purchases, type PlanId } from '@/services/purchases';
+import { usePlans } from '@/features/paywall/usePlans';
+import { purchases, type PlanId } from '@/services/purchases';
 import { useApp } from '@/state/app';
 import { colors, fonts } from '@/theme';
 
@@ -38,8 +39,10 @@ export default function Paywall() {
   const [plan, setPlan] = useState<PlanId>('annual');
   const [allPlans, setAllPlans] = useState(false);
   const [busy, setBusy] = useState(false);
-  const selected = PLANS.find((p) => p.id === plan) ?? PLANS[0];
-  const shown = allPlans ? PLANS : PLANS.filter((p) => p.featured);
+  const { plans, error: plansError, reload } = usePlans();
+  const [buyError, setBuyError] = useState<string | null>(null);
+  const selected = plans?.find((p) => p.id === plan) ?? plans?.[0] ?? null;
+  const shown = plans ? (allPlans ? plans : plans.filter((p) => p.featured)) : [];
 
 
   const leave = () => {
@@ -51,10 +54,14 @@ export default function Paywall() {
   };
 
   const buy = async () => {
+    if (!selected) return;
     setBusy(true);
-    const r = await purchases.purchase(plan);
+    setBuyError(null);
+    const r = await purchases.purchase(selected);
     setBusy(false);
-    if (r.ok) {
+    if (!r.ok && !r.cancelled) setBuyError('A compra não foi concluída. Tenta de novo?');
+    if (r.ok && !r.premium) setBuyError('Compra feita, mas o pro ainda não ativou. Toque em restaurar compras.');
+    if (r.ok && r.premium) {
       set({ premium: true, ...(onboarding ? { onboarded: true } : null) });
       if (source === 'pin') router.replace('/pin/create');
       else leave();
@@ -117,6 +124,18 @@ export default function Paywall() {
           ))}
         </View>
 
+        {!plans && (
+          <View style={styles.loadingPlans}>
+            {plansError ? (
+              <Pressable onPress={reload} accessibilityRole="button" style={{ alignItems: 'center', gap: 4 }}>
+                <Text style={styles.planTitle}>Não deu pra carregar os preços.</Text>
+                <Text style={styles.allPlans}>tentar de novo</Text>
+              </Pressable>
+            ) : (
+              <ActivityIndicator color={colors.ink} />
+            )}
+          </View>
+        )}
         <View style={{ gap: 12, marginTop: 22 }} accessibilityRole="radiogroup">
           {shown.map((p) => {
             const on = p.id === plan;
@@ -156,12 +175,12 @@ export default function Paywall() {
           )}
         </View>
 
-        {selected.trialDays ? (
+        {selected?.trialDays ? (
           <View style={styles.timeline}>
             {[
               ['hoje', 'libera tudo, nada a pagar agora'],
               [`dia ${selected.trialDays - 1}`, 'a gente te lembra antes'],
-              [`dia ${selected.trialDays}`, `cobra ${selected.price}/${selected.period}`],
+              [`dia ${selected.trialDays}`, `cobra ${selected.price}/${selected.period ?? ''}`],
             ].map(([d, t], k) => (
               <View key={d} style={styles.tlRow}>
                 <View style={[styles.tlDot, k === 0 && { backgroundColor: colors.yellow }]} />
@@ -174,13 +193,15 @@ export default function Paywall() {
       </ScrollView>
 
       <View style={[styles.footer, { paddingBottom: insets.bottom + 12 }]}>
+        {buyError && <Text style={styles.buyError}>{buyError}</Text>}
         <Btn
-          label={selected.trialDays ? `Testar ${selected.trialDays} dias grátis` : selected.period ? `Assinar por ${selected.price}` : `Comprar por ${selected.price}`}
+          label={!selected ? 'Carregando…' : selected.trialDays ? `Testar ${selected.trialDays} dias grátis` : selected.period ? `Assinar por ${selected.price}` : `Comprar por ${selected.price}`}
           onPress={buy}
-          disabled={busy}
+          disabled={busy || !selected}
           busy={busy ? <ActivityIndicator color={colors.ink} /> : undefined}
           height={62}
         />
+        {selected && (
         <Text style={styles.legal}>
           {!selected.period ? `${selected.price}, pagamento único. ` : selected.trialDays ? `${selected.trialDays} dias grátis, depois ${selected.price}/${selected.period}. ` : `${selected.price}/${selected.period}. `}
           {selected.period ? 'Renova sozinho até você cancelar nos Ajustes do iPhone.' : 'Sem renovação.'}
@@ -195,6 +216,7 @@ export default function Paywall() {
             </Text>
           )}
         </Text>
+        )}
       </View>
     </View>
   );
@@ -228,6 +250,8 @@ const styles = StyleSheet.create({
   tlDay: { color: colors.ink, fontFamily: fonts.ui800, fontSize: 14, width: 52 },
   tlText: { color: colors.inkSoft, fontFamily: fonts.ui600, fontSize: 14, flex: 1 },
   footer: { paddingHorizontal: 20, paddingTop: 12, gap: 6, borderTopWidth: 2, borderColor: colors.line, backgroundColor: colors.paper },
+  loadingPlans: { minHeight: 120, alignItems: 'center', justifyContent: 'center', marginTop: 22 },
+  buyError: { fontFamily: fonts.ui700, fontSize: 14, color: colors.pinkInk, textAlign: 'center' },
   legalLink: { textDecorationLine: 'underline', color: colors.ink },
   legal: { color: colors.inkMuted, fontFamily: fonts.ui500, fontSize: 11.5, lineHeight: 15, textAlign: 'center' },
 });

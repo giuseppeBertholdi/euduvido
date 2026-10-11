@@ -64,6 +64,12 @@ supabase functions deploy create-room join-room room-action leave-room
 ```
 No painel: Authentication > Sign In / Providers > **Allow anonymous sign-ins** ligado. Depois troque no `.env` a URL e a anon key pelas do projeto (Project Settings > API) e rode `npx expo start -c`.
 
+## Compras (RevenueCat)
+- `src/services/purchases.ts`: modo `revenuecat` em build nativo com `EXPO_PUBLIC_REVENUECAT_IOS_KEY`; modo `mock` no Expo Go/web/sem chave (comprar só liga o premium no aparelho).
+- Entitlement `pro`; offering `default` com pacotes Annual, Weekly, Monthly e Lifetime. Preço, período e teste grátis (com elegibilidade) vêm da loja; sem preço carregado, o botão de compra fica desligado.
+- O app user id do RevenueCat é o id do Supabase. `create-room` confere o `pro` na API do RevenueCat (`_shared/entitlement.ts`) quando o segredo `REVENUECAT_SECRET_KEY` existe; sem ele, a checagem fica desligada. Com ele ligado, `npm run test:online` contra o projeto falha no create-room (os usuários de teste não são pro).
+- Build de desenvolvimento: `npx eas-cli build --profile development --platform ios`, depois `npm run start:dev`. Cadastre as variáveis `EXPO_PUBLIC_*` no EAS (o `.env` não vai pro build).
+
 ## O que é mock
-- **Compras** (`src/services/purchases.ts`): comprar só liga o premium no aparelho. Num build nativo, troque por RevenueCat.
+- **Compras no Expo Go**: simuladas (comprar só liga o premium no aparelho). Em build nativo com a chave, vale o RevenueCat.
 - **Premium no servidor**: a Edge Function não confere assinatura ao criar sala (as compras ainda são simuladas). Quando entrar o RevenueCat, verifique o entitlement em `create-room`.

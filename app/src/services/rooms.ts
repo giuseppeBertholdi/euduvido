@@ -38,6 +38,8 @@ const MESSAGES: Record<string, string> = {
   stale_version: 'Alguém jogou antes. Atualizando…',
   rejected: 'Essa jogada não vale agora.',
   offline_disabled: 'O online ainda não tá ligado neste app.',
+  pro_required: 'Criar sala é do pro. Quem entra com o PIN não precisa assinar.',
+  store_unavailable: 'Não deu pra conferir a assinatura agora. Tenta de novo.',
   network: 'Sem conexão. Tenta de novo.',
 };
 

@@ -10,6 +10,9 @@ import { useEffect } from 'react';
 import { AppState } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { rescheduleReminders } from '@/services/engagement/reminders';
+import { purchases, storeMode } from '@/services/purchases';
+import { onlineEnabled } from '@/services/rooms';
+import { ensureUserId } from '@/services/supabase';
 import { AppProvider, useApp } from '@/state/app';
 import { visits } from '@/state/visits';
 import { colors } from '@/theme';
@@ -17,7 +20,7 @@ import { colors } from '@/theme';
 void SplashScreen.preventAutoHideAsync();
 
 function Root() {
-  const { ready, remindersOn } = useApp();
+  const { ready, remindersOn, set } = useApp();
   const [fontsLoaded, fontError] = useFonts({ Syne_800ExtraBold, RethinkSans_500Medium, RethinkSans_600SemiBold, RethinkSans_700Bold, RethinkSans_800ExtraBold });
   const loaded = ready && (fontsLoaded || !!fontError);
 
@@ -25,6 +28,16 @@ function Root() {
     const sub = AppState.addEventListener('change', (s) => visits.onAppState(s, Date.now()));
     return () => sub.remove();
   }, []);
+
+  // loja: com RevenueCat, o entitlement `pro` manda no premium (no mock não faz nada)
+  useEffect(() => {
+    if (!ready || storeMode !== 'revenuecat') return;
+    void (async () => {
+      // mesmo id do Supabase, pra o servidor conferir a assinatura de quem cria sala
+      const userId = onlineEnabled ? await ensureUserId().catch(() => null) : null;
+      await purchases.start(userId, (premium) => set({ premium }));
+    })();
+  }, [ready, set]);
 
   // lembretes: refaz o plano ao abrir e ao voltar pro app (quem joga sempre nunca recebe)
   useEffect(() => {
