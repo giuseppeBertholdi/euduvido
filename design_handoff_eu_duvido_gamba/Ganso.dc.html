@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<div style="width:100%;max-width:{{ maxW }}"><svg viewBox="0 0 200 270" style="width:100%;height:auto;display:block;overflow:visible" fill="none" stroke="#111" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+<path d="M100 226 L100 250 M134 222 L134 248"></path>
+<path d="M78 260 L100 246 L122 260 Q100 266 78 260 Z M112 258 L134 244 L156 258 Q134 264 112 258 Z" fill="#FF7A1A"></path>
+<path d="M85 24 C110 24 122 42 120 64 C118 80 110 88 112 104 C114 124 124 136 140 142 C162 148 176 160 186 146 C188 170 184 190 174 204 C160 232 122 240 94 234 C62 228 48 206 52 182 C56 162 66 150 70 136 C74 120 64 104 58 90 C50 70 58 24 85 24 Z" fill="#FFFDF5"></path>
+<path d="M104 162 C132 150 168 168 166 198 C150 208 126 204 110 192 C100 184 98 170 104 162 Z" fill="#FFFDF5"></path>
+<path d="M130 198 L138 186 M148 202 L154 190" stroke-width="4.5"></path>
+<path d="M58 54 C42 52 28 58 26 66 C28 74 42 76 58 74 Z" fill="#FF7A1A" stroke-width="5"></path>
+<ellipse cx="104" cy="74" rx="7" ry="4" fill="#FF9EB0" stroke="none"></ellipse>
+<sc-if value="{{ isPisca }}" hint-placeholder-val="{{ true }}">
+<path d="M29 66 C40 68 50 68 58 70 Q64 70 64 64" stroke-width="4"></path>
+<circle cx="80" cy="54" r="9" fill="#FFFDF5" stroke-width="5"></circle>
+<circle cx="78" cy="56" r="4.5" fill="#111" stroke="none"></circle>
+<path d="M71 52 Q80 43 89 52 Z" fill="#111" stroke-width="4"></path>
+<path d="M97 54 Q104 47 111 54" stroke-width="5"></path>
+<path d="M70 38 Q80 31 91 36 M97 42 Q104 40 112 44" stroke-width="5"></path>
+</sc-if>
+<sc-if value="{{ isDuvida }}" hint-placeholder-val="{{ false }}">
+<path d="M29 67 L58 69" stroke-width="4"></path>
+<path d="M71 51 A9 9 0 0 0 89 51 Z" fill="#FFFDF5" stroke-width="4.5"></path>
+<circle cx="80" cy="55" r="3.5" fill="#111" stroke="none"></circle>
+<path d="M96 50 A7.5 7.5 0 0 0 111 50 Z" fill="#FFFDF5" stroke-width="4.5"></path>
+<circle cx="103" cy="53" r="3" fill="#111" stroke="none"></circle>
+<path d="M69 40 L91 46 M96 33 Q104 26 113 33" stroke-width="5"></path>
+</sc-if>
+<sc-if value="{{ isCravou }}" hint-placeholder-val="{{ false }}">
+<path d="M29 64 C40 71 52 72 60 69 Q66 68 65 61" stroke-width="4"></path>
+<path d="M71 56 Q80 45 89 56 M96 54 Q104 45 112 54" stroke-width="5"></path>
+<path d="M70 36 Q80 29 90 33 M97 34 Q104 29 113 34" stroke-width="5"></path>
+<path d="M150 34 l4 10 l10 4 l-10 4 l-4 10 l-4 -10 l-10 -4 l10 -4 Z M34 22 l3 7 l7 3 l-7 3 l-3 7 l-3 -7 l-7 -3 l7 -3 Z" fill="#FFD21A" stroke-width="3.5"></path>
+</sc-if>
+</svg></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:260,&quot;height&quot;:350},&quot;expr&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;pisca&quot;,&quot;duvida&quot;,&quot;cravou&quot;],&quot;default&quot;:&quot;pisca&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;maxW&quot;:{&quot;editor&quot;:null,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  renderVals() {
+    const e = this.props.expr ?? 'pisca';
+    return { isPisca: e === 'pisca', isDuvida: e === 'duvida', isCravou: e === 'cravou', maxW: this.props.maxW ?? 'none' };
+  }
+}
+</script>
+</body>
+</html>

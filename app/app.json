@@ -1,0 +1,44 @@
+{
+  "expo": {
+    "name": "Eu Duvido!",
+    "slug": "eu-duvido",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.euduvido.app"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#FFD600",
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundImage": "./assets/android-icon-background.png",
+        "monochromeImage": "./assets/android-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-font",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/splash-icon.png",
+          "imageWidth": 140,
+          "backgroundColor": "#FFD600",
+          "resizeMode": "contain"
+        }
+      ],
+      "expo-router"
+    ],
+    "scheme": "euduvido",
+    "backgroundColor": "#FBF5EA",
+    "experiments": {
+      "typedRoutes": false
+    }
+  }
+}
