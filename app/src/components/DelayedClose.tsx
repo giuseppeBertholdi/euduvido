@@ -4,21 +4,26 @@ import { colors } from '@/theme';
 import { Icon } from './Icon';
 import { useReducedMotion } from './motion';
 
+/** Se o preço nunca chegar (loja fora do ar), o ✕ aparece mesmo assim depois disso: ninguém fica preso. */
+const MAX_WAIT_MS = 8000;
+
 /**
  * O ✕ dos paywalls: invisível (e sem toque) durante `delayMs`, depois aparece com um fade discreto.
+ * A contagem só começa quando `ready` (o preço na tela), pra o ✕ nunca chegar antes da oferta.
  * Ocupa o espaço desde o início, pra nada pular de lugar quando ele surge.
  */
-export function DelayedClose({ delayMs, onClose }: { delayMs: number; onClose: () => void }) {
+export function DelayedClose({ delayMs, onClose, ready = true }: { delayMs: number; onClose: () => void; ready?: boolean }) {
   const reduce = useReducedMotion();
   const [visible, setVisible] = useState(false);
   const [t] = useState(() => new Animated.Value(0));
   useEffect(() => {
-    const id = setTimeout(() => {
+    const show = () => {
       setVisible(true);
       Animated.timing(t, { toValue: 1, duration: reduce ? 0 : 450, easing: Easing.out(Easing.quad), useNativeDriver: true }).start();
-    }, delayMs);
+    };
+    const id = setTimeout(show, ready ? delayMs : MAX_WAIT_MS);
     return () => clearTimeout(id);
-  }, [delayMs, reduce, t]);
+  }, [delayMs, ready, reduce, t]);
   if (!visible) return <View style={styles.box} accessibilityElementsHidden importantForAccessibility="no-hide-descendants" />;
   return (
     <Animated.View style={{ opacity: t, transform: [{ scale: t.interpolate({ inputRange: [0, 1], outputRange: [0.7, 1] }) }] }}>

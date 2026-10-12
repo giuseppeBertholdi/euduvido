@@ -1,9 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
-import { PLANS, purchases, storeMode, type Plan } from '@/services/purchases';
+import { purchases, type Plan } from '@/services/purchases';
 
-/** Planos com preço da loja. No mock já vêm prontos; com RevenueCat, carregam (e dá pra tentar de novo). */
+/**
+ * Planos com preço da loja. No mock já vêm prontos; com RevenueCat, o app já começou a carregar na abertura
+ * (`purchases.start`), então em geral chegam do cache na hora. Dá pra tentar de novo se falhar.
+ */
 export function usePlans() {
-  const [plans, setPlans] = useState<Plan[] | null>(storeMode === 'mock' ? PLANS : null);
+  const [plans, setPlans] = useState<Plan[] | null>(() => purchases.cachedPlans());
   const [error, setError] = useState(false);
   const reload = useCallback(() => {
     setError(false);
@@ -13,7 +16,7 @@ export function usePlans() {
       .catch(() => setError(true));
   }, []);
   useEffect(() => {
-    if (storeMode === 'mock') return;
+    if (plans) return;
     let alive = true;
     purchases
       .plans()
@@ -22,6 +25,8 @@ export function usePlans() {
     return () => {
       alive = false;
     };
+    // só na montagem: depois, quem recarrega é o `reload`
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return { plans, error, reload };
 }

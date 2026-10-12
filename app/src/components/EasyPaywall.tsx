@@ -27,7 +27,7 @@ const PERKS: [IconName, string][] = [
 export function EasyPaywall({ visible, onClose, onSeeAll, onPurchased }: { visible: boolean; onClose: () => void; onSeeAll: () => void; onPurchased: () => void }) {
   const insets = useSafeAreaInsets();
   const [busy, setBusy] = useState(false);
-  const { plans } = usePlans();
+  const { plans, error: plansError } = usePlans();
   const annual = plans?.find((p) => p.id === 'annual') ?? null;
 
   const buy = async () => {
@@ -46,7 +46,7 @@ export function EasyPaywall({ visible, onClose, onSeeAll, onPurchased }: { visib
             <BangMark size={76} style={{ transform: [{ rotate: '10deg' }] }} />
           </View>
           <View style={styles.closeRow}>
-            <DelayedClose delayMs={CLOSE_AFTER_MS} onClose={onClose} />
+            <DelayedClose delayMs={CLOSE_AFTER_MS} onClose={onClose} ready={!!annual || plansError} />
           </View>
 
           <Text style={styles.kicker}>eu duvido! pro</Text>

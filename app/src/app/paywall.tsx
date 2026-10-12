@@ -88,7 +88,7 @@ export default function Paywall() {
     <View style={[styles.root, { paddingTop: insets.top + 6 }]}>
       <StatusBar style="dark" />
       <View style={styles.topRow}>
-        <DelayedClose delayMs={CLOSE_AFTER_MS[source] ?? CLOSE_DEFAULT_MS} onClose={leave} />
+        <DelayedClose delayMs={CLOSE_AFTER_MS[source] ?? CLOSE_DEFAULT_MS} onClose={leave} ready={!!plans || plansError} />
         <Pressable onPress={restore} hitSlop={10} style={{ minHeight: 44, justifyContent: 'center' }} accessibilityRole="button">
           <Text style={styles.restore}>restaurar compras</Text>
         </Pressable>

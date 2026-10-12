@@ -47,10 +47,15 @@ export const storeMode: 'revenuecat' | 'mock' = Platform.OS === 'ios' && !!iosKe
 export type PurchaseResult = { ok: boolean; cancelled?: boolean; premium: boolean };
 
 export interface PurchasesService {
-  /** Liga a loja e avisa sempre que o premium mudar. */
-  start(appUserId: string | null, onPremium: (premium: boolean) => void): Promise<void>;
-  /** Planos com preço da loja (ordem: anual, semanal, mensal, vitalício). */
+  /**
+   * Liga a loja e avisa sempre que o premium mudar. Já começa a carregar os planos, pra o paywall abrir com preço.
+   * `userId` é o id do Supabase; se demorar, a loja começa anônima e liga a conta quando ele chegar.
+   */
+  start(userId: () => Promise<string | null>, onPremium: (premium: boolean) => void): Promise<void>;
+  /** Planos com preço da loja (ordem: anual, semanal, mensal, vitalício). Fica em cache depois da 1ª vez. */
   plans(): Promise<Plan[]>;
+  /** Os planos já carregados, sem esperar (null se ainda não chegaram). */
+  cachedPlans(): Plan[] | null;
   purchase(plan: Plan): Promise<PurchaseResult>;
   restore(): Promise<{ premium: boolean }>;
 }
@@ -62,6 +67,7 @@ const mock: PurchasesService = {
   async plans() {
     return PLANS;
   },
+  cachedPlans: () => PLANS,
   async purchase() {
     await wait(700);
     return __DEV__ ? { ok: true, premium: true } : { ok: false, premium: false };
@@ -82,6 +88,10 @@ const META: Record<PlanId, { title: string; period: string | null; type: string 
   lifetime: { title: 'vitalício', period: null, type: 'LIFETIME' },
 };
 const UNIT_DAYS: Record<string, number> = { DAY: 1, WEEK: 7, MONTH: 30, YEAR: 365 };
+/** Ids dos produtos na App Store: dá pra checar o teste grátis junto com as ofertas, sem esperar uma pela outra. */
+const PRODUCT_IDS = ['euduvido_pro_annual', 'euduvido_pro_weekly', 'euduvido_pro_monthly', 'euduvido_pro_lifetime'];
+/** Quanto o login do Supabase pode segurar a loja antes de ela começar anônima. */
+const USER_ID_WAIT_MS = 1500;
 
 const isPro = (info: CustomerInfo) => info.entitlements.active[ENTITLEMENT] !== undefined;
 
@@ -90,49 +100,74 @@ function createRevenueCat(): PurchasesService {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
   const Purchases = (require('react-native-purchases') as typeof import('react-native-purchases')).default;
   let started: Promise<void> | null = null;
+  let loading: Promise<Plan[]> | null = null;
+  let cache: Plan[] | null = null;
 
-  return {
-    start(appUserId, onPremium) {
+  async function loadPlans(): Promise<Plan[]> {
+    // ofertas e elegibilidade ao teste em paralelo (as duas vão na rede)
+    const [offerings, eligibility] = await Promise.all([
+      Purchases.getOfferings(),
+      Purchases.checkTrialOrIntroductoryPriceEligibility(PRODUCT_IDS).catch(() => ({}) as Record<string, { status: number }>),
+    ]);
+    const pkgs = offerings.current?.availablePackages ?? [];
+    const found = ORDER.map((id) => ({ id, pkg: pkgs.find((p) => p.packageType === META[id].type) })).filter((x) => x.pkg) as { id: PlanId; pkg: PurchasesPackage }[];
+    if (found.length === 0) throw new Error('no_offerings');
+    const weekly = found.find((f) => f.id === 'weekly')?.pkg.product.price;
+
+    return found.map(({ id, pkg }) => {
+      const p = pkg.product;
+      const intro = p.introPrice;
+      // teste grátis só pra quem ainda tem direito (a loja responde; na dúvida, não mostra)
+      const eligible = eligibility[p.identifier]?.status === Purchases.INTRO_ELIGIBILITY_STATUS.INTRO_ELIGIBILITY_STATUS_ELIGIBLE;
+      const trialDays = intro && intro.price === 0 && eligible ? intro.periodNumberOfUnits * (UNIT_DAYS[intro.periodUnit] ?? 1) : undefined;
+      const savings = id === 'annual' && weekly ? Math.round((1 - p.price / (weekly * 52)) * 100) : 0;
+      return {
+        id,
+        title: META[id].title,
+        price: p.priceString,
+        period: META[id].period,
+        perMonth: id === 'annual' && p.pricePerMonthString ? `${p.pricePerMonthString}/mês` : undefined,
+        perWeek: id === 'annual' ? (p.pricePerWeekString ?? undefined) : undefined,
+        badge: savings > 0 ? `-${savings}%` : undefined,
+        trialDays,
+        featured: id === 'annual' || id === 'weekly',
+        pkg,
+      };
+    });
+  }
+
+  const service: PurchasesService = {
+    start(userId, onPremium) {
       started ??= (async () => {
-        Purchases.configure({ apiKey: iosKey as string, appUserID: appUserId ?? undefined });
+        const timeout = new Promise<null>((r) => setTimeout(() => r(null), USER_ID_WAIT_MS));
+        const pending = userId().catch(() => null);
+        const id = await Promise.race([pending, timeout]);
+        Purchases.configure({ apiKey: iosKey as string, appUserID: id ?? undefined });
+        void service.plans().catch(() => undefined); // já deixa o paywall pronto
         Purchases.addCustomerInfoUpdateListener((info) => onPremium(isPro(info)));
         onPremium(isPro(await Purchases.getCustomerInfo()));
+        if (!id) {
+          // o login do Supabase atrasou: liga a conta agora (o servidor confere a assinatura por esse id)
+          const late = await pending;
+          if (late) onPremium(isPro((await Purchases.logIn(late)).customerInfo));
+        }
       })().catch(() => undefined);
       return started;
     },
 
-    async plans() {
-      await started;
-      const offerings = await Purchases.getOfferings();
-      const pkgs = offerings.current?.availablePackages ?? [];
-      const found = ORDER.map((id) => ({ id, pkg: pkgs.find((p) => p.packageType === META[id].type) })).filter((x) => x.pkg) as { id: PlanId; pkg: PurchasesPackage }[];
-      if (found.length === 0) throw new Error('no_offerings');
-
-      // teste grátis só pra quem ainda tem direito (a loja responde; na dúvida, não mostra)
-      const ids = found.map((f) => f.pkg.product.identifier);
-      const eligibility = await Purchases.checkTrialOrIntroductoryPriceEligibility(ids).catch(() => ({}) as Record<string, { status: number }>);
-      const weekly = found.find((f) => f.id === 'weekly')?.pkg.product.price;
-
-      return found.map(({ id, pkg }) => {
-        const p = pkg.product;
-        const intro = p.introPrice;
-        const eligible = eligibility[p.identifier]?.status === Purchases.INTRO_ELIGIBILITY_STATUS.INTRO_ELIGIBILITY_STATUS_ELIGIBLE;
-        const trialDays = intro && intro.price === 0 && eligible ? intro.periodNumberOfUnits * (UNIT_DAYS[intro.periodUnit] ?? 1) : undefined;
-        const savings = id === 'annual' && weekly ? Math.round((1 - p.price / (weekly * 52)) * 100) : 0;
-        return {
-          id,
-          title: META[id].title,
-          price: p.priceString,
-          period: META[id].period,
-          perMonth: id === 'annual' && p.pricePerMonthString ? `${p.pricePerMonthString}/mês` : undefined,
-          perWeek: id === 'annual' ? (p.pricePerWeekString ?? undefined) : undefined,
-          badge: savings > 0 ? `-${savings}%` : undefined,
-          trialDays,
-          featured: id === 'annual' || id === 'weekly',
-          pkg,
-        };
+    plans() {
+      loading ??= (async () => {
+        await started;
+        cache = await loadPlans();
+        return cache;
+      })().catch((e) => {
+        loading = null; // deixa tentar de novo
+        throw e;
       });
+      return loading;
     },
+
+    cachedPlans: () => cache,
 
     async purchase(plan) {
       if (!plan.pkg) return { ok: false, premium: false };
@@ -154,6 +189,7 @@ function createRevenueCat(): PurchasesService {
       }
     },
   };
+  return service;
 }
 
 export const purchases: PurchasesService = storeMode === 'revenuecat' ? createRevenueCat() : mock;

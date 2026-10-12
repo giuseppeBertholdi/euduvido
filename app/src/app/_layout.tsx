@@ -32,11 +32,8 @@ function Root() {
   // loja: com RevenueCat, o entitlement `pro` manda no premium (no mock não faz nada)
   useEffect(() => {
     if (!ready || storeMode !== 'revenuecat') return;
-    void (async () => {
-      // mesmo id do Supabase, pra o servidor conferir a assinatura de quem cria sala
-      const userId = onlineEnabled ? await ensureUserId().catch(() => null) : null;
-      await purchases.start(userId, (premium) => set({ premium }));
-    })();
+    // mesmo id do Supabase, pra o servidor conferir a assinatura de quem cria sala
+    void purchases.start(async () => (onlineEnabled ? ensureUserId() : null), (premium) => set({ premium }));
   }, [ready, set]);
 
   // lembretes: refaz o plano ao abrir e ao voltar pro app (quem joga sempre nunca recebe)
