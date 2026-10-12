@@ -10,7 +10,7 @@ export const HIGHLIGHTS: Record<string, string[]> = {
   'absurdos-br': ['n108', 'q172', 'q84'],
   bichos: ['q23', 'q34', 'n38'],
   corpo: ['q17', 'n65', 'q13'],
-  internet: ['q126', 'q179', 'n144'],
+  internet: ['q126', 'q179', 'n158'],
   comida: ['n186', 'n191', 'n183'],
   esporte: ['n251', 'n229', 'n240'],
   ciencia: ['n275', 'n277', 'n271'],

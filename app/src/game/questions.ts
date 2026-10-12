@@ -39,46 +39,6 @@ export const PACKS: Pack[] = [
         "source": "NASA Solar System Exploration"
       },
       {
-        "id": "q68",
-        "text": "Quantas peças de xadrez cada jogador possui no início da partida?",
-        "answer": 16,
-        "unit": "peças",
-        "fact": "Totalizando 32 peças no tabuleiro.",
-        "source": "FIDE Rules of Chess"
-      },
-      {
-        "id": "q69",
-        "text": "Quantos graus celsius é o ponto de ebulição da água ao nível do mar?",
-        "answer": 100,
-        "unit": "graus",
-        "fact": "A 1 atm de pressão atmosférica.",
-        "source": "NIST Physical Constants"
-      },
-      {
-        "id": "q70",
-        "text": "Quantos dias tem um ano bissexto?",
-        "answer": 366,
-        "unit": "dias",
-        "fact": "O dia extra é adicionado ao mês de fevereiro (dia 29).",
-        "source": "Astronomical Applications Dept"
-      },
-      {
-        "id": "q71",
-        "text": "Quantas cartas tem um baralho padrão sem os coringas?",
-        "answer": 52,
-        "unit": "cartas",
-        "fact": "Divididas em 4 naipes de 13 cartas cada.",
-        "source": "International Playing-Card Society"
-      },
-      {
-        "id": "q72",
-        "text": "Quantos anéis olímpicos compõem o símbolo dos Jogos Olímpicos?",
-        "answer": 5,
-        "unit": "anéis",
-        "fact": "Representam os cinco continentes unidos pelo esporte.",
-        "source": "International Olympic Committee (IOC)"
-      },
-      {
         "id": "q73",
         "text": "Em que ano afundou o navio Titanic?",
         "answer": 1912,
@@ -127,14 +87,6 @@ export const PACKS: Pack[] = [
         "source": "History Channel / WWI"
       },
       {
-        "id": "q137",
-        "text": "Quantos planetas existem no Sistema Solar segundo a União Astronômica Internacional?",
-        "answer": 8,
-        "unit": "planetas",
-        "fact": "Plutão foi reclassificado como planeta anão em 2006.",
-        "source": "International Astronomical Union"
-      },
-      {
         "id": "q138",
         "text": "Em que ano ocorreu a queda da Bastilha na Revolução Francesa?",
         "answer": 1789,
@@ -143,28 +95,12 @@ export const PACKS: Pack[] = [
         "source": "French National Archives"
       },
       {
-        "id": "q139",
-        "text": "Quantas casas de xadrez existem em um tabuleiro tradicional?",
-        "answer": 64,
-        "unit": "casas",
-        "fact": "Divididas igualmente entre 32 brancas e 32 pretas.",
-        "source": "FIDE Chess Rules"
-      },
-      {
         "id": "q140",
         "text": "Em que ano Albert Einstein publicou a Teoria da Relatividade Restrita?",
         "answer": 1905,
         "unit": "ano",
         "fact": "Conhecido como o seu 'Ano Miraculoso' (Annus Mirabilis).",
         "source": "Nobel Prize Archives"
-      },
-      {
-        "id": "q141",
-        "text": "Quantas teclas de atalho de função (F1 a F12) existem no topo de um teclado padrão PC?",
-        "answer": 12,
-        "unit": "teclas",
-        "fact": "De F1 até F12.",
-        "source": "ISO Keyboard Standards"
       },
       {
         "id": "q142",
@@ -199,14 +135,6 @@ export const PACKS: Pack[] = [
         "source": "NIST Physical Standards"
       },
       {
-        "id": "q147",
-        "text": "Quantos jogadores de cada time entram em campo em uma partida de futebol?",
-        "answer": 11,
-        "unit": "jogadores",
-        "fact": "Incluindo o goleiro em cada equipe.",
-        "source": "IFAB Laws of the Game"
-      },
-      {
         "id": "q148",
         "text": "Em que ano foi lançada a nota de 200 reais no Brasil?",
         "answer": 2020,
@@ -215,28 +143,12 @@ export const PACKS: Pack[] = [
         "source": "Banco Central do Brasil"
       },
       {
-        "id": "q149",
-        "text": "Quantas cores tem o arco-íris tradicionalmente descritas por Isaac Newton?",
-        "answer": 7,
-        "unit": "cores",
-        "fact": "Vermelho, laranja, amarelo, verde, azul, anil e violeta.",
-        "source": "Royal Society Optics"
-      },
-      {
         "id": "q150",
-        "text": "Em que ano aconteceu o massacre de Pompeia pela erupção do Monte Vesúvio?",
+        "text": "Em que ano o Vesúvio soterrou a cidade de Pompeia?",
         "answer": 79,
         "unit": "ano",
         "fact": "Destruiu as cidades de Pompeia e Herculano na Itália.",
         "source": "Archaeological Park of Pompeii"
-      },
-      {
-        "id": "q186",
-        "text": "Quantas notas musicais compõem a escala diatônica clássica?",
-        "answer": 7,
-        "unit": "notas",
-        "fact": "Dó, Ré, Mi, Fá, Sol, Lá, Si.",
-        "source": "Music Theory Guide"
       },
       {
         "id": "q187",
@@ -247,44 +159,12 @@ export const PACKS: Pack[] = [
         "source": "Historical Archives"
       },
       {
-        "id": "q188",
-        "text": "Quantos metros tem uma piscina olímpica oficial de natação?",
-        "answer": 50,
-        "unit": "metros",
-        "fact": "Com largura de 25 metros e 8 a 10 raias.",
-        "source": "World Aquatics (FINA)"
-      },
-      {
         "id": "q190",
         "text": "Em que ano Colombo chegou às Américas?",
         "answer": 1492,
         "unit": "ano",
         "fact": "Desembarcou na ilha de Guanahani em outubro.",
         "source": "History Channel"
-      },
-      {
-        "id": "q191",
-        "text": "Quantos jogadores formam um time de basquete em quadra?",
-        "answer": 5,
-        "unit": "jogadores",
-        "fact": "Sendo 10 jogadores no total em quadra.",
-        "source": "FIBA Official Rules"
-      },
-      {
-        "id": "q192",
-        "text": "Quantas maravilhas do mundo antigo existiam na lista tradicional?",
-        "answer": 7,
-        "unit": "maravilhas",
-        "fact": "Apenas as Pirâmides de Gizé ainda estão de pé.",
-        "source": "UNESCO Heritage"
-      },
-      {
-        "id": "q233",
-        "text": "Quantos estados compõem os Estados Unidos da América?",
-        "answer": 50,
-        "unit": "estados",
-        "fact": "O Alasca e o Havaí foram os últimos integrados.",
-        "source": "US Census Bureau"
       },
       {
         "id": "q234",
@@ -295,22 +175,6 @@ export const PACKS: Pack[] = [
         "source": "US National Archives"
       },
       {
-        "id": "q235",
-        "text": "Quantos minutos tem uma partida oficial de futebol sem acréscimos?",
-        "answer": 90,
-        "unit": "minutos",
-        "fact": "Dividida em dois tempos de 45 minutos.",
-        "source": "IFAB Laws of the Game"
-      },
-      {
-        "id": "q236",
-        "text": "Quantas cordas tem um violão tradicional acústico?",
-        "answer": 6,
-        "unit": "cordas",
-        "fact": "Afinadas em Mi, Lá, Ré, Sol, Si, Mi.",
-        "source": "Musical Instrument Standards"
-      },
-      {
         "id": "q237",
         "text": "Em que ano ocorreu a Revolução Russa que derrubou o Czar?",
         "answer": 1917,
@@ -319,36 +183,12 @@ export const PACKS: Pack[] = [
         "source": "Russian History Archives"
       },
       {
-        "id": "q238",
-        "text": "Quantas faces tem um dado tradicional de jogo de tabuleiro?",
-        "answer": 6,
-        "unit": "faces",
-        "fact": "Os lados opostos de um dado padrão sempre somam 7.",
-        "source": "Board Game Standards"
-      },
-      {
-        "id": "q239",
-        "text": "Em que ano Neil Armstrong faleceu?",
-        "answer": 2012,
-        "unit": "ano",
-        "fact": "O primeiro homem a pisar na Lua faleceu aos 82 anos.",
-        "source": "NASA Historical"
-      },
-      {
         "id": "q240",
         "text": "Quantos mililitros cabem em uma garrafa de vinho padrão?",
         "answer": 750,
         "unit": "ml",
         "fact": "Padrão internacional estabelecido no século XIX.",
         "source": "International Organisation of Vine and Wine"
-      },
-      {
-        "id": "q241",
-        "text": "Quantos pinos são usados em uma pista tradicional de boliche?",
-        "answer": 10,
-        "unit": "pinos",
-        "fact": "Dispostos em formato triangular.",
-        "source": "World Bowling Federation"
       },
       {
         "id": "q242",
@@ -367,14 +207,6 @@ export const PACKS: Pack[] = [
         "source": "Hiroshima Peace Memorial"
       },
       {
-        "id": "q284",
-        "text": "Quantos minutos dura um tempo suplementar (prorrogação) de futebol no total?",
-        "answer": 30,
-        "unit": "minutos",
-        "fact": "Dividido em dois tempos de 15 minutos.",
-        "source": "IFAB Laws"
-      },
-      {
         "id": "q286",
         "text": "Quantos quilômetros tem uma maratona oficial?",
         "answer": 42,
@@ -389,22 +221,6 @@ export const PACKS: Pack[] = [
         "unit": "ano",
         "fact": "Conectando o Oceano Atlântico ao Oceano Pacífico.",
         "source": "Panama Canal Authority"
-      },
-      {
-        "id": "q289",
-        "text": "Quantas cordas tem um violoncelo?",
-        "answer": 4,
-        "unit": "cordas",
-        "fact": "Afinadas em Dó, Sol, Ré e Lá.",
-        "source": "Orchestra Instruments Guide"
-      },
-      {
-        "id": "q291",
-        "text": "Quantos dentes incisivos um humano adulto tem na boca?",
-        "answer": 8,
-        "unit": "dentes",
-        "fact": "Quatro na arcada superior e quatro na inferior.",
-        "source": "Dental Anatomy"
       },
       {
         "id": "q292",
@@ -485,6 +301,246 @@ export const PACKS: Pack[] = [
         "unit": "metros",
         "fact": "A altitude oficial revisada recentemente é de 8.848,86 metros.",
         "source": "National Geographic"
+      },
+      {
+        "id": "d244",
+        "text": "Em que ano a população mundial chegou a 8 bilhões de pessoas?",
+        "answer": 2022,
+        "unit": "ano",
+        "fact": "Em 1800 o mundo tinha só 1 bilhão.",
+        "source": "ONU"
+      },
+      {
+        "id": "d245",
+        "text": "Em que ano antes de Cristo Cleópatra morreu?",
+        "answer": 30,
+        "unit": "a.C.",
+        "fact": "Ela viveu mais perto da invenção do iPhone do que da construção das pirâmides.",
+        "source": "Britannica"
+      },
+      {
+        "id": "d246",
+        "text": "Quantos metros de comprimento tinha o Titanic?",
+        "answer": 269,
+        "unit": "metros",
+        "fact": "Quase três campos de futebol enfileirados.",
+        "source": "Encyclopedia Titanica"
+      },
+      {
+        "id": "d247",
+        "text": "Em que ano os destroços do Titanic foram encontrados?",
+        "answer": 1985,
+        "unit": "ano",
+        "fact": "73 anos depois do naufrágio.",
+        "source": "Woods Hole Oceanographic Institution"
+      },
+      {
+        "id": "d248",
+        "text": "A quantos metros de profundidade estão os destroços do Titanic?",
+        "answer": 3800,
+        "unit": "metros",
+        "fact": "A pressão lá embaixo é quase 400 vezes a da superfície.",
+        "source": "NOAA"
+      },
+      {
+        "id": "d249",
+        "text": "Quantos centímetros de altura tinha Napoleão?",
+        "answer": 169,
+        "unit": "cm",
+        "fact": "Era altura normal pra época: a fama de baixinho veio da propaganda inglesa.",
+        "source": "Britannica"
+      },
+      {
+        "id": "d250",
+        "text": "Quantos dias durou a missão Apollo 11, da decolagem à volta?",
+        "answer": 8,
+        "unit": "dias",
+        "fact": "Os astronautas ficaram 21 dias de quarentena na volta.",
+        "source": "NASA"
+      },
+      {
+        "id": "d251",
+        "text": "Quantos centímetros de altura tem a Mona Lisa?",
+        "answer": 77,
+        "unit": "cm",
+        "fact": "É bem menor do que quase todo mundo imagina.",
+        "source": "Museu do Louvre"
+      },
+      {
+        "id": "d252",
+        "text": "Quantas letras tem o alfabeto havaiano?",
+        "answer": 13,
+        "unit": "letras",
+        "fact": "Por isso as palavras repetem tanto: \"humuhumunukunukuapua'a\".",
+        "source": "Universidade do Havaí"
+      },
+      {
+        "id": "d253",
+        "text": "Quantas letras tem o alfabeto da língua portuguesa hoje?",
+        "answer": 26,
+        "unit": "letras",
+        "fact": "K, W e Y voltaram com o Acordo Ortográfico de 2009.",
+        "source": "Acordo Ortográfico de 1990"
+      },
+      {
+        "id": "d254",
+        "text": "Em que ano Graham Bell patenteou o telefone?",
+        "answer": 1876,
+        "unit": "ano",
+        "fact": "Muitos atribuem a invenção ao italiano Antonio Meucci.",
+        "source": "Escritório de Patentes dos EUA"
+      },
+      {
+        "id": "d255",
+        "text": "Em que ano Edison patenteou a lâmpada elétrica?",
+        "answer": 1879,
+        "unit": "ano",
+        "fact": "Ele testou milhares de filamentos, até bambu.",
+        "source": "Escritório de Patentes dos EUA"
+      },
+      {
+        "id": "d256",
+        "text": "Em que ano Karl Benz patenteou o primeiro carro a gasolina?",
+        "answer": 1886,
+        "unit": "ano",
+        "fact": "A esposa dele fez a primeira viagem longa, sem avisar.",
+        "source": "Mercedes-Benz"
+      },
+      {
+        "id": "d257",
+        "text": "Em que ano os irmãos Wright fizeram o primeiro voo de avião?",
+        "answer": 1903,
+        "unit": "ano",
+        "fact": "Três anos antes do 14-Bis de Santos Dumont. A briga segue até hoje.",
+        "source": "Smithsonian"
+      },
+      {
+        "id": "d258",
+        "text": "Em que ano caiu o Império Romano do Ocidente?",
+        "answer": 476,
+        "unit": "ano",
+        "fact": "O Império do Oriente durou mais mil anos.",
+        "source": "Britannica"
+      },
+      {
+        "id": "d259",
+        "text": "Quantos anos viveu Jeanne Calment, a pessoa mais velha já registrada?",
+        "answer": 122,
+        "unit": "anos",
+        "fact": "Ela conheceu Van Gogh quando era adolescente.",
+        "source": "Guinness World Records"
+      },
+      {
+        "id": "d260",
+        "text": "Quantos quilos pesou Jon Brower Minnoch, o homem mais pesado já registrado?",
+        "answer": 635,
+        "unit": "kg",
+        "fact": "Precisaram de 13 pessoas pra virá-lo na cama do hospital.",
+        "source": "Guinness World Records"
+      },
+      {
+        "id": "d261",
+        "text": "Quantos centímetros tinha Robert Wadlow, o homem mais alto da história?",
+        "answer": 272,
+        "unit": "cm",
+        "fact": "Ainda estava crescendo quando morreu, aos 22 anos.",
+        "source": "Guinness World Records"
+      },
+      {
+        "id": "d262",
+        "text": "Em que ano o Brasil aboliu a escravidão?",
+        "answer": 1888,
+        "unit": "ano",
+        "fact": "Foi o último país das Américas a fazer isso.",
+        "source": "Lei Áurea"
+      },
+      {
+        "id": "d263",
+        "text": "Desde que ano está acesa a lâmpada mais antiga do mundo, num quartel de bombeiros na Califórnia?",
+        "answer": 1901,
+        "unit": "ano",
+        "fact": "Tem até webcam pra provar que continua acesa.",
+        "source": "Guinness World Records"
+      },
+      {
+        "id": "d264",
+        "text": "Quantas toneladas pesa uma nuvem comum (cúmulo)?",
+        "answer": 500,
+        "unit": "toneladas",
+        "fact": "Ela flutua porque essa água está espalhada em gotinhas minúsculas.",
+        "source": "USGS"
+      },
+      {
+        "id": "d265",
+        "text": "Quantos anos levaria pra contar até 1 bilhão, um número por segundo, sem parar?",
+        "answer": 32,
+        "unit": "anos",
+        "fact": "Até 1 milhão, seriam só 12 dias.",
+        "source": "cálculo: 1 bilhão de segundos"
+      },
+      {
+        "id": "d266",
+        "text": "Quantos metros tem a árvore mais alta do mundo, a sequoia Hyperion?",
+        "answer": 116,
+        "unit": "metros",
+        "fact": "A localização é mantida em segredo pra protegê-la.",
+        "source": "Parque Nacional Redwood"
+      },
+      {
+        "id": "d267",
+        "text": "Quantos países tem a África?",
+        "answer": 54,
+        "unit": "países",
+        "fact": "É o continente com mais países.",
+        "source": "ONU"
+      },
+      {
+        "id": "d268",
+        "text": "Quantos países tem a América do Sul?",
+        "answer": 12,
+        "unit": "países",
+        "fact": "A Guiana Francesa não conta: é território da França.",
+        "source": "ONU"
+      },
+      {
+        "id": "d269",
+        "text": "Em que ano o Post-it chegou às lojas?",
+        "answer": 1980,
+        "unit": "ano",
+        "fact": "Nasceu de uma cola que \"deu errado\" por ser fraca demais.",
+        "source": "3M"
+      },
+      {
+        "id": "d270",
+        "text": "Em que ano a calça jeans foi patenteada?",
+        "answer": 1873,
+        "unit": "ano",
+        "fact": "Era roupa de trabalho para mineiros.",
+        "source": "Levi Strauss & Co."
+      },
+      {
+        "id": "d271",
+        "text": "Quantos graus a Torre de Pisa está inclinada hoje (aproximadamente)?",
+        "answer": 4,
+        "unit": "graus",
+        "fact": "Já chegou a 5,5 graus antes da obra que a \"endireitou\".",
+        "source": "Opera della Primaziale Pisana"
+      },
+      {
+        "id": "d272",
+        "text": "Quantos minutos durou o voo de Yuri Gagarin, o primeiro ser humano no espaço?",
+        "answer": 108,
+        "unit": "minutos",
+        "fact": "Deu uma volta inteira na Terra.",
+        "source": "Roscosmos"
+      },
+      {
+        "id": "d273",
+        "text": "Em que ano foi disputada a primeira Copa do Mundo?",
+        "answer": 1930,
+        "unit": "ano",
+        "fact": "No Uruguai, que também foi o campeão.",
+        "source": "FIFA"
       }
     ]
   },
@@ -504,14 +560,6 @@ export const PACKS: Pack[] = [
         "unit": "ano",
         "fact": "O Real substituiu o Cruzeiro Real em 1º de julho de 1994.",
         "source": "Banco Central do Brasil"
-      },
-      {
-        "id": "q38",
-        "text": "Quantos estados compõem a República Federativa do Brasil, sem contar o DF?",
-        "answer": 26,
-        "unit": "estados",
-        "fact": "Com o Distrito Federal, são 27 unidades federativas.",
-        "source": "IBGE"
       },
       {
         "id": "q39",
@@ -538,14 +586,6 @@ export const PACKS: Pack[] = [
         "source": "Memória Globo"
       },
       {
-        "id": "q43",
-        "text": "Quantos títulos de Copa do Mundo a Seleção Brasileira masculina de futebol possui?",
-        "answer": 5,
-        "unit": "títulos",
-        "fact": "Vencidos em 1958, 1962, 1970, 1994 e 2002.",
-        "source": "FIFA Official Records"
-      },
-      {
         "id": "q44",
         "text": "Em que ano o programa Castelo Rá-Tim-Bum estreou na TV Cultura?",
         "answer": 1994,
@@ -570,14 +610,6 @@ export const PACKS: Pack[] = [
         "source": "Gshow / Globo"
       },
       {
-        "id": "q47",
-        "text": "Quantas pontas tem a estrela da bandeira do Brasil que representa o DF?",
-        "answer": 5,
-        "unit": "pontas",
-        "fact": "Todas as 27 estrelas da bandeira têm 5 pontas.",
-        "source": "Governo Federal / Símbolos Nacionais"
-      },
-      {
         "id": "q48",
         "text": "Em que ano Ayrton Senna ganhou seu primeiro título de Formula 1?",
         "answer": 1988,
@@ -592,14 +624,6 @@ export const PACKS: Pack[] = [
         "unit": "ano",
         "fact": "Conhecida como a 'Constituição Cidadã'.",
         "source": "Chancelaria da Presidência"
-      },
-      {
-        "id": "q51",
-        "text": "Quantas capitais do Brasil estão localizadas na Região Sul?",
-        "answer": 3,
-        "unit": "capitais",
-        "fact": "Curitiba, Florianópolis e Porto Alegre.",
-        "source": "IBGE Geo"
       },
       {
         "id": "q80",
@@ -650,14 +674,6 @@ export const PACKS: Pack[] = [
         "source": "Arquivo Público do DF"
       },
       {
-        "id": "q86",
-        "text": "Quantos andares tem o prédio mais alto do Brasil (One Tower em Balneário Camboriú)?",
-        "answer": 84,
-        "unit": "andares",
-        "fact": "Tem 290 metros de altura total.",
-        "source": "CTBUH Skyscraper Center"
-      },
-      {
         "id": "q87",
         "text": "Em que ano o Rock in Rio teve sua primeira edição?",
         "answer": 1985,
@@ -674,28 +690,12 @@ export const PACKS: Pack[] = [
         "source": "SBT Histórico"
       },
       {
-        "id": "q90",
-        "text": "Quantas estrelas tem a bandeira do estado de São Paulo?",
-        "answer": 4,
-        "unit": "estrelas",
-        "fact": "Representam as quatro estrelas da Constelação do Cruzeiro do Sul na bandeira paulista.",
-        "source": "Governo de SP"
-      },
-      {
         "id": "q91",
         "text": "Em que ano Carmen Miranda nasceu?",
         "answer": 1909,
         "unit": "ano",
         "fact": "Nasceu em Portugal e veio para o Brasil com menos de 1 ano.",
         "source": "Museu Carmen Miranda"
-      },
-      {
-        "id": "q92",
-        "text": "Quantas estações de metrô em operação tem a linha 1-Azul de São Paulo?",
-        "answer": 23,
-        "unit": "estações",
-        "fact": "Foi a primeira linha de metrô construída no Brasil.",
-        "source": "Metrô SP"
       },
       {
         "id": "q93",
@@ -730,22 +730,6 @@ export const PACKS: Pack[] = [
         "source": "Governo de Pernambuco"
       },
       {
-        "id": "q173",
-        "text": "Em que ano o famoso Menino da Porteira virou música gravada por Tonico & Tinoco?",
-        "answer": 1955,
-        "unit": "ano",
-        "fact": "Tornou-se um clássico caipira eterno.",
-        "source": "Instituto Memória Musical"
-      },
-      {
-        "id": "q174",
-        "text": "Quantos times participam da primeira divisão (Série A) do Brasileirão?",
-        "answer": 20,
-        "unit": "times",
-        "fact": "Disputado em pontos corridos com 38 rodadas.",
-        "source": "CBF Oficial"
-      },
-      {
         "id": "q175",
         "text": "Em que ano ocorreu o desastre do Edifício Joelma em São Paulo?",
         "answer": 1974,
@@ -760,14 +744,6 @@ export const PACKS: Pack[] = [
         "unit": "ano",
         "fact": "Ficou no ar aos domingos por mais de 30 anos.",
         "source": "Memória Globo"
-      },
-      {
-        "id": "q194",
-        "text": "Quantos estados formam a Região Nordeste do Brasil?",
-        "answer": 9,
-        "unit": "estados",
-        "fact": "É a região com o maior número de estados no país.",
-        "source": "IBGE"
       },
       {
         "id": "q195",
@@ -803,7 +779,7 @@ export const PACKS: Pack[] = [
       },
       {
         "id": "q199",
-        "text": "Em que ano foi lançada a Moeda Provisória Cruzeiro Real antes do Plano Real?",
+        "text": "Em que ano foi lançado o Cruzeiro Real, a moeda que veio antes do Real?",
         "answer": 1993,
         "unit": "ano",
         "fact": "Durou menos de um ano no mercado.",
@@ -834,14 +810,6 @@ export const PACKS: Pack[] = [
         "source": "CBF / Governo do RJ"
       },
       {
-        "id": "q244",
-        "text": "Quantas faixas tem a bandeira do estado da Bahia?",
-        "answer": 4,
-        "unit": "faixas",
-        "fact": "Duas brancas e duas vermelhas alternadas.",
-        "source": "Governo da Bahia"
-      },
-      {
         "id": "q245",
         "text": "Em que ano o piloto Ayrton Senna estreou na Fórmula 1 pela Toleman?",
         "answer": 1984,
@@ -856,14 +824,6 @@ export const PACKS: Pack[] = [
         "unit": "ano",
         "fact": "Famosa pelo mistério de 'Quem matou Odete Roitman?'.",
         "source": "Memória Globo"
-      },
-      {
-        "id": "q248",
-        "text": "Quantas capitais estaduais o Brasil possui?",
-        "answer": 26,
-        "unit": "capitais",
-        "fact": "Mais Brasília como capital federal.",
-        "source": "IBGE"
       },
       {
         "id": "q249",
@@ -890,14 +850,6 @@ export const PACKS: Pack[] = [
         "source": "COB"
       },
       {
-        "id": "q252",
-        "text": "Quantas cores tem a bandeira oficial do Brasil?",
-        "answer": 4,
-        "unit": "cores",
-        "fact": "Verde, amarelo, azul e branco.",
-        "source": "Governo Federal"
-      },
-      {
         "id": "q293",
         "text": "Em que ano o horário de verão foi instituído pela primeira vez no Brasil?",
         "answer": 1931,
@@ -914,14 +866,6 @@ export const PACKS: Pack[] = [
         "source": "Memória Globo"
       },
       {
-        "id": "q297",
-        "text": "Em que ano o Real completou 25 anos de circulação?",
-        "answer": 2019,
-        "unit": "ano",
-        "fact": "A moeda estabilizou a economia após a hiperinflação.",
-        "source": "Banco Central do Brasil"
-      },
-      {
         "id": "q298",
         "text": "Quantas linhas de metrô funcionam na cidade do Rio de Janeiro?",
         "answer": 3,
@@ -936,14 +880,6 @@ export const PACKS: Pack[] = [
         "unit": "ano",
         "fact": "Vendeu mais de 3 milhões de cópias em menos de um ano.",
         "source": "Som Livre / Acervo"
-      },
-      {
-        "id": "q301",
-        "text": "Em que ano o Palácio do Planalto foi inaugurado em Brasília?",
-        "answer": 1960,
-        "unit": "ano",
-        "fact": "Sede do poder executivo do governo federal brasileiro.",
-        "source": "Presidência da República"
       },
       {
         "id": "n105",
@@ -984,14 +920,6 @@ export const PACKS: Pack[] = [
         "unit": "estrelas",
         "fact": "Representam os 26 estados e o Distrito Federal.",
         "source": "Governo Federal"
-      },
-      {
-        "id": "n128",
-        "text": "Quantas praias oficiais existem na ilha de Florianópolis em SC?",
-        "answer": 42,
-        "unit": "praias",
-        "fact": "Conhecida mundialmente como a 'Ilha da Magia'.",
-        "source": "Turismo Floripa"
       },
       {
         "id": "n129",
@@ -1136,6 +1064,86 @@ export const PACKS: Pack[] = [
         "unit": "ilhas",
         "fact": "Diz-se que é uma pra cada dia do ano.",
         "source": "Prefeitura de Angra dos Reis"
+      },
+      {
+        "id": "d334",
+        "text": "Quantos meses Jânio Quadros ficou na Presidência antes de renunciar?",
+        "answer": 7,
+        "unit": "meses",
+        "fact": "Esperava voltar nos braços do povo. Não voltou.",
+        "source": "história do Brasil"
+      },
+      {
+        "id": "d335",
+        "text": "Quantos milhões de habitantes o Brasil tinha no Censo de 2022?",
+        "answer": 203,
+        "unit": "milhões",
+        "fact": "O crescimento foi o menor da história.",
+        "source": "IBGE, Censo 2022"
+      },
+      {
+        "id": "d336",
+        "text": "Quantos estados fazem parte da Amazônia Legal?",
+        "answer": 9,
+        "unit": "estados",
+        "fact": "Ocupa mais da metade do território do Brasil.",
+        "source": "IBGE"
+      },
+      {
+        "id": "d337",
+        "text": "Em que ano a família real portuguesa chegou ao Brasil?",
+        "answer": 1808,
+        "unit": "ano",
+        "fact": "Fugindo das tropas de Napoleão.",
+        "source": "história do Brasil"
+      },
+      {
+        "id": "d338",
+        "text": "Em que ano as mulheres conquistaram o direito de votar no Brasil?",
+        "answer": 1932,
+        "unit": "ano",
+        "fact": "Pelo Código Eleitoral de Getúlio Vargas.",
+        "source": "TSE"
+      },
+      {
+        "id": "d339",
+        "text": "Quantos anos durou a Era Vargas?",
+        "answer": 15,
+        "unit": "anos",
+        "fact": "De 1930 a 1945. Depois ele ainda voltou eleito.",
+        "source": "história do Brasil"
+      },
+      {
+        "id": "d340",
+        "text": "Quantos municípios tem o estado de São Paulo?",
+        "answer": 645,
+        "unit": "municípios",
+        "fact": "Minas tem mais: 853.",
+        "source": "IBGE"
+      },
+      {
+        "id": "d341",
+        "text": "Em que ano foi fundada a cidade de São Paulo?",
+        "answer": 1554,
+        "unit": "ano",
+        "fact": "Por padres jesuítas, num colégio.",
+        "source": "Prefeitura de São Paulo"
+      },
+      {
+        "id": "d342",
+        "text": "Em que ano foi fundada a cidade do Rio de Janeiro?",
+        "answer": 1565,
+        "unit": "ano",
+        "fact": "Por Estácio de Sá.",
+        "source": "Prefeitura do Rio"
+      },
+      {
+        "id": "d343",
+        "text": "Em que ano foi feita a primeira transmissão de rádio no Brasil?",
+        "answer": 1922,
+        "unit": "ano",
+        "fact": "No centenário da Independência.",
+        "source": "EBC"
       }
     ]
   },
@@ -1204,18 +1212,10 @@ export const PACKS: Pack[] = [
         "source": "Giraffe Conservation Foundation"
       },
       {
-        "id": "q28",
-        "text": "Quantas asas tem uma mosca doméstica comum?",
-        "answer": 2,
-        "unit": "asas",
-        "fact": "Elas pertencem à ordem Diptera, que significa 'duas asas'.",
-        "source": "Entomological Society of America"
-      },
-      {
         "id": "q29",
-        "text": "Quantos tentáculos tem uma lula gigante?",
+        "text": "Quantos braços e tentáculos, somados, tem uma lula?",
         "answer": 10,
-        "unit": "braços",
+        "unit": "braços e tentáculos",
         "fact": "São 8 braços normais e 2 tentáculos mais longos para captura.",
         "source": "Smithsonian National Museum of Natural History"
       },
@@ -1226,14 +1226,6 @@ export const PACKS: Pack[] = [
         "unit": "kg",
         "fact": "Eles passam até 12 horas por dia apenas comendo.",
         "source": "WWF Giant Panda Facts"
-      },
-      {
-        "id": "q31",
-        "text": "Quantos minutos um jacaré consegue ficar embaixo da água sem respirar?",
-        "answer": 120,
-        "unit": "minutos",
-        "fact": "Em águas frias, conseguem reduzir o metabolismo e ficar ainda mais.",
-        "source": "Florida Fish and Wildlife"
       },
       {
         "id": "q33",
@@ -1258,14 +1250,6 @@ export const PACKS: Pack[] = [
         "unit": "dias",
         "fact": "Elas literalmente trabalham até morrer de exaustão.",
         "source": "Mid-Atlantic Apiculture Research"
-      },
-      {
-        "id": "q36",
-        "text": "Quantos dentes tem um jacaré-açu adulto?",
-        "answer": 80,
-        "unit": "dentes",
-        "fact": "Eles podem substituir seus dentes até 50 vezes ao longo da vida.",
-        "source": "Crocodilian Biology Database"
       },
       {
         "id": "q95",
@@ -1332,44 +1316,12 @@ export const PACKS: Pack[] = [
         "source": "Desert Biology Studies"
       },
       {
-        "id": "q103",
-        "text": "Quantos corações tem uma lula?",
-        "answer": 3,
-        "unit": "corações",
-        "fact": "Assim como os polvos, possuem três corações.",
-        "source": "Oceanographic Institute"
-      },
-      {
-        "id": "q104",
-        "text": "Quantas câmaras tem o estômago de uma girafa?",
-        "answer": 4,
-        "unit": "câmaras",
-        "fact": "Como os ruminantes, digere a vegetação em quatro etapas.",
-        "source": "Giraffe Conservation"
-      },
-      {
-        "id": "q105",
-        "text": "Quantas penas tem uma coruja em média no corpo todo?",
-        "answer": 10000,
-        "unit": "penas",
-        "fact": "Penas macias e especiais permitem um voo quase silencioso.",
-        "source": "Audubon Society"
-      },
-      {
         "id": "q106",
         "text": "Quantas horas por dia um coala passa dormindo em média?",
         "answer": 20,
         "unit": "horas",
         "fact": "A dieta com folhas de eucalipto fornece pouca energia.",
         "source": "Australian Koala Foundation"
-      },
-      {
-        "id": "q107",
-        "text": "Quantos dentes tem um urso-polar?",
-        "answer": 42,
-        "unit": "dentes",
-        "fact": "Adaptados para rasgar carne e gordura de focas.",
-        "source": "Polar Bears International"
       },
       {
         "id": "q108",
@@ -1388,44 +1340,12 @@ export const PACKS: Pack[] = [
         "source": "Bird Biology Journal"
       },
       {
-        "id": "q160",
-        "text": "Quantas patas tem uma aranha?",
-        "answer": 8,
-        "unit": "patas",
-        "fact": "Aracnídeos têm 8 patas, diferentemente dos insetos que têm 6.",
-        "source": "Arachnology Society"
-      },
-      {
-        "id": "q161",
-        "text": "Quantos ovos um galinha caipira põe em média por ano?",
-        "answer": 250,
-        "unit": "ovos",
-        "fact": "Galinhas poedeiras industriais chegam a 300.",
-        "source": "Poultry Science Org"
-      },
-      {
-        "id": "q162",
-        "text": "Quantos dentes tem um leão adulto?",
-        "answer": 30,
-        "unit": "dentes",
-        "fact": "Adaptados para cortar carne com precisão carnassial.",
-        "source": "Panthera Wildlife"
-      },
-      {
         "id": "q163",
         "text": "Quantos metros de profundidade um pinguim-imperador consegue mergulhar?",
         "answer": 500,
         "unit": "metros",
         "fact": "Eles podem ficar mais de 20 minutos debaixo d'água.",
         "source": "National Geographic Kids"
-      },
-      {
-        "id": "q164",
-        "text": "Quantos quilos de comida um urso-pardo come por dia antes de hibernar?",
-        "answer": 40,
-        "unit": "kg",
-        "fact": "Aumentam drasticamente a ingestão de calorias para criar gordura.",
-        "source": "National Park Service US"
       },
       {
         "id": "q165",
@@ -1452,28 +1372,12 @@ export const PACKS: Pack[] = [
         "source": "Camelid Veterinary Journal"
       },
       {
-        "id": "q203",
-        "text": "Quantos corações tem um náutilo (molusco marinho)?",
-        "answer": 4,
-        "unit": "corações",
-        "fact": "Possui um sistema circulatório singular.",
-        "source": "Marine Biology Studies"
-      },
-      {
         "id": "q204",
         "text": "Quantos metros pode alcançar a envergadura das asas de um albatroz-viante?",
         "answer": 3,
         "unit": "metros",
         "fact": "A maior envergadura de asa entre as aves vivas.",
         "source": "BirdLife International"
-      },
-      {
-        "id": "q205",
-        "text": "Quantos dentes tem um urso-pardo?",
-        "answer": 42,
-        "unit": "dentes",
-        "fact": "Mesmo número de dentes da maioria dos canídeos e ursídeos.",
-        "source": "Wildlife Biology"
       },
       {
         "id": "q206",
@@ -1484,28 +1388,12 @@ export const PACKS: Pack[] = [
         "source": "African Wildlife Foundation"
       },
       {
-        "id": "q207",
-        "text": "Quantos quilos de carne um tigre adulto consegue comer em uma única refeição?",
-        "answer": 30,
-        "unit": "kg",
-        "fact": "Podem ficar dias sem comer após uma grande refeição.",
-        "source": "Save The Tiger Fund"
-      },
-      {
         "id": "q208",
         "text": "Quantos tentáculos tem uma água-viva-juba-de-leão em seus tufos?",
         "answer": 1200,
         "unit": "tentáculos",
         "fact": "É uma das maiores espécies de água-viva do planeta.",
         "source": "Oceana Org"
-      },
-      {
-        "id": "q209",
-        "text": "Quantos km/h pode nadar o peixe-vela, o peixe mais rápido do oceano?",
-        "answer": 110,
-        "unit": "km/h",
-        "fact": "Sua nadadeira dorsal ajuda na hidrodinâmica em alta velocidade.",
-        "source": "National Geographic Marine"
       },
       {
         "id": "q210",
@@ -1530,14 +1418,6 @@ export const PACKS: Pack[] = [
         "unit": "metros",
         "fact": "Consegue prender a respiração por mais de 90 minutos.",
         "source": "Whale and Dolphin Conservation"
-      },
-      {
-        "id": "q253",
-        "text": "Quantos dentes tem uma jaguatirica adulta?",
-        "answer": 30,
-        "unit": "dentes",
-        "fact": "Dentição típica de felídeos carnívoros.",
-        "source": "Mammal Species of the World"
       },
       {
         "id": "q254",
@@ -1580,22 +1460,6 @@ export const PACKS: Pack[] = [
         "source": "American Kennel Club"
       },
       {
-        "id": "q259",
-        "text": "Quantos mililitros de veneno uma cobra-rei consegue injetar em uma única picada?",
-        "answer": 7,
-        "unit": "ml",
-        "fact": "Suficiente para matar um elefante adulto.",
-        "source": "National Geographic Venom Studies"
-      },
-      {
-        "id": "q260",
-        "text": "Quantas penas primárias de voo uma águia-careca tem em cada asa?",
-        "answer": 10,
-        "unit": "penas",
-        "fact": "Essenciais para o controle de voo e sustentação.",
-        "source": "Raptor Center"
-      },
-      {
         "id": "q261",
         "text": "Quantas vezes o coração de um beija-flor bate por minuto em voo?",
         "answer": 1200,
@@ -1621,7 +1485,7 @@ export const PACKS: Pack[] = [
       },
       {
         "id": "n26",
-        "text": "Quantas patas tem a centopeia recordista da espécie Illacme plenipes?",
+        "text": "Quantas patas pode ter o piolho-de-cobra Illacme plenipes?",
         "answer": 750,
         "unit": "patas",
         "fact": "Apesar do nome 'centopeia', nenhuma espécie tem exatamente 100 patas.",
@@ -1650,14 +1514,6 @@ export const PACKS: Pack[] = [
         "unit": "kg",
         "fact": "Apenas a língua pesa o mesmo que um elefante adulto inteiro.",
         "source": "National Geographic Wildlife"
-      },
-      {
-        "id": "n39",
-        "text": "Quantos ovos uma tartaruga-de-pente põe em média a cada ninho na praia?",
-        "answer": 150,
-        "unit": "ovos",
-        "fact": "Apenas 1 em cada 1000 filhotes consegue chegar à idade adulta.",
-        "source": "Projeto Tamar"
       },
       {
         "id": "n42",
@@ -1724,20 +1580,132 @@ export const PACKS: Pack[] = [
         "source": "BirdLife International"
       },
       {
-        "id": "n60",
-        "text": "Quantos dentes tem um crocodilo-do-nilo adulto em sua boca?",
-        "answer": 68,
-        "unit": "dentes",
-        "fact": "Podem substituir seus dentes até 50 vezes ao longo da vida.",
-        "source": "Crocodilian Biology"
-      },
-      {
         "id": "n61",
         "text": "Quantos quilômetros por hora corre um avestruz em velocidade sustentada?",
         "answer": 70,
         "unit": "km/h",
         "fact": "É a ave terrestre mais rápida do mundo e possui apenas dois dedos em cada pé.",
         "source": "National Geographic"
+      },
+      {
+        "id": "d274",
+        "text": "Quantos anos pode viver um tubarão-da-groenlândia?",
+        "answer": 400,
+        "unit": "anos",
+        "fact": "É o vertebrado mais longevo que se conhece.",
+        "source": "Science (2016)"
+      },
+      {
+        "id": "d275",
+        "text": "Quantos km/h atinge um falcão-peregrino em mergulho?",
+        "answer": 390,
+        "unit": "km/h",
+        "fact": "É o animal mais rápido do mundo.",
+        "source": "National Geographic"
+      },
+      {
+        "id": "d276",
+        "text": "Quantos quilos pesa o coração de uma baleia-azul?",
+        "answer": 180,
+        "unit": "kg",
+        "fact": "Do tamanho de um carrinho de golfe, não de um carro.",
+        "source": "Royal Ontario Museum"
+      },
+      {
+        "id": "d277",
+        "text": "Quantos litros de água um camelo consegue beber de uma vez, em 10 minutos?",
+        "answer": 100,
+        "unit": "litros",
+        "fact": "A água não fica na corcova: lá é gordura.",
+        "source": "National Geographic"
+      },
+      {
+        "id": "d278",
+        "text": "Quantas vezes por minuto bate o coração de uma baleia-azul num mergulho fundo?",
+        "answer": 2,
+        "unit": "batimentos",
+        "fact": "Medido com um sensor preso por ventosa.",
+        "source": "PNAS (2019)"
+      },
+      {
+        "id": "d279",
+        "text": "Quantos olhos tem uma estrela-do-mar de 5 braços?",
+        "answer": 5,
+        "unit": "olhos",
+        "fact": "Um na ponta de cada braço.",
+        "source": "Proceedings of the Royal Society B (2014)"
+      },
+      {
+        "id": "d280",
+        "text": "Quantas patas tem uma borboleta?",
+        "answer": 6,
+        "unit": "patas",
+        "fact": "Algumas usam só 4 pra andar, o que confunde muita gente.",
+        "source": "Museu de História Natural de Londres"
+      },
+      {
+        "id": "d281",
+        "text": "Quantas vezes por semana uma preguiça desce da árvore pra fazer cocô?",
+        "answer": 1,
+        "unit": "vez",
+        "fact": "É o momento mais perigoso da vida dela.",
+        "source": "Smithsonian"
+      },
+      {
+        "id": "d282",
+        "text": "Quantos dentes um tubarão-branco tem na boca ao mesmo tempo?",
+        "answer": 300,
+        "unit": "dentes",
+        "fact": "Em várias fileiras: quando um cai, o de trás avança.",
+        "source": "Florida Museum"
+      },
+      {
+        "id": "d283",
+        "text": "Quantos centímetros de altura uma pulga consegue saltar?",
+        "answer": 18,
+        "unit": "cm",
+        "fact": "É mais de 100 vezes o tamanho dela.",
+        "source": "Journal of Experimental Biology"
+      },
+      {
+        "id": "d284",
+        "text": "Quantas horas por dia um elefante dorme na natureza?",
+        "answer": 2,
+        "unit": "horas",
+        "fact": "É o mamífero que menos dorme.",
+        "source": "PLOS ONE (2017)"
+      },
+      {
+        "id": "d285",
+        "text": "Quantos centímetros pode ter a língua de uma girafa?",
+        "answer": 50,
+        "unit": "cm",
+        "fact": "É escura, provavelmente pra não queimar no sol.",
+        "source": "San Diego Zoo"
+      },
+      {
+        "id": "d286",
+        "text": "Quantos km/h um hipopótamo consegue correr em terra?",
+        "answer": 30,
+        "unit": "km/h",
+        "fact": "Corre mais que muito ser humano.",
+        "source": "San Diego Zoo"
+      },
+      {
+        "id": "d287",
+        "text": "Quantos ovos de galinha equivalem a um ovo de avestruz?",
+        "answer": 24,
+        "unit": "ovos",
+        "fact": "Leva cerca de 1 hora pra cozinhar.",
+        "source": "San Diego Zoo"
+      },
+      {
+        "id": "d288",
+        "text": "Quantas toneladas pesa um elefante-africano macho adulto?",
+        "answer": 6,
+        "unit": "toneladas",
+        "fact": "É o maior animal terrestre.",
+        "source": "WWF"
       }
     ]
   },
@@ -1772,14 +1740,6 @@ export const PACKS: Pack[] = [
         "unit": "pares",
         "fact": "Cerca de 1 em cada 200 pessoas nasce com uma costela extra.",
         "source": "Mayo Clinic"
-      },
-      {
-        "id": "q5",
-        "text": "Quantos batimentos por minuto é o ritmo cardíaco médio em repouso de um adulto?",
-        "answer": 72,
-        "unit": "bpm",
-        "fact": "Atletas de alto rendimento podem ter frequência abaixo de 40 bpm.",
-        "source": "American Heart Association"
       },
       {
         "id": "q6",
@@ -1910,22 +1870,6 @@ export const PACKS: Pack[] = [
         "source": "Brain Facts / Neuroscience"
       },
       {
-        "id": "q113",
-        "text": "Quantos mililitros de lágrimas um humano produz por ano em média?",
-        "answer": 100,
-        "unit": "ml",
-        "fact": "Mesmo sem chorar, os olhos produzem lágrimas para lubrificação.",
-        "source": "Ophthalmology Times"
-      },
-      {
-        "id": "q116",
-        "text": "Quantos segundos o cérebro humano pode sobreviver sem oxigênio antes de ter danos irreversíveis?",
-        "answer": 180,
-        "unit": "segundos",
-        "fact": "Cerca de 3 a 5 minutos sem oxigenação.",
-        "source": "Red Cross First Aid"
-      },
-      {
         "id": "q117",
         "text": "Quantas vezes piscamos os olhos por minuto em média?",
         "answer": 15,
@@ -1948,14 +1892,6 @@ export const PACKS: Pack[] = [
         "unit": "metros",
         "fact": "Apesar de fino, é super dobrado para absorver nutrientes.",
         "source": "Gastroenterology Journal"
-      },
-      {
-        "id": "q120",
-        "text": "Quantos metros de comprimento tem o intestino grosso humano?",
-        "answer": 2,
-        "unit": "metros",
-        "fact": "É mais curto que o delgado, mas muito mais largo.",
-        "source": "Digestive Health Foundation"
       },
       {
         "id": "q121",
@@ -2030,30 +1966,6 @@ export const PACKS: Pack[] = [
         "source": "Gray's Anatomy"
       },
       {
-        "id": "q157",
-        "text": "Quantas horas dura em média a digestão completa de uma refeição no estômago?",
-        "answer": 4,
-        "unit": "horas",
-        "fact": "Varia conforme a quantidade de gordura e fibra.",
-        "source": "Mayo Clinic Gastroenterology"
-      },
-      {
-        "id": "q158",
-        "text": "Quantos poros existem na pele humana aproximadamente?",
-        "answer": 5000000,
-        "unit": "poros",
-        "fact": "Ajudam a regular a temperatura eliminando suor.",
-        "source": "Dermatology World"
-      },
-      {
-        "id": "q159",
-        "text": "Quantos milissegundos dura um piscar de olhos humano em média?",
-        "answer": 100,
-        "unit": "ms",
-        "fact": "Pode durar entre 100 e 400 milissegundos.",
-        "source": "NIH Neuroscience"
-      },
-      {
         "id": "q213",
         "text": "Quantos ossos compõem a caixa torácica humana?",
         "answer": 25,
@@ -2078,30 +1990,6 @@ export const PACKS: Pack[] = [
         "source": "National Kidney Foundation"
       },
       {
-        "id": "q216",
-        "text": "Quantos furos de duto lacrimal existem nos olhos humanos (nos cantos internos)?",
-        "answer": 4,
-        "unit": "pontos lacrimais",
-        "fact": "Dois na pálpebra superior e dois na inferior.",
-        "source": "Ophthalmology Association"
-      },
-      {
-        "id": "q217",
-        "text": "Quantas vezes o olho humano pisca por dia em média?",
-        "answer": 19000,
-        "unit": "vezes",
-        "fact": "Piscar limpa e lubrifica a superfície ocular.",
-        "source": "Vision Research Council"
-      },
-      {
-        "id": "q218",
-        "text": "Quantas unhas de dedos das mãos e pés um humano possui?",
-        "answer": 20,
-        "unit": "unhas",
-        "fact": "A unha da mão cresce cerca de 3 mm por mês.",
-        "source": "Dermatology Association"
-      },
-      {
         "id": "q219",
         "text": "Quantos litros de ar cabem na capacidade pulmonar total de um adulto médio?",
         "answer": 6,
@@ -2116,14 +2004,6 @@ export const PACKS: Pack[] = [
         "unit": "ossos",
         "fact": "Inclui o tálus e o calcâneo (calcanhar).",
         "source": "Foot & Ankle Society"
-      },
-      {
-        "id": "q221",
-        "text": "Quantas cavidades (ventrículos e átrios) dividem o coração humano?",
-        "answer": 4,
-        "unit": "cavidades",
-        "fact": "Dois átrios e dois ventrículos.",
-        "source": "Cardiology Health"
       },
       {
         "id": "q222",
@@ -2158,14 +2038,6 @@ export const PACKS: Pack[] = [
         "source": "American Academy of Pediatric Dentistry"
       },
       {
-        "id": "q268",
-        "text": "Quantas pálpebras tem o olho humano?",
-        "answer": 2,
-        "unit": "pálpebras",
-        "fact": "A superior e a inferior.",
-        "source": "Ophthalmology Basics"
-      },
-      {
         "id": "q269",
         "text": "Quantos % da energia do corpo o cérebro humano consome?",
         "answer": 20,
@@ -2180,14 +2052,6 @@ export const PACKS: Pack[] = [
         "unit": "cm",
         "fact": "Conecta a faringe ao estômago.",
         "source": "Gastroenterology Basics"
-      },
-      {
-        "id": "q271",
-        "text": "Quantos cromossomos sexuais tem uma célula somática humana?",
-        "answer": 2,
-        "unit": "cromossomos",
-        "fact": "XX em mulheres e XY em homens.",
-        "source": "Genetics Learning Center"
       },
       {
         "id": "n65",
@@ -2212,6 +2076,102 @@ export const PACKS: Pack[] = [
         "unit": "ml",
         "fact": "Os pés contêm cerca de 250 mil glândulas sudoríparas.",
         "source": "American Podiatric Medical Association"
+      },
+      {
+        "id": "d289",
+        "text": "Quantos metros de DNA tem cada célula do corpo, se esticado?",
+        "answer": 2,
+        "unit": "metros",
+        "fact": "E cabe num núcleo de poucos micrômetros.",
+        "source": "NIH"
+      },
+      {
+        "id": "d290",
+        "text": "Quantos milímetros tem o estribo, o menor osso do corpo?",
+        "answer": 3,
+        "unit": "mm",
+        "fact": "Fica dentro do ouvido.",
+        "source": "Gray's Anatomy"
+      },
+      {
+        "id": "d291",
+        "text": "Quantos centímetros o cabelo cresce por mês, em média?",
+        "answer": 1,
+        "unit": "cm",
+        "fact": "Uns 15 cm por ano.",
+        "source": "Academia Americana de Dermatologia"
+      },
+      {
+        "id": "d292",
+        "text": "Em quantos anos o esqueleto inteiro se renova?",
+        "answer": 10,
+        "unit": "anos",
+        "fact": "O osso é tecido vivo: é destruído e refeito o tempo todo.",
+        "source": "NIH"
+      },
+      {
+        "id": "d293",
+        "text": "Quantos trilhões de bactérias vivem no corpo humano?",
+        "answer": 38,
+        "unit": "trilhões",
+        "fact": "Mais do que as nossas próprias células.",
+        "source": "PLOS Biology (2016)"
+      },
+      {
+        "id": "d294",
+        "text": "Quantos trilhões de células tem o corpo humano?",
+        "answer": 30,
+        "unit": "trilhões",
+        "fact": "A maioria são glóbulos vermelhos.",
+        "source": "PLOS Biology (2016)"
+      },
+      {
+        "id": "d295",
+        "text": "Quantos centímetros, em média, somos mais altos de manhã do que à noite?",
+        "answer": 1,
+        "unit": "cm",
+        "fact": "Os discos da coluna se achatam durante o dia.",
+        "source": "NIH"
+      },
+      {
+        "id": "d296",
+        "text": "Quantos dias um ser humano sobrevive sem beber água, em média?",
+        "answer": 3,
+        "unit": "dias",
+        "fact": "Sem comida, aguenta semanas.",
+        "source": "Cruz Vermelha"
+      },
+      {
+        "id": "d297",
+        "text": "Quantos bilhões de vezes o coração bate numa vida inteira?",
+        "answer": 3,
+        "unit": "bilhões",
+        "fact": "Sem nunca parar pra descansar.",
+        "source": "American Heart Association"
+      },
+      {
+        "id": "d298",
+        "text": "Quantos km/h chega a viajar um impulso nervoso?",
+        "answer": 430,
+        "unit": "km/h",
+        "fact": "Nas fibras mais rápidas, 120 metros por segundo.",
+        "source": "Britannica"
+      },
+      {
+        "id": "d299",
+        "text": "Quantos anos, em média, uma pessoa passa dormindo ao longo da vida?",
+        "answer": 25,
+        "unit": "anos",
+        "fact": "Cerca de um terço da vida.",
+        "source": "National Sleep Foundation"
+      },
+      {
+        "id": "d300",
+        "text": "Quantas horas por dia dorme um recém-nascido, em média?",
+        "answer": 16,
+        "unit": "horas",
+        "fact": "Mas em pedaços de 2 a 3 horas.",
+        "source": "Sociedade Brasileira de Pediatria"
       }
     ]
   },
@@ -2256,28 +2216,12 @@ export const PACKS: Pack[] = [
         "source": "IMDb"
       },
       {
-        "id": "q56",
-        "text": "Quantos episódios no total tem a série de animação 'Chaves' (El Chavo del Ocho)?",
-        "answer": 312,
-        "unit": "episódios",
-        "fact": "Exibido originalmente entre 1973 e 1980.",
-        "source": "Televisa / Grupo Chespirito"
-      },
-      {
         "id": "q57",
         "text": "Em que ano o aplicativo TikTok foi lançado globalmente fora da China?",
         "answer": 2017,
         "unit": "ano",
         "fact": "Surgiu da fusão com o Musical.ly em 2018.",
         "source": "ByteDance Corporate"
-      },
-      {
-        "id": "q58",
-        "text": "Quantos filmes da franquia principal 'Harry Potter' foram lançados nos cinemas?",
-        "answer": 8,
-        "unit": "filmes",
-        "fact": "O último livro foi dividido em duas partes no cinema.",
-        "source": "Warner Bros Pictures"
       },
       {
         "id": "q59",
@@ -2288,14 +2232,6 @@ export const PACKS: Pack[] = [
         "source": "Meta Newsroom"
       },
       {
-        "id": "q60",
-        "text": "Quantos episódios tem a primeira temporada da série 'Stranger Things'?",
-        "answer": 8,
-        "unit": "episódios",
-        "fact": "Lançada na Netflix em julho de 2016.",
-        "source": "Netflix Press"
-      },
-      {
         "id": "q61",
         "text": "Em que ano o primeiro iPhone foi anunciado por Steve Jobs?",
         "answer": 2007,
@@ -2304,28 +2240,12 @@ export const PACKS: Pack[] = [
         "source": "Apple Newsroom"
       },
       {
-        "id": "q62",
-        "text": "Quantas temporadas durou a série 'Game of Thrones'?",
-        "answer": 8,
-        "unit": "temporadas",
-        "fact": "Com um total de 73 episódios exibidos pela HBO.",
-        "source": "HBO Official"
-      },
-      {
         "id": "q63",
         "text": "Em que ano foi lançado o jogo Minecraft na sua versão alfa pública?",
         "answer": 2009,
         "unit": "ano",
         "fact": "Criado por Markus 'Notch' Persson.",
         "source": "Mojang Studios"
-      },
-      {
-        "id": "q64",
-        "text": "Quantos botões de ação frontais principais tem um controle de PlayStation 5 (Sem D-Pad e sem bumpers)?",
-        "answer": 4,
-        "unit": "botões",
-        "fact": "Triângulo, Círculo, X e Quadrado.",
-        "source": "PlayStation Support"
       },
       {
         "id": "q65",
@@ -2416,28 +2336,12 @@ export const PACKS: Pack[] = [
         "source": "Nintendo Official History"
       },
       {
-        "id": "q135",
-        "text": "Quantos minutos dura o vídeo clipe oficial mais visto de 'Gangnam Style'?",
-        "answer": 4,
-        "unit": "minutos",
-        "fact": "Primeiro vídeo do YouTube a alcançar 1 bilhão de visualizações.",
-        "source": "YouTube Charts"
-      },
-      {
         "id": "q136",
         "text": "Em que ano o Twitter mudou oficialmente de nome para 'X'?",
         "answer": 2023,
         "unit": "ano",
         "fact": "Mudança promovida após a compra por Elon Musk.",
         "source": "X Corp Press"
-      },
-      {
-        "id": "q178",
-        "text": "Em que ano a Wikipédia em português foi criada?",
-        "answer": 2001,
-        "unit": "ano",
-        "fact": "Poucos meses após a versão original em inglês.",
-        "source": "Wikimedia Brasil"
       },
       {
         "id": "q179",
@@ -2486,14 +2390,6 @@ export const PACKS: Pack[] = [
         "unit": "ano",
         "fact": "Antes disso a empresa entregava DVDs pelo correio.",
         "source": "Netflix Investor Relations"
-      },
-      {
-        "id": "q185",
-        "text": "Quantos botões de atalho tem um mouse comum de computador?",
-        "answer": 3,
-        "unit": "botões",
-        "fact": "Esquerdo, direito e a roda de rolagem (scroll/clique).",
-        "source": "Tech Specs Hardware"
       },
       {
         "id": "q223",
@@ -2632,30 +2528,6 @@ export const PACKS: Pack[] = [
         "source": "Marvel Studios"
       },
       {
-        "id": "q281",
-        "text": "Em que ano foi publicado o primeiro post do blog WordPress?",
-        "answer": 2003,
-        "unit": "ano",
-        "fact": "Criado por Matt Mullenweg e Mike Little.",
-        "source": "WordPress Org"
-      },
-      {
-        "id": "q282",
-        "text": "Quantas vidas iniciais um jogador recebe na maioria dos jogos clássicos do Mario?",
-        "answer": 3,
-        "unit": "vidas",
-        "fact": "Representadas por cogumelos verdes de 1UP.",
-        "source": "Nintendo History"
-      },
-      {
-        "id": "n144",
-        "text": "Quantos bilhões de dólares o Facebook pagou para comprar o WhatsApp?",
-        "answer": 19,
-        "unit": "bilhões",
-        "fact": "Uma das maiores aquisições da história da tecnologia.",
-        "source": "Forbes Tech"
-      },
-      {
         "id": "n145",
         "text": "Quantos blocos no total formam a altura máxima do mapa no Minecraft?",
         "answer": 384,
@@ -2728,20 +2600,116 @@ export const PACKS: Pack[] = [
         "source": "Bandai Namco"
       },
       {
-        "id": "n175",
-        "text": "Quantas gerações de Pokémon existem no universo principal dos jogos até a IX?",
-        "answer": 9,
-        "unit": "gerações",
-        "fact": "Contando mais de 1000 espécies diferentes de criaturas.",
-        "source": "The Pokémon Company"
-      },
-      {
         "id": "n181",
         "text": "Quantos episódios foram produzidos para a minissérie 'Chernobyl' da HBO?",
         "answer": 5,
         "unit": "episódios",
         "fact": "Uma das minisséries de maior nota da história do IMDb.",
         "source": "HBO"
+      },
+      {
+        "id": "d301",
+        "text": "Quantos anos tinha Mark Zuckerberg quando criou o Facebook?",
+        "answer": 19,
+        "unit": "anos",
+        "fact": "Fez no quarto da faculdade, em Harvard.",
+        "source": "Meta"
+      },
+      {
+        "id": "d302",
+        "text": "Por quantas horas Facebook, Instagram e WhatsApp ficaram fora do ar no apagão de 2021?",
+        "answer": 6,
+        "unit": "horas",
+        "fact": "Os funcionários não conseguiam nem entrar no prédio.",
+        "source": "Meta"
+      },
+      {
+        "id": "d303",
+        "text": "Em que ano o Gmail foi lançado?",
+        "answer": 2004,
+        "unit": "ano",
+        "fact": "Lançado num 1º de abril: muita gente achou que era mentira.",
+        "source": "Google"
+      },
+      {
+        "id": "d304",
+        "text": "Quantos MB de espaço o Gmail dava quando foi lançado?",
+        "answer": 1000,
+        "unit": "MB",
+        "fact": "Era 1 GB, um absurdo na época.",
+        "source": "Google"
+      },
+      {
+        "id": "d305",
+        "text": "Quantos MB de espaço grátis o Hotmail dava quando o Gmail chegou?",
+        "answer": 2,
+        "unit": "MB",
+        "fact": "O Gmail dava 500 vezes mais.",
+        "source": "Microsoft"
+      },
+      {
+        "id": "d306",
+        "text": "Em que ano foi enviado o primeiro SMS?",
+        "answer": 1992,
+        "unit": "ano",
+        "fact": "Dizia \"Merry Christmas\".",
+        "source": "Vodafone"
+      },
+      {
+        "id": "d307",
+        "text": "Em que ano foram criados os primeiros emojis, no Japão?",
+        "answer": 1999,
+        "unit": "ano",
+        "fact": "Estão hoje no acervo do MoMA, em Nova York.",
+        "source": "MoMA"
+      },
+      {
+        "id": "d308",
+        "text": "Quantos emojis tinha o primeiro conjunto, criado no Japão?",
+        "answer": 176,
+        "unit": "emojis",
+        "fact": "Cada um com 12 por 12 pixels.",
+        "source": "MoMA"
+      },
+      {
+        "id": "d309",
+        "text": "Em que ano o primeiro site da história foi ao ar?",
+        "answer": 1991,
+        "unit": "ano",
+        "fact": "Ainda está no ar, no endereço original do CERN.",
+        "source": "CERN"
+      },
+      {
+        "id": "d310",
+        "text": "Em que ano foi lançado o Free Fire?",
+        "answer": 2017,
+        "unit": "ano",
+        "fact": "O Brasil virou o maior mercado do jogo.",
+        "source": "Garena"
+      },
+      {
+        "id": "d311",
+        "text": "Em que ano foi lançado o Among Us?",
+        "answer": 2018,
+        "unit": "ano",
+        "fact": "Só estourou dois anos depois, na pandemia.",
+        "source": "Innersloth"
+      },
+      {
+        "id": "d312",
+        "text": "Em que ano foi lançado o Fortnite?",
+        "answer": 2017,
+        "unit": "ano",
+        "fact": "O modo battle royale chegou meses depois.",
+        "source": "Epic Games"
+      },
+      {
+        "id": "d313",
+        "text": "Em que ano saíram os primeiros jogos de Pokémon, no Japão?",
+        "answer": 1996,
+        "unit": "ano",
+        "fact": "Red e Green, para Game Boy.",
+        "source": "The Pokémon Company"
       }
     ]
   },
@@ -2851,22 +2819,6 @@ export const PACKS: Pack[] = [
         "source": "Culinary History Institute"
       },
       {
-        "id": "n198",
-        "text": "Quantos gramas de sal por litro de água são recomendados para cozinhar macarrão perfeitamente?",
-        "answer": 10,
-        "unit": "g",
-        "fact": "Regra clássica italiana: 100g de massa, 1 litro de água e 10g de sal.",
-        "source": "Accademia Italiana della Cucina"
-      },
-      {
-        "id": "n199",
-        "text": "Quantas fatias tem uma pizza grande tradicional cortada em pizzarias brasileiras?",
-        "answer": 8,
-        "unit": "fatias",
-        "fact": "Padrão de corte para pizzas de 35 cm de diâmetro.",
-        "source": "Associação de Pizzarias Unidas"
-      },
-      {
         "id": "n200",
         "text": "Quantos gramas de proteína tem em média um ovo de galinha grande?",
         "answer": 6,
@@ -2875,28 +2827,12 @@ export const PACKS: Pack[] = [
         "source": "USDA FoodData"
       },
       {
-        "id": "n201",
-        "text": "Quantos mililitros tem uma lata de refrigerante tradicional no padrão brasileiro?",
-        "answer": 350,
-        "unit": "ml",
-        "fact": "O volume clássico das latas de alumínio no Brasil.",
-        "source": "ABIR"
-      },
-      {
         "id": "n202",
         "text": "Quantos ingredientes compõem a receita do molho Pesto tradicional genovês?",
         "answer": 7,
         "unit": "ingredientes",
         "fact": "Manjericão, azeite, pinoli, alho, parmesão, pecorino e sal.",
         "source": "Consorzio Pesto Genovese"
-      },
-      {
-        "id": "n203",
-        "text": "Quantos minutos um ovo leva para cozinhar com a gema totalmente dura em água fervente?",
-        "answer": 10,
-        "unit": "minutos",
-        "fact": "Com 6 minutos a gema fica cremosa e líquida por dentro.",
-        "source": "Culinary Science"
       },
       {
         "id": "n204",
@@ -2939,28 +2875,12 @@ export const PACKS: Pack[] = [
         "source": "Consorzio del Formaggio"
       },
       {
-        "id": "n210",
-        "text": "Quantos gramas de café moído são recomendados para preparar uma xícara de 200 ml?",
-        "answer": 12,
-        "unit": "g",
-        "fact": "Proporção padrão de 60g de café para 1 litro de água.",
-        "source": "Specialty Coffee Association"
-      },
-      {
         "id": "n211",
         "text": "Quantos litros de cerveja são consumidos por ano por pessoa na Chéquia (líder mundial)?",
         "answer": 140,
         "unit": "litros",
         "fact": "A Chéquia lidera o consumo per capita global de cerveja há décadas.",
         "source": "Kirin Beer Report"
-      },
-      {
-        "id": "n215",
-        "text": "Quantas colheres de chá equivalem a 1 colher de sopa de ingrediente líquido?",
-        "answer": 3,
-        "unit": "colheres",
-        "fact": "Medida padrão das receitas de culinária.",
-        "source": "Gastronomy Guide"
       },
       {
         "id": "n217",
@@ -3137,6 +3057,54 @@ export const PACKS: Pack[] = [
         "unit": "ano",
         "fact": "Começou fazendo farinha láctea para bebês.",
         "source": "Nestlé"
+      },
+      {
+        "id": "d344",
+        "text": "Em que ano surgiu o sanduíche, batizado em homenagem a um conde inglês?",
+        "answer": 1762,
+        "unit": "ano",
+        "fact": "O conde de Sandwich não queria largar o jogo de cartas pra comer.",
+        "source": "Oxford English Dictionary"
+      },
+      {
+        "id": "d345",
+        "text": "Quantos grãos tem, em média, uma espiga de milho?",
+        "answer": 800,
+        "unit": "grãos",
+        "fact": "O número de fileiras é sempre par.",
+        "source": "Universidade de Illinois"
+      },
+      {
+        "id": "d346",
+        "text": "Em que ano a Heinz lançou o seu ketchup?",
+        "answer": 1876,
+        "unit": "ano",
+        "fact": "O ketchup original, na Ásia, era um molho de peixe.",
+        "source": "Kraft Heinz"
+      },
+      {
+        "id": "d347",
+        "text": "Em que ano a Nutella foi lançada?",
+        "answer": 1964,
+        "unit": "ano",
+        "fact": "Nasceu porque o cacau era caro: misturaram avelã.",
+        "source": "Ferrero"
+      },
+      {
+        "id": "d348",
+        "text": "Em que ano surgiu o Doritos?",
+        "answer": 1966,
+        "unit": "ano",
+        "fact": "Nasceu num restaurante da Disneylândia.",
+        "source": "PepsiCo"
+      },
+      {
+        "id": "d349",
+        "text": "Quantos litros de água são gastos pra produzir 1 kg de chocolate?",
+        "answer": 17000,
+        "unit": "litros",
+        "fact": "A maior parte vai no cultivo do cacau.",
+        "source": "Water Footprint Network"
       }
     ]
   },
@@ -3156,14 +3124,6 @@ export const PACKS: Pack[] = [
         "unit": "títulos",
         "fact": "Empatado com Lewis Hamilton no recorde mundial de títulos.",
         "source": "Formula 1 Official"
-      },
-      {
-        "id": "n225",
-        "text": "Quantos metros mede a extensão de uma pista de atletismo oficial em volta do campo?",
-        "answer": 400,
-        "unit": "metros",
-        "fact": "A Raia 1 mede exatamente 400 metros na linha de medição.",
-        "source": "World Athletics"
       },
       {
         "id": "n227",
@@ -3198,52 +3158,12 @@ export const PACKS: Pack[] = [
         "source": "World Rugby"
       },
       {
-        "id": "n231",
-        "text": "Quantos sets um jogador precisa vencer para ganhar um jogo de tênis masculino num Grand Slam?",
-        "answer": 3,
-        "unit": "sets",
-        "fact": "Disputado no sistema de 'melhor de 5 sets'.",
-        "source": "ITF Tennis"
-      },
-      {
-        "id": "n234",
-        "text": "Quantos jogadores formam uma equipe titular em uma partida de vôlei de quadra?",
-        "answer": 6,
-        "unit": "jogadores",
-        "fact": "Cada time mantém 6 atletas em quadra.",
-        "source": "FIVB Rules"
-      },
-      {
-        "id": "n235",
-        "text": "Quantas grandes voltas (Grand Tours) do ciclismo mundial existem por ano na Europa?",
-        "answer": 3,
-        "unit": "voltas",
-        "fact": "Tour de France, Giro d'Italia e Vuelta a España.",
-        "source": "UCI Cycling"
-      },
-      {
         "id": "n236",
         "text": "Quantos centímetros de altura tem a rede de vôlei masculino adulto oficial?",
         "answer": 243,
         "unit": "cm",
         "fact": "A altura exata é de 2,43 metros.",
         "source": "FIVB Rules"
-      },
-      {
-        "id": "n237",
-        "text": "Quantos cartões amarelos aplicados ao mesmo jogador em um jogo resultam em expulsão?",
-        "answer": 2,
-        "unit": "cartões",
-        "fact": "O segundo cartão amarelo gera automaticamente o cartão vermelho.",
-        "source": "IFAB"
-      },
-      {
-        "id": "n238",
-        "text": "Quantos árbitros no total compõem a equipe de arbitragem de quadra na NBA?",
-        "answer": 3,
-        "unit": "árbitros",
-        "fact": "Três juízes de quadra trabalham juntos nas partidas.",
-        "source": "NBA Rules"
       },
       {
         "id": "n239",
@@ -3260,14 +3180,6 @@ export const PACKS: Pack[] = [
         "unit": "voltas",
         "fact": "O GP mais lento e desafiador do calendário da F1.",
         "source": "Formula 1"
-      },
-      {
-        "id": "n241",
-        "text": "Quantos pontos vale um arremesso de basquete feito antes da linha de três pontos?",
-        "answer": 2,
-        "unit": "pontos",
-        "fact": "Arremessos normais valem 2 pontos e lances livres valem 1 ponto.",
-        "source": "FIBA"
       },
       {
         "id": "n243",
@@ -3294,28 +3206,12 @@ export const PACKS: Pack[] = [
         "source": "NBA Rules"
       },
       {
-        "id": "n246",
-        "text": "Quantos substitutos um técnico de futebol pode usar em partidas oficiais segundo a regra pós-pandemia?",
-        "answer": 5,
-        "unit": "substituições",
-        "fact": "Realizadas em no máximo 3 paradas do jogo.",
-        "source": "IFAB"
-      },
-      {
         "id": "n247",
         "text": "Quantas rodadas são disputadas no Campeonato Brasileiro da Série A (pontos corridos)?",
         "answer": 38,
         "unit": "rodadas",
         "fact": "20 times jogam entre si em turno e returno.",
         "source": "CBF"
-      },
-      {
-        "id": "n248",
-        "text": "Quantos metros de distância fica a marca do tiro livre direto no futsal (após 5 faltas acumuladas)?",
-        "answer": 10,
-        "unit": "metros",
-        "fact": "Cobrado sem barreira diretamente contra o goleiro.",
-        "source": "FIFA Futsal"
       },
       {
         "id": "n249",
@@ -3343,9 +3239,9 @@ export const PACKS: Pack[] = [
       },
       {
         "id": "n253",
-        "text": "Quantas estatuetas do Oscar o boxeador Rocky Balboa inspirou para a franquia de filmes?",
+        "text": "Quantos Oscars ganhou o primeiro filme do Rocky?",
         "answer": 3,
-        "unit": "oscars",
+        "unit": "Oscars",
         "fact": "O primeiro filme de 1976 venceu Melhor Filme, Direção e Montagem.",
         "source": "Academy Awards"
       },
@@ -3374,28 +3270,12 @@ export const PACKS: Pack[] = [
         "source": "WBC Boxing"
       },
       {
-        "id": "n259",
-        "text": "Quantos jurados compõem a banca de notas nas finais de surfe da WSL?",
-        "answer": 5,
-        "unit": "juízes",
-        "fact": "As notas mais alta e mais baixa são descartadas.",
-        "source": "WSL Surf"
-      },
-      {
         "id": "n260",
         "text": "Quantos quilos pesa a barra olímpica masculina de levantamento de peso sem as anilhas?",
         "answer": 20,
         "unit": "kg",
         "fact": "A barra feminina pesa 15 kg.",
         "source": "IWF Weightlifting"
-      },
-      {
-        "id": "n261",
-        "text": "Quantos atletas compõem uma equipe de revezamento no atletismo (4x100m)?",
-        "answer": 4,
-        "unit": "atletas",
-        "fact": "Cada um corre um trecho de 100 metros passando o bastão.",
-        "source": "World Athletics"
       },
       {
         "id": "d112",
@@ -3484,6 +3364,102 @@ export const PACKS: Pack[] = [
         "unit": "horas",
         "fact": "Foram 3 dias em Wimbledon; o último set acabou 70 a 68.",
         "source": "Wimbledon"
+      },
+      {
+        "id": "d314",
+        "text": "Quantos segundos durou a luta mais rápida da história do UFC?",
+        "answer": 5,
+        "unit": "segundos",
+        "fact": "Uma joelhada voadora de Jorge Masvidal, em 2019.",
+        "source": "UFC"
+      },
+      {
+        "id": "d315",
+        "text": "Quantos km/h teve o saque mais rápido reconhecido pela ATP?",
+        "answer": 253,
+        "unit": "km/h",
+        "fact": "John Isner, em 2016.",
+        "source": "ATP"
+      },
+      {
+        "id": "d316",
+        "text": "Quantos ouros olímpicos o vôlei masculino do Brasil tem?",
+        "answer": 3,
+        "unit": "ouros",
+        "fact": "1992, 2004 e 2016.",
+        "source": "COB"
+      },
+      {
+        "id": "d317",
+        "text": "Quantas medalhas de ouro o Brasil ganhou em Paris 2024?",
+        "answer": 3,
+        "unit": "ouros",
+        "fact": "Bia Souza, Rebeca Andrade e Ana Patrícia e Duda.",
+        "source": "COB"
+      },
+      {
+        "id": "d318",
+        "text": "Quantas medalhas no total o Brasil ganhou em Paris 2024?",
+        "answer": 20,
+        "unit": "medalhas",
+        "fact": "3 ouros, 7 pratas e 10 bronzes.",
+        "source": "COB"
+      },
+      {
+        "id": "d319",
+        "text": "Quantos km/h atingiu a peteca no golpe mais rápido do badminton?",
+        "answer": 565,
+        "unit": "km/h",
+        "fact": "É o objeto mais rápido de qualquer esporte com raquete.",
+        "source": "Guinness World Records (2023)"
+      },
+      {
+        "id": "d320",
+        "text": "Quantos centímetros tem o recorde mundial do salto em distância?",
+        "answer": 895,
+        "unit": "cm",
+        "fact": "Mike Powell, em 1991. Ninguém passou até hoje.",
+        "source": "World Athletics"
+      },
+      {
+        "id": "d321",
+        "text": "Quantas medalhas de ouro olímpicas o Brasil tem na história, até Paris 2024?",
+        "answer": 40,
+        "unit": "ouros",
+        "fact": "A primeira foi no tiro, em 1920.",
+        "source": "COB"
+      },
+      {
+        "id": "d322",
+        "text": "Com quantos anos Rayssa Leal ganhou a prata no skate em Tóquio?",
+        "answer": 13,
+        "unit": "anos",
+        "fact": "Virou a medalhista mais jovem do Brasil.",
+        "source": "COB"
+      },
+      {
+        "id": "d323",
+        "text": "Com quantos anos Nadia Comaneci tirou o primeiro 10 da ginástica olímpica?",
+        "answer": 14,
+        "unit": "anos",
+        "fact": "O placar só tinha 3 dígitos e mostrou 1.00.",
+        "source": "COI"
+      },
+      {
+        "id": "d324",
+        "text": "Quantas Copas do Mundo de futsal o Brasil ganhou?",
+        "answer": 6,
+        "unit": "títulos",
+        "fact": "A última foi em 2024, no Uzbequistão.",
+        "source": "FIFA"
+      },
+      {
+        "id": "d325",
+        "text": "Em que ano Guga ganhou o primeiro Roland Garros?",
+        "answer": 1997,
+        "unit": "ano",
+        "fact": "Era o número 66 do mundo.",
+        "source": "ATP"
       }
     ]
   },
@@ -3496,14 +3472,6 @@ export const PACKS: Pack[] = [
     "icon": "planet",
     "tint": "#D9C8FF",
     "questions": [
-      {
-        "id": "n262",
-        "text": "Quantos dias a Terra leva para dar uma volta completa ao redor do Sol (ano sideral)?",
-        "answer": 365,
-        "unit": "dias",
-        "fact": "Exatamente 365,24 dias, motivo pelo qual temos os anos bissextos.",
-        "source": "NASA Astronomy"
-      },
       {
         "id": "n269",
         "text": "Quantos graus Celsius abaixo de zero é a temperatura do Zero Absoluto em Celsius?",
@@ -3535,14 +3503,6 @@ export const PACKS: Pack[] = [
         "unit": "planetas",
         "fact": "Saturno, Júpiter, Urano e Netuno possuem sistemas de anéis.",
         "source": "NASA Planetary"
-      },
-      {
-        "id": "n273",
-        "text": "Quantos mililitros de água cabem em exatamente 1 quilograma de água pura?",
-        "answer": 1000,
-        "unit": "ml",
-        "fact": "A densidade da água é de exatamente 1 g/cm³ a 4 °C.",
-        "source": "Physics Standards"
       },
       {
         "id": "n274",
@@ -3633,14 +3593,6 @@ export const PACKS: Pack[] = [
         "source": "NASA Planetary Geology"
       },
       {
-        "id": "n286",
-        "text": "Quantas faces da Lua são visíveis da Terra devido ao acoplamento de maré?",
-        "answer": 1,
-        "unit": "face",
-        "fact": "A Lua leva o mesmo tempo para girar sobre si mesma e ao redor da Terra.",
-        "source": "NASA Moon"
-      },
-      {
         "id": "n287",
         "text": "Quantos segundos a luz da Lua leva para chegar até os nossos olhos na Terra?",
         "answer": 1,
@@ -3655,30 +3607,6 @@ export const PACKS: Pack[] = [
         "unit": "%",
         "fact": "O restante (95%) é composto por Matéria Escura e Energia Escura.",
         "source": "CERN Physics"
-      },
-      {
-        "id": "n289",
-        "text": "Quantos prótons existem no núcleo de um único átomo de Ouro?",
-        "answer": 79,
-        "unit": "prótons",
-        "fact": "O número atômico do ouro na Tabela Periódica é 79.",
-        "source": "IUPAC Chemistry"
-      },
-      {
-        "id": "n290",
-        "text": "Quantas dimensões espaciais percebemos no nosso dia a dia?",
-        "answer": 3,
-        "unit": "dimensões",
-        "fact": "Comprimento, largura e altura (mais o tempo como 4ª dimensão).",
-        "source": "Physics Basics"
-      },
-      {
-        "id": "n292",
-        "text": "Quantos gramas pesa 1 litro de água pura à temperatura ambiente?",
-        "answer": 1000,
-        "unit": "g",
-        "fact": "1 litro de água equivale a exatamente 1 quilo.",
-        "source": "Physical Constants"
       },
       {
         "id": "n294",
@@ -3719,14 +3647,6 @@ export const PACKS: Pack[] = [
         "unit": "graus",
         "fact": "É o planeta mais quente do Sistema Solar devido ao efeito estufa denso.",
         "source": "NASA Venus Sheet"
-      },
-      {
-        "id": "n299",
-        "text": "Quantos prótons possui o átomo de Hidrogênio, o elemento mais abundante do Universo?",
-        "answer": 1,
-        "unit": "próton",
-        "fact": "É o elemento mais simples da Tabela Periódica.",
-        "source": "IUPAC"
       },
       {
         "id": "n300",
@@ -3839,6 +3759,70 @@ export const PACKS: Pack[] = [
         "unit": "milhões",
         "fact": "O Brasil é o campeão mundial de raios.",
         "source": "INPE / ELAT"
+      },
+      {
+        "id": "d326",
+        "text": "Quantas vezes o diâmetro do Sol é maior que o da Lua?",
+        "answer": 400,
+        "unit": "vezes",
+        "fact": "E ele está 400 vezes mais longe: por isso os eclipses encaixam.",
+        "source": "NASA"
+      },
+      {
+        "id": "d327",
+        "text": "Quantos km/h a Terra viaja em volta do Sol?",
+        "answer": 107000,
+        "unit": "km/h",
+        "fact": "Mais de 100 vezes a velocidade de um avião.",
+        "source": "NASA"
+      },
+      {
+        "id": "d328",
+        "text": "Quantos quilos marcaria na balança, na Lua, quem pesa 60 kg na Terra?",
+        "answer": 10,
+        "unit": "kg",
+        "fact": "A gravidade lá é cerca de 1/6 da nossa.",
+        "source": "NASA"
+      },
+      {
+        "id": "d329",
+        "text": "Quantos graus abaixo de zero faz na Lua durante a noite?",
+        "answer": 173,
+        "unit": "°C abaixo de zero",
+        "fact": "De dia, passa de 120 °C.",
+        "source": "NASA"
+      },
+      {
+        "id": "d330",
+        "text": "Em que ano foi lançado o Sputnik, o primeiro satélite artificial?",
+        "answer": 1957,
+        "unit": "ano",
+        "fact": "Começou a corrida espacial.",
+        "source": "NASA"
+      },
+      {
+        "id": "d331",
+        "text": "Em que ano o telescópio Hubble foi lançado?",
+        "answer": 1990,
+        "unit": "ano",
+        "fact": "Foi pro espaço com o espelho errado e precisou de \"óculos\".",
+        "source": "NASA"
+      },
+      {
+        "id": "d332",
+        "text": "A quantos quilômetros de altura orbita a Estação Espacial Internacional?",
+        "answer": 400,
+        "unit": "km",
+        "fact": "Menos que a distância entre São Paulo e o Rio.",
+        "source": "NASA"
+      },
+      {
+        "id": "d333",
+        "text": "Quantos planetas anões são reconhecidos oficialmente?",
+        "answer": 5,
+        "unit": "planetas anões",
+        "fact": "Plutão, Ceres, Éris, Haumea e Makemake.",
+        "source": "União Astronômica Internacional"
       }
     ]
   },
@@ -4245,14 +4229,6 @@ export const PACKS: Pack[] = [
         "unit": "ano",
         "fact": "Foi o primeiro Game Boy com tela colorida.",
         "source": "Nintendo"
-      },
-      {
-        "id": "c25",
-        "text": "Quantos Power Rangers tinha a formação original de 1993?",
-        "answer": 5,
-        "unit": "Rangers",
-        "fact": "O Ranger Verde só chegou depois.",
-        "source": "Saban / Hasbro"
       },
       {
         "id": "c26",
