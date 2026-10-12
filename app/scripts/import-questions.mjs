@@ -31,6 +31,10 @@ const EXCLUDE = {
   114: 'vaga demais (músculos de um passo)',
   115: 'vaga demais (articulações: as fontes variam de 250 a 360)',
   129: 'duvidosa (inscritos do PewDiePie "quando era o mais inscrito")',
+  // chatas demais: geometria de escola não gera discussão na mesa
+  75: 'chata (lados do heptágono)',
+  144: 'chata (lados do decágono)',
+  287: 'chata (lados do octógono)',
 };
 
 /** Correções de texto/unidade/resposta. */
@@ -101,6 +105,8 @@ const SOURCES = [
   { file: 'content/perguntas-2.csv', prefix: 'n', exclude: EXCLUDE_2, fix: FIX_2 },
   // lote inicial escrito pelo Claude (fatos estáveis, com fonte): futebol, anos 90/2000, memes, picante
   { file: 'content/perguntas-3.csv', prefix: 'c', exclude: {}, fix: {} },
+  // lote 2 do Claude (out/2026): fatos conferidos, com fonte; reforça os pacotes pequenos e cria TV, música, dinheiro e mundo
+  { file: 'content/perguntas-4.csv', prefix: 'd', exclude: {}, fix: {} },
 ];
 
 /** Metadados dos pacotes (ordem de exibição). */
@@ -117,6 +123,10 @@ const PACKS = [
   { id: 'anos90', name: 'anos 90/2000', title: 'anos 90/2000', tagline: 'nostalgia com tamagotchi', premium: true, isNew: true, icon: 'cassette', tint: '#FFC2E0' },
   { id: 'memes', name: 'memes', title: 'memes', tagline: 'cronicamente online, nível 2', premium: true, isNew: true, icon: 'meme', tint: '#C5F0EA' },
   { id: 'picante', name: 'picante', title: 'picante', tagline: 'só com a galera certa', premium: true, isNew: true, icon: 'pepper', tint: '#FF9C8A' },
+  { id: 'tv', name: 'novelas & TV', title: 'novelas & TV', tagline: 'quem viu, viu', premium: true, isNew: true, icon: 'tv', tint: '#FFD0A8' },
+  { id: 'musica', name: 'música', title: 'música', tagline: 'do hino ao funk', premium: true, isNew: true, icon: 'note', tint: '#E2C8FF' },
+  { id: 'dinheiro', name: 'dinheiro', title: 'dinheiro', tagline: 'quanto custa? mais do que você acha', premium: true, isNew: true, icon: 'money', tint: '#C8EFA0' },
+  { id: 'mundo', name: 'pelo mundo', title: 'pelo mundo', tagline: 'o planeta é maior que o seu bairro', premium: true, isNew: true, icon: 'globe', tint: '#A8DCFF' },
 ];
 
 function parseCsv(text) {
@@ -182,7 +192,7 @@ export type Pack = {
   premium: boolean;
   isNew?: boolean;
   /** Ícone (ver \`src/components/Icon.tsx\`) e cor do pacote. */
-  icon: 'bulb' | 'brasil' | 'paw' | 'heart' | 'cursor' | 'cup' | 'bolt' | 'planet' | 'ball' | 'cassette' | 'meme' | 'pepper';
+  icon: 'bulb' | 'brasil' | 'paw' | 'heart' | 'cursor' | 'cup' | 'bolt' | 'planet' | 'ball' | 'cassette' | 'meme' | 'pepper' | 'tv' | 'note' | 'money' | 'globe';
   tint: string;
   questions: Question[];
 };

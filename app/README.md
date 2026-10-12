@@ -70,6 +70,12 @@ No painel: Authentication > Sign In / Providers > **Allow anonymous sign-ins** l
 - O app user id do RevenueCat é o id do Supabase. `create-room` confere o `pro` na API do RevenueCat (`_shared/entitlement.ts`) quando o segredo `REVENUECAT_SECRET_KEY` existe; sem ele, a checagem fica desligada. Com ele ligado, `npm run test:online` contra o projeto falha no create-room (os usuários de teste não são pro).
 - Build de desenvolvimento: `npx eas-cli build --profile development --platform ios`, depois `npm run start:dev`. Cadastre as variáveis `EXPO_PUBLIC_*` no EAS (o `.env` não vai pro build).
 
+## Funil (PostHog)
+`src/services/analytics.ts` manda eventos em lote pela API HTTP do PostHog (sem SDK nativo; roda no Expo Go). Liga com `EXPO_PUBLIC_POSTHOG_KEY` (e `EXPO_PUBLIC_POSTHOG_HOST`, padrão `https://us.i.posthog.com`); sem chave, não manda nada. Id anônimo gerado no aparelho, sem geoIP. Eventos: `app_opened`, `onboarding_step/completed`, `paywall_viewed/closed` (`source`, `kind` full/easy), `purchase_started/completed/failed`, `restore_tapped`, `pack_opened`, `match_started/finished`, `free_exhausted`, `room_created/joined`, `card_shared`, `reminders_answered`. Ao publicar com isso ligado, atualize a "Privacidade do app" no App Store Connect (Dados de uso > Interação com o produto, e Identificadores > ID do dispositivo; não vinculados à identidade, sem rastreamento) e a política de privacidade.
+
+## Grátis acabou
+Quem não é pro e tem menos de 8 perguntas novas no Clássico vê o paywall "vocês zeraram as grátis" por cima da partida (ao começar ou na revanche), no máximo 1 vez a cada 20 h (`src/features/paywall/exhausted.ts`, `offerExhausted.ts`). Na configuração da partida aparece "liberar +N perguntas novas".
+
 ## O que é mock
 - **Compras no Expo Go**: simuladas (comprar só liga o premium no aparelho). Em build nativo com a chave, vale o RevenueCat.
 - **Premium no servidor**: a Edge Function não confere assinatura ao criar sala (as compras ainda são simuladas). Quando entrar o RevenueCat, verifique o entitlement em `create-room`.

@@ -8,7 +8,7 @@ export type Pack = {
   premium: boolean;
   isNew?: boolean;
   /** Ícone (ver `src/components/Icon.tsx`) e cor do pacote. */
-  icon: 'bulb' | 'brasil' | 'paw' | 'heart' | 'cursor' | 'cup' | 'bolt' | 'planet' | 'ball' | 'cassette' | 'meme' | 'pepper';
+  icon: 'bulb' | 'brasil' | 'paw' | 'heart' | 'cursor' | 'cup' | 'bolt' | 'planet' | 'ball' | 'cassette' | 'meme' | 'pepper' | 'tv' | 'note' | 'money' | 'globe';
   tint: string;
   questions: Question[];
 };
@@ -93,14 +93,6 @@ export const PACKS: Pack[] = [
         "unit": "km",
         "fact": "A Terra é ligeiramente achatada nos polos.",
         "source": "NASA Earth Fact Sheet"
-      },
-      {
-        "id": "q75",
-        "text": "Quantos lados tem um heptágono?",
-        "answer": 7,
-        "unit": "lados",
-        "fact": "Polígono de 7 vértices e 7 ângulos.",
-        "source": "MathWorld / Wolfram"
       },
       {
         "id": "q76",
@@ -189,14 +181,6 @@ export const PACKS: Pack[] = [
         "unit": "ano",
         "fact": "Construída para a Exposição Universal de 1889.",
         "source": "La Tour Eiffel Official"
-      },
-      {
-        "id": "q144",
-        "text": "Quantos lados tem um decágono?",
-        "answer": 10,
-        "unit": "lados",
-        "fact": "Polígono regular com ângulos internos de 144 graus.",
-        "source": "Geometry Standard"
       },
       {
         "id": "q145",
@@ -397,14 +381,6 @@ export const PACKS: Pack[] = [
         "unit": "km",
         "fact": "Exatamente 42,195 quilômetros.",
         "source": "World Athletics"
-      },
-      {
-        "id": "q287",
-        "text": "Quantos lados tem um octógono?",
-        "answer": 8,
-        "unit": "lados",
-        "fact": "Polígono de 8 lados e 8 ângulos.",
-        "source": "Geometry Foundations"
       },
       {
         "id": "q288",
@@ -1048,6 +1024,118 @@ export const PACKS: Pack[] = [
         "unit": "metros",
         "fact": "Homenagem aos heróis da Revolução Constitucionalista de 1932.",
         "source": "Prefeitura de SP"
+      },
+      {
+        "id": "d135",
+        "text": "Quantos metros de altura tem o Pão de Açúcar?",
+        "answer": 396,
+        "unit": "metros",
+        "fact": "O bondinho é de 1912.",
+        "source": "Parque Bondinho Pão de Açúcar"
+      },
+      {
+        "id": "d136",
+        "text": "Quantos dias durou a viagem de Cabral de Lisboa até o Brasil?",
+        "answer": 44,
+        "unit": "dias",
+        "fact": "Saiu em 9 de março e avistou terra em 22 de abril de 1500.",
+        "source": "Carta de Pero Vaz de Caminha"
+      },
+      {
+        "id": "d137",
+        "text": "Por quantos anos o Brasil foi um império?",
+        "answer": 67,
+        "unit": "anos",
+        "fact": "De 1822 a 1889.",
+        "source": "história do Brasil"
+      },
+      {
+        "id": "d138",
+        "text": "Quantos quilômetros de litoral tem o Brasil?",
+        "answer": 7367,
+        "unit": "km",
+        "fact": "Contando as reentrâncias, passa de 9 mil.",
+        "source": "IBGE"
+      },
+      {
+        "id": "d139",
+        "text": "Quantos países fazem fronteira com o Brasil?",
+        "answer": 10,
+        "unit": "países",
+        "fact": "Só Chile e Equador não fazem, na América do Sul.",
+        "source": "IBGE"
+      },
+      {
+        "id": "d140",
+        "text": "Quantos habitantes tem Serra da Saudade (MG), a menor cidade do Brasil?",
+        "answer": 833,
+        "unit": "habitantes",
+        "fact": "Censo de 2022.",
+        "source": "IBGE, Censo 2022"
+      },
+      {
+        "id": "d141",
+        "text": "Quantos km² tem Altamira (PA), o maior município do Brasil?",
+        "answer": 159533,
+        "unit": "km²",
+        "fact": "É maior que países como Portugal e Grécia.",
+        "source": "IBGE"
+      },
+      {
+        "id": "d142",
+        "text": "Quantas línguas indígenas são faladas no Brasil?",
+        "answer": 295,
+        "unit": "línguas",
+        "fact": "Faladas por 391 povos, segundo o Censo de 2022.",
+        "source": "IBGE, Censo 2022"
+      },
+      {
+        "id": "d143",
+        "text": "Em quantos meses Brasília foi construída?",
+        "answer": 41,
+        "unit": "meses",
+        "fact": "Inaugurada em 21 de abril de 1960.",
+        "source": "Arquivo Público do DF"
+      },
+      {
+        "id": "d144",
+        "text": "Em que ano a capital do Brasil deixou de ser Salvador?",
+        "answer": 1763,
+        "unit": "ano",
+        "fact": "Foi para o Rio de Janeiro.",
+        "source": "história do Brasil"
+      },
+      {
+        "id": "d145",
+        "text": "Com quantos anos Dom Pedro II virou imperador de fato?",
+        "answer": 14,
+        "unit": "anos",
+        "fact": "O \"Golpe da Maioridade\" adiantou a coroação.",
+        "source": "história do Brasil"
+      },
+      {
+        "id": "d146",
+        "text": "Quantos anos Dom Pedro I tinha quando proclamou a Independência?",
+        "answer": 23,
+        "unit": "anos",
+        "fact": "Nasceu em 1798, em Portugal.",
+        "source": "história do Brasil"
+      },
+      {
+        "id": "d147",
+        "text": "Quantos anos durou a ditadura militar no Brasil?",
+        "answer": 21,
+        "unit": "anos",
+        "fact": "De 1964 a 1985.",
+        "source": "história do Brasil"
+      },
+      {
+        "id": "d148",
+        "text": "Quantas ilhas tem Angra dos Reis?",
+        "answer": 365,
+        "unit": "ilhas",
+        "fact": "Diz-se que é uma pra cada dia do ano.",
+        "source": "Prefeitura de Angra dos Reis"
       }
     ]
   },
@@ -2889,6 +2977,166 @@ export const PACKS: Pack[] = [
         "unit": "kcal",
         "fact": "Rica em fibras e frutose natural.",
         "source": "USDA"
+      },
+      {
+        "id": "d92",
+        "text": "Em que ano abriu o primeiro McDonald's do Brasil?",
+        "answer": 1979,
+        "unit": "ano",
+        "fact": "Foi em Copacabana, no Rio.",
+        "source": "McDonald's Brasil"
+      },
+      {
+        "id": "d93",
+        "text": "Em que ano a Coca-Cola foi inventada?",
+        "answer": 1886,
+        "unit": "ano",
+        "fact": "Começou como \"remédio\" vendido em farmácia.",
+        "source": "The Coca-Cola Company"
+      },
+      {
+        "id": "d94",
+        "text": "Em que ano o macarrão instantâneo foi inventado no Japão?",
+        "answer": 1958,
+        "unit": "ano",
+        "fact": "O inventor, Momofuku Ando, chegou aos 96 anos.",
+        "source": "Nissin"
+      },
+      {
+        "id": "d95",
+        "text": "Quantos litros de seiva de bordo são precisos para fazer 1 litro de xarope de maple?",
+        "answer": 40,
+        "unit": "litros",
+        "fact": "A seiva é quase só água.",
+        "source": "Governo do Canadá"
+      },
+      {
+        "id": "d96",
+        "text": "Quantas flores são precisas para fazer 1 kg de açafrão (aproximadamente)?",
+        "answer": 150000,
+        "unit": "flores",
+        "fact": "Cada flor dá só 3 fiozinhos.",
+        "source": "FAO"
+      },
+      {
+        "id": "d97",
+        "text": "Quantos litros de água são gastos pra produzir uma xícara de café?",
+        "answer": 140,
+        "unit": "litros",
+        "fact": "Conta a água do pé de café até a xícara.",
+        "source": "Water Footprint Network"
+      },
+      {
+        "id": "d98",
+        "text": "Quantas unidades Scoville tem a Pepper X, a pimenta mais ardida do mundo?",
+        "answer": 2693000,
+        "unit": "SHU",
+        "fact": "Uma jalapeño tem no máximo 8 mil.",
+        "source": "Guinness World Records (2023)"
+      },
+      {
+        "id": "d99",
+        "text": "Em que ano foi criada a pizza Margherita, em homenagem à rainha da Itália?",
+        "answer": 1889,
+        "unit": "ano",
+        "fact": "As cores imitam a bandeira italiana.",
+        "source": "Associazione Verace Pizza Napoletana"
+      },
+      {
+        "id": "d100",
+        "text": "Em que ano o Nescau foi lançado no Brasil?",
+        "answer": 1932,
+        "unit": "ano",
+        "fact": "O nome original era \"Nescáo\".",
+        "source": "Nestlé Brasil"
+      },
+      {
+        "id": "d101",
+        "text": "Em que ano o Toddy chegou ao Brasil?",
+        "answer": 1933,
+        "unit": "ano",
+        "fact": "Um ano depois do Nescau: a briga é antiga.",
+        "source": "PepsiCo / Meio & Mensagem"
+      },
+      {
+        "id": "d102",
+        "text": "Em que ano a Nestlé começou a fabricar o leite condensado no Brasil?",
+        "answer": 1921,
+        "unit": "ano",
+        "fact": "Era vendido como \"Milkmaid\"; o povo chamou de \"Moça\".",
+        "source": "Nestlé Brasil"
+      },
+      {
+        "id": "d103",
+        "text": "Em que ano surgiu o brigadeiro?",
+        "answer": 1945,
+        "unit": "ano",
+        "fact": "Nasceu na campanha presidencial do Brigadeiro Eduardo Gomes.",
+        "source": "história da culinária brasileira"
+      },
+      {
+        "id": "d104",
+        "text": "Em que ano abriu a primeira lanchonete Bob's?",
+        "answer": 1952,
+        "unit": "ano",
+        "fact": "Foi o primeiro fast-food do Brasil.",
+        "source": "Bob's"
+      },
+      {
+        "id": "d105",
+        "text": "Em que ano um decreto federal oficializou a caipirinha como bebida brasileira?",
+        "answer": 2003,
+        "unit": "ano",
+        "fact": "A receita oficial leva cachaça, limão, açúcar e gelo.",
+        "source": "Decreto 4.851/2003"
+      },
+      {
+        "id": "d106",
+        "text": "Quantas sementes tem, em média, um morango?",
+        "answer": 200,
+        "unit": "sementes",
+        "fact": "É a única fruta com as sementes do lado de fora.",
+        "source": "California Strawberry Commission"
+      },
+      {
+        "id": "d107",
+        "text": "Em que ano foi lançado o Sonho de Valsa?",
+        "answer": 1938,
+        "unit": "ano",
+        "fact": "O nome vem de uma opereta austríaca.",
+        "source": "Lacta"
+      },
+      {
+        "id": "d108",
+        "text": "Quantos anos tinha o mel ainda comestível achado em tumbas do Egito?",
+        "answer": 3000,
+        "unit": "anos",
+        "fact": "Mel bem guardado praticamente não estraga.",
+        "source": "Smithsonian"
+      },
+      {
+        "id": "d109",
+        "text": "Em que ano a Fanta foi criada?",
+        "answer": 1940,
+        "unit": "ano",
+        "fact": "Nasceu na Alemanha, sem acesso ao xarope da Coca na guerra.",
+        "source": "The Coca-Cola Company"
+      },
+      {
+        "id": "d110",
+        "text": "Em que ano foi inventado o picolé?",
+        "answer": 1905,
+        "unit": "ano",
+        "fact": "Por um menino de 11 anos que esqueceu o refresco no frio.",
+        "source": "Popsicle"
+      },
+      {
+        "id": "d111",
+        "text": "Em que ano a Nestlé foi fundada, na Suíça?",
+        "answer": 1866,
+        "unit": "ano",
+        "fact": "Começou fazendo farinha láctea para bebês.",
+        "source": "Nestlé"
       }
     ]
   },
@@ -3148,6 +3396,94 @@ export const PACKS: Pack[] = [
         "unit": "atletas",
         "fact": "Cada um corre um trecho de 100 metros passando o bastão.",
         "source": "World Athletics"
+      },
+      {
+        "id": "d112",
+        "text": "Qual foi a velocidade máxima de Usain Bolt no recorde dos 100 m (km/h)?",
+        "answer": 44,
+        "unit": "km/h",
+        "fact": "Chegou a 44,72 km/h entre os 60 e os 80 metros.",
+        "source": "World Athletics"
+      },
+      {
+        "id": "d113",
+        "text": "Quantas medalhas olímpicas Michael Phelps ganhou?",
+        "answer": 28,
+        "unit": "medalhas",
+        "fact": "23 delas de ouro.",
+        "source": "COI"
+      },
+      {
+        "id": "d114",
+        "text": "Quantas medalhas olímpicas Rebeca Andrade tinha depois de Paris 2024?",
+        "answer": 6,
+        "unit": "medalhas",
+        "fact": "É a atleta do Brasil com mais medalhas olímpicas.",
+        "source": "COB"
+      },
+      {
+        "id": "d115",
+        "text": "Quantos pontos Kobe Bryant fez no melhor jogo da carreira?",
+        "answer": 81,
+        "unit": "pontos",
+        "fact": "Contra o Toronto, em 2006.",
+        "source": "NBA"
+      },
+      {
+        "id": "d116",
+        "text": "Quantos pontos Wilt Chamberlain fez num único jogo da NBA?",
+        "answer": 100,
+        "unit": "pontos",
+        "fact": "Em 1962. O jogo nem foi televisionado.",
+        "source": "NBA"
+      },
+      {
+        "id": "d117",
+        "text": "Com quantos anos George Foreman voltou a ser campeão mundial dos pesados?",
+        "answer": 45,
+        "unit": "anos",
+        "fact": "Vinte anos depois de perder o título para Ali.",
+        "source": "The Ring"
+      },
+      {
+        "id": "d118",
+        "text": "Quantas vitórias seguidas Anderson Silva teve no UFC?",
+        "answer": 16,
+        "unit": "vitórias",
+        "fact": "A sequência durou quase 7 anos.",
+        "source": "UFC"
+      },
+      {
+        "id": "d119",
+        "text": "Quantos títulos mundiais de surfe Gabriel Medina tem?",
+        "answer": 3,
+        "unit": "títulos",
+        "fact": "2014, 2018 e 2021.",
+        "source": "WSL"
+      },
+      {
+        "id": "d120",
+        "text": "Quantos títulos mundiais de Fórmula 1 os pilotos brasileiros têm somados?",
+        "answer": 8,
+        "unit": "títulos",
+        "fact": "Fittipaldi 2, Piquet 3 e Senna 3.",
+        "source": "FIA"
+      },
+      {
+        "id": "d121",
+        "text": "Quantas corridas Ayrton Senna venceu na Fórmula 1?",
+        "answer": 41,
+        "unit": "vitórias",
+        "fact": "E fez 65 pole positions.",
+        "source": "FIA"
+      },
+      {
+        "id": "d122",
+        "text": "Quantas horas durou o jogo de tênis mais longo da história (Isner x Mahut)?",
+        "answer": 11,
+        "unit": "horas",
+        "fact": "Foram 3 dias em Wimbledon; o último set acabou 70 a 68.",
+        "source": "Wimbledon"
       }
     ]
   },
@@ -3407,6 +3743,102 @@ export const PACKS: Pack[] = [
         "unit": "km/h",
         "fact": "Velocidade de rotação da superfície terrestre.",
         "source": "NASA Earth Facts"
+      },
+      {
+        "id": "d123",
+        "text": "Em que ano foi lançada a sonda Voyager 1, que até hoje manda sinais?",
+        "answer": 1977,
+        "unit": "ano",
+        "fact": "É o objeto humano mais distante da Terra.",
+        "source": "NASA"
+      },
+      {
+        "id": "d124",
+        "text": "Quantos quilômetros separam a Terra da Lua, em média?",
+        "answer": 384400,
+        "unit": "km",
+        "fact": "Caberiam todos os planetas do Sistema Solar enfileirados nesse espaço.",
+        "source": "NASA"
+      },
+      {
+        "id": "d125",
+        "text": "Quantos graus Celsius faz na superfície do Sol?",
+        "answer": 5500,
+        "unit": "°C",
+        "fact": "A coroa, por fora, passa de 1 milhão de graus.",
+        "source": "NASA"
+      },
+      {
+        "id": "d126",
+        "text": "Quantas Terras caberiam dentro do Sol?",
+        "answer": 1300000,
+        "unit": "Terras",
+        "fact": "Aproximadamente 1,3 milhão.",
+        "source": "NASA"
+      },
+      {
+        "id": "d127",
+        "text": "Quantas toneladas pesa a Estação Espacial Internacional?",
+        "answer": 420,
+        "unit": "toneladas",
+        "fact": "Foi montada em órbita, peça por peça.",
+        "source": "NASA"
+      },
+      {
+        "id": "d128",
+        "text": "Quantos anos-luz de diâmetro tem a Via Láctea?",
+        "answer": 100000,
+        "unit": "anos-luz",
+        "fact": "A luz leva 100 mil anos pra atravessá-la.",
+        "source": "NASA"
+      },
+      {
+        "id": "d129",
+        "text": "Quantos milhões de anos tem o Universo?",
+        "answer": 13800,
+        "unit": "milhões de anos",
+        "fact": "13,8 bilhões de anos.",
+        "source": "NASA / Planck"
+      },
+      {
+        "id": "d130",
+        "text": "Quantos dias terrestres dura um dia em Vênus?",
+        "answer": 243,
+        "unit": "dias",
+        "fact": "O dia de Vênus é mais longo que o ano dele (225 dias).",
+        "source": "NASA"
+      },
+      {
+        "id": "d131",
+        "text": "Quantos anos Netuno leva pra dar uma volta no Sol?",
+        "answer": 165,
+        "unit": "anos",
+        "fact": "Completou a primeira volta desde a descoberta só em 2011.",
+        "source": "NASA"
+      },
+      {
+        "id": "d132",
+        "text": "Quantos graus Celsius chega a ter um raio?",
+        "answer": 30000,
+        "unit": "°C",
+        "fact": "Cinco vezes mais quente que a superfície do Sol.",
+        "source": "NOAA"
+      },
+      {
+        "id": "d133",
+        "text": "Em que ano Plutão deixou de ser considerado planeta?",
+        "answer": 2006,
+        "unit": "ano",
+        "fact": "Virou \"planeta anão\".",
+        "source": "União Astronômica Internacional"
+      },
+      {
+        "id": "d134",
+        "text": "Quantos milhões de raios caem no Brasil por ano, em média?",
+        "answer": 77,
+        "unit": "milhões",
+        "fact": "O Brasil é o campeão mundial de raios.",
+        "source": "INPE / ELAT"
       }
     ]
   },
@@ -3538,6 +3970,206 @@ export const PACKS: Pack[] = [
         "unit": "jogos",
         "fact": "Marcou 77 gols nesses jogos.",
         "source": "FIFA"
+      },
+      {
+        "id": "d2",
+        "text": "Em quantos minutos a Alemanha fez 4 gols seguidos no 7 a 1 de 2014?",
+        "answer": 6,
+        "unit": "minutos",
+        "fact": "Os gols saíram aos 23, 24, 26 e 29 do primeiro tempo.",
+        "source": "FIFA"
+      },
+      {
+        "id": "d3",
+        "text": "Em quantas Copas do Mundo masculinas o Brasil jogou, de 1930 até 2022?",
+        "answer": 22,
+        "unit": "Copas",
+        "fact": "É a única seleção que jogou todas.",
+        "source": "FIFA"
+      },
+      {
+        "id": "d4",
+        "text": "Quantos gols o Brasil sofreu na Copa de 2014 inteira?",
+        "answer": 14,
+        "unit": "gols",
+        "fact": "Metade deles numa tarde só, contra a Alemanha.",
+        "source": "FIFA"
+      },
+      {
+        "id": "d5",
+        "text": "Quantos gols Ronaldo Fenômeno marcou na Copa de 2002?",
+        "answer": 8,
+        "unit": "gols",
+        "fact": "Dois deles na final contra a Alemanha.",
+        "source": "FIFA"
+      },
+      {
+        "id": "d6",
+        "text": "Quantos gols Romário marcou na Copa de 1994?",
+        "answer": 5,
+        "unit": "gols",
+        "fact": "Foi eleito o melhor jogador daquela Copa.",
+        "source": "FIFA"
+      },
+      {
+        "id": "d7",
+        "text": "Quantos gols Garrincha marcou na Copa de 1962?",
+        "answer": 4,
+        "unit": "gols",
+        "fact": "Terminou como um dos artilheiros, com Pelé machucado desde o 2º jogo.",
+        "source": "FIFA"
+      },
+      {
+        "id": "d8",
+        "text": "Quantos anos o Brasil esperou entre o tri (1970) e o tetra (1994)?",
+        "answer": 24,
+        "unit": "anos",
+        "fact": "O tetra veio nos pênaltis contra a Itália, a mesma rival da final de 70.",
+        "source": "FIFA"
+      },
+      {
+        "id": "d9",
+        "text": "Em que ano a taça Jules Rimet foi roubada da sede da CBF no Rio?",
+        "answer": 1983,
+        "unit": "ano",
+        "fact": "Nunca foi achada; a suspeita é que foi derretida.",
+        "source": "CBF"
+      },
+      {
+        "id": "d10",
+        "text": "Em que ano foi disputada a Taça Brasil, o primeiro campeonato nacional de clubes?",
+        "answer": 1959,
+        "unit": "ano",
+        "fact": "O primeiro campeão foi o Bahia, em cima do Santos de Pelé.",
+        "source": "CBF"
+      },
+      {
+        "id": "d11",
+        "text": "Em que ano o VAR foi usado pela primeira vez no Brasileirão Série A inteiro?",
+        "answer": 2019,
+        "unit": "ano",
+        "fact": "Na Copa do Brasil, já tinha sido usado em 2018.",
+        "source": "CBF"
+      },
+      {
+        "id": "d12",
+        "text": "Por quantos milhões de euros o PSG tirou Neymar do Barcelona em 2017?",
+        "answer": 222,
+        "unit": "milhões de euros",
+        "fact": "Ainda é a transferência mais cara da história.",
+        "source": "FIFA / imprensa esportiva"
+      },
+      {
+        "id": "d13",
+        "text": "Por quantos milhões de euros o Real Madrid comprou Vinícius Júnior do Flamengo?",
+        "answer": 45,
+        "unit": "milhões de euros",
+        "fact": "O acordo foi fechado em 2017, quando ele tinha 16 anos.",
+        "source": "Real Madrid"
+      },
+      {
+        "id": "d14",
+        "text": "Com quantos anos Endrick estreou no time profissional do Palmeiras?",
+        "answer": 16,
+        "unit": "anos",
+        "fact": "Estreou em outubro de 2022.",
+        "source": "Palmeiras"
+      },
+      {
+        "id": "d15",
+        "text": "Com quantos anos Neymar estreou no time profissional do Santos?",
+        "answer": 17,
+        "unit": "anos",
+        "fact": "Estreou em março de 2009.",
+        "source": "Santos FC"
+      },
+      {
+        "id": "d16",
+        "text": "Em que ano um clube brasileiro ganhou a Libertadores pela primeira vez?",
+        "answer": 1962,
+        "unit": "ano",
+        "fact": "Foi o Santos de Pelé, contra o Peñarol.",
+        "source": "CONMEBOL"
+      },
+      {
+        "id": "d17",
+        "text": "Em que ano o Flamengo ganhou o Mundial em cima do Liverpool por 3 a 0?",
+        "answer": 1981,
+        "unit": "ano",
+        "fact": "Foi em Tóquio, com Zico comandando o time.",
+        "source": "FIFA"
+      },
+      {
+        "id": "d18",
+        "text": "Em que ano Ronaldinho Gaúcho ganhou a Bola de Ouro?",
+        "answer": 2005,
+        "unit": "ano",
+        "fact": "No mesmo ano ganhou também o prêmio da FIFA.",
+        "source": "France Football"
+      },
+      {
+        "id": "d19",
+        "text": "Quantas Bolas de Ouro jogadores brasileiros já ganharam?",
+        "answer": 5,
+        "unit": "Bolas de Ouro",
+        "fact": "Ronaldo (2), Rivaldo, Ronaldinho e Kaká.",
+        "source": "France Football"
+      },
+      {
+        "id": "d20",
+        "text": "Quantas finais de Copa do Mundo Cafu disputou?",
+        "answer": 3,
+        "unit": "finais",
+        "fact": "1994, 1998 e 2002: ninguém mais jogou três finais seguidas.",
+        "source": "FIFA"
+      },
+      {
+        "id": "d21",
+        "text": "Em que minuto Ronaldo fez o primeiro gol da final da Copa de 2002?",
+        "answer": 67,
+        "unit": "minuto",
+        "fact": "O segundo saiu aos 79.",
+        "source": "FIFA"
+      },
+      {
+        "id": "d22",
+        "text": "Quantos estádios receberam jogos da Copa do Mundo de 2014 no Brasil?",
+        "answer": 12,
+        "unit": "estádios",
+        "fact": "Alguns viraram \"elefantes brancos\" depois do torneio.",
+        "source": "FIFA"
+      },
+      {
+        "id": "d23",
+        "text": "Quantos quilos pesa a taça da Copa do Mundo (arredondando)?",
+        "answer": 6,
+        "unit": "kg",
+        "fact": "São 6,1 kg de ouro 18 quilates.",
+        "source": "FIFA"
+      },
+      {
+        "id": "d24",
+        "text": "Quantos títulos brasileiros o Palmeiras tinha até 2024 (contando Taça Brasil e Robertão)?",
+        "answer": 12,
+        "unit": "títulos",
+        "fact": "É o maior campeão nacional.",
+        "source": "CBF"
+      },
+      {
+        "id": "d25",
+        "text": "Quantas Libertadores o São Paulo ganhou?",
+        "answer": 3,
+        "unit": "títulos",
+        "fact": "1992, 1993 e 2005.",
+        "source": "CONMEBOL"
+      },
+      {
+        "id": "d26",
+        "text": "Em que ano Pelé fez o último jogo pelo Santos?",
+        "answer": 1974,
+        "unit": "ano",
+        "fact": "Depois ainda jogou pelo Cosmos, nos EUA.",
+        "source": "Santos FC"
       }
     ]
   },
@@ -3669,6 +4301,206 @@ export const PACKS: Pack[] = [
         "unit": "ano",
         "fact": "Começou numa garagem na Califórnia.",
         "source": "Google"
+      },
+      {
+        "id": "d27",
+        "text": "Em que ano o Orkut foi lançado?",
+        "answer": 2004,
+        "unit": "ano",
+        "fact": "O Brasil virou o país com mais usuários da rede.",
+        "source": "Google"
+      },
+      {
+        "id": "d28",
+        "text": "Em que ano o Orkut foi desligado?",
+        "answer": 2014,
+        "unit": "ano",
+        "fact": "Durou 10 anos; os depoimentos ficaram de saudade.",
+        "source": "Google"
+      },
+      {
+        "id": "d29",
+        "text": "Em que ano estreou Malhação?",
+        "answer": 1995,
+        "unit": "ano",
+        "fact": "Ficou no ar até 2020.",
+        "source": "Memória Globo"
+      },
+      {
+        "id": "d30",
+        "text": "Em que ano foi lançado o Nintendo 64?",
+        "answer": 1996,
+        "unit": "ano",
+        "fact": "Super Mario 64 veio junto, no lançamento.",
+        "source": "Nintendo"
+      },
+      {
+        "id": "d31",
+        "text": "Em que ano foi publicado o primeiro livro de Harry Potter?",
+        "answer": 1997,
+        "unit": "ano",
+        "fact": "Foi recusado por 12 editoras antes.",
+        "source": "Bloomsbury"
+      },
+      {
+        "id": "d32",
+        "text": "Em que ano o Napster foi lançado?",
+        "answer": 1999,
+        "unit": "ano",
+        "fact": "Fechou em 2001, depois de processos das gravadoras.",
+        "source": "Napster"
+      },
+      {
+        "id": "d33",
+        "text": "Em que ano o primeiro iPod foi lançado?",
+        "answer": 2001,
+        "unit": "ano",
+        "fact": "O slogan era \"mil músicas no seu bolso\".",
+        "source": "Apple"
+      },
+      {
+        "id": "d34",
+        "text": "Quantas músicas cabiam no primeiro iPod, segundo a propaganda da Apple?",
+        "answer": 1000,
+        "unit": "músicas",
+        "fact": "Tinha 5 GB e roda de rolagem mecânica.",
+        "source": "Apple"
+      },
+      {
+        "id": "d35",
+        "text": "Quantos kilobytes cabiam num disquete comum de 3,5 polegadas?",
+        "answer": 1440,
+        "unit": "KB",
+        "fact": "O \"1,44 MB\" da etiqueta é, na verdade, 1440 KB.",
+        "source": "IBM"
+      },
+      {
+        "id": "d36",
+        "text": "Quantos minutos de música cabiam num CD no padrão original?",
+        "answer": 74,
+        "unit": "minutos",
+        "fact": "Diz a lenda que era pra caber a 9ª Sinfonia de Beethoven inteira.",
+        "source": "Sony / Philips"
+      },
+      {
+        "id": "d37",
+        "text": "Em que ano o avião dos Mamonas Assassinas caiu?",
+        "answer": 1996,
+        "unit": "ano",
+        "fact": "A banda tinha estourado menos de um ano antes.",
+        "source": "Memória Globo"
+      },
+      {
+        "id": "d38",
+        "text": "Em que ano estreou o Show do Milhão no SBT?",
+        "answer": 1999,
+        "unit": "ano",
+        "fact": "\"Está certo disso?\" virou bordão nacional.",
+        "source": "SBT"
+      },
+      {
+        "id": "d39",
+        "text": "Em que ano foi lançado o Windows XP?",
+        "answer": 2001,
+        "unit": "ano",
+        "fact": "Ficou com suporte oficial até 2014.",
+        "source": "Microsoft"
+      },
+      {
+        "id": "d40",
+        "text": "Em que ano estreou Bob Esponja nos EUA?",
+        "answer": 1999,
+        "unit": "ano",
+        "fact": "O criador era biólogo marinho.",
+        "source": "Nickelodeon"
+      },
+      {
+        "id": "d41",
+        "text": "Quantos episódios teve Todo Mundo Odeia o Chris?",
+        "answer": 88,
+        "unit": "episódios",
+        "fact": "Foram 4 temporadas; no Brasil, a Record reprisou sem parar.",
+        "source": "CW / UPN"
+      },
+      {
+        "id": "d42",
+        "text": "Em que ano o Furby foi lançado?",
+        "answer": 1998,
+        "unit": "ano",
+        "fact": "Vendeu 40 milhões em 3 anos.",
+        "source": "Hasbro / Tiger"
+      },
+      {
+        "id": "d43",
+        "text": "Em que ano o MSN Messenger foi desligado (fora da China)?",
+        "answer": 2013,
+        "unit": "ano",
+        "fact": "Os usuários foram levados pro Skype.",
+        "source": "Microsoft"
+      },
+      {
+        "id": "d44",
+        "text": "Em que ano Sandy & Junior lançaram o primeiro disco?",
+        "answer": 1991,
+        "unit": "ano",
+        "fact": "Sandy tinha 8 anos; o disco era \"Aniversário do Tatu\".",
+        "source": "Universal Music"
+      },
+      {
+        "id": "d45",
+        "text": "Em que ano o anime Pokémon estreou no Japão?",
+        "answer": 1997,
+        "unit": "ano",
+        "fact": "No Brasil, chegou em 1999.",
+        "source": "The Pokémon Company"
+      },
+      {
+        "id": "d46",
+        "text": "Em que ano estreou o Domingo Legal do Gugu?",
+        "answer": 1993,
+        "unit": "ano",
+        "fact": "Brigou anos pela audiência com o Faustão.",
+        "source": "SBT"
+      },
+      {
+        "id": "d47",
+        "text": "Em que ano estreou o Pânico na TV?",
+        "answer": 2003,
+        "unit": "ano",
+        "fact": "Começou no rádio, na Jovem Pan.",
+        "source": "RedeTV!"
+      },
+      {
+        "id": "d48",
+        "text": "Em que ano estreou a versão brasileira de Chiquititas no SBT?",
+        "answer": 1997,
+        "unit": "ano",
+        "fact": "Foi gravada na Argentina.",
+        "source": "SBT"
+      },
+      {
+        "id": "d49",
+        "text": "Quantas temporadas teve Um Maluco no Pedaço?",
+        "answer": 6,
+        "unit": "temporadas",
+        "fact": "Will Smith tinha 21 anos na estreia.",
+        "source": "NBC"
+      },
+      {
+        "id": "d50",
+        "text": "Em que ano foi lançado o primeiro GTA?",
+        "answer": 1997,
+        "unit": "ano",
+        "fact": "Era visto de cima, em 2D.",
+        "source": "Rockstar"
+      },
+      {
+        "id": "d51",
+        "text": "Em que ano estreou O Rei Leão (o desenho)?",
+        "answer": 1994,
+        "unit": "ano",
+        "fact": "Foi a maior bilheteria de animação até então.",
+        "source": "Disney"
       }
     ]
   },
@@ -3792,6 +4624,166 @@ export const PACKS: Pack[] = [
         "unit": "ano",
         "fact": "O fotógrafo é Antonio Guillem, de Barcelona.",
         "source": "Know Your Meme"
+      },
+      {
+        "id": "d52",
+        "text": "Em que ano viralizou o vídeo \"Para Nossa Alegria\"?",
+        "answer": 2012,
+        "unit": "ano",
+        "fact": "Quase 10 milhões de visualizações na primeira semana.",
+        "source": "Know Your Meme"
+      },
+      {
+        "id": "d53",
+        "text": "Em que ano viralizou \"Menos a Luiza, que está no Canadá\"?",
+        "answer": 2012,
+        "unit": "ano",
+        "fact": "Era um comercial de imóveis na Paraíba.",
+        "source": "Know Your Meme"
+      },
+      {
+        "id": "d54",
+        "text": "Em que ano surgiu a \"grávida de Taubaté\"?",
+        "answer": 2012,
+        "unit": "ano",
+        "fact": "A barriga era de pano.",
+        "source": "Know Your Meme"
+      },
+      {
+        "id": "d55",
+        "text": "Em que ano Inês Brasil gravou o vídeo de inscrição pro BBB que a deixou famosa?",
+        "answer": 2013,
+        "unit": "ano",
+        "fact": "Ela nunca foi escolhida pro programa.",
+        "source": "Know Your Meme"
+      },
+      {
+        "id": "d56",
+        "text": "Em que ano foi postado o vídeo \"Numa Numa\"?",
+        "answer": 2004,
+        "unit": "ano",
+        "fact": "Um dos primeiros virais da internet, antes do YouTube existir.",
+        "source": "Know Your Meme"
+      },
+      {
+        "id": "d57",
+        "text": "Em que ano surgiu o Dancing Baby, um dos primeiros memes da internet?",
+        "answer": 1996,
+        "unit": "ano",
+        "fact": "Era um GIF 3D que rodava por e-mail.",
+        "source": "Know Your Meme"
+      },
+      {
+        "id": "d58",
+        "text": "Em que ano surgiram os \"Chuck Norris facts\"?",
+        "answer": 2005,
+        "unit": "ano",
+        "fact": "O próprio Chuck escreveu um livro respondendo.",
+        "source": "Know Your Meme"
+      },
+      {
+        "id": "d59",
+        "text": "Em que ano foi gravada a apresentação original do Trololo?",
+        "answer": 1976,
+        "unit": "ano",
+        "fact": "Só viralizou em 2010, 34 anos depois.",
+        "source": "Know Your Meme"
+      },
+      {
+        "id": "d60",
+        "text": "Em que ano o vídeo dos carregadores de caixão de Gana virou meme no mundo todo?",
+        "answer": 2020,
+        "unit": "ano",
+        "fact": "O \"coffin dance\" virou trilha da pandemia.",
+        "source": "Know Your Meme"
+      },
+      {
+        "id": "d61",
+        "text": "Quantos segundos era o limite de um vídeo do Vine?",
+        "answer": 6,
+        "unit": "segundos",
+        "fact": "Deu origem a uma geração de influencers.",
+        "source": "Twitter"
+      },
+      {
+        "id": "d62",
+        "text": "Em que ano o Vine foi encerrado?",
+        "answer": 2017,
+        "unit": "ano",
+        "fact": "Tinha sido comprado pelo Twitter antes mesmo de lançar.",
+        "source": "Twitter"
+      },
+      {
+        "id": "d63",
+        "text": "Em que ano Rebecca Black lançou \"Friday\"?",
+        "answer": 2011,
+        "unit": "ano",
+        "fact": "Virou o vídeo com mais \"não gostei\" do YouTube na época.",
+        "source": "Know Your Meme"
+      },
+      {
+        "id": "d64",
+        "text": "Em que ano foi postado o \"Leave Britney Alone\"?",
+        "answer": 2007,
+        "unit": "ano",
+        "fact": "Chris Crocker gravou chorando na cama.",
+        "source": "Know Your Meme"
+      },
+      {
+        "id": "d65",
+        "text": "Em que ano saiu \"What Does the Fox Say?\"?",
+        "answer": 2013,
+        "unit": "ano",
+        "fact": "Era pra ser uma música de piada.",
+        "source": "Know Your Meme"
+      },
+      {
+        "id": "d66",
+        "text": "Em que ano surgiu a pegadinha do Rickroll?",
+        "answer": 2007,
+        "unit": "ano",
+        "fact": "Começou no fórum 4chan.",
+        "source": "Know Your Meme"
+      },
+      {
+        "id": "d67",
+        "text": "Em que ano o WhatsApp lançou as figurinhas?",
+        "answer": 2018,
+        "unit": "ano",
+        "fact": "O \"bom dia, grupo\" nunca mais foi o mesmo.",
+        "source": "WhatsApp"
+      },
+      {
+        "id": "d68",
+        "text": "Em que ano o emoji 😂 foi eleito a \"palavra do ano\" pelo dicionário Oxford?",
+        "answer": 2015,
+        "unit": "ano",
+        "fact": "Foi a primeira vez que um emoji ganhou.",
+        "source": "Oxford Dictionaries"
+      },
+      {
+        "id": "d69",
+        "text": "Em que ano foi publicado o quadrinho do cachorro \"This is fine\"?",
+        "answer": 2013,
+        "unit": "ano",
+        "fact": "O autor é KC Green.",
+        "source": "Know Your Meme"
+      },
+      {
+        "id": "d70",
+        "text": "Em que ano foi tirada a foto do Success Kid (o bebê com a mão de areia)?",
+        "answer": 2007,
+        "unit": "ano",
+        "fact": "O dinheiro do meme ajudou a pagar um transplante de rim do pai.",
+        "source": "Know Your Meme"
+      },
+      {
+        "id": "d71",
+        "text": "Em que ano seria o \"fim do mundo\" pelo calendário maia, que virou piada mundial?",
+        "answer": 2012,
+        "unit": "ano",
+        "fact": "21 de dezembro. Não aconteceu nada.",
+        "source": "NASA"
       }
     ]
   },
@@ -3891,6 +4883,970 @@ export const PACKS: Pack[] = [
         "unit": "ano",
         "fact": "Antes eram feitas de borracha grossa ou de tripa animal.",
         "source": "Smithsonian"
+      },
+      {
+        "id": "d72",
+        "text": "Quantos minutos dura, em média, uma relação sexual (estudo com 500 casais)?",
+        "answer": 5,
+        "unit": "minutos",
+        "fact": "A mediana foi 5,4 minutos; o mais rápido, 33 segundos.",
+        "source": "Waldinger et al., J Sex Med (2005)"
+      },
+      {
+        "id": "d73",
+        "text": "Quantas camisinhas foram distribuídas na Vila Olímpica do Rio 2016?",
+        "answer": 450000,
+        "unit": "camisinhas",
+        "fact": "Três vezes mais do que em Londres 2012.",
+        "source": "COI / Rio 2016"
+      },
+      {
+        "id": "d74",
+        "text": "Em que ano a camisinha feminina foi aprovada nos EUA?",
+        "answer": 1993,
+        "unit": "ano",
+        "fact": "Hoje é distribuída de graça no SUS.",
+        "source": "FDA"
+      },
+      {
+        "id": "d75",
+        "text": "Com quantos anos Hugh Hefner, o criador da Playboy, morreu?",
+        "answer": 91,
+        "unit": "anos",
+        "fact": "Viveu até o fim na Mansão Playboy.",
+        "source": "Playboy"
+      },
+      {
+        "id": "d76",
+        "text": "Em que ano o OnlyFans foi lançado?",
+        "answer": 2016,
+        "unit": "ano",
+        "fact": "Explodiu na pandemia de 2020.",
+        "source": "OnlyFans"
+      },
+      {
+        "id": "d77",
+        "text": "Em que ano estreou Bridgerton na Netflix?",
+        "answer": 2020,
+        "unit": "ano",
+        "fact": "Foi assistida por 82 milhões de casas no primeiro mês.",
+        "source": "Netflix"
+      },
+      {
+        "id": "d78",
+        "text": "Em que ano a Playboy americana parou de publicar nus (e depois voltou atrás)?",
+        "answer": 2016,
+        "unit": "ano",
+        "fact": "Voltaram em 2017.",
+        "source": "Playboy"
+      },
+      {
+        "id": "d79",
+        "text": "Em que ano estreou \"9½ Semanas de Amor\"?",
+        "answer": 1986,
+        "unit": "ano",
+        "fact": "A cena da geladeira entrou pra história.",
+        "source": "IMDb"
+      },
+      {
+        "id": "d80",
+        "text": "Em que ano estreou \"Instinto Selvagem\", da cruzada de pernas da Sharon Stone?",
+        "answer": 1992,
+        "unit": "ano",
+        "fact": "Ela diz que não sabia o que estava sendo filmado.",
+        "source": "IMDb"
+      },
+      {
+        "id": "d81",
+        "text": "Em que ano estreou \"Dirty Dancing\"?",
+        "answer": 1987,
+        "unit": "ano",
+        "fact": "\"Ninguém põe Baby de castigo.\"",
+        "source": "IMDb"
+      },
+      {
+        "id": "d82",
+        "text": "Quantas horas durou o casamento de Britney Spears em Las Vegas, em 2004?",
+        "answer": 55,
+        "unit": "horas",
+        "fact": "Foi anulado na segunda-feira seguinte.",
+        "source": "imprensa internacional"
+      },
+      {
+        "id": "d83",
+        "text": "Quantos dias durou o casamento de Kim Kardashian com Kris Humphries?",
+        "answer": 72,
+        "unit": "dias",
+        "fact": "O casamento foi transmitido na TV.",
+        "source": "imprensa internacional"
+      },
+      {
+        "id": "d84",
+        "text": "Quantas vezes Elizabeth Taylor se casou?",
+        "answer": 8,
+        "unit": "vezes",
+        "fact": "Duas delas com o mesmo homem, Richard Burton.",
+        "source": "imprensa internacional"
+      },
+      {
+        "id": "d85",
+        "text": "Quantas esposas teve o rei Henrique VIII?",
+        "answer": 6,
+        "unit": "esposas",
+        "fact": "Duas foram decapitadas.",
+        "source": "história"
+      },
+      {
+        "id": "d86",
+        "text": "Em que ano foi lançado o Bumble, o app em que a mulher manda a primeira mensagem?",
+        "answer": 2014,
+        "unit": "ano",
+        "fact": "A fundadora tinha saído do Tinder.",
+        "source": "Bumble"
+      },
+      {
+        "id": "d87",
+        "text": "Em que ano o Dia dos Namorados foi criado no Brasil, numa jogada de publicidade?",
+        "answer": 1949,
+        "unit": "ano",
+        "fact": "12 de junho: véspera de Santo Antônio, o santo casamenteiro.",
+        "source": "história da publicidade brasileira"
+      },
+      {
+        "id": "d88",
+        "text": "Em que ano o divórcio foi aprovado no Brasil?",
+        "answer": 1977,
+        "unit": "ano",
+        "fact": "Antes disso, só existia o \"desquite\".",
+        "source": "Lei 6.515/1977"
+      },
+      {
+        "id": "d89",
+        "text": "Em que ano os cartórios do Brasil passaram a ser obrigados a celebrar casamento entre pessoas do mesmo sexo?",
+        "answer": 2013,
+        "unit": "ano",
+        "fact": "Foi por uma resolução do CNJ.",
+        "source": "CNJ, Resolução 175"
+      },
+      {
+        "id": "d90",
+        "text": "Quantos anos Julieta tinha em \"Romeu e Julieta\"?",
+        "answer": 13,
+        "unit": "anos",
+        "fact": "Shakespeare diz que ela ainda não tinha 14.",
+        "source": "Shakespeare"
+      },
+      {
+        "id": "d91",
+        "text": "Em que ano estreou a série Sex Education?",
+        "answer": 2019,
+        "unit": "ano",
+        "fact": "Teve 4 temporadas.",
+        "source": "Netflix"
+      }
+    ]
+  },
+  {
+    "id": "tv",
+    "title": "novelas & TV",
+    "tagline": "quem viu, viu",
+    "premium": true,
+    "isNew": true,
+    "icon": "tv",
+    "tint": "#FFD0A8",
+    "questions": [
+      {
+        "id": "d149",
+        "text": "Quantos capítulos teve Avenida Brasil?",
+        "answer": 179,
+        "unit": "capítulos",
+        "fact": "O último parou o país em outubro de 2012.",
+        "source": "Memória Globo"
+      },
+      {
+        "id": "d150",
+        "text": "Em que ano foi ao ar Senhora do Destino, da Nazaré Tedesco?",
+        "answer": 2004,
+        "unit": "ano",
+        "fact": "A Nazaré virou meme mais de 10 anos depois.",
+        "source": "Memória Globo"
+      },
+      {
+        "id": "d151",
+        "text": "Em que ano estreou Roque Santeiro?",
+        "answer": 1985,
+        "unit": "ano",
+        "fact": "Tinha sido censurada 10 anos antes.",
+        "source": "Memória Globo"
+      },
+      {
+        "id": "d152",
+        "text": "Em que ano estreou o Jornal Nacional?",
+        "answer": 1969,
+        "unit": "ano",
+        "fact": "Foi o primeiro telejornal em rede nacional.",
+        "source": "Memória Globo"
+      },
+      {
+        "id": "d153",
+        "text": "Em que ano a TV Globo foi inaugurada?",
+        "answer": 1965,
+        "unit": "ano",
+        "fact": "No Rio de Janeiro, em 26 de abril.",
+        "source": "Memória Globo"
+      },
+      {
+        "id": "d154",
+        "text": "Em que ano a televisão chegou ao Brasil?",
+        "answer": 1950,
+        "unit": "ano",
+        "fact": "A TV Tupi, de Assis Chateaubriand.",
+        "source": "história da TV brasileira"
+      },
+      {
+        "id": "d155",
+        "text": "Em que ano a primeira transmissão em cores foi feita no Brasil?",
+        "answer": 1972,
+        "unit": "ano",
+        "fact": "Foi a Festa da Uva, em Caxias do Sul.",
+        "source": "história da TV brasileira"
+      },
+      {
+        "id": "d156",
+        "text": "Por quantos anos o Faustão comandou o Domingão na Globo?",
+        "answer": 32,
+        "unit": "anos",
+        "fact": "De 1989 a 2021.",
+        "source": "Memória Globo"
+      },
+      {
+        "id": "d157",
+        "text": "Com quantos anos Silvio Santos morreu?",
+        "answer": 93,
+        "unit": "anos",
+        "fact": "Em agosto de 2024.",
+        "source": "SBT"
+      },
+      {
+        "id": "d158",
+        "text": "Em que ano estreou o Programa Silvio Santos?",
+        "answer": 1963,
+        "unit": "ano",
+        "fact": "Começou na TV Paulista, antes do SBT existir.",
+        "source": "SBT"
+      },
+      {
+        "id": "d159",
+        "text": "Em que ano estreou a novela Carrossel no SBT?",
+        "answer": 2012,
+        "unit": "ano",
+        "fact": "Remake da novela mexicana dos anos 80.",
+        "source": "SBT"
+      },
+      {
+        "id": "d160",
+        "text": "Quantos reais Davi levou como prêmio do BBB 24?",
+        "answer": 2920000,
+        "unit": "reais",
+        "fact": "O maior prêmio da história do programa até então.",
+        "source": "TV Globo"
+      },
+      {
+        "id": "d161",
+        "text": "Em que ano estreou o Fantástico?",
+        "answer": 1973,
+        "unit": "ano",
+        "fact": "\"O show da vida.\"",
+        "source": "Memória Globo"
+      },
+      {
+        "id": "d162",
+        "text": "Em que ano estreou Sai de Baixo?",
+        "answer": 1996,
+        "unit": "ano",
+        "fact": "Era gravado com plateia num teatro em São Paulo.",
+        "source": "Memória Globo"
+      },
+      {
+        "id": "d163",
+        "text": "Em que ano Os Trapalhões estrearam na Globo?",
+        "answer": 1977,
+        "unit": "ano",
+        "fact": "Antes, passavam na Tupi.",
+        "source": "Memória Globo"
+      },
+      {
+        "id": "d164",
+        "text": "Por quantos anos Cid Moreira apresentou o Jornal Nacional?",
+        "answer": 27,
+        "unit": "anos",
+        "fact": "De 1969 a 1996.",
+        "source": "Memória Globo"
+      },
+      {
+        "id": "d165",
+        "text": "Em que ano estreou o Sítio do Picapau Amarelo da Globo (a versão clássica)?",
+        "answer": 1977,
+        "unit": "ano",
+        "fact": "A abertura era do Gilberto Gil.",
+        "source": "Memória Globo"
+      },
+      {
+        "id": "d166",
+        "text": "Em que ano estreou o Programa do Jô na Globo?",
+        "answer": 2000,
+        "unit": "ano",
+        "fact": "Antes ele tinha o Jô Soares Onze e Meia, no SBT.",
+        "source": "Memória Globo"
+      },
+      {
+        "id": "d167",
+        "text": "Em que ano estreou o Caldeirão do Huck?",
+        "answer": 2000,
+        "unit": "ano",
+        "fact": "Ficou no ar até 2021.",
+        "source": "Memória Globo"
+      },
+      {
+        "id": "d168",
+        "text": "Em que ano estreou Terra Nostra?",
+        "answer": 1999,
+        "unit": "ano",
+        "fact": "Contava a chegada dos imigrantes italianos.",
+        "source": "Memória Globo"
+      },
+      {
+        "id": "d169",
+        "text": "Em que ano estreou o remake de Pantanal na Globo?",
+        "answer": 2022,
+        "unit": "ano",
+        "fact": "A primeira versão era de 1990, na Manchete.",
+        "source": "Memória Globo"
+      },
+      {
+        "id": "d170",
+        "text": "Em que ano estreou A Praça é Nossa no SBT?",
+        "answer": 1987,
+        "unit": "ano",
+        "fact": "Herdeira da Praça da Alegria, dos anos 50.",
+        "source": "SBT"
+      },
+      {
+        "id": "d171",
+        "text": "Em que ano estreou a novela Escrava Isaura?",
+        "answer": 1976,
+        "unit": "ano",
+        "fact": "Foi vendida pra dezenas de países, inclusive a China.",
+        "source": "Memória Globo"
+      }
+    ]
+  },
+  {
+    "id": "musica",
+    "title": "música",
+    "tagline": "do hino ao funk",
+    "premium": true,
+    "isNew": true,
+    "icon": "note",
+    "tint": "#E2C8FF",
+    "questions": [
+      {
+        "id": "d172",
+        "text": "Com quantos anos Mozart compôs as primeiras músicas?",
+        "answer": 5,
+        "unit": "anos",
+        "fact": "Morreu com 35 e deixou mais de 600 obras.",
+        "source": "Mozarteum"
+      },
+      {
+        "id": "d173",
+        "text": "Quantas sinfonias Beethoven compôs?",
+        "answer": 9,
+        "unit": "sinfonias",
+        "fact": "Compôs a última já completamente surdo.",
+        "source": "Beethoven-Haus Bonn"
+      },
+      {
+        "id": "d174",
+        "text": "Em que ano saiu \"Chega de Saudade\", de João Gilberto, que marca o começo da Bossa Nova?",
+        "answer": 1958,
+        "unit": "ano",
+        "fact": "A batida do violão foi a novidade.",
+        "source": "Instituto Antonio Carlos Jobim"
+      },
+      {
+        "id": "d175",
+        "text": "Em que ano \"Garota de Ipanema\" foi composta?",
+        "answer": 1962,
+        "unit": "ano",
+        "fact": "É uma das músicas mais gravadas do mundo.",
+        "source": "Instituto Antonio Carlos Jobim"
+      },
+      {
+        "id": "d176",
+        "text": "Em que ano foi exibido o primeiro especial de fim de ano do Roberto Carlos na Globo?",
+        "answer": 1974,
+        "unit": "ano",
+        "fact": "Virou tradição de quase 50 anos.",
+        "source": "Memória Globo"
+      },
+      {
+        "id": "d177",
+        "text": "Em que ano Michael Jackson lançou \"Thriller\"?",
+        "answer": 1982,
+        "unit": "ano",
+        "fact": "É o álbum mais vendido da história.",
+        "source": "Guinness World Records"
+      },
+      {
+        "id": "d178",
+        "text": "Quantas pessoas foram ao show dos Rolling Stones em Copacabana, em 2006?",
+        "answer": 1500000,
+        "unit": "pessoas",
+        "fact": "Show gratuito, na areia, com palco montado em frente ao Copacabana Palace.",
+        "source": "Riotur"
+      },
+      {
+        "id": "d179",
+        "text": "Quantas pessoas foram ao show da Madonna em Copacabana, em 2024?",
+        "answer": 1600000,
+        "unit": "pessoas",
+        "fact": "Show gratuito, na areia.",
+        "source": "Riotur"
+      },
+      {
+        "id": "d180",
+        "text": "Quantas pessoas foram ao show da Lady Gaga em Copacabana, em 2025?",
+        "answer": 2100000,
+        "unit": "pessoas",
+        "fact": "Bateu o recorde da Madonna um ano depois.",
+        "source": "Prefeitura do Rio / Riotur"
+      },
+      {
+        "id": "d181",
+        "text": "Em que ano saiu o disco \"Tropicália\", marco do Tropicalismo?",
+        "answer": 1968,
+        "unit": "ano",
+        "fact": "Caetano, Gil, Gal, Mutantes e Tom Zé.",
+        "source": "Universal Music"
+      },
+      {
+        "id": "d182",
+        "text": "Com quantos anos Raul Seixas morreu?",
+        "answer": 44,
+        "unit": "anos",
+        "fact": "Em 1989, dias depois de lançar um disco.",
+        "source": "imprensa brasileira"
+      },
+      {
+        "id": "d183",
+        "text": "Quantas semanas \"Despacito\" ficou em 1º lugar na parada americana?",
+        "answer": 16,
+        "unit": "semanas",
+        "fact": "Recorde pra uma música em espanhol.",
+        "source": "Billboard"
+      },
+      {
+        "id": "d184",
+        "text": "Quantas semanas \"Old Town Road\" ficou em 1º lugar na parada americana?",
+        "answer": 19,
+        "unit": "semanas",
+        "fact": "Foi recorde da Billboard Hot 100.",
+        "source": "Billboard"
+      },
+      {
+        "id": "d185",
+        "text": "Em que ano Anitta lançou \"Show das Poderosas\"?",
+        "answer": 2013,
+        "unit": "ano",
+        "fact": "O clipe foi o que a tornou nacional.",
+        "source": "Warner Music"
+      },
+      {
+        "id": "d186",
+        "text": "Em que ano \"Envolver\", da Anitta, chegou ao 1º lugar global do Spotify?",
+        "answer": 2022,
+        "unit": "ano",
+        "fact": "Primeira vez de uma artista brasileira solo.",
+        "source": "Spotify"
+      },
+      {
+        "id": "d187",
+        "text": "Em que ano foi lançado \"Ai Se Eu Te Pego\", do Michel Teló?",
+        "answer": 2011,
+        "unit": "ano",
+        "fact": "Cristiano Ronaldo dançou num gol e o mundo inteiro copiou.",
+        "source": "Som Livre"
+      },
+      {
+        "id": "d188",
+        "text": "Quantas cordas tem um cavaquinho?",
+        "answer": 4,
+        "unit": "cordas",
+        "fact": "É parente do ukulele havaiano.",
+        "source": "instrumentos brasileiros"
+      },
+      {
+        "id": "d189",
+        "text": "Quantos integrantes tinham os Titãs quando a banda começou?",
+        "answer": 9,
+        "unit": "integrantes",
+        "fact": "Começaram como \"Titãs do Iê-Iê\".",
+        "source": "história do rock brasileiro"
+      },
+      {
+        "id": "d190",
+        "text": "Em que ano o Spotify chegou ao Brasil?",
+        "answer": 2014,
+        "unit": "ano",
+        "fact": "Seis anos depois do lançamento na Suécia.",
+        "source": "Spotify"
+      },
+      {
+        "id": "d191",
+        "text": "Quantos minutos dura \"Bohemian Rhapsody\", do Queen (arredondando)?",
+        "answer": 6,
+        "unit": "minutos",
+        "fact": "A gravadora achava longa demais pra tocar no rádio.",
+        "source": "Queen"
+      },
+      {
+        "id": "d192",
+        "text": "Em que ano Dodô e Osmar saíram com o primeiro trio elétrico no Carnaval de Salvador?",
+        "answer": 1950,
+        "unit": "ano",
+        "fact": "Era um Ford 1929, a \"Fobica\".",
+        "source": "Carnaval de Salvador"
+      },
+      {
+        "id": "d193",
+        "text": "Com quantos anos Mozart morreu?",
+        "answer": 35,
+        "unit": "anos",
+        "fact": "Deixou o Réquiem inacabado.",
+        "source": "Mozarteum"
+      },
+      {
+        "id": "d194",
+        "text": "Quantas estrofes tem o Hino Nacional Brasileiro?",
+        "answer": 2,
+        "unit": "estrofes",
+        "fact": "Quase todo mundo só sabe cantar a primeira.",
+        "source": "Lei 5.700/1971"
+      },
+      {
+        "id": "d195",
+        "text": "Em que ano a letra do Hino Nacional foi oficializada?",
+        "answer": 1922,
+        "unit": "ano",
+        "fact": "A música já existia desde 1831; a letra veio 90 anos depois.",
+        "source": "Planalto"
+      },
+      {
+        "id": "d196",
+        "text": "Com quantos anos Elis Regina morreu?",
+        "answer": 36,
+        "unit": "anos",
+        "fact": "Em 1982.",
+        "source": "imprensa brasileira"
+      }
+    ]
+  },
+  {
+    "id": "dinheiro",
+    "title": "dinheiro",
+    "tagline": "quanto custa? mais do que você acha",
+    "premium": true,
+    "isNew": true,
+    "icon": "money",
+    "tint": "#C8EFA0",
+    "questions": [
+      {
+        "id": "d197",
+        "text": "Por quantos dólares o primeiro iPhone foi vendido nos EUA?",
+        "answer": 499,
+        "unit": "dólares",
+        "fact": "Era o de 4 GB.",
+        "source": "Apple"
+      },
+      {
+        "id": "d198",
+        "text": "Qual a chance de acertar a Mega-Sena com 6 números? 1 em quanto?",
+        "answer": 50063860,
+        "unit": "chances",
+        "fact": "É mais fácil morrer atingido por um raio.",
+        "source": "Caixa"
+      },
+      {
+        "id": "d199",
+        "text": "Por quantos bilhões de dólares Elon Musk comprou o Twitter?",
+        "answer": 44,
+        "unit": "bilhões de dólares",
+        "fact": "Em 2022. Virou X um ano depois.",
+        "source": "imprensa internacional"
+      },
+      {
+        "id": "d200",
+        "text": "Por quantos milhões de dólares o Facebook comprou o Instagram, em 2012?",
+        "answer": 1000,
+        "unit": "milhões de dólares",
+        "fact": "O Instagram tinha 13 funcionários.",
+        "source": "Meta"
+      },
+      {
+        "id": "d201",
+        "text": "Por quantos milhões de dólares o Google comprou o YouTube, em 2006?",
+        "answer": 1650,
+        "unit": "milhões de dólares",
+        "fact": "O YouTube tinha 1 ano e meio.",
+        "source": "Google"
+      },
+      {
+        "id": "d202",
+        "text": "Por quantos bilhões de dólares a Disney comprou a Lucasfilm (Star Wars)?",
+        "answer": 4,
+        "unit": "bilhões de dólares",
+        "fact": "Em 2012; recuperou só com os filmes novos.",
+        "source": "Disney"
+      },
+      {
+        "id": "d203",
+        "text": "Quantos bitcoins um programador pagou por 2 pizzas, em 2010?",
+        "answer": 10000,
+        "unit": "bitcoins",
+        "fact": "Hoje seriam centenas de milhões de dólares.",
+        "source": "Bitcoin Pizza Day"
+      },
+      {
+        "id": "d204",
+        "text": "Quantos cruzeiros reais valia 1 real quando o Real foi criado, em 1994?",
+        "answer": 2750,
+        "unit": "cruzeiros reais",
+        "fact": "Antes, existiu a URV pra fazer a transição.",
+        "source": "Banco Central"
+      },
+      {
+        "id": "d205",
+        "text": "Quantas moedas diferentes o Brasil teve de 1942 até o Real (contando o Real)?",
+        "answer": 8,
+        "unit": "moedas",
+        "fact": "O Cruzeiro voltou três vezes.",
+        "source": "Banco Central"
+      },
+      {
+        "id": "d206",
+        "text": "Qual foi a inflação do Brasil em 1993 (%)?",
+        "answer": 2477,
+        "unit": "%",
+        "fact": "Os preços mudavam no mesmo dia no supermercado.",
+        "source": "IBGE (IPCA)"
+      },
+      {
+        "id": "d207",
+        "text": "Quantos milhões de dólares custava um comercial de 30 segundos no Super Bowl de 2025?",
+        "answer": 8,
+        "unit": "milhões de dólares",
+        "fact": "Mais de 250 mil dólares por segundo.",
+        "source": "Fox / imprensa americana"
+      },
+      {
+        "id": "d208",
+        "text": "Por quantos milhões de dólares foi vendido o Salvator Mundi, o quadro mais caro do mundo?",
+        "answer": 450,
+        "unit": "milhões de dólares",
+        "fact": "Atribuído a Leonardo da Vinci; o paradeiro é um mistério.",
+        "source": "Christie's"
+      },
+      {
+        "id": "d209",
+        "text": "Quantos milhões de libras o Brasil pagou a Portugal pelo reconhecimento da Independência?",
+        "answer": 2,
+        "unit": "milhões de libras",
+        "fact": "O dinheiro foi emprestado da Inglaterra.",
+        "source": "Tratado de 1825"
+      },
+      {
+        "id": "d210",
+        "text": "Por quantos milhões de dólares os EUA compraram o Alasca da Rússia?",
+        "answer": 7,
+        "unit": "milhões de dólares",
+        "fact": "7,2 milhões, em 1867. Chamaram de \"loucura\".",
+        "source": "Arquivos Nacionais dos EUA"
+      },
+      {
+        "id": "d211",
+        "text": "Por quantos bilhões de dólares a Microsoft comprou a Activision (Call of Duty)?",
+        "answer": 69,
+        "unit": "bilhões de dólares",
+        "fact": "A maior compra da história dos games.",
+        "source": "Microsoft"
+      },
+      {
+        "id": "d212",
+        "text": "Em que ano o Pix foi lançado?",
+        "answer": 2020,
+        "unit": "ano",
+        "fact": "Foi lançado em novembro, no meio da pandemia.",
+        "source": "Banco Central"
+      },
+      {
+        "id": "d213",
+        "text": "Por quantos dólares o Apple I, o primeiro computador da Apple, era vendido?",
+        "answer": 666,
+        "unit": "dólares",
+        "fact": "Exatos US$ 666,66. Wozniak gostava de números repetidos.",
+        "source": "Apple"
+      },
+      {
+        "id": "d214",
+        "text": "Quantos dólares por ano o WhatsApp cobrava antes de virar grátis?",
+        "answer": 1,
+        "unit": "dólar",
+        "fact": "A cobrança acabou em 2016.",
+        "source": "WhatsApp"
+      },
+      {
+        "id": "d215",
+        "text": "Por quantos milhões de dólares foi leiloada a banana colada na parede com fita (Comedian)?",
+        "answer": 6,
+        "unit": "milhões de dólares",
+        "fact": "Em 2024. O comprador comeu a banana.",
+        "source": "Sotheby's"
+      },
+      {
+        "id": "d216",
+        "text": "Quantos milhões de dólares custou fazer o filme Titanic?",
+        "answer": 200,
+        "unit": "milhões de dólares",
+        "fact": "Era o filme mais caro da história até então.",
+        "source": "Box Office Mojo"
+      },
+      {
+        "id": "d217",
+        "text": "Quantos milhões de coroas suecas vale um Prêmio Nobel?",
+        "answer": 11,
+        "unit": "milhões de coroas",
+        "fact": "Cerca de 1 milhão de dólares.",
+        "source": "Fundação Nobel"
+      },
+      {
+        "id": "d218",
+        "text": "Por quantos bilhões de dólares o Facebook tentou comprar o Snapchat (e levou um não)?",
+        "answer": 3,
+        "unit": "bilhões de dólares",
+        "fact": "Em 2013. O Snapchat tinha 2 anos.",
+        "source": "imprensa internacional"
+      }
+    ]
+  },
+  {
+    "id": "mundo",
+    "title": "pelo mundo",
+    "tagline": "o planeta é maior que o seu bairro",
+    "premium": true,
+    "isNew": true,
+    "icon": "globe",
+    "tint": "#A8DCFF",
+    "questions": [
+      {
+        "id": "d219",
+        "text": "Quantos países são membros da ONU?",
+        "answer": 193,
+        "unit": "países",
+        "fact": "O último a entrar foi o Sudão do Sul, em 2011.",
+        "source": "ONU"
+      },
+      {
+        "id": "d220",
+        "text": "Quantos fusos horários tem a França, contando os territórios ultramarinos?",
+        "answer": 12,
+        "unit": "fusos",
+        "fact": "É o país com mais fusos do mundo.",
+        "source": "Governo da França"
+      },
+      {
+        "id": "d221",
+        "text": "Quantos fusos horários a China usa oficialmente?",
+        "answer": 1,
+        "unit": "fuso",
+        "fact": "Mesmo tendo largura pra 5.",
+        "source": "Governo da China"
+      },
+      {
+        "id": "d222",
+        "text": "Quantas línguas oficiais tem a África do Sul?",
+        "answer": 12,
+        "unit": "línguas",
+        "fact": "A 12ª é a língua de sinais, desde 2023.",
+        "source": "Governo da África do Sul"
+      },
+      {
+        "id": "d223",
+        "text": "Quantos quilômetros tem o Rio Nilo?",
+        "answer": 6650,
+        "unit": "km",
+        "fact": "Briga com o Amazonas pelo título de maior rio.",
+        "source": "Britannica"
+      },
+      {
+        "id": "d224",
+        "text": "Quantos países têm o português como língua oficial?",
+        "answer": 9,
+        "unit": "países",
+        "fact": "Do Brasil ao Timor-Leste.",
+        "source": "CPLP"
+      },
+      {
+        "id": "d225",
+        "text": "Quantos degraus tem a Torre Eiffel até o topo?",
+        "answer": 1665,
+        "unit": "degraus",
+        "fact": "O público só pode subir 674 deles.",
+        "source": "Torre Eiffel (site oficial)"
+      },
+      {
+        "id": "d226",
+        "text": "Quantos metros tem a Estátua da Liberdade, contando o pedestal?",
+        "answer": 93,
+        "unit": "metros",
+        "fact": "Foi presente da França.",
+        "source": "National Park Service"
+      },
+      {
+        "id": "d227",
+        "text": "Em que ano começou a construção da Sagrada Família, em Barcelona?",
+        "answer": 1882,
+        "unit": "ano",
+        "fact": "E ainda não terminou.",
+        "source": "Basílica da Sagrada Família"
+      },
+      {
+        "id": "d228",
+        "text": "Quantos quilômetros tem o Canal de Suez?",
+        "answer": 193,
+        "unit": "km",
+        "fact": "Um navio entalado nele travou o comércio mundial em 2021.",
+        "source": "Autoridade do Canal de Suez"
+      },
+      {
+        "id": "d229",
+        "text": "Por quantos países passa o Rio Danúbio?",
+        "answer": 10,
+        "unit": "países",
+        "fact": "Recorde mundial.",
+        "source": "Britannica"
+      },
+      {
+        "id": "d230",
+        "text": "Há quantos anos foi construída a Grande Pirâmide de Gizé (aproximadamente)?",
+        "answer": 4500,
+        "unit": "anos",
+        "fact": "Foi a construção mais alta do mundo por quase 4 mil anos.",
+        "source": "Britannica"
+      },
+      {
+        "id": "d231",
+        "text": "Quantos andares tem o Burj Khalifa?",
+        "answer": 163,
+        "unit": "andares",
+        "fact": "O elevador sobe a 36 km/h.",
+        "source": "Burj Khalifa"
+      },
+      {
+        "id": "d232",
+        "text": "Quantos metros de profundidade tem o Lago Baikal, o mais fundo do mundo?",
+        "answer": 1642,
+        "unit": "metros",
+        "fact": "Guarda 20% da água doce líquida do planeta.",
+        "source": "UNESCO"
+      },
+      {
+        "id": "d233",
+        "text": "Quantas listras tem a bandeira dos EUA?",
+        "answer": 13,
+        "unit": "listras",
+        "fact": "Uma pra cada colônia original.",
+        "source": "Governo dos EUA"
+      },
+      {
+        "id": "d234",
+        "text": "Quantos anos durou a Guerra dos Cem Anos?",
+        "answer": 116,
+        "unit": "anos",
+        "fact": "De 1337 a 1453.",
+        "source": "Britannica"
+      },
+      {
+        "id": "d235",
+        "text": "Quantos minutos durou a guerra mais curta da história (Inglaterra x Zanzibar)?",
+        "answer": 38,
+        "unit": "minutos",
+        "fact": "Em 1896.",
+        "source": "Guinness World Records"
+      },
+      {
+        "id": "d236",
+        "text": "Quantos quilômetros tem a Ferrovia Transiberiana?",
+        "answer": 9289,
+        "unit": "km",
+        "fact": "A viagem de Moscou a Vladivostok leva 7 dias.",
+        "source": "Ferrovias Russas"
+      },
+      {
+        "id": "d237",
+        "text": "Quantos metros de queda tem o Salto Ángel, a cachoeira mais alta do mundo?",
+        "answer": 979,
+        "unit": "metros",
+        "fact": "Fica na Venezuela.",
+        "source": "UNESCO"
+      },
+      {
+        "id": "d238",
+        "text": "Quantos hectares tem o Vaticano?",
+        "answer": 44,
+        "unit": "hectares",
+        "fact": "Cabe uns 60 campos de futebol.",
+        "source": "Santa Sé"
+      },
+      {
+        "id": "d239",
+        "text": "Com quantos países a China faz fronteira?",
+        "answer": 14,
+        "unit": "países",
+        "fact": "Empatada com a Rússia no topo.",
+        "source": "Britannica"
+      },
+      {
+        "id": "d240",
+        "text": "Em que ano o Muro de Berlim foi construído?",
+        "answer": 1961,
+        "unit": "ano",
+        "fact": "Ficou de pé por 28 anos.",
+        "source": "Britannica"
+      },
+      {
+        "id": "d241",
+        "text": "Quantos anos Nelson Mandela ficou preso?",
+        "answer": 27,
+        "unit": "anos",
+        "fact": "Saiu e virou presidente 4 anos depois.",
+        "source": "Fundação Nelson Mandela"
+      },
+      {
+        "id": "d242",
+        "text": "Por quantos anos Elizabeth II foi rainha?",
+        "answer": 70,
+        "unit": "anos",
+        "fact": "O reinado mais longo da história britânica.",
+        "source": "Família Real Britânica"
+      },
+      {
+        "id": "d243",
+        "text": "Quantas línguas são faladas em Papua-Nova Guiné?",
+        "answer": 840,
+        "unit": "línguas",
+        "fact": "O país mais diverso em idiomas do mundo.",
+        "source": "Ethnologue"
       }
     ]
   }

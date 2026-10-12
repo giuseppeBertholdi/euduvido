@@ -18,6 +18,10 @@ export const HIGHLIGHTS: Record<string, string[]> = {
   anos90: ['c20', 'c21', 'c23'],
   memes: ['c38', 'c32', 'c36'],
   picante: ['c46', 'c49', 'c54'],
+  tv: ['d160', 'd149', 'd157'],
+  musica: ['d180', 'd194', 'd183'],
+  dinheiro: ['d198', 'd206', 'd203'],
+  mundo: ['d235', 'd221', 'd238'],
 };
 
 export const TEASERS = ['n108', 'q23', 'q17', 'c38', 'n38', 'c46'];

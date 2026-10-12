@@ -182,6 +182,32 @@ const ICONS = {
       <Path d="M16 6.3c.2-1.6 1.2-2.8 2.8-3.3M14.5 6.2c1.2-.8 2.6-.8 3.6.2" stroke={k} />
     </>
   ),
+  tv: (k, a) => (
+    <>
+      <Rect x={2.5} y={6.5} width={19} height={13} rx={2.5} fill={a} stroke={k} />
+      <Path d="M8 2.8l4 3.7 4-3.7M8.5 22h7" stroke={k} />
+      <Path d="M6.5 10.5c3.5-.7 7.5-.7 11 0M6.5 15.5c3.5.7 7.5.7 11 0" stroke={k} />
+    </>
+  ),
+  note: (k, a) => (
+    <>
+      <Ellipse cx={7} cy={18} rx={3.2} ry={2.6} fill={a} stroke={k} />
+      <Ellipse cx={17} cy={16} rx={3.2} ry={2.6} fill={a} stroke={k} />
+      <Path d="M10.2 18V5.5l10-2.5V16M10.2 9l10-2.5" stroke={k} />
+    </>
+  ),
+  money: (k, a) => (
+    <>
+      <Circle cx={12} cy={12} r={9} fill={a} stroke={k} />
+      <Path d="M15 8.8c-.6-1-1.7-1.5-3-1.5-1.7 0-3 .9-3 2.3 0 3.2 6 1.7 6 4.8 0 1.4-1.3 2.3-3 2.3-1.4 0-2.5-.6-3.1-1.6M12 5.5v1.8M12 16.7v1.8" stroke={k} />
+    </>
+  ),
+  globe: (k, a) => (
+    <>
+      <Circle cx={12} cy={12} r={9} fill={a} stroke={k} />
+      <Path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9s-1.2 6.5-3.6 9c-2.4-2.5-3.6-5.5-3.6-9S9.6 5.5 12 3z" stroke={k} />
+    </>
+  ),
 } satisfies Record<string, Draw>;
 
 export type IconName = keyof typeof ICONS;
