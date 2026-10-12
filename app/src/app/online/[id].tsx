@@ -23,7 +23,7 @@ export default function OnlineMatch() {
   const st = room?.state;
   // online: momento bom = ganhou, ou cravou na mosca na última rodada
   const happy = !!st && !!me && (st.winnerId === me || (st.result?.exact === true && st.result.bid?.playerId === me));
-  useMatchEnd(room && st ? `${room.id}:${st.round}:${st.question.id}` : null, st?.phase === 'end', happy);
+  useMatchEnd(room && st ? `${room.id}:${st.round}:${st.question.id}` : null, st?.phase === 'end', happy, { mode: 'online', players: st?.players.length });
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 

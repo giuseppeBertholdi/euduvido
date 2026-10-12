@@ -3,7 +3,9 @@ import { forwardRef } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import { captureRef } from 'react-native-view-shot';
 import { formatValue } from '@/game/engine';
+import { analytics } from '@/services/analytics';
 import { colors, fonts } from '@/theme';
+
 
 /**
  * Cartão "NA MOSCA!" pra compartilhar (1080×1350 quando capturado em 3x). Fica fora da tela e só vira imagem ao compartilhar.
@@ -36,6 +38,7 @@ export async function shareCard(ref: React.RefObject<View | null>): Promise<bool
   if (!(await Sharing.isAvailableAsync())) return false;
   const uri = await captureRef(ref, { format: 'png', quality: 1 });
   await Sharing.shareAsync(uri, { mimeType: 'image/png', dialogTitle: 'Compartilhar o na mosca' });
+  analytics.track('card_shared', { card: 'na_mosca' });
   return true;
 }
 

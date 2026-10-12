@@ -49,7 +49,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
-    "test": "npx --yes tsx --test src/game/engine.test.ts src/game/highlights.test.ts src/services/engagement/policy.test.ts && node scripts/sync-engine.mjs --check",
+    "test": "npx --yes tsx --test src/game/engine.test.ts src/game/highlights.test.ts src/services/engagement/policy.test.ts src/features/paywall/exhausted.test.ts && node scripts/sync-engine.mjs --check",
     "lint": "expo lint",
     "sync:engine": "node scripts/sync-engine.mjs",
     "supabase:up": "supabase start -x imgproxy,mailpit,postgres-meta,studio,logflare,vector,supavisor,storage-api",

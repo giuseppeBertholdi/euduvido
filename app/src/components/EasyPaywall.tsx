@@ -1,9 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ActivityIndicator, Linking, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { links } from '@/config/links';
 import { PACKS } from '@/game/questions';
 import { usePlans } from '@/features/paywall/usePlans';
+import { analytics } from '@/services/analytics';
 import { purchases } from '@/services/purchases';
 import { colors, fonts, radii } from '@/theme';
 import { Icon, type IconName } from './Icon';
@@ -30,12 +31,23 @@ export function EasyPaywall({ visible, onClose, onSeeAll, onPurchased }: { visib
   const { plans, error: plansError } = usePlans();
   const annual = plans?.find((p) => p.id === 'annual') ?? null;
 
+  useEffect(() => {
+    if (visible) analytics.track('paywall_viewed', { source: 'launch', kind: 'easy' });
+  }, [visible]);
+
   const buy = async () => {
     if (!annual) return;
     setBusy(true);
+    const track = { source: 'launch', kind: 'easy', plan: annual.id, trial: !!annual.trialDays };
+    analytics.track('purchase_started', track);
     const r = await purchases.purchase(annual);
     setBusy(false);
+    analytics.track(r.ok && r.premium ? 'purchase_completed' : 'purchase_failed', { ...track, cancelled: !!r.cancelled, activated: r.premium });
     if (r.ok && r.premium) onPurchased();
+  };
+  const close = () => {
+    analytics.track('paywall_closed', { source: 'launch', kind: 'easy' });
+    onClose();
   };
 
   return (
@@ -46,7 +58,7 @@ export function EasyPaywall({ visible, onClose, onSeeAll, onPurchased }: { visib
             <BangMark size={76} style={{ transform: [{ rotate: '10deg' }] }} />
           </View>
           <View style={styles.closeRow}>
-            <DelayedClose delayMs={CLOSE_AFTER_MS} onClose={onClose} ready={!!annual || plansError} />
+            <DelayedClose delayMs={CLOSE_AFTER_MS} onClose={close} ready={!!annual || plansError} />
           </View>
 
           <Text style={styles.kicker}>eu duvido! pro</Text>

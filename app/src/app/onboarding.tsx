@@ -7,6 +7,7 @@ import { BangMark, Lives, Stamp } from '@/components/brand';
 import { Icon } from '@/components/Icon';
 import { Enter } from '@/components/motion';
 import { Body, Btn, Label, Logo, Raised, Title } from '@/components/ui';
+import { analytics } from '@/services/analytics';
 import { useApp } from '@/state/app';
 import { visits } from '@/state/visits';
 import { colors, fonts } from '@/theme';
@@ -38,7 +39,12 @@ export default function Onboarding() {
   const app = useApp();
   const [name, setName] = useState(app.name);
 
+  useEffect(() => {
+    analytics.track('onboarding_step', { step: i + 1 });
+  }, [i]);
+
   const finish = () => {
+    analytics.track('onboarding_completed', { skipped_at: i < LAST ? i + 1 : null, named: !!name.trim() });
     if (name.trim()) app.set({ name: name.trim() });
     visits.take(); // a primeira visita já termina no paywall; o easy paywall fica pra próxima
     router.replace({ pathname: '/paywall', params: { source: 'onboarding' } });

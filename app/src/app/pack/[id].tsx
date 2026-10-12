@@ -1,6 +1,6 @@
 import { Redirect, router, useLocalSearchParams } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Alert, FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Icon } from '@/components/Icon';
@@ -9,6 +9,7 @@ import { Btn, Chip, Raised, Title, TopBar, tapLight } from '@/components/ui';
 import { formatValue } from '@/game/engine';
 import { showcase } from '@/game/highlights';
 import { packById } from '@/game/questions';
+import { analytics } from '@/services/analytics';
 import { useApp } from '@/state/app';
 import { colors, fonts, radii } from '@/theme';
 
@@ -21,6 +22,10 @@ export default function PackDetail() {
   const app = useApp();
   const insets = useSafeAreaInsets();
   const [answers, setAnswers] = useState(false);
+  useEffect(() => {
+    if (pack) analytics.track('pack_opened', { pack: pack.id, locked: pack.premium && !app.premium });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pack?.id]);
   if (!pack) return <Redirect href="/" />;
 
   const locked = pack.premium && !app.premium;

@@ -8,10 +8,13 @@ import { Icon } from '@/components/Icon';
 import { Btn, Label, Raised, Title, TopBar, tapLight } from '@/components/ui';
 import { createMatch, LIVES_OPTIONS, MAX_PLAYERS, MIN_PLAYERS, TIMER_OPTIONS, type Player } from '@/game/engine';
 import { freshPool } from '@/game/played';
+import { offerIfExhausted } from '@/features/paywall/offerExhausted';
 import { PACKS } from '@/game/questions';
+import { analytics } from '@/services/analytics';
 import { useApp } from '@/state/app';
 import { colors, fonts, radii } from '@/theme';
 
+const PRO_QUESTIONS = PACKS.filter((p) => p.premium).reduce((n, p) => n + p.questions.length, 0);
 const SAMPLE = ['bia', 'léo', 'cacá', 'dudu', 'mari', 'jão', 'lua', 'nico'];
 let seq = 0;
 const newId = () => `p${Date.now().toString(36)}${(seq++).toString(36)}`;
@@ -43,7 +46,10 @@ export default function Setup() {
   const start = () => {
     app.set({ lastPlayers: named, lives, timer, packs });
     app.setMatch(createMatch({ players: named, pool: fresh.pool, lives, turnSeconds: timer, rng: Math.random }));
+    analytics.track('match_started', { mode: 'local', rematch: false, players: named.length, lives, timer, packs, fresh: fresh.fresh, recycled: fresh.recycled });
     router.replace('/game');
+    const offeredAt = offerIfExhausted({ premium: app.premium, pool, played: app.played, lastOfferAt: app.exhaustedOfferAt }, 'setup');
+    if (offeredAt) app.set({ exhaustedOfferAt: offeredAt });
   };
 
   return (
@@ -166,6 +172,11 @@ export default function Setup() {
                   ? 'as novas acabaram nesses pacotes: vai repetir'
                   : `${fresh.fresh} novas de ${pool.length} nesses pacotes`}
             </Text>
+            {!app.premium && app.avoidRepeats && fresh.recycled && (
+              <Pressable onPress={() => router.push({ pathname: '/paywall', params: { source: 'exhausted' } })} hitSlop={8} accessibilityRole="button" style={{ marginTop: 4 }}>
+                <Text style={styles.unlock}>liberar +{PRO_QUESTIONS} perguntas novas</Text>
+              </Pressable>
+            )}
           </View>
           <Switch
             value={app.avoidRepeats}
@@ -222,6 +233,7 @@ const styles = StyleSheet.create({
   repeat: { flexDirection: 'row', alignItems: 'center', gap: 12, marginTop: 18, backgroundColor: colors.surface, borderWidth: 2, borderColor: colors.line, borderRadius: radii.button, padding: 14 },
   repeatTitle: { fontFamily: fonts.ui800, fontSize: 16, color: colors.ink },
   repeatText: { fontFamily: fonts.ui600, fontSize: 13, color: colors.inkSoft, marginTop: 2 },
+  unlock: { fontFamily: fonts.ui800, fontSize: 14, color: colors.ink, textDecorationLine: 'underline' },
   resetBtn: { alignSelf: 'center', minHeight: 40, justifyContent: 'center' },
   reset: { fontFamily: fonts.ui700, fontSize: 14, color: colors.ink, textDecorationLine: 'underline' },
   footer: { paddingHorizontal: 20, paddingTop: 10, backgroundColor: colors.paper, borderTopWidth: 2, borderColor: colors.line },

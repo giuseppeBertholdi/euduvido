@@ -9,6 +9,7 @@ import { Lobby, OnlineNotice } from '@/features/online/Lobby';
 import { useRoom } from '@/features/online/useRoom';
 import { PACKS } from '@/game/questions';
 import { act, createRoom, leaveRoom, onlineEnabled, RoomError } from '@/services/rooms';
+import { analytics } from '@/services/analytics';
 import { useApp } from '@/state/app';
 import { colors, fonts, radii } from '@/theme';
 
@@ -47,6 +48,7 @@ export default function CreateRoom() {
         skip: app.avoidRepeats ? app.played.slice(-1000) : [],
       });
       setRoomId(created.roomId);
+      analytics.track('room_created', { packs: packs.length ? packs : ['classico'], lives: app.lives, timer: app.timer });
     } catch (e) {
       if (e instanceof RoomError && e.code === 'pro_required') {
         // o servidor não achou a assinatura (ex.: venceu): manda pro paywall

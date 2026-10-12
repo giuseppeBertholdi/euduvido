@@ -4,17 +4,19 @@ import { RemindersAsk } from '@/features/engagement/RemindersAsk';
 import { useMatchEnd } from '@/features/engagement/useMatchEnd';
 import { MatchScreen } from '@/features/match/MatchScreen';
 import { createMatch, publicState, reduce, type Action } from '@/game/engine';
+import { offerIfExhausted } from '@/features/paywall/offerExhausted';
 import { freshPool } from '@/game/played';
 import { PACKS } from '@/game/questions';
+import { analytics } from '@/services/analytics';
 import { useApp } from '@/state/app';
 
 const localNow = () => Date.now();
 
 /** Partida local: um celular só, o motor roda aqui mesmo. */
 export default function Game() {
-  const { match, setMatch, premium, packs, played, avoidRepeats, markPlayed } = useApp();
+  const { match, setMatch, premium, packs, played, avoidRepeats, markPlayed, exhaustedOfferAt, set } = useApp();
   // partida local: a galera jogou junta até o fim, é sempre um momento bom
-  useMatchEnd(match ? `${match.players.map((p) => p.id).join(',')}:${match.deck[0]?.id}` : null, match?.phase === 'end', true);
+  useMatchEnd(match ? `${match.players.map((p) => p.id).join(',')}:${match.deck[0]?.id}` : null, match?.phase === 'end', true, { mode: 'local', players: match?.players.length });
   if (!match) return <Redirect href="/" />;
 
   const onAction = (a: Action) => setMatch(reduce(match, a, { now: Date.now() }));
@@ -29,8 +31,12 @@ export default function Game() {
     ]);
   const rematch = () => {
     const all = PACKS.filter((p) => packs.includes(p.id) && (premium || !p.premium)).flatMap((p) => p.questions);
-    const { pool } = freshPool(all.length ? all : PACKS[0].questions, played, avoidRepeats);
+    const base = all.length ? all : PACKS[0].questions;
+    const { pool, fresh, recycled } = freshPool(base, played, avoidRepeats);
     setMatch(createMatch({ players: match.players, pool, lives: match.startLives, turnSeconds: match.turnSeconds, rng: Math.random }));
+    analytics.track('match_started', { mode: 'local', rematch: true, players: match.players.length, lives: match.startLives, timer: match.turnSeconds, packs, fresh, recycled });
+    const offeredAt = offerIfExhausted({ premium, pool: base, played, lastOfferAt: exhaustedOfferAt }, 'rematch');
+    if (offeredAt) set({ exhaustedOfferAt: offeredAt });
   };
 
   return (
@@ -43,7 +49,7 @@ export default function Game() {
       onRematch={rematch}
       onHome={home}
       showUpsell={!premium}
-      onUpsell={() => router.push({ pathname: '/paywall', params: { source: 'pack' } })}
+      onUpsell={() => router.push({ pathname: '/paywall', params: { source: 'match_end' } })}
       onSeen={markPlayed}
       endExtra={<RemindersAsk />}
     />

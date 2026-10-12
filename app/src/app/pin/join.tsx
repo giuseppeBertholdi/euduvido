@@ -9,6 +9,7 @@ import { Btn, Label, Title, TopBar } from '@/components/ui';
 import { Lobby, OnlineNotice } from '@/features/online/Lobby';
 import { useRoom } from '@/features/online/useRoom';
 import { joinRoom, leaveRoom, onlineEnabled, RoomError } from '@/services/rooms';
+import { analytics } from '@/services/analytics';
 import { useApp } from '@/state/app';
 import { colors, fonts, radii } from '@/theme';
 
@@ -43,7 +44,10 @@ export default function JoinPin() {
     setError(null);
     app.set({ name: clean });
     joinRoom(v, clean)
-      .then(setRoomId)
+      .then((id) => {
+        setRoomId(id);
+        analytics.track('room_joined', { invited: !!invited });
+      })
       .catch((e: unknown) => {
         setError(e instanceof RoomError ? e.message : 'Sem conexão. Tenta de novo.');
         setPin('');

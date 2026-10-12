@@ -1,6 +1,6 @@
 import { router, useLocalSearchParams } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { ActivityIndicator, Linking, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Icon, type IconName } from '@/components/Icon';
@@ -12,6 +12,7 @@ import { PACKS } from '@/game/questions';
 import { ProView } from '@/features/paywall/ProView';
 import { Teasers } from '@/features/paywall/Teasers';
 import { usePlans } from '@/features/paywall/usePlans';
+import { analytics } from '@/services/analytics';
 import { purchases, type PlanId } from '@/services/purchases';
 import { useApp } from '@/state/app';
 import { colors, fonts } from '@/theme';
@@ -22,6 +23,8 @@ const CLOSE_DEFAULT_MS = 3500;
 
 const TITLES: Record<string, string> = {
   pack: 'absurdos BR\nte espera',
+  match_end: 'absurdos BR\nte espera',
+  exhausted: 'vocês zeraram\nas grátis',
   pin: 'sala com PIN\né do pro',
 };
 
@@ -49,7 +52,15 @@ export default function Paywall() {
   const shown = plans ? (allPlans ? plans : plans.filter((p) => p.featured)) : [];
   const weekly = plans?.find((p) => p.id === 'weekly');
 
+  const bought = useRef(false);
+  useEffect(() => {
+    if (premium && !onboarding) return;
+    analytics.track('paywall_viewed', { source, kind: 'full' });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const leave = () => {
+    if (!bought.current && !(premium && !onboarding)) analytics.track('paywall_closed', { source, kind: 'full' });
     if (onboarding) {
       set({ onboarded: true });
       router.replace('/');
@@ -61,8 +72,12 @@ export default function Paywall() {
     if (!selected) return;
     setBusy(true);
     setBuyError(null);
+    const track = { source, kind: 'full', plan: selected.id, trial: !!selected.trialDays };
+    analytics.track('purchase_started', track);
     const r = await purchases.purchase(selected);
     setBusy(false);
+    if (r.ok && r.premium) bought.current = true;
+    analytics.track(r.ok && r.premium ? 'purchase_completed' : 'purchase_failed', { ...track, cancelled: !!r.cancelled, activated: r.premium });
     if (!r.ok && !r.cancelled) setBuyError('A compra não foi concluída. Tenta de novo?');
     if (r.ok && !r.premium) setBuyError('Compra feita, mas o pro ainda não ativou. Toque em restaurar compras.');
     if (r.ok && r.premium) {
@@ -75,7 +90,9 @@ export default function Paywall() {
     setBusy(true);
     const r = await purchases.restore();
     setBusy(false);
+    analytics.track('restore_tapped', { source, premium: r.premium });
     if (r.premium) {
+      bought.current = true;
       set({ premium: true });
       leave();
     }

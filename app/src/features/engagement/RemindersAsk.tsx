@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Icon } from '@/components/Icon';
 import { askReminderPermission, rescheduleReminders } from '@/services/engagement/reminders';
+import { analytics } from '@/services/analytics';
 import { useApp } from '@/state/app';
 import { colors, fonts, radii } from '@/theme';
 
@@ -18,6 +19,7 @@ export function RemindersAsk() {
     setBusy(true);
     const granted = await askReminderPermission();
     app.set({ remindersAsked: true, remindersOn: granted });
+    analytics.track('reminders_answered', { wanted: true, granted });
     await rescheduleReminders(granted);
     setBusy(false);
   };
@@ -32,7 +34,10 @@ export function RemindersAsk() {
           <Pressable onPress={yes} disabled={busy} style={({ pressed }) => [styles.btn, styles.btnYes, pressed && { opacity: 0.8 }]} accessibilityRole="button">
             {busy ? <ActivityIndicator color={colors.ink} /> : <Text style={styles.btnText}>quero</Text>}
           </Pressable>
-          <Pressable onPress={() => app.set({ remindersAsked: true })} style={styles.btn} accessibilityRole="button">
+          <Pressable onPress={() => {
+            analytics.track('reminders_answered', { wanted: false, granted: false });
+            app.set({ remindersAsked: true });
+          }} style={styles.btn} accessibilityRole="button">
             <Text style={[styles.btnText, { color: colors.inkSoft }]}>agora não</Text>
           </Pressable>
         </View>
