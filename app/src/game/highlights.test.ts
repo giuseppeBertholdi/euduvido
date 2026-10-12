@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { HIGHLIGHTS, showcase, TEASERS, questionById } from './highlights';
+import { HIGHLIGHTS, showcase, STARTER, starterFirst, TEASERS, questionById } from './highlights';
 import { PACKS } from './questions';
 
 test('todo pacote pro tem 3 destaques, e eles existem no próprio pacote', () => {
@@ -25,4 +25,17 @@ test('teasers do paywall existem e vêm de pacotes pro', () => {
     assert.ok(questionById(id), id);
     assert.ok(PACKS.some((p) => p.premium && p.questions.some((q) => q.id === id)), id);
   }
+});
+
+test('a primeira partida começa pelas melhores do clássico, sem repetir as já jogadas', () => {
+  const classico = PACKS.find((p) => p.id === 'classico')!;
+  for (const id of STARTER) assert.ok(classico.questions.some((q) => q.id === id), id);
+  const deck = [...classico.questions].reverse();
+  const fresh = starterFirst(deck, []);
+  assert.equal(fresh.length, deck.length);
+  assert.deepEqual(new Set(fresh.slice(0, STARTER.length).map((q) => q.id)), new Set(STARTER));
+  const played = STARTER.slice(0, 5);
+  const later = starterFirst(deck, played);
+  assert.deepEqual(new Set(later.slice(0, STARTER.length - 5).map((q) => q.id)), new Set(STARTER.slice(5)));
+  assert.deepEqual(starterFirst(deck, STARTER), deck);
 });

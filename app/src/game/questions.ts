@@ -8,7 +8,7 @@ export type Pack = {
   premium: boolean;
   isNew?: boolean;
   /** Ícone (ver `src/components/Icon.tsx`) e cor do pacote. */
-  icon: 'bulb' | 'brasil' | 'paw' | 'heart' | 'cursor' | 'cup' | 'bolt' | 'planet' | 'ball' | 'cassette' | 'meme' | 'pepper' | 'tv' | 'note' | 'money' | 'globe';
+  icon: 'bulb' | 'brasil' | 'paw' | 'heart' | 'cursor' | 'cup' | 'bolt' | 'planet' | 'ball' | 'cassette' | 'meme' | 'pepper' | 'tv' | 'note' | 'money' | 'globe' | 'hourglass';
   tint: string;
   questions: Question[];
 };
@@ -55,78 +55,6 @@ export const PACKS: Pack[] = [
         "source": "NASA Earth Fact Sheet"
       },
       {
-        "id": "q76",
-        "text": "Em que ano terminou a Segunda Guerra Mundial?",
-        "answer": 1945,
-        "unit": "ano",
-        "fact": "A Alemanha se rendeu em maio e o Japão em setembro.",
-        "source": "Imperial War Museums"
-      },
-      {
-        "id": "q77",
-        "text": "Quantas teclas tem um piano acústico padrão?",
-        "answer": 88,
-        "unit": "teclas",
-        "fact": "Sendo 52 brancas e 36 pretas.",
-        "source": "Steinway & Sons Technical Specs"
-      },
-      {
-        "id": "q78",
-        "text": "Quantos elementos químicos existem na Tabela Periódica atual?",
-        "answer": 118,
-        "unit": "elementos",
-        "fact": "O mais recente nomeado foi o Oganessônio (Og).",
-        "source": "IUPAC Periodic Table"
-      },
-      {
-        "id": "q79",
-        "text": "Em que ano começou a Primeira Guerra Mundial?",
-        "answer": 1914,
-        "unit": "ano",
-        "fact": "Iniciada após o assassinato do arquiduque Francisco Ferdinando.",
-        "source": "History Channel / WWI"
-      },
-      {
-        "id": "q138",
-        "text": "Em que ano ocorreu a queda da Bastilha na Revolução Francesa?",
-        "answer": 1789,
-        "unit": "ano",
-        "fact": "Aconteceu em 14 de julho de 1789.",
-        "source": "French National Archives"
-      },
-      {
-        "id": "q140",
-        "text": "Em que ano Albert Einstein publicou a Teoria da Relatividade Restrita?",
-        "answer": 1905,
-        "unit": "ano",
-        "fact": "Conhecido como o seu 'Ano Miraculoso' (Annus Mirabilis).",
-        "source": "Nobel Prize Archives"
-      },
-      {
-        "id": "q142",
-        "text": "Quantos quilômetros de altitude é considerada a Linha Kármán (fronteira do espaço)?",
-        "answer": 100,
-        "unit": "km",
-        "fact": "Definida pela Federação Aeronáutica Internacional.",
-        "source": "FAI Federation"
-      },
-      {
-        "id": "q143",
-        "text": "Em que ano foi inaugurada a Torre Eiffel em Paris?",
-        "answer": 1889,
-        "unit": "ano",
-        "fact": "Construída para a Exposição Universal de 1889.",
-        "source": "La Tour Eiffel Official"
-      },
-      {
-        "id": "q145",
-        "text": "Em que ano o muro de Berlim caiu, simbolizando o fim da Guerra Fria?",
-        "answer": 1989,
-        "unit": "ano",
-        "fact": "Caiu na noite de 9 de novembro de 1989.",
-        "source": "German Historical Museum"
-      },
-      {
         "id": "q146",
         "text": "Quantos quilômetros por segundo percorre a luz no vácuo?",
         "answer": 299792,
@@ -151,38 +79,6 @@ export const PACKS: Pack[] = [
         "source": "Archaeological Park of Pompeii"
       },
       {
-        "id": "q187",
-        "text": "Em que ano caiu a União Soviética (URSS)?",
-        "answer": 1991,
-        "unit": "ano",
-        "fact": "Dissolvida em dezembro de 1991.",
-        "source": "Historical Archives"
-      },
-      {
-        "id": "q190",
-        "text": "Em que ano Colombo chegou às Américas?",
-        "answer": 1492,
-        "unit": "ano",
-        "fact": "Desembarcou na ilha de Guanahani em outubro.",
-        "source": "History Channel"
-      },
-      {
-        "id": "q234",
-        "text": "Em que ano terminou a Guerra do Vietnã?",
-        "answer": 1975,
-        "unit": "ano",
-        "fact": "Com a queda de Saigon em 30 de abril.",
-        "source": "US National Archives"
-      },
-      {
-        "id": "q237",
-        "text": "Em que ano ocorreu a Revolução Russa que derrubou o Czar?",
-        "answer": 1917,
-        "unit": "ano",
-        "fact": "Conhecida pelas fases de Fevereiro e Outubro.",
-        "source": "Russian History Archives"
-      },
-      {
         "id": "q240",
         "text": "Quantos mililitros cabem em uma garrafa de vinho padrão?",
         "answer": 750,
@@ -191,44 +87,12 @@ export const PACKS: Pack[] = [
         "source": "International Organisation of Vine and Wine"
       },
       {
-        "id": "q242",
-        "text": "Em que ano Albert Einstein recebeu o Prêmio Nobel de Física?",
-        "answer": 1921,
-        "unit": "ano",
-        "fact": "Premiado pela explicação do efeito fotoelétrico.",
-        "source": "Nobel Prize Official"
-      },
-      {
-        "id": "q283",
-        "text": "Em que ano a bomba atômica foi lançada sobre Hiroshima?",
-        "answer": 1945,
-        "unit": "ano",
-        "fact": "Aconteceu no dia 6 de agosto de 1945.",
-        "source": "Hiroshima Peace Memorial"
-      },
-      {
         "id": "q286",
         "text": "Quantos quilômetros tem uma maratona oficial?",
         "answer": 42,
         "unit": "km",
         "fact": "Exatamente 42,195 quilômetros.",
         "source": "World Athletics"
-      },
-      {
-        "id": "q288",
-        "text": "Em que ano foi inaugurado o Canal do Panamá?",
-        "answer": 1914,
-        "unit": "ano",
-        "fact": "Conectando o Oceano Atlântico ao Oceano Pacífico.",
-        "source": "Panama Canal Authority"
-      },
-      {
-        "id": "q292",
-        "text": "Em que ano a expedição de Pedro Álvares Cabral chegou ao Brasil?",
-        "answer": 1500,
-        "unit": "ano",
-        "fact": "Desembarcaram em Porto Seguro em 22 de abril.",
-        "source": "Biblioteca Nacional Brasil"
       },
       {
         "id": "n2",
@@ -303,14 +167,6 @@ export const PACKS: Pack[] = [
         "source": "National Geographic"
       },
       {
-        "id": "d244",
-        "text": "Em que ano a população mundial chegou a 8 bilhões de pessoas?",
-        "answer": 2022,
-        "unit": "ano",
-        "fact": "Em 1800 o mundo tinha só 1 bilhão.",
-        "source": "ONU"
-      },
-      {
         "id": "d245",
         "text": "Em que ano antes de Cristo Cleópatra morreu?",
         "answer": 30,
@@ -325,14 +181,6 @@ export const PACKS: Pack[] = [
         "unit": "metros",
         "fact": "Quase três campos de futebol enfileirados.",
         "source": "Encyclopedia Titanica"
-      },
-      {
-        "id": "d247",
-        "text": "Em que ano os destroços do Titanic foram encontrados?",
-        "answer": 1985,
-        "unit": "ano",
-        "fact": "73 anos depois do naufrágio.",
-        "source": "Woods Hole Oceanographic Institution"
       },
       {
         "id": "d248",
@@ -383,44 +231,12 @@ export const PACKS: Pack[] = [
         "source": "Acordo Ortográfico de 1990"
       },
       {
-        "id": "d254",
-        "text": "Em que ano Graham Bell patenteou o telefone?",
-        "answer": 1876,
-        "unit": "ano",
-        "fact": "Muitos atribuem a invenção ao italiano Antonio Meucci.",
-        "source": "Escritório de Patentes dos EUA"
-      },
-      {
-        "id": "d255",
-        "text": "Em que ano Edison patenteou a lâmpada elétrica?",
-        "answer": 1879,
-        "unit": "ano",
-        "fact": "Ele testou milhares de filamentos, até bambu.",
-        "source": "Escritório de Patentes dos EUA"
-      },
-      {
-        "id": "d256",
-        "text": "Em que ano Karl Benz patenteou o primeiro carro a gasolina?",
-        "answer": 1886,
-        "unit": "ano",
-        "fact": "A esposa dele fez a primeira viagem longa, sem avisar.",
-        "source": "Mercedes-Benz"
-      },
-      {
         "id": "d257",
         "text": "Em que ano os irmãos Wright fizeram o primeiro voo de avião?",
         "answer": 1903,
         "unit": "ano",
         "fact": "Três anos antes do 14-Bis de Santos Dumont. A briga segue até hoje.",
         "source": "Smithsonian"
-      },
-      {
-        "id": "d258",
-        "text": "Em que ano caiu o Império Romano do Ocidente?",
-        "answer": 476,
-        "unit": "ano",
-        "fact": "O Império do Oriente durou mais mil anos.",
-        "source": "Britannica"
       },
       {
         "id": "d259",
@@ -445,14 +261,6 @@ export const PACKS: Pack[] = [
         "unit": "cm",
         "fact": "Ainda estava crescendo quando morreu, aos 22 anos.",
         "source": "Guinness World Records"
-      },
-      {
-        "id": "d262",
-        "text": "Em que ano o Brasil aboliu a escravidão?",
-        "answer": 1888,
-        "unit": "ano",
-        "fact": "Foi o último país das Américas a fazer isso.",
-        "source": "Lei Áurea"
       },
       {
         "id": "d263",
@@ -503,22 +311,6 @@ export const PACKS: Pack[] = [
         "source": "ONU"
       },
       {
-        "id": "d269",
-        "text": "Em que ano o Post-it chegou às lojas?",
-        "answer": 1980,
-        "unit": "ano",
-        "fact": "Nasceu de uma cola que \"deu errado\" por ser fraca demais.",
-        "source": "3M"
-      },
-      {
-        "id": "d270",
-        "text": "Em que ano a calça jeans foi patenteada?",
-        "answer": 1873,
-        "unit": "ano",
-        "fact": "Era roupa de trabalho para mineiros.",
-        "source": "Levi Strauss & Co."
-      },
-      {
         "id": "d271",
         "text": "Quantos graus a Torre de Pisa está inclinada hoje (aproximadamente)?",
         "answer": 4,
@@ -541,6 +333,182 @@ export const PACKS: Pack[] = [
         "unit": "ano",
         "fact": "No Uruguai, que também foi o campeão.",
         "source": "FIFA"
+      },
+      {
+        "id": "d350",
+        "text": "Com quantas pessoas numa sala a chance de duas fazerem aniversário no mesmo dia passa de 50%?",
+        "answer": 23,
+        "unit": "pessoas",
+        "fact": "Com 70 pessoas, a chance passa de 99,9%.",
+        "source": "paradoxo do aniversário (probabilidade)"
+      },
+      {
+        "id": "d351",
+        "text": "Quantas vezes seria preciso dobrar uma folha de papel ao meio pra pilha chegar à Lua?",
+        "answer": 42,
+        "unit": "dobras",
+        "fact": "Cada dobra dobra a espessura: 0,1 mm vira 440 mil km.",
+        "source": "cálculo: 0,1 mm × 2⁴²"
+      },
+      {
+        "id": "d352",
+        "text": "Quantos quintilhões de combinações tem um cubo mágico?",
+        "answer": 43,
+        "unit": "quintilhões",
+        "fact": "Girando uma vez por segundo, levaria mais que a idade do Universo pra passar por todas.",
+        "source": "matemática do cubo de Rubik"
+      },
+      {
+        "id": "d353",
+        "text": "Quantos movimentos bastam pra resolver qualquer cubo mágico embaralhado?",
+        "answer": 20,
+        "unit": "movimentos",
+        "fact": "É o \"número de Deus\", provado por computador em 2010.",
+        "source": "cube20.org"
+      },
+      {
+        "id": "d354",
+        "text": "Quantos bilhões de pessoas já viveram na Terra, desde o começo da humanidade?",
+        "answer": 117,
+        "unit": "bilhões",
+        "fact": "Os vivos de hoje são só uns 7% de todos que já existiram.",
+        "source": "Population Reference Bureau"
+      },
+      {
+        "id": "d355",
+        "text": "Quantos bebês nascem no mundo a cada minuto?",
+        "answer": 250,
+        "unit": "bebês",
+        "fact": "Mais de 130 milhões por ano.",
+        "source": "ONU"
+      },
+      {
+        "id": "d356",
+        "text": "Quantos centímetros a Torre Eiffel cresce no verão?",
+        "answer": 15,
+        "unit": "cm",
+        "fact": "O ferro dilata com o calor.",
+        "source": "Torre Eiffel (site oficial)"
+      },
+      {
+        "id": "d357",
+        "text": "Quantos metros de altura tem a Torre Eiffel, com as antenas?",
+        "answer": 330,
+        "unit": "metros",
+        "fact": "Foi a construção mais alta do mundo por 41 anos.",
+        "source": "Torre Eiffel (site oficial)"
+      },
+      {
+        "id": "d358",
+        "text": "Todo o ouro já extraído na história caberia num cubo de quantos metros de lado?",
+        "answer": 22,
+        "unit": "metros",
+        "fact": "Mais ou menos o tamanho de um prédio de 7 andares.",
+        "source": "World Gold Council"
+      },
+      {
+        "id": "d359",
+        "text": "Quantos litros de combustível um Boeing 747 gasta por quilômetro?",
+        "answer": 12,
+        "unit": "litros",
+        "fact": "Mas leva mais de 400 pessoas: por passageiro, sai menos que um carro.",
+        "source": "Boeing"
+      },
+      {
+        "id": "d360",
+        "text": "A quantos quilômetros de altura voa um avião comercial, em média?",
+        "answer": 11,
+        "unit": "km",
+        "fact": "Acima de quase todas as nuvens e tempestades.",
+        "source": "ANAC"
+      },
+      {
+        "id": "d361",
+        "text": "Quantos passageiros o Airbus A380 pode levar, no máximo?",
+        "answer": 853,
+        "unit": "passageiros",
+        "fact": "É o maior avião de passageiros do mundo.",
+        "source": "Airbus"
+      },
+      {
+        "id": "d362",
+        "text": "Quantos dias durou o voo mais longo da história, sem pousar?",
+        "answer": 64,
+        "unit": "dias",
+        "fact": "Em 1958, reabastecendo com um carro que corria embaixo do avião.",
+        "source": "Guinness World Records"
+      },
+      {
+        "id": "d363",
+        "text": "Quantos km/h atinge uma pessoa em queda livre, antes de abrir o paraquedas?",
+        "answer": 200,
+        "unit": "km/h",
+        "fact": "De cabeça pra baixo, passa de 300.",
+        "source": "USPA"
+      },
+      {
+        "id": "d364",
+        "text": "Quantos anos uma garrafa plástica leva pra se decompor no mar?",
+        "answer": 450,
+        "unit": "anos",
+        "fact": "E nem some de verdade: vira microplástico.",
+        "source": "NOAA"
+      },
+      {
+        "id": "d365",
+        "text": "Quantas línguas são faladas no mundo hoje (aproximadamente)?",
+        "answer": 7000,
+        "unit": "línguas",
+        "fact": "Metade delas deve sumir até o fim do século.",
+        "source": "Ethnologue"
+      },
+      {
+        "id": "d366",
+        "text": "Quantos anos vive, em média, um brasileiro?",
+        "answer": 76,
+        "unit": "anos",
+        "fact": "Em 1940, eram 45 anos.",
+        "source": "IBGE (2023)"
+      },
+      {
+        "id": "d367",
+        "text": "Quantos km/h voava o Concorde, o avião supersônico?",
+        "answer": 2179,
+        "unit": "km/h",
+        "fact": "Fazia Paris–Nova York em 3 horas e meia.",
+        "source": "Air France / British Airways"
+      },
+      {
+        "id": "d368",
+        "text": "Quantos zeros tem um googol?",
+        "answer": 100,
+        "unit": "zeros",
+        "fact": "O Google ganhou esse nome por causa dele (escrito errado).",
+        "source": "Google"
+      },
+      {
+        "id": "d369",
+        "text": "Por quantos bilhões de anos o Sol ainda vai brilhar?",
+        "answer": 5,
+        "unit": "bilhões de anos",
+        "fact": "Depois vira uma gigante vermelha e engole Mercúrio e Vênus.",
+        "source": "NASA"
+      },
+      {
+        "id": "d370",
+        "text": "Quantos quilômetros tem o Brasil de norte a sul, do Oiapoque ao Chuí?",
+        "answer": 4395,
+        "unit": "km",
+        "fact": "De leste a oeste é quase igual: 4.319 km.",
+        "source": "IBGE"
+      },
+      {
+        "id": "d371",
+        "text": "Quantas vezes Portugal cabe dentro do Brasil?",
+        "answer": 92,
+        "unit": "vezes",
+        "fact": "Só Minas Gerais já é mais de 6 Portugais.",
+        "source": "IBGE / INE Portugal"
       }
     ]
   },
@@ -3473,6 +3441,22 @@ export const PACKS: Pack[] = [
     "tint": "#D9C8FF",
     "questions": [
       {
+        "id": "q78",
+        "text": "Quantos elementos químicos existem na Tabela Periódica atual?",
+        "answer": 118,
+        "unit": "elementos",
+        "fact": "O mais recente nomeado foi o Oganessônio (Og).",
+        "source": "IUPAC Periodic Table"
+      },
+      {
+        "id": "q142",
+        "text": "Quantos quilômetros de altitude é considerada a Linha Kármán (fronteira do espaço)?",
+        "answer": 100,
+        "unit": "km",
+        "fact": "Definida pela Federação Aeronáutica Internacional.",
+        "source": "FAI Federation"
+      },
+      {
         "id": "n269",
         "text": "Quantos graus Celsius abaixo de zero é a temperatura do Zero Absoluto em Celsius?",
         "answer": 273,
@@ -5227,6 +5211,14 @@ export const PACKS: Pack[] = [
     "tint": "#E2C8FF",
     "questions": [
       {
+        "id": "q77",
+        "text": "Quantas teclas tem um piano acústico padrão?",
+        "answer": 88,
+        "unit": "teclas",
+        "fact": "Sendo 52 brancas e 36 pretas.",
+        "source": "Steinway & Sons Technical Specs"
+      },
+      {
         "id": "d172",
         "text": "Com quantos anos Mozart compôs as primeiras músicas?",
         "answer": 5,
@@ -5612,6 +5604,201 @@ export const PACKS: Pack[] = [
         "unit": "bilhões de dólares",
         "fact": "Em 2013. O Snapchat tinha 2 anos.",
         "source": "imprensa internacional"
+      }
+    ]
+  },
+  {
+    "id": "historia",
+    "title": "história",
+    "tagline": "datas que todo mundo jura que sabe",
+    "premium": true,
+    "isNew": true,
+    "icon": "hourglass",
+    "tint": "#F2D6A2",
+    "questions": [
+      {
+        "id": "q76",
+        "text": "Em que ano terminou a Segunda Guerra Mundial?",
+        "answer": 1945,
+        "unit": "ano",
+        "fact": "A Alemanha se rendeu em maio e o Japão em setembro.",
+        "source": "Imperial War Museums"
+      },
+      {
+        "id": "q79",
+        "text": "Em que ano começou a Primeira Guerra Mundial?",
+        "answer": 1914,
+        "unit": "ano",
+        "fact": "Iniciada após o assassinato do arquiduque Francisco Ferdinando.",
+        "source": "History Channel / WWI"
+      },
+      {
+        "id": "q138",
+        "text": "Em que ano ocorreu a queda da Bastilha na Revolução Francesa?",
+        "answer": 1789,
+        "unit": "ano",
+        "fact": "Aconteceu em 14 de julho de 1789.",
+        "source": "French National Archives"
+      },
+      {
+        "id": "q140",
+        "text": "Em que ano Albert Einstein publicou a Teoria da Relatividade Restrita?",
+        "answer": 1905,
+        "unit": "ano",
+        "fact": "Conhecido como o seu 'Ano Miraculoso' (Annus Mirabilis).",
+        "source": "Nobel Prize Archives"
+      },
+      {
+        "id": "q143",
+        "text": "Em que ano foi inaugurada a Torre Eiffel em Paris?",
+        "answer": 1889,
+        "unit": "ano",
+        "fact": "Construída para a Exposição Universal de 1889.",
+        "source": "La Tour Eiffel Official"
+      },
+      {
+        "id": "q145",
+        "text": "Em que ano o muro de Berlim caiu, simbolizando o fim da Guerra Fria?",
+        "answer": 1989,
+        "unit": "ano",
+        "fact": "Caiu na noite de 9 de novembro de 1989.",
+        "source": "German Historical Museum"
+      },
+      {
+        "id": "q187",
+        "text": "Em que ano caiu a União Soviética (URSS)?",
+        "answer": 1991,
+        "unit": "ano",
+        "fact": "Dissolvida em dezembro de 1991.",
+        "source": "Historical Archives"
+      },
+      {
+        "id": "q190",
+        "text": "Em que ano Colombo chegou às Américas?",
+        "answer": 1492,
+        "unit": "ano",
+        "fact": "Desembarcou na ilha de Guanahani em outubro.",
+        "source": "History Channel"
+      },
+      {
+        "id": "q234",
+        "text": "Em que ano terminou a Guerra do Vietnã?",
+        "answer": 1975,
+        "unit": "ano",
+        "fact": "Com a queda de Saigon em 30 de abril.",
+        "source": "US National Archives"
+      },
+      {
+        "id": "q237",
+        "text": "Em que ano ocorreu a Revolução Russa que derrubou o Czar?",
+        "answer": 1917,
+        "unit": "ano",
+        "fact": "Conhecida pelas fases de Fevereiro e Outubro.",
+        "source": "Russian History Archives"
+      },
+      {
+        "id": "q242",
+        "text": "Em que ano Albert Einstein recebeu o Prêmio Nobel de Física?",
+        "answer": 1921,
+        "unit": "ano",
+        "fact": "Premiado pela explicação do efeito fotoelétrico.",
+        "source": "Nobel Prize Official"
+      },
+      {
+        "id": "q283",
+        "text": "Em que ano a bomba atômica foi lançada sobre Hiroshima?",
+        "answer": 1945,
+        "unit": "ano",
+        "fact": "Aconteceu no dia 6 de agosto de 1945.",
+        "source": "Hiroshima Peace Memorial"
+      },
+      {
+        "id": "q288",
+        "text": "Em que ano foi inaugurado o Canal do Panamá?",
+        "answer": 1914,
+        "unit": "ano",
+        "fact": "Conectando o Oceano Atlântico ao Oceano Pacífico.",
+        "source": "Panama Canal Authority"
+      },
+      {
+        "id": "q292",
+        "text": "Em que ano a expedição de Pedro Álvares Cabral chegou ao Brasil?",
+        "answer": 1500,
+        "unit": "ano",
+        "fact": "Desembarcaram em Porto Seguro em 22 de abril.",
+        "source": "Biblioteca Nacional Brasil"
+      },
+      {
+        "id": "d244",
+        "text": "Em que ano a população mundial chegou a 8 bilhões de pessoas?",
+        "answer": 2022,
+        "unit": "ano",
+        "fact": "Em 1800 o mundo tinha só 1 bilhão.",
+        "source": "ONU"
+      },
+      {
+        "id": "d247",
+        "text": "Em que ano os destroços do Titanic foram encontrados?",
+        "answer": 1985,
+        "unit": "ano",
+        "fact": "73 anos depois do naufrágio.",
+        "source": "Woods Hole Oceanographic Institution"
+      },
+      {
+        "id": "d254",
+        "text": "Em que ano Graham Bell patenteou o telefone?",
+        "answer": 1876,
+        "unit": "ano",
+        "fact": "Muitos atribuem a invenção ao italiano Antonio Meucci.",
+        "source": "Escritório de Patentes dos EUA"
+      },
+      {
+        "id": "d255",
+        "text": "Em que ano Edison patenteou a lâmpada elétrica?",
+        "answer": 1879,
+        "unit": "ano",
+        "fact": "Ele testou milhares de filamentos, até bambu.",
+        "source": "Escritório de Patentes dos EUA"
+      },
+      {
+        "id": "d256",
+        "text": "Em que ano Karl Benz patenteou o primeiro carro a gasolina?",
+        "answer": 1886,
+        "unit": "ano",
+        "fact": "A esposa dele fez a primeira viagem longa, sem avisar.",
+        "source": "Mercedes-Benz"
+      },
+      {
+        "id": "d258",
+        "text": "Em que ano caiu o Império Romano do Ocidente?",
+        "answer": 476,
+        "unit": "ano",
+        "fact": "O Império do Oriente durou mais mil anos.",
+        "source": "Britannica"
+      },
+      {
+        "id": "d262",
+        "text": "Em que ano o Brasil aboliu a escravidão?",
+        "answer": 1888,
+        "unit": "ano",
+        "fact": "Foi o último país das Américas a fazer isso.",
+        "source": "Lei Áurea"
+      },
+      {
+        "id": "d269",
+        "text": "Em que ano o Post-it chegou às lojas?",
+        "answer": 1980,
+        "unit": "ano",
+        "fact": "Nasceu de uma cola que \"deu errado\" por ser fraca demais.",
+        "source": "3M"
+      },
+      {
+        "id": "d270",
+        "text": "Em que ano a calça jeans foi patenteada?",
+        "answer": 1873,
+        "unit": "ano",
+        "fact": "Era roupa de trabalho para mineiros.",
+        "source": "Levi Strauss & Co."
       }
     ]
   },

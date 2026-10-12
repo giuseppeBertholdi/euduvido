@@ -7,6 +7,7 @@ import { Lives } from '@/components/brand';
 import { Icon } from '@/components/Icon';
 import { Btn, Label, Raised, Title, TopBar, tapLight } from '@/components/ui';
 import { createMatch, LIVES_OPTIONS, MAX_PLAYERS, MIN_PLAYERS, TIMER_OPTIONS, type Player } from '@/game/engine';
+import { starterFirst } from '@/game/highlights';
 import { freshPool } from '@/game/played';
 import { offerIfExhausted } from '@/features/paywall/offerExhausted';
 import { PACKS } from '@/game/questions';
@@ -45,7 +46,9 @@ export default function Setup() {
 
   const start = () => {
     app.set({ lastPlayers: named, lives, timer, packs });
-    app.setMatch(createMatch({ players: named, pool: fresh.pool, lives, turnSeconds: timer, rng: Math.random }));
+    const m = createMatch({ players: named, pool: fresh.pool, lives, turnSeconds: timer, rng: Math.random });
+    const deck = starterFirst(m.deck, app.played);
+    app.setMatch({ ...m, deck, question: deck[0] });
     analytics.track('match_started', { mode: 'local', rematch: false, players: named.length, lives, timer, packs, fresh: fresh.fresh, recycled: fresh.recycled });
     router.replace('/game');
     const offeredAt = offerIfExhausted({ premium: app.premium, pool, played: app.played, lastOfferAt: app.exhaustedOfferAt }, 'setup');

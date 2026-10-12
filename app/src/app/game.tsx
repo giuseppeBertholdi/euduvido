@@ -5,6 +5,7 @@ import { useMatchEnd } from '@/features/engagement/useMatchEnd';
 import { MatchScreen } from '@/features/match/MatchScreen';
 import { createMatch, publicState, reduce, type Action } from '@/game/engine';
 import { offerIfExhausted } from '@/features/paywall/offerExhausted';
+import { starterFirst } from '@/game/highlights';
 import { freshPool } from '@/game/played';
 import { PACKS } from '@/game/questions';
 import { analytics } from '@/services/analytics';
@@ -33,7 +34,9 @@ export default function Game() {
     const all = PACKS.filter((p) => packs.includes(p.id) && (premium || !p.premium)).flatMap((p) => p.questions);
     const base = all.length ? all : PACKS[0].questions;
     const { pool, fresh, recycled } = freshPool(base, played, avoidRepeats);
-    setMatch(createMatch({ players: match.players, pool, lives: match.startLives, turnSeconds: match.turnSeconds, rng: Math.random }));
+    const m = createMatch({ players: match.players, pool, lives: match.startLives, turnSeconds: match.turnSeconds, rng: Math.random });
+    const deck = starterFirst(m.deck, played);
+    setMatch({ ...m, deck, question: deck[0] });
     analytics.track('match_started', { mode: 'local', rematch: true, players: match.players.length, lives: match.startLives, timer: match.turnSeconds, packs, fresh, recycled });
     const offeredAt = offerIfExhausted({ premium, pool: base, played, lastOfferAt: exhaustedOfferAt }, 'rematch');
     if (offeredAt) set({ exhaustedOfferAt: offeredAt });

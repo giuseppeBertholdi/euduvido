@@ -119,6 +119,24 @@ const EXCLUDE = {
 
 /** Correções de texto/unidade/resposta. */
 const FIX = {
+  // o clássico é a vitrine do app (é o pacote grátis): datas de livro de escola vão pro pacote história
+  76: { pacote: 'história' },
+  79: { pacote: 'história' },
+  138: { pacote: 'história' },
+  140: { pacote: 'história' },
+  143: { pacote: 'história' },
+  145: { pacote: 'história' },
+  187: { pacote: 'história' },
+  190: { pacote: 'história' },
+  234: { pacote: 'história' },
+  237: { pacote: 'história' },
+  242: { pacote: 'história' },
+  283: { pacote: 'história' },
+  288: { pacote: 'história' },
+  292: { pacote: 'história' },
+  77: { pacote: 'música' },
+  78: { pacote: 'ciência & espaço' },
+  142: { pacote: 'ciência & espaço' },
   27: { pergunta: 'Quantas vértebras tem o pescoço de uma girafa?' },
   29: { pergunta: 'Quantos braços e tentáculos, somados, tem uma lula?', unidade: 'braços e tentáculos' },
   150: { pergunta: 'Em que ano o Vesúvio soterrou a cidade de Pompeia?' },
@@ -131,6 +149,9 @@ const FIX = {
   179: { pergunta: 'Quantas horas de vídeo são enviadas ao YouTube a cada minuto?' },
   270: { pergunta: 'Quantos centímetros de comprimento tem o esôfago de um adulto?' },
 };
+
+/** Lote 2 do Claude: o que sai do clássico (vitrine) e vai pro pacote história. */
+const FIX_4 = Object.fromEntries([244, 247, 254, 255, 256, 258, 262, 269, 270].map((line) => [line, { pacote: 'história' }]));
 
 /** Segundo arquivo (content/perguntas-2.csv). */
 const DUP = 'repetida do primeiro arquivo';
@@ -220,7 +241,7 @@ const SOURCES = [
   // lote inicial escrito pelo Claude (fatos estáveis, com fonte): futebol, anos 90/2000, memes, picante
   { file: 'content/perguntas-3.csv', prefix: 'c', exclude: { 25: 'óbvia (5 Power Rangers)' }, fix: {} },
   // lote 2 do Claude (out/2026): fatos conferidos, com fonte; reforça os pacotes pequenos e cria TV, música, dinheiro e mundo
-  { file: 'content/perguntas-4.csv', prefix: 'd', exclude: {}, fix: {} },
+  { file: 'content/perguntas-4.csv', prefix: 'd', exclude: {}, fix: FIX_4 },
 ];
 
 /** Metadados dos pacotes (ordem de exibição). */
@@ -240,6 +261,7 @@ const PACKS = [
   { id: 'tv', name: 'novelas & TV', title: 'novelas & TV', tagline: 'quem viu, viu', premium: true, isNew: true, icon: 'tv', tint: '#FFD0A8' },
   { id: 'musica', name: 'música', title: 'música', tagline: 'do hino ao funk', premium: true, isNew: true, icon: 'note', tint: '#E2C8FF' },
   { id: 'dinheiro', name: 'dinheiro', title: 'dinheiro', tagline: 'quanto custa? mais do que você acha', premium: true, isNew: true, icon: 'money', tint: '#C8EFA0' },
+  { id: 'historia', name: 'história', title: 'história', tagline: 'datas que todo mundo jura que sabe', premium: true, isNew: true, icon: 'hourglass', tint: '#F2D6A2' },
   { id: 'mundo', name: 'pelo mundo', title: 'pelo mundo', tagline: 'o planeta é maior que o seu bairro', premium: true, isNew: true, icon: 'globe', tint: '#A8DCFF' },
 ];
 
@@ -306,7 +328,7 @@ export type Pack = {
   premium: boolean;
   isNew?: boolean;
   /** Ícone (ver \`src/components/Icon.tsx\`) e cor do pacote. */
-  icon: 'bulb' | 'brasil' | 'paw' | 'heart' | 'cursor' | 'cup' | 'bolt' | 'planet' | 'ball' | 'cassette' | 'meme' | 'pepper' | 'tv' | 'note' | 'money' | 'globe';
+  icon: 'bulb' | 'brasil' | 'paw' | 'heart' | 'cursor' | 'cup' | 'bolt' | 'planet' | 'ball' | 'cassette' | 'meme' | 'pepper' | 'tv' | 'note' | 'money' | 'globe' | 'hourglass';
   tint: string;
   questions: Question[];
 };

@@ -208,6 +208,13 @@ const ICONS = {
       <Path d="M3 12h18M12 3c2.4 2.5 3.6 5.5 3.6 9s-1.2 6.5-3.6 9c-2.4-2.5-3.6-5.5-3.6-9S9.6 5.5 12 3z" stroke={k} />
     </>
   ),
+  hourglass: (k, a) => (
+    <>
+      <Path d="M7 3.5h10M7 20.5h10" stroke={k} />
+      <Path d="M8 3.5c0 4 4 5.5 4 8.5s-4 4.5-4 8.5h8c0-4-4-5.5-4-8.5s4-4.5 4-8.5z" fill={a} stroke={k} />
+      <Path d="M10 18.5c.6-1.2 1.3-1.8 2-1.8s1.4.6 2 1.8" stroke={k} />
+    </>
+  ),
 } satisfies Record<string, Draw>;
 
 export type IconName = keyof typeof ICONS;
