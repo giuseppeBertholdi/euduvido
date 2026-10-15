@@ -1,0 +1,12 @@
+{
+  "name": "eu-duvido-tiktok",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "photos": "node native.mjs photos",
+    "render": "node native.mjs render"
+  },
+  "dependencies": {
+    "@resvg/resvg-js": "^2.6.2"
+  }
+}

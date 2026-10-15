@@ -1,0 +1,67 @@
+{
+  "slug": "amigos-em-casa",
+  "query": "o que fazer com os amigos em casa",
+  "caption": "o que fazer com os amigos em casa quando ninguém quer gastar 😭 quanto vocês chutaram na banana? 👇 #oquefazercomosamigos #amigosemcasa #jogoscomamigos #rolêemcasa #amigos",
+  "note": "Busca de intenção (rolê barato). O 5 é a banana colada na parede (6 milhões de dólares, Sotheby's 2024, o comprador comeu). Absurdo puro, puxa 'eu faço uma dessas'.",
+  "slides": [
+    {
+      "photo": "hook",
+      "prompt": "A small apartment living room crowded with friends sitting on the floor and on cushions, a pot of homemade popcorn and cheap soda bottles, someone with arms open mid-story and everyone reacting.",
+      "pt": {
+        "title": "o que fazer com os amigos em casa (sem gastar nada)",
+        "body": "(testado com 0 reais e muita gritaria)"
+      }
+    },
+    {
+      "photo": "fort",
+      "prompt": "Friends in their 20s inside a huge blanket fort built with chairs and sheets in a living room, faces lit by a phone flashlight, laughing.",
+      "pt": {
+        "title": "1. cabaninha de lençol",
+        "body": "ninguém tem 8 anos. todo mundo entrou. ninguém quis sair"
+      }
+    },
+    {
+      "photo": "talent",
+      "prompt": "A guy on a coffee table as a stage, doing a dramatic pose with a hairbrush as a microphone, friends on the couch holding up paper score cards with numbers (not readable) and booing.",
+      "pt": {
+        "title": "2. show de talentos com nota",
+        "body": "o rafa ganhou fazendo barulho de modem. nota 10 unânime"
+      }
+    },
+    {
+      "photo": "cook",
+      "prompt": "Friends crowded in a tiny kitchen, one guy proudly holding a weird-looking sandwich, the others with disgusted but curious faces, a messy counter.",
+      "pt": {
+        "title": "3. masterchef da geladeira",
+        "body": "só vale o que tem na geladeira. saiu um misto de goiabada. foi aprovado"
+      }
+    },
+    {
+      "photo": "photos",
+      "prompt": "Friends huddled together on a couch looking at an old printed photo album, one girl pointing at a photo and screaming with laughter while the guy next to her covers his face in shame.",
+      "pt": {
+        "title": "4. noite do álbum de fotos",
+        "body": "ninguém sai ileso da fase franjinha de 2012"
+      }
+    },
+    {
+      "photo": "doubt",
+      "prompt": "A girl sitting on a cushion on the floor stands up halfway and points at a guy, yelling with her mouth wide open; the guy holds a phone against his chest with a smug grin; the others with hands on their heads.",
+      "pt": {
+        "title": "5. o do EU DUVIDO",
+        "body": "sai uma pergunta com resposta em número. cada um aumenta o lance ou grita EU DUVIDO. \"por quanto foi leiloada a banana colada na parede com fita?\" o rafa: mil dólares ou mais. a nina duvidou. foram 6 milhões."
+      }
+    },
+    {
+      "photo": "rematch",
+      "ref": "doubt",
+      "prompt": "Later the same night, same room and same people as the reference photo. The guy taped a banana to the wall with duct tape and stands next to it presenting it like an art dealer, while the friends behind him laugh and film with phones (screens facing away).",
+      "pt": {
+        "title": "o rafa abriu uma galeria de arte na sala",
+        "body": "(o comprador comeu a banana. a nossa também foi comida)",
+        "cta": "o 5 é o Eu Duvido! · tá na App Store"
+      }
+    }
+  ],
+  "style": "Candid photo taken on an iPhone with the direct flash on, at night. Harsh flash light on faces, background falling off into darkness, slight motion blur, visible grain, crooked amateur framing, cluttered and lived-in, like a photo dump a friend posted the next day. Brazilian people in their 20s in casual clothes, nobody posing for the camera, genuine expressions. No text, no captions, no logos, no watermark, no readable screens."
+}

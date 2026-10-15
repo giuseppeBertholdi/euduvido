@@ -1,0 +1,68 @@
+{
+  "slug": "brincadeiras-com-amigos",
+  "query": "brincadeiras com amigos",
+  "caption": "brincadeiras com amigos que a gente não recomenda (mas recomenda) 😭 e aí, quantas dobras vocês chutaram? 👇 salva pro próximo rolê #brincadeirascomamigos #jogosparajogarcomamigos #rolê #amigos #noitedejogos",
+  "note": "Busca que trouxe 18% das views do vencedor. Mesma forma: listicle de 5, o app é o 5 e só ganha nome no fim. Brincadeiras pouco batidas (nenhuma das que já foram postadas). O 5 usa a pergunta da folha dobrada até a Lua (42), que puxa briga nos comentários ('não dá pra dobrar mais que 7 vezes').",
+  "slides": [
+    {
+      "photo": "hook",
+      "prompt": "A small apartment living room at 2am, six friends on a worn couch and on the floor between empty beer cans and a pizza box; one guy stands up with both arms raised in outrage while a girl on the couch laughs so hard she covers her face with a cushion, the others shouting over each other.",
+      "pt": {
+        "title": "brincadeiras com amigos que terminam em discussão",
+        "body": "(a gente testou todas. a amizade sobreviveu. quase)"
+      }
+    },
+    {
+      "photo": "count",
+      "prompt": "Friends sitting in a circle on a rug with their eyes closed, concentrating very seriously; two of them have their mouths open at the exact same moment and the others are opening their eyes and starting to groan and laugh.",
+      "pt": {
+        "title": "1. contar até 20 sem combinar",
+        "body": "um número por vez, sem ordem. se dois falam junto, volta pro 1. a gente chegou no 17 umas 40 vezes"
+      }
+    },
+    {
+      "photo": "whisper",
+      "prompt": "A girl whispering into a guy's ear with her hand cupped around her mouth, the guy has a horrified, scandalized face; behind them a line of friends waiting their turn, one already laughing.",
+      "pt": {
+        "title": "2. telefone sem fio",
+        "body": "começou com \"a bia comprou pão\". terminou numa acusação séria contra a bia"
+      }
+    },
+    {
+      "photo": "story",
+      "prompt": "Friends on the floor around a low table; one guy points accusingly at the friend next to him while speaking, the accused friend has his hands open in disbelief, the rest are crying with laughter.",
+      "pt": {
+        "title": "3. a história de uma palavra cada",
+        "body": "não importa como começa. no fim alguém do grupo sempre vai preso"
+      }
+    },
+    {
+      "photo": "porrinha",
+      "prompt": "Close candid shot over a plastic table: four friends holding closed fists out over the table, playing the Brazilian matchstick guessing game porrinha; a few wooden matchsticks on the table, one guy stares at another with intense suspicion, a girl hides a smirk.",
+      "pt": {
+        "title": "4. porrinha",
+        "body": "o caio jura que tem um método. o método do caio perdeu 6 seguidas"
+      }
+    },
+    {
+      "photo": "doubt",
+      "prompt": "A girl sitting on the floor stands up halfway and points hard at a guy, yelling with her mouth wide open; the guy holds a phone against his chest with the screen hidden and a guilty grin; the other friends react with hands on their heads.",
+      "pt": {
+        "title": "5. o do EU DUVIDO",
+        "body": "sai uma pergunta com resposta em número. cada um aumenta o lance ou grita EU DUVIDO. \"quantas dobras numa folha de papel pra chegar na lua?\" o caio: 1.000 ou mais. a bia duvidou. são 42."
+      }
+    },
+    {
+      "photo": "rematch",
+      "ref": "doubt",
+      "prompt": "Later the same night, in the same room with the same people as the reference photo. The guy from the reference sits on the floor doing math on a paper napkin with a pen, completely refusing to accept it, while the girl from the reference stands over him laughing and the friends in the back film him with their phones (screens facing away).",
+      "pt": {
+        "title": "o caio tá refazendo a conta até hoje",
+        "body": "(0,1 mm dobrado 42 vezes dá 440 mil km. a lua tá a 384 mil)",
+        "cta": "o 5 é o Eu Duvido! · tá na App Store",
+        "soon": "o 5 é o Eu Duvido! · comenta EU que eu te aviso"
+      }
+    }
+  ],
+  "style": "Candid photo taken on an iPhone with the direct flash on, at night. Harsh flash light on faces, background falling off into darkness, slight motion blur, visible grain, crooked amateur framing, cluttered and lived-in, like a photo dump a friend posted the next day. Brazilian people in their 20s in casual clothes, nobody posing for the camera, genuine expressions. No text, no captions, no logos, no watermark, no readable screens."
+}

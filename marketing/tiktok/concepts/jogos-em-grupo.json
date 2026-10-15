@@ -1,0 +1,67 @@
+{
+  "slug": "jogos-em-grupo",
+  "query": "jogos para jogar em grupo",
+  "caption": "jogos para jogar em grupo que acabam com qualquer climão 😭 quantos bitcoins vocês chutaram? 👇 #jogosparajogaremgrupo #jogoscomamigos #brincadeirasemgrupo #rolê #amigos",
+  "note": "Busca genérica de alto volume. O 5 é a pizza de bitcoin (10.000), que puxa 'hoje isso valeria X milhões' nos comentários. Fonte: Bitcoin Pizza Day (22/05/2010).",
+  "slides": [
+    {
+      "photo": "hook",
+      "prompt": "A crowded kitchen at a house party late at night, eight friends packed around a kitchen island with half-empty cups; two of them are mid-argument pointing at each other while the rest laugh, one girl filming with her phone (screen facing away).",
+      "pt": {
+        "title": "jogos para jogar em grupo que ninguém da roda esquece",
+        "body": "(alguns por bons motivos. outros não)"
+      }
+    },
+    {
+      "photo": "mime",
+      "prompt": "A guy standing in the middle of a living room acting out something absurd with his whole body, arms like wings and one leg up, while friends on the couch shout guesses with confused faces.",
+      "pt": {
+        "title": "1. mímica só com filme brasileiro",
+        "body": "alguém tentou fazer \"tropa de elite 2\" com as mãos. ninguém acertou. até hoje"
+      }
+    },
+    {
+      "photo": "alphabet",
+      "prompt": "Friends sitting in a circle on the floor, one girl with her eyes closed and fingers on her temples trying to think, the others counting down on their fingers and grinning.",
+      "pt": {
+        "title": "2. stop falado",
+        "body": "letra M, categoria fruta. o pedro falou \"melancia\" depois de 9 segundos e quis comemorar"
+      }
+    },
+    {
+      "photo": "who",
+      "prompt": "Friends around a table each with a sticky note stuck on their forehead with a word written on it (not readable), one guy asking a question with a hopeful face while the others hold back laughter.",
+      "pt": {
+        "title": "3. quem sou eu com post-it",
+        "body": "a júlia foi \"a mãe do lucas\" por 20 minutos e não descobriu"
+      }
+    },
+    {
+      "photo": "hum",
+      "prompt": "A girl humming with her eyes closed and her hand on her chest, very committed, while three friends lean in squinting, one already holding up a finger to answer.",
+      "pt": {
+        "title": "4. adivinha a música no hum",
+        "body": "todo mundo canta zezé di camargo igual. todo mundo"
+      }
+    },
+    {
+      "photo": "doubt",
+      "prompt": "A guy standing up from a beanbag pointing at a friend and yelling with his mouth wide open, the friend holding a phone against his chest with a smug grin, others with hands on their heads.",
+      "pt": {
+        "title": "5. o do EU DUVIDO",
+        "body": "sai uma pergunta com resposta em número. cada um aumenta o lance ou grita EU DUVIDO. \"quantos bitcoins um cara pagou em 2 pizzas em 2010?\" o pedro: 50 ou mais. o lucas duvidou. foram 10.000."
+      }
+    },
+    {
+      "photo": "rematch",
+      "ref": "doubt",
+      "prompt": "Later the same night, same room and same people as the reference photo. The guy who yelled sits on the floor staring at a phone calculator in shock, hand over his mouth, while friends behind him lean over his shoulder in disbelief.",
+      "pt": {
+        "title": "o lucas tá calculando quanto valeria hoje",
+        "body": "(spoiler: dava pra comprar a pizzaria. e a rua)",
+        "cta": "o 5 é o Eu Duvido! · tá na App Store"
+      }
+    }
+  ],
+  "style": "Candid photo taken on an iPhone with the direct flash on, at night. Harsh flash light on faces, background falling off into darkness, slight motion blur, visible grain, crooked amateur framing, cluttered and lived-in, like a photo dump a friend posted the next day. Brazilian people in their 20s in casual clothes, nobody posing for the camera, genuine expressions. No text, no captions, no logos, no watermark, no readable screens."
+}

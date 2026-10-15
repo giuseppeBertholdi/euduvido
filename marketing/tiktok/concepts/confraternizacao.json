@@ -1,0 +1,68 @@
+{
+  "slug": "confraternizacao",
+  "query": "brincadeiras para confraternização",
+  "caption": "brincadeiras pra confraternização da firma que não são amigo secreto 🎄 manda pro grupo do trabalho 👇 #brincadeirasparaconfraternizacao #confraternizacao #confraternizacaodefimdeano #brincadeiras #firma",
+  "note": "Busca sazonal (out-dez sobe todo ano) e ninguém do nicho de jogos de festa ocupa. Utilidade pura: feito pra salvar e mandar no grupo do trabalho. O 5 usa a do chocolate (17.000 litros de água por kg).",
+  "slides": [
+    {
+      "photo": "hook",
+      "prompt": "An office end-of-year party in a cheap rented party room in Brazil: tinsel garland and a small plastic Christmas tree in the back, a long table with soda bottles and a tray of salgadinhos, coworkers in work clothes laughing loudly around the table, one guy with a Santa hat slightly crooked.",
+      "pt": {
+        "title": "brincadeiras pra confraternização que não são amigo secreto",
+        "body": "(salva e manda no grupo da firma)"
+      }
+    },
+    {
+      "photo": "onca",
+      "prompt": "Coworkers at the office party around the table; a man in a button-up shirt has just unwrapped a gift and holds up a tacky old-fashioned crocheted toilet roll cover in bright pink yarn, with a betrayed expression, while a woman next to him laughs with her hand over her mouth and others point at the gift.",
+      "pt": {
+        "title": "1. amigo da onça",
+        "body": "é amigo secreto, mas o presente tem que ser ruim. o gerente ganhou um porta-papel-higiênico de crochê e levou pra casa feliz"
+      }
+    },
+    {
+      "photo": "quote",
+      "prompt": "A woman stands at the head of the party table reading from a small folded piece of paper (nothing readable), while the coworkers around the table explode in laughter and one older man in a tie covers his face in shame.",
+      "pt": {
+        "title": "2. quem disse isso?",
+        "body": "alguém lê frases que o pessoal falou no trabalho durante o ano. todo mundo chuta quem foi. o chefe se entregou na terceira"
+      }
+    },
+    {
+      "photo": "bingo",
+      "prompt": "Coworkers sitting at the party table each holding a small handmade paper card with a pen (the cards are blurred and unreadable); one young woman stands up and raises her card triumphantly while the others protest.",
+      "pt": {
+        "title": "3. bingo da firma",
+        "body": "a cartela tem \"o estagiário cochilou\", \"alguém falou de planilha\", \"o chefe fez discurso\". a sala inteira gritou no discurso"
+      }
+    },
+    {
+      "photo": "chairs",
+      "prompt": "Musical chairs at the office party: a circle of plastic chairs, a guy in a dress shirt and a woman in blazer both sliding onto the same chair at the same time, colliding, others cheering and laughing around them.",
+      "pt": {
+        "title": "4. dança da cadeira",
+        "body": "parece infantil até o diretor financeiro dar um carrinho no rh"
+      }
+    },
+    {
+      "photo": "doubt",
+      "prompt": "At the office party table, a young woman with an intern badge on a lanyard points hard at a middle-aged man in a dress shirt and yells, mouth wide open; the man holds a phone flat on the table under his hand with the screen hidden and a guilty grin; coworkers around react with hands on their heads.",
+      "pt": {
+        "title": "5. o do EU DUVIDO",
+        "body": "um celular passando na mesa, sai uma pergunta com resposta em número. \"quantos litros de água pra fazer 1 kg de chocolate?\" o financeiro foi até 5.000. a estagiária duvidou. são 17 mil."
+      }
+    },
+    {
+      "photo": "rematch",
+      "ref": "doubt",
+      "prompt": "Later at the same office party, same people as the reference photo. The man in the dress shirt from the reference is kneeling next to the table with his hands pressed together, begging for a rematch, while the young woman with the intern badge laughs and holds the phone up out of his reach (screen facing away); coworkers in the back film it.",
+      "pt": {
+        "title": "o financeiro pediu revanche. perdeu de novo",
+        "body": "a estagiária agora é chamada de \"a auditoria\"",
+        "cta": "o 5 é o Eu Duvido! · tá na App Store",
+        "soon": "o 5 é o Eu Duvido! · comenta EU que eu te aviso"
+      }
+    }
+  ],
+  "style": "Candid photo taken on an iPhone with the direct flash on, at night. Harsh flash light on faces, background falling off into darkness, slight motion blur, visible grain, crooked amateur framing, cluttered and lived-in, like a photo dump a friend posted the next day. Brazilian people in their 20s in casual clothes, nobody posing for the camera, genuine expressions. No text, no captions, no logos, no watermark, no readable screens."
+}

@@ -1,0 +1,68 @@
+{
+  "slug": "jogos-de-bar",
+  "query": "jogos para jogar com amigos pessoalmente",
+  "caption": "jogos pra jogar com os amigos no bar, só precisa da mesa 🍻 e portugal no brasil, quanto vocês chutaram? 👇 #jogosparajogarcomamigos #jogoscomamigos #bar #rolê #amigos",
+  "note": "Long tail que apareceu nas buscas ('jogos para jogar com amigos pessoalmente'), no cenário mais brasileiro possível: mesa de bar, cerveja, garçom. O 5 é Portugal dentro do Brasil (92), que brasileiro adora discutir.",
+  "slides": [
+    {
+      "photo": "hook",
+      "prompt": "A crowded Brazilian boteco at night: a yellow plastic table on the sidewalk full of beer bottles, small glasses and a plate of fries; five friends around it, one guy slams his hand on the table laughing, a girl leans back with her mouth open in shock, a waiter passing in the background.",
+      "pt": {
+        "title": "jogos pra jogar com os amigos no bar",
+        "body": "(só precisa da mesa. e de alguém pra pagar a saideira)"
+      }
+    },
+    {
+      "photo": "porrinha",
+      "prompt": "Close candid shot over the yellow plastic bar table between beer bottles: three friends hold closed fists over the table playing porrinha with wooden matchsticks, one older uncle-type guy grins with absolute confidence, the girl next to him stares him down.",
+      "pt": {
+        "title": "1. porrinha",
+        "body": "a única coisa que todo tio brasileiro leva mais a sério que futebol"
+      }
+    },
+    {
+      "photo": "rps",
+      "prompt": "Two friends at the bar table locked in an intense rock-paper-scissors match, hands mid-throw, everyone else at the table leaning in and shouting, beer bottles everywhere.",
+      "pt": {
+        "title": "2. pedra, papel e tesoura da saideira",
+        "body": "quem perde pede a saideira. a melhor de 3 virou melhor de 15"
+      }
+    },
+    {
+      "photo": "count",
+      "prompt": "Friends around the bar table with their eyes closed, very focused, two of them opening their mouths at the same time; the waiter stands next to the table holding a tray, watching and visibly invested.",
+      "pt": {
+        "title": "3. contar até 20 sem combinar",
+        "body": "chegamos no 17 umas 40 vezes. o garçom começou a torcer"
+      }
+    },
+    {
+      "photo": "napkin",
+      "prompt": "A girl at the bar table drawing on a paper napkin with a pen (the drawing is a blurry scribble), the friends around her squinting at it and shouting guesses, one guy laughing with his head on the table.",
+      "pt": {
+        "title": "4. desenho no guardanapo",
+        "body": "imagem e ação sem tabuleiro. ninguém nunca acertou o que o léo desenha"
+      }
+    },
+    {
+      "photo": "doubt",
+      "prompt": "At the yellow plastic bar table, a guy stands up and points hard across the table at another guy, yelling with his mouth wide open; the accused guy holds a phone against his chest with the screen hidden and a smug grin; the friends react with hands on their heads, beer bottles everywhere.",
+      "pt": {
+        "title": "5. o do EU DUVIDO",
+        "body": "o celular passa na mesa, sai uma pergunta com resposta em número. \"quantas vezes portugal cabe no brasil?\" o léo: 30 ou mais. a duda: 50 ou mais. o caio gritou EU DUVIDO. são 92."
+      }
+    },
+    {
+      "photo": "rematch",
+      "ref": "doubt",
+      "prompt": "Later the same night at the same bar table with the same people as the reference photo. The guy who was yelling in the reference now hands his card to the waiter with a defeated face, paying the bill, while the friends laugh and film him with their phones (screens facing away).",
+      "pt": {
+        "title": "o caio pagou a saideira",
+        "body": "e ainda disse que portugal \"parece maior no mapa\"",
+        "cta": "o 5 é o Eu Duvido! · tá na App Store",
+        "soon": "o 5 é o Eu Duvido! · comenta EU que eu te aviso"
+      }
+    }
+  ],
+  "style": "Candid photo taken on an iPhone with the direct flash on, at night. Harsh flash light on faces, background falling off into darkness, slight motion blur, visible grain, crooked amateur framing, cluttered and lived-in, like a photo dump a friend posted the next day. Brazilian people in their 20s in casual clothes, nobody posing for the camera, genuine expressions. No text, no captions, no logos, no watermark, no readable screens."
+}
