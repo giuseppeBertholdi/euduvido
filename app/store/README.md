@@ -36,7 +36,7 @@
 > Termos: https://idoubtit.fun/euduvido/termos
 > Privacidade: https://idoubtit.fun/euduvido/privacidade
 
-**URLs:** marketing e suporte `https://idoubtit.fun/`, privacidade `https://idoubtit.fun/euduvido/privacidade`.
+**URLs:** marketing e suporte `https://idoubtit.fun/euduvido/` (mostra a mesma página da raiz, `https://idoubtit.fun/`), privacidade `https://idoubtit.fun/euduvido/privacidade`.
 
 ## Screenshots (`screenshots/pt-BR`, 1290 x 2796, iPhone 6,9")
 

@@ -16,7 +16,7 @@ Jogo de festa cresce em grupo: cada partida com PIN ou cada convite traz 2 a 7 p
 
 - [ ] **Link de campanha** no App Store Connect (Analytics > Fontes > Links de campanha). Um por canal: `ct=tiktok`, `ct=whatsapp`, `ct=tabnews`, `ct=reddit`, `ct=insta`. Sem isso não dá pra saber o que funciona.
 - [ ] **Bio do TikTok e do Instagram** com o link da loja e: "o jogo do EU DUVIDO! 👇".
-- [ ] **Site**: idoubtit.fun agora é o Eu Duvido! (o I Doubt It foi pra /idoubtit/). Troque a URL de marketing e de suporte no App Store Connect para `https://idoubtit.fun/` e ponha esse link na bio.
+- [x] **Site**: idoubtit.fun agora é o Eu Duvido! (o I Doubt It foi pra /idoubtit/; /euduvido/ continua funcionando, então nada muda no App Store Connect). Use `idoubtit.fun` na bio.
 - [ ] **Build 1.1.1** com o link da loja no convite da sala, no card do "na mosca" e no "Mandar o jogo pra galera" e "Avaliar" em Ajustes (já está no código). Sem isso, quem recebe o convite não tem como instalar.
 - [ ] **Avaliações**: os 10 primeiros amigos que jogarem, peça uma avaliação 5 estrelas com uma frase. Com menos de 5 avaliações a conversão da loja despenca.
 
