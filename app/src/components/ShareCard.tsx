@@ -26,7 +26,7 @@ export const ShareCard = forwardRef<View, { name: string; value: number; unit: s
       <Text style={styles.unit}>{unit}</Text>
       <Text style={styles.question}>{question}</Text>
       <Text style={styles.foot}>
-        sem saber. no chute. <Text style={{ color: colors.pinkInk }}>eu duvido!</Text>
+        sem saber. no chute. <Text style={{ color: colors.pinkInk }}>eu duvido!</Text> na App Store
       </Text>
     </View>
   );

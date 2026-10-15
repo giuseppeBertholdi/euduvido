@@ -27,6 +27,8 @@ export type Event =
   | 'room_created'
   | 'room_joined'
   | 'card_shared'
+  | 'invite_shared'
+  | 'review_tapped'
   | 'reminders_answered';
 
 type Props = Record<string, string | number | boolean | null | undefined | string[]>;

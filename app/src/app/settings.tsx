@@ -9,7 +9,9 @@ import { Icon, type IconName } from '@/components/Icon';
 import { Label, Raised, Title, TopBar, tapLight } from '@/components/ui';
 import { links } from '@/config/links';
 import { LIVES_OPTIONS, TIMER_OPTIONS } from '@/game/engine';
+import { analytics } from '@/services/analytics';
 import { askReminderPermission, rescheduleReminders } from '@/services/engagement/reminders';
+import { shareApp } from '@/services/invite';
 import { purchases } from '@/services/purchases';
 import { useApp } from '@/state/app';
 import { colors, fonts, radii } from '@/theme';
@@ -236,6 +238,20 @@ export default function Settings() {
           <Row icon="crown" label={app.premium ? 'Você é pro' : 'Conhecer o pro'} detail={app.premium ? 'todos os pacotes liberados' : 'todos os pacotes e salas com PIN'} onPress={() => router.push({ pathname: '/paywall', params: { source: 'settings' } })} />
           <Row icon="refresh" label="Restaurar compras" onPress={restore} right={restoring ? <ActivityIndicator color={colors.ink} /> : undefined} />
           <Row icon="timer" label="Gerenciar assinatura" detail="cancelar ou trocar de plano" onPress={() => void Linking.openURL(links.manageSubscriptions)} last />
+        </Section>
+
+        <Section title="espalha aí">
+          <Row icon="share" label="Mandar o jogo pra galera" detail="quanto mais gente, melhor a resenha" onPress={() => void shareApp()} />
+          <Row
+            icon="heart"
+            label="Avaliar na App Store"
+            detail="ajuda demais quem tá começando"
+            onPress={() => {
+              analytics.track('review_tapped');
+              void Linking.openURL(links.writeReview);
+            }}
+            last
+          />
         </Section>
 
         <Section title="sobre">
