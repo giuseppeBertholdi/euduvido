@@ -4,12 +4,13 @@ import { RethinkSans_700Bold } from '@expo-google-fonts/rethink-sans/700Bold';
 import { RethinkSans_800ExtraBold } from '@expo-google-fonts/rethink-sans/800ExtraBold';
 import { Syne_800ExtraBold } from '@expo-google-fonts/syne/800ExtraBold';
 import { useFonts } from 'expo-font';
-import { SplashScreen, Stack } from 'expo-router';
+import { SplashScreen, Stack, useGlobalSearchParams, usePathname, useSegments } from 'expo-router';
+import { PostHogProvider } from 'posthog-react-native';
 import { StatusBar } from 'expo-status-bar';
-import { useEffect } from 'react';
+import { useEffect, useRef, type ReactNode } from 'react';
 import { AppState } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-import { analytics } from '@/services/analytics';
+import { analytics, posthog } from '@/services/analytics';
 import { rescheduleReminders } from '@/services/engagement/reminders';
 import { purchases, storeMode } from '@/services/purchases';
 import { onlineEnabled } from '@/services/rooms';
@@ -20,8 +21,56 @@ import { colors } from '@/theme';
 
 void SplashScreen.preventAutoHideAsync();
 
+/** Uma tela por troca de rota: o nome é a rota do arquivo (`/pack/[id]`), o caminho e os parâmetros vão junto. */
+function useScreenTracking() {
+  const pathname = usePathname();
+  const segments = useSegments();
+  const params = useGlobalSearchParams();
+  useEffect(() => {
+    const route = `/${segments.join('/')}`;
+    const p = Object.fromEntries(Object.entries(params).map(([k, v]) => [`param_${k}`, Array.isArray(v) ? v.join(',') : v]));
+    analytics.screen(route === '/' ? '/index' : route, { path: pathname, ...p });
+    // segments e params mudam junto com o pathname
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [pathname]);
+}
+
+/** Quem é a pessoa: o id do Supabase (o mesmo do RevenueCat) e um retrato do uso, atualizado quando muda. */
+function usePerson() {
+  const app = useApp();
+  const person = {
+    name: app.name || null,
+    premium: app.premium,
+    onboarded: app.onboarded,
+    matches_finished: app.matchesFinished,
+    questions_played: app.played.length,
+    packs: app.packs,
+    lives: app.lives,
+    timer: app.timer,
+    sounds: app.sounds,
+    haptics: app.haptics,
+    reminders_on: app.remindersOn,
+    avoid_repeats: app.avoidRepeats,
+  };
+  const key = JSON.stringify(person);
+  const identified = useRef(false);
+  useEffect(() => {
+    if (!app.ready) return;
+    if (identified.current) return analytics.person(person);
+    identified.current = true;
+    const once = { first_open_at: app.firstOpenAt ? new Date(app.firstOpenAt).toISOString() : null };
+    (onlineEnabled ? ensureUserId() : Promise.reject(new Error('offline')))
+      .then((id) => analytics.identify(id, person, once))
+      .catch(() => analytics.person({ ...person, ...once }));
+    // o retrato inteiro está em `key`
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [app.ready, key]);
+}
+
 function Root() {
   const { ready, remindersOn, set, premium, onboarded, matchesFinished } = useApp();
+  useScreenTracking();
+  usePerson();
   const [fontsLoaded, fontError] = useFonts({ Syne_800ExtraBold, RethinkSans_500Medium, RethinkSans_600SemiBold, RethinkSans_700Bold, RethinkSans_800ExtraBold });
   const loaded = ready && (fontsLoaded || !!fontError);
 
@@ -87,13 +136,25 @@ function Root() {
   );
 }
 
+/** Sem chave (desenvolvimento), sem PostHog: o app roda igual. */
+function Analytics({ children }: { children: ReactNode }) {
+  if (!posthog) return <>{children}</>;
+  return (
+    <PostHogProvider client={posthog} autocapture={{ captureScreens: false, captureTouches: true }}>
+      {children}
+    </PostHogProvider>
+  );
+}
+
 export default function RootLayout() {
   return (
-    <SafeAreaProvider>
-      <AppProvider>
-        <StatusBar style="dark" />
-        <Root />
-      </AppProvider>
-    </SafeAreaProvider>
+    <Analytics>
+      <SafeAreaProvider>
+        <AppProvider>
+          <StatusBar style="dark" />
+          <Root />
+        </AppProvider>
+      </SafeAreaProvider>
+    </Analytics>
   );
 }

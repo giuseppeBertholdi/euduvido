@@ -13,6 +13,7 @@ import { Body, Btn, Chip, Label, Raised, Title } from '@/components/ui';
 import { formatDigits, formatValue, isActive, lastBid, minBid, playerById, standings, type Action, type PublicMatch } from '@/game/engine';
 import { PACKS, packTitleOf } from '@/game/questions';
 import { haptic } from '@/services/haptics';
+import { useRoundAnalytics } from '@/features/match/useRoundAnalytics';
 import { playSound } from '@/services/sound';
 import { colors, fonts, radii } from '@/theme';
 
@@ -45,6 +46,7 @@ export type MatchScreenProps = {
 
 export function MatchScreen(props: MatchScreenProps) {
   const { m } = props;
+  useRoundAnalytics(m, props.me, props.hostId);
   switch (m.phase) {
     case 'intro':
       return <Intro key={m.round} {...props} />;

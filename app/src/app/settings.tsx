@@ -73,6 +73,11 @@ function Segment<T extends string | number | null>({ options, value, onChange, r
 export default function Settings() {
   const insets = useSafeAreaInsets();
   const app = useApp();
+  /** Muda um ajuste e registra qual (o retrato da pessoa no PostHog se atualiza sozinho). */
+  const change = (patch: Partial<Pick<typeof app, 'name' | 'lives' | 'timer' | 'avoidRepeats' | 'sounds' | 'haptics' | 'played'>>) => {
+    for (const [k, v] of Object.entries(patch)) analytics.track('setting_changed', { setting: k, value: Array.isArray(v) ? v.length : (v as string | number | boolean | null) });
+    app.set(patch);
+  };
   const [name, setName] = useState(app.name);
   const [restoring, setRestoring] = useState(false);
   const version = Constants.expoConfig?.version ?? '1.0.0';
@@ -104,7 +109,7 @@ export default function Settings() {
               <TextInput
                 value={name}
                 onChangeText={(t) => setName(t.slice(0, 12))}
-                onEndEditing={() => app.set({ name: name.trim() })}
+                onEndEditing={() => name.trim() !== app.name && change({ name: name.trim() })}
                 placeholder="teu nome"
                 placeholderTextColor={colors.inkMuted}
                 style={styles.input}
@@ -122,7 +127,7 @@ export default function Settings() {
             <Segment
               options={LIVES_OPTIONS}
               value={app.lives as (typeof LIVES_OPTIONS)[number]}
-              onChange={(v) => app.set({ lives: v })}
+              onChange={(v) => change({ lives: v })}
               label={(v) => `${v} vidas`}
               render={(v) => <Lives left={v} total={v} size={16} />}
             />
@@ -133,7 +138,7 @@ export default function Settings() {
             <Segment
               options={TIMER_OPTIONS}
               value={app.timer as (typeof TIMER_OPTIONS)[number]}
-              onChange={(v) => app.set({ timer: v })}
+              onChange={(v) => change({ timer: v })}
               label={(v) => (v ? `${v} segundos` : 'sem timer')}
               render={(v) => <Text style={styles.segText}>{v ? `${v}s` : 'sem'}</Text>}
             />
@@ -145,7 +150,7 @@ export default function Settings() {
             right={
               <Switch
                 value={app.avoidRepeats}
-                onValueChange={(v) => app.set({ avoidRepeats: v })}
+                onValueChange={(v) => change({ avoidRepeats: v })}
                 trackColor={{ true: colors.ink, false: colors.line }}
                 thumbColor={app.avoidRepeats ? colors.yellow : colors.surface}
                 ios_backgroundColor={colors.line}
@@ -161,7 +166,7 @@ export default function Settings() {
             onPress={() =>
               Alert.alert('Zerar perguntas jogadas?', `As ${app.played.length} que já saíram voltam a contar como novas neste celular.`, [
                 { text: 'Cancelar', style: 'cancel' },
-                { text: 'Zerar', style: 'destructive', onPress: () => app.set({ played: [] }) },
+                { text: 'Zerar', style: 'destructive', onPress: () => change({ played: [] }) },
               ])
             }
           />
@@ -208,7 +213,7 @@ export default function Settings() {
             right={
               <Switch
                 value={app.sounds}
-                onValueChange={(v) => app.set({ sounds: v })}
+                onValueChange={(v) => change({ sounds: v })}
                 trackColor={{ true: colors.ink, false: colors.line }}
                 thumbColor={app.sounds ? colors.yellow : colors.surface}
                 ios_backgroundColor={colors.line}
@@ -224,7 +229,7 @@ export default function Settings() {
             right={
               <Switch
                 value={app.haptics}
-                onValueChange={(v) => app.set({ haptics: v })}
+                onValueChange={(v) => change({ haptics: v })}
                 trackColor={{ true: colors.ink, false: colors.line }}
                 thumbColor={app.haptics ? colors.yellow : colors.surface}
                 ios_backgroundColor={colors.line}

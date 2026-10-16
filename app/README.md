@@ -15,7 +15,7 @@ Tema claro "papel" (`src/theme/tokens.ts`), contraste AA nos textos. Profundidad
 Sem mascote: a marca é o **"!"** (`src/components/brand.tsx`): o selo `BangMark` (o mesmo do ícone do app), o carimbo `Stamp` "EU DUVIDO!" quando alguém duvida, as vidas `Lives` desenhadas como "!" e o `CountUp` da resposta. Animações só com `Animated` do React Native (`src/components/motion.tsx`), sem Reanimated, pra rodar em qualquer Expo Go; respeitam "reduzir movimento".
 
 ## Fluxo
-Onboarding (4 passos) → paywall completo (com "continuar de graça") → Home.
+Onboarding (4 passos) → paywall completo (fecha no ✕, que aparece depois de 4 s) → Home.
 Toda vez que o app abre (ou volta depois de 30 min), quem não assina vê o **easy paywall**: uma folha curta com um plano só e o ✕ depois de 2 s (`src/components/EasyPaywall.tsx`, `src/state/visits.ts`).
 
 ## Regras (`src/game/engine.ts`, como o Nem a Pato)
@@ -35,7 +35,7 @@ O app lembra as perguntas que já saíram neste celular (`played`, salvo localme
 - **Lance exato** (`engine.ts`): se a dúvida revela que o lance era exatamente a resposta, quem lançou recupera um "!" (até o máximo do começo). Carimbo "NA MOSCA!", fanfarra e cartão pra compartilhar (`src/components/ShareCard.tsx`, `react-native-view-shot` + `expo-sharing`).
 - **Zoeira** (online): reações com emoji e som (`src/features/online/zoeira.tsx`) via Realtime Broadcast (não grava no banco); só reações conhecidas, de quem está na sala, 1 a cada 1,2 s.
 - **Sons** (`src/services/sound.ts`, `expo-audio`): sintetizados por `python3 scripts/gen-sounds.py` (sem samples de terceiros). Respeitam o silencioso; liga/desliga em Ajustes.
-- **+18**: pacotes com `adult: true` pedem confirmação de idade uma vez (`src/features/packs/adult.ts`). Conteúdo picante é humor sugestivo, não explícito; na App Store, marque "temas sugestivos/maduros" na classificação.
+- **Picante**: humor sugestivo, não explícito, sem trava de idade (saiu na faxina das perguntas). Na App Store, marque "Temas sexuais ou de nudez sugestivos: infrequente/leve" na classificação.
 - `content/perguntas-3.csv`: lote inicial escrito pelo Claude (futebol BR, anos 90/2000, memes, picante). Revise e amplie no mesmo formato.
 
 ## Timer e Ajustes
@@ -70,8 +70,14 @@ No painel: Authentication > Sign In / Providers > **Allow anonymous sign-ins** l
 - O app user id do RevenueCat é o id do Supabase. `create-room` confere o `pro` na API do RevenueCat (`_shared/entitlement.ts`) quando o segredo `REVENUECAT_SECRET_KEY` existe; sem ele, a checagem fica desligada. Com ele ligado, `npm run test:online` contra o projeto falha no create-room (os usuários de teste não são pro).
 - Build de desenvolvimento: `npx eas-cli build --profile development --platform ios`, depois `npm run start:dev`. Cadastre as variáveis `EXPO_PUBLIC_*` no EAS (o `.env` não vai pro build).
 
-## Funil (PostHog)
-`src/services/analytics.ts` manda eventos em lote pela API HTTP do PostHog (sem SDK nativo; roda no Expo Go). Liga com `EXPO_PUBLIC_POSTHOG_KEY` (e `EXPO_PUBLIC_POSTHOG_HOST`, padrão `https://us.i.posthog.com`); sem chave, não manda nada. Id anônimo gerado no aparelho, sem geoIP. Eventos: `app_opened`, `onboarding_step/completed`, `paywall_viewed/closed` (`source`, `kind` full/easy), `purchase_started/completed/failed`, `restore_tapped`, `pack_opened`, `match_started/finished`, `free_exhausted`, `room_created/joined`, `card_shared`, `reminders_answered`. Ao publicar com isso ligado, atualize a "Privacidade do app" no App Store Connect (Dados de uso > Interação com o produto, e Identificadores > ID do dispositivo; não vinculados à identidade, sem rastreamento) e a política de privacidade.
+## Analytics (PostHog)
+`src/services/analytics.ts` usa o SDK `posthog-react-native` (+ `@posthog/react-native-plugin` pra gravação e crashes nativos, que só funcionam em build, não no Expo Go). Liga com `EXPO_PUBLIC_POSTHOG_KEY` (e `EXPO_PUBLIC_POSTHOG_HOST`, padrão `https://us.i.posthog.com`); sem chave, só loga no console.
+- **Pessoa**: `identify` com o id anônimo do Supabase (o mesmo do RevenueCat) e um retrato: `name` (apelido do onboarding), `premium`, `matches_finished`, `questions_played`, ajustes e `first_open_at` (`_layout.tsx`, `usePerson`).
+- **Telas**: `$screen` a cada rota do Expo Router, com o nome do arquivo (`/pack/[id]`) e os parâmetros. Toques, abrir/fundo do app e erros (JS e nativos) são automáticos.
+- **Gravação de sessão** sem máscara: precisa também de "Record user sessions" ligado no projeto do PostHog.
+- **Eventos**: `app_opened`, `onboarding_step/completed`, `paywall_viewed/closed` (`source`, `kind` full/easy), `purchase_started/completed/failed`, `restore_tapped`, `pack_opened`, `match_started`, `round_revealed` (pergunta, pacote, resposta, lance, `bid_ratio`, desfecho), `match_finished`, `free_exhausted`, `room_created/joined`, `card_shared`, `invite_shared`, `review_tapped`, `setting_changed`, `reminders_answered`.
+
+**App Store Connect > Privacidade do app** (a partir da 1.1.1): Informações de contato > **Nome**; Identificadores > **ID do usuário**; Dados de uso > **Interação com o produto**; Diagnóstico > **Dados de falha** e **Dados de desempenho**; Localização > **Localização aproximada**. Todos **vinculados à identidade**, finalidade **Análise** (e Funcionalidade do app para o ID do usuário), **sem rastreamento**. A política (`idoubtit.fun/euduvido/privacidade`) já descreve isso.
 
 ## Grátis acabou
 Quem não é pro e tem menos de 8 perguntas novas no Clássico vê o paywall "vocês zeraram as grátis" por cima da partida (ao começar ou na revanche), no máximo 1 vez a cada 20 h (`src/features/paywall/exhausted.ts`, `offerExhausted.ts`). Na configuração da partida aparece "liberar +N perguntas novas".
