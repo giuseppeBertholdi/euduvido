@@ -5,6 +5,7 @@ import { BangMark } from '@/components/brand';
 import { Btn } from '@/components/ui';
 import { MatchScreen } from '@/features/match/MatchScreen';
 import { RemindersAsk } from '@/features/engagement/RemindersAsk';
+import { ReviewAsk } from '@/features/engagement/ReviewAsk';
 import { useMatchEnd } from '@/features/engagement/useMatchEnd';
 import { useRoom } from '@/features/online/useRoom';
 import { useZoeira, ZoeiraBar, ZoeiraLayer } from '@/features/online/zoeira';
@@ -92,7 +93,12 @@ export default function OnlineMatch() {
       showUpsell={!premium}
       onUpsell={() => router.push({ pathname: '/paywall', params: { source: 'pack' } })}
       onSeen={markPlayed}
-        endExtra={<RemindersAsk />}
+        endExtra={
+          <>
+            <RemindersAsk />
+            <ReviewAsk />
+          </>
+        }
         zoeira={<ZoeiraBar onSend={sendZoeira} />}
       />
       <ZoeiraLayer feed={feed} />

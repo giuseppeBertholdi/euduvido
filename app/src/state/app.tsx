@@ -28,6 +28,8 @@ type Saved = {
   firstOpenAt: number | null;
   /** Quando pedimos avaliação na App Store. */
   reviewAsks: number[];
+  /** Respondeu o cartão "avaliar" do fim da partida (avaliou ou "agora não"). */
+  reviewCardDone: boolean;
   /** Pular perguntas que já saíram neste celular. */
   avoidRepeats: boolean;
   /** Ids das perguntas que já saíram (mais recentes no fim). */
@@ -35,7 +37,7 @@ type Saved = {
   /** Quando mostramos o paywall "vocês zeraram as grátis" (no máximo 1 vez a cada 20 h). */
   exhaustedOfferAt: number | null;
 };
-const DEFAULTS: Saved = { onboarded: false, premium: false, lastPlayers: [], lives: 3, timer: null, packs: ['classico'], name: '', haptics: true, sounds: true, remindersOn: false, remindersAsked: false, matchesFinished: 0, firstOpenAt: null, reviewAsks: [], avoidRepeats: true, played: [], exhaustedOfferAt: null };
+const DEFAULTS: Saved = { onboarded: false, premium: false, lastPlayers: [], lives: 3, timer: null, packs: ['classico'], name: '', haptics: true, sounds: true, remindersOn: false, remindersAsked: false, matchesFinished: 0, firstOpenAt: null, reviewAsks: [], reviewCardDone: false, avoidRepeats: true, played: [], exhaustedOfferAt: null };
 
 type Ctx = Saved & {
   ready: boolean;

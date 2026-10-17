@@ -30,26 +30,34 @@ export function planReminders(now: number): PlannedReminder[] {
 
 // ───────────── pedido de avaliação (App Store) ─────────────
 
-export const REVIEW_MIN_MATCHES = 3;
-export const REVIEW_MIN_DAYS_SINCE_FIRST_OPEN = 1;
+/** Jogo de festa costuma ser jogado numa noite só: o fim da primeira partida boa é o pico, então já pede ali. */
+export const REVIEW_MIN_MATCHES = 1;
 export const REVIEW_MIN_DAYS_BETWEEN = 60;
 /** A Apple mostra o pedido no máximo 3 vezes por ano por pessoa; não adianta pedir mais. */
 export const REVIEW_MAX_PER_YEAR = 3;
 
 const DAY = 24 * 60 * 60 * 1000;
 
-export type ReviewState = { matchesFinished: number; firstOpenAt: number | null; reviewAsks: number[] };
+export type ReviewState = { matchesFinished: number; reviewAsks: number[] };
 
 /**
- * Pede avaliação só num momento bom (acabou uma partida e foi divertida), com uso de verdade e sem insistir.
+ * Pede avaliação só num momento bom (acabou uma partida e foi divertida) e sem insistir.
  * `happy`: a partida acabou bem pra essa pessoa (ganhou, cravou na mosca, ou partida local com a galera).
  */
 export function shouldAskReview(s: ReviewState, now: number, happy: boolean): boolean {
   if (!happy) return false;
   if (s.matchesFinished < REVIEW_MIN_MATCHES) return false;
-  if (s.firstOpenAt === null || now - s.firstOpenAt < REVIEW_MIN_DAYS_SINCE_FIRST_OPEN * DAY) return false;
   const lastYear = s.reviewAsks.filter((t) => now - t < 365 * DAY);
   if (lastYear.length >= REVIEW_MAX_PER_YEAR) return false;
   const last = Math.max(0, ...s.reviewAsks);
   return now - last >= REVIEW_MIN_DAYS_BETWEEN * DAY;
+}
+
+/**
+ * Cartão "avaliar" no fim da partida, pra quem o pedido nativo não apareceu (a Apple decide se mostra).
+ * Da segunda partida em diante (na primeira já sai o nativo), nunca junto com o convite dos lembretes,
+ * e some quando a pessoa responde.
+ */
+export function shouldShowReviewCard(s: { matchesFinished: number; remindersAsked: boolean; reviewCardDone: boolean }): boolean {
+  return s.matchesFinished >= 2 && s.remindersAsked && !s.reviewCardDone;
 }

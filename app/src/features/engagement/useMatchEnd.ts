@@ -23,7 +23,7 @@ export function useMatchEnd(matchKey: string | null, ended: boolean, happy: bool
     analytics.track('match_finished', { ...i, happy: h, matches_finished: finished });
     a.set({ matchesFinished: finished });
     const t = setTimeout(() => {
-      void maybeAskReview({ matchesFinished: finished, firstOpenAt: a.firstOpenAt, reviewAsks: a.reviewAsks }, h).then((asked) => {
+      void maybeAskReview({ matchesFinished: finished, reviewAsks: a.reviewAsks }, h).then((asked) => {
         if (asked) latest.current.app.set({ reviewAsks: [...latest.current.app.reviewAsks, Date.now()] });
       });
     }, 2500);

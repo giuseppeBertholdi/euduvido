@@ -1,6 +1,7 @@
 import { Redirect, router } from 'expo-router';
 import { Alert } from 'react-native';
 import { RemindersAsk } from '@/features/engagement/RemindersAsk';
+import { ReviewAsk } from '@/features/engagement/ReviewAsk';
 import { useMatchEnd } from '@/features/engagement/useMatchEnd';
 import { MatchScreen } from '@/features/match/MatchScreen';
 import { createMatch, publicState, reduce, type Action } from '@/game/engine';
@@ -54,7 +55,12 @@ export default function Game() {
       showUpsell={!premium}
       onUpsell={() => router.push({ pathname: '/paywall', params: { source: 'match_end' } })}
       onSeen={markPlayed}
-      endExtra={<RemindersAsk />}
+      endExtra={
+        <>
+          <RemindersAsk />
+          <ReviewAsk />
+        </>
+      }
     />
   );
 }

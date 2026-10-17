@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { planReminders, REMINDER_DAYS, REMINDER_HOUR, shouldAskReview } from './policy';
+import { planReminders, REMINDER_DAYS, REMINDER_HOUR, shouldAskReview, shouldShowReviewCard } from './policy';
 
 const DAY = 24 * 60 * 60 * 1000;
 const base = new Date(2026, 9, 11, 15, 0).getTime(); // 11/10/2026 15h (hora local)
@@ -16,14 +16,20 @@ test('lembretes: 3 por ausência, à noite, nos dias certos', () => {
   assert.notEqual(r[0].title, r[1].title, 'textos variam');
 });
 
-const ok = { matchesFinished: 3, firstOpenAt: base - 2 * DAY, reviewAsks: [] as number[] };
+const ok = { matchesFinished: 1, reviewAsks: [] as number[] };
 
-test('avaliação: só com partida boa, 3+ partidas e depois do primeiro dia', () => {
+test('avaliação: já no fim da primeira partida boa', () => {
   assert.equal(shouldAskReview(ok, base, true), true);
   assert.equal(shouldAskReview(ok, base, false), false, 'não pede depois de momento ruim');
-  assert.equal(shouldAskReview({ ...ok, matchesFinished: 2 }, base, true), false);
-  assert.equal(shouldAskReview({ ...ok, firstOpenAt: base - 3600_000 }, base, true), false, 'nunca no primeiro dia');
-  assert.equal(shouldAskReview({ ...ok, firstOpenAt: null }, base, true), false);
+  assert.equal(shouldAskReview({ ...ok, matchesFinished: 0 }, base, true), false);
+});
+
+test('cartão de avaliar no fim: da segunda partida em diante, sem disputar com o dos lembretes, até a pessoa responder', () => {
+  const s = { matchesFinished: 2, remindersAsked: true, reviewCardDone: false };
+  assert.equal(shouldShowReviewCard(s), true);
+  assert.equal(shouldShowReviewCard({ ...s, matchesFinished: 1 }), false, 'na primeira já sai o pedido nativo');
+  assert.equal(shouldShowReviewCard({ ...s, remindersAsked: false }), false);
+  assert.equal(shouldShowReviewCard({ ...s, reviewCardDone: true }), false);
 });
 
 test('avaliação: no máximo a cada 60 dias e 3 vezes por ano', () => {

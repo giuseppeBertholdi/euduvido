@@ -252,7 +252,7 @@ export default function Settings() {
             label="Avaliar na App Store"
             detail="ajuda demais quem tá começando"
             onPress={() => {
-              analytics.track('review_tapped');
+              analytics.track('review_tapped', { source: 'settings', action: 'rate' });
               void Linking.openURL(links.writeReview);
             }}
             last
