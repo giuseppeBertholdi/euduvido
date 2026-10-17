@@ -240,7 +240,7 @@ export default function Settings() {
         </Section>
 
         <Section title="pro">
-          <Row icon="crown" label={app.premium ? 'Você é pro' : 'Conhecer o pro'} detail={app.premium ? 'todos os pacotes liberados' : 'todos os pacotes e salas com PIN'} onPress={() => router.push({ pathname: '/paywall', params: { source: 'settings' } })} />
+          <Row icon="crown" label={app.premium ? 'Você é pro' : 'Conhecer o pro'} detail={app.premium ? 'todos os pacotes liberados' : 'todos os pacotes, também na sala com PIN'} onPress={() => router.push({ pathname: '/paywall', params: { source: 'settings' } })} />
           <Row icon="refresh" label="Restaurar compras" onPress={restore} right={restoring ? <ActivityIndicator color={colors.ink} /> : undefined} />
           <Row icon="timer" label="Gerenciar assinatura" detail="cancelar ou trocar de plano" onPress={() => void Linking.openURL(links.manageSubscriptions)} last />
         </Section>

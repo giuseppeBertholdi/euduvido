@@ -13,4 +13,6 @@ export const links = {
   /** Abre direto a tela de escrever avaliação (só por iniciativa da pessoa; o pedido automático é o nativo). */
   writeReview: `${APP_STORE}?action=write-review`,
   manageSubscriptions: 'https://apps.apple.com/account/subscriptions',
+  /** Convite de sala clicável em qualquer app: abre o Eu Duvido! (Universal Link) ou a página com o PIN e a loja. */
+  roomInvite: (pin: string) => `https://idoubtit.fun/s/${pin}`,
 };

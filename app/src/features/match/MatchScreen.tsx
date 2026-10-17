@@ -13,6 +13,7 @@ import { Body, Btn, Chip, Label, Raised, Title } from '@/components/ui';
 import { formatDigits, formatValue, isActive, lastBid, minBid, playerById, standings, type Action, type PublicMatch } from '@/game/engine';
 import { PACKS, packTitleOf } from '@/game/questions';
 import { haptic } from '@/services/haptics';
+import { shareApp } from '@/services/invite';
 import { useRoundAnalytics } from '@/features/match/useRoundAnalytics';
 import { playSound } from '@/services/sound';
 import { colors, fonts, radii } from '@/theme';
@@ -459,6 +460,10 @@ function End({ m, me, hostId, busy, onRematch, onHome, showUpsell, onUpsell, zoe
             </View>
           </Enter>
         ))}
+        <Pressable onPress={() => void shareApp('match_end')} style={({ pressed }) => [styles.shareBtn, styles.shareApp, pressed && { backgroundColor: colors.sunk }]} accessibilityRole="button" accessibilityHint="Manda o link do jogo pra quem não tem">
+          <Icon name="share" size={18} accent="none" strokeWidth={2.4} />
+          <Text style={styles.shareText}>chamar mais gente pra próxima</Text>
+        </Pressable>
         {endExtra}
         {showUpsell && onUpsell && (
           <Raised onPress={onUpsell} face={colors.pinkSoft} style={{ marginTop: 6 }} accessibilityLabel="Conhecer os pacotes pro">
@@ -525,6 +530,7 @@ const styles = StyleSheet.create({
   moscaStamp: { position: 'absolute', right: -8, top: -30 },
   shareBtn: { flexDirection: 'row', alignItems: 'center', gap: 6, alignSelf: 'flex-start', marginTop: 10, borderRadius: 999, borderWidth: 2, borderColor: colors.ink, backgroundColor: colors.surface, paddingHorizontal: 12, minHeight: 36 },
   shareText: { fontFamily: fonts.ui800, fontSize: 14, color: colors.ink },
+  shareApp: { alignSelf: 'center', marginTop: 4, minHeight: 44, paddingHorizontal: 16 },
   verdict: { borderRadius: radii.card, borderWidth: 2.5, borderColor: colors.ink, padding: 16, marginTop: 14 },
   verdictTitle: { fontFamily: fonts.display, fontSize: 24, letterSpacing: -0.6, color: colors.ink },
   verdictText: { fontFamily: fonts.ui600, fontSize: 15, lineHeight: 21, color: colors.ink, marginTop: 4 },

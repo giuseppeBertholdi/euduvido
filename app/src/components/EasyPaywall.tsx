@@ -12,18 +12,15 @@ import { BangMark } from './brand';
 import { DelayedClose } from './DelayedClose';
 import { Btn, Title } from './ui';
 
-/** O ✕ do paywall de entrada aparece em 3 s. */
-const CLOSE_AFTER_MS = 3000;
-
 const PERKS: [IconName, string][] = [
   ['sparkle', `+${PACKS.filter((p) => p.premium).length} pacotes (absurdos BR, ciência, comida…)`],
-  ['room', 'sala com PIN pra galera'],
+  ['room', 'todos os pacotes na sala com PIN'],
   ['refresh', 'perguntas novas sem parar'],
 ];
 
 /**
- * O "easy paywall": uma folha curta que sobe toda vez que a pessoa entra (quem não assina).
- * Um plano só (anual com teste), um botão; o ✕ aparece depois de 3 s; "ver todos os planos" abre o paywall completo.
+ * O "easy paywall": uma folha curta que sobe ao entrar no app (quem não assina e já jogou uma partida).
+ * Um plano só (anual com teste), um botão, o ✕ já visível; "ver todos os planos" abre o paywall completo.
  */
 export function EasyPaywall({ visible, onClose, onSeeAll, onPurchased }: { visible: boolean; onClose: () => void; onSeeAll: () => void; onPurchased: () => void }) {
   const insets = useSafeAreaInsets();
@@ -58,7 +55,7 @@ export function EasyPaywall({ visible, onClose, onSeeAll, onPurchased }: { visib
             <BangMark size={76} style={{ transform: [{ rotate: '10deg' }] }} />
           </View>
           <View style={styles.closeRow}>
-            <DelayedClose delayMs={CLOSE_AFTER_MS} onClose={close} ready={!!annual || plansError} />
+            <DelayedClose delayMs={0} onClose={close} ready={!!annual || plansError} />
           </View>
 
           <Text style={styles.kicker}>eu duvido! pro</Text>

@@ -9,14 +9,15 @@ const MAX_WAIT_MS = 8000;
 
 /**
  * O ✕ dos paywalls: invisível (e sem toque) durante `delayMs`, depois aparece com um fade discreto.
- * A contagem só começa quando `ready` (o preço na tela), pra o ✕ nunca chegar antes da oferta.
+ * A contagem só começa quando `ready` (o preço na tela), pra o ✕ nunca chegar antes da oferta. Com `delayMs` 0, já nasce visível.
  * Ocupa o espaço desde o início, pra nada pular de lugar quando ele surge.
  */
 export function DelayedClose({ delayMs, onClose, ready = true }: { delayMs: number; onClose: () => void; ready?: boolean }) {
   const reduce = useReducedMotion();
-  const [visible, setVisible] = useState(false);
-  const [t] = useState(() => new Animated.Value(0));
+  const [visible, setVisible] = useState(delayMs === 0);
+  const [t] = useState(() => new Animated.Value(delayMs === 0 ? 1 : 0));
   useEffect(() => {
+    if (delayMs === 0) return;
     const show = () => {
       setVisible(true);
       Animated.timing(t, { toValue: 1, duration: reduce ? 0 : 450, easing: Easing.out(Easing.quad), useNativeDriver: true }).start();

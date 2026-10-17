@@ -4,23 +4,21 @@ import { links } from '@/config/links';
 import { analytics } from '@/services/analytics';
 
 /**
- * Link de convite pra uma sala. Em build: euduvido://join/1234. No Expo Go: exp://…/--/join/1234 (abre o app no Expo Go).
- * Apps de mensagem nem sempre deixam links euduvido:// clicáveis (WhatsApp não deixa): por isso o texto leva o PIN junto.
- * Pra um link https clicável em qualquer lugar, falta um domínio com Universal Links (veja o README).
- * Quem ainda não tem o app recebe o link da App Store: é o convite que traz gente nova.
+ * Link de convite pra uma sala: https://idoubtit.fun/s/1234 (Universal Link). Com o app, abre direto a sala; sem, abre a
+ * página com o PIN e o botão da loja. No desenvolvimento (Expo Go) o link é o exp://…/--/join/1234.
+ * O texto vai sem o campo `url` do Share: no iOS, alguns apps (WhatsApp) mandam só a url e descartam o texto com o PIN.
  */
 export function inviteUrl(pin: string): string {
-  return Linking.createURL(`join/${pin}`);
+  return __DEV__ ? Linking.createURL(`join/${pin}`) : links.roomInvite(pin);
 }
 
 export function shareInvite(pin: string) {
-  const url = inviteUrl(pin);
   analytics.track('invite_shared', { kind: 'room' });
-  return Share.share({ message: `bora jogar eu duvido!\nentra pelo link: ${url}\nou abre o app e digita o PIN ${pin}\n\nainda não tem? baixa aqui: ${links.appStore}`, url });
+  return Share.share({ message: `bora jogar eu duvido! entra na minha sala: ${inviteUrl(pin)}\n(ou abre o app e digita o PIN ${pin})` });
 }
 
-/** Indicar o jogo (Ajustes). */
-export function shareApp() {
-  analytics.track('invite_shared', { kind: 'app' });
+/** Indicar o jogo (Ajustes e fim da partida). */
+export function shareApp(source: 'settings' | 'match_end' = 'settings') {
+  analytics.track('invite_shared', { kind: 'app', source });
   return Share.share({ message: `duvido você acertar quantos km de vasos sanguíneos tem no seu corpo. baixa o eu duvido! e bora jogar: ${links.appStore}` });
 }

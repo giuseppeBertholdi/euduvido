@@ -1,6 +1,7 @@
 import { adminClient, requireUser } from '../_shared/clients.ts';
 import { hasPro } from '../_shared/entitlement.ts';
 import { HttpError, serveJson } from '../_shared/http.ts';
+import { PACKS } from '../_shared/game/questions.ts';
 import { parseConfig, parseName } from '../_shared/rooms.ts';
 
 const MAX_OPEN_ROOMS_PER_USER = 3;
@@ -12,8 +13,11 @@ Deno.serve(
     const user = await requireUser(req, db);
     const name = parseName(body.name);
     const config = parseConfig(body);
-    // criar sala é do pro (quem entra com PIN não precisa assinar)
-    if (!(await hasPro(user.id))) throw new HttpError(403, 'pro_required');
+    // qualquer um cria sala (é o que traz gente nova); sem pro, a sala só usa os pacotes grátis
+    if (!(await hasPro(user.id))) {
+      const free = config.packs.filter((id) => !PACKS.find((p) => p.id === id)?.premium);
+      config.packs = free.length ? free : PACKS.filter((p) => !p.premium).map((p) => p.id);
+    }
 
     // limpeza barata: salas vencidas liberam o PIN
     await db.from('rooms').update({ status: 'closed' }).lt('expires_at', new Date().toISOString()).neq('status', 'closed');

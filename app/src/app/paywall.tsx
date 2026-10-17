@@ -17,15 +17,14 @@ import { purchases, type PlanId } from '@/services/purchases';
 import { useApp } from '@/state/app';
 import { colors, fonts } from '@/theme';
 
-/** O ✕ demora pra aparecer: mais na primeira vez (fim da introdução) e ao abrir o app. */
-const CLOSE_AFTER_MS: Record<string, number> = { onboarding: 4000, launch: 3000 };
-const CLOSE_DEFAULT_MS = 3500;
+/** O ✕ só demora na primeira vez (fim da introdução); nas outras telas já vem pronto. */
+const ONBOARDING_CLOSE_MS = 2000;
 
 const TITLES: Record<string, string> = {
   pack: 'absurdos BR\nte espera',
   match_end: 'absurdos BR\nte espera',
   exhausted: 'vocês zeraram\nas grátis',
-  pin: 'sala com PIN\né do pro',
+  pin: 'todos os pacotes\nna sua sala',
 };
 
 const PRO_PACKS = PACKS.filter((p) => p.premium);
@@ -33,9 +32,9 @@ const PRO_QUESTIONS = PRO_PACKS.reduce((n, p) => n + p.questions.length, 0);
 
 const PERKS: [IconName, string][] = [
   ['sparkle', `+${PRO_PACKS.length} pacotes, +${PRO_QUESTIONS} perguntas desse naipe`],
-  ['room', 'criar sala com PIN pra galera entrar'],
+  ['room', 'todos os pacotes também na sala com PIN'],
   ['refresh', 'pacotes novos chegando direto'],
-  ['users', 'só quem cria a sala precisa assinar'],
+  ['users', 'na sua sala, a galera toda joga os pacotes pro'],
 ];
 
 export default function Paywall() {
@@ -82,8 +81,7 @@ export default function Paywall() {
     if (r.ok && !r.premium) setBuyError('Compra feita, mas o pro ainda não ativou. Toque em restaurar compras.');
     if (r.ok && r.premium) {
       set({ premium: true, ...(onboarding ? { onboarded: true } : null) });
-      if (source === 'pin') router.replace('/pin/create');
-      else leave();
+      leave();
     }
   };
   const restore = async () => {
@@ -105,7 +103,7 @@ export default function Paywall() {
     <View style={[styles.root, { paddingTop: insets.top + 6 }]}>
       <StatusBar style="dark" />
       <View style={styles.topRow}>
-        <DelayedClose delayMs={CLOSE_AFTER_MS[source] ?? CLOSE_DEFAULT_MS} onClose={leave} ready={!!plans || plansError} />
+        <DelayedClose delayMs={onboarding ? ONBOARDING_CLOSE_MS : 0} onClose={leave} ready={!!plans || plansError} />
         <Pressable onPress={restore} hitSlop={10} style={{ minHeight: 44, justifyContent: 'center' }} accessibilityRole="button">
           <Text style={styles.restore}>restaurar compras</Text>
         </Pressable>

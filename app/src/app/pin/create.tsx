@@ -1,7 +1,7 @@
-import { Redirect, router } from 'expo-router';
+import { router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useRef, useState } from 'react';
-import { ActivityIndicator, KeyboardAvoidingView, Platform, StyleSheet, Text, TextInput, View } from 'react-native';
+import { ActivityIndicator, KeyboardAvoidingView, Platform, Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { Icon } from '@/components/Icon';
 import { Body, Btn, Label, Title, TopBar } from '@/components/ui';
@@ -13,7 +13,7 @@ import { analytics } from '@/services/analytics';
 import { useApp } from '@/state/app';
 import { colors, fonts, radii } from '@/theme';
 
-/** Criar sala (pro): pede o nome se faltar, cria no servidor e mostra o lobby ao vivo. */
+/** Criar sala (qualquer um; sem pro, só os pacotes grátis): pede o nome se faltar, cria no servidor e mostra o lobby ao vivo. */
 export default function CreateRoom() {
   const insets = useSafeAreaInsets();
   const app = useApp();
@@ -29,7 +29,6 @@ export default function CreateRoom() {
     if (room && room.status === 'playing') router.replace(`/online/${room.id}`);
   }, [room]);
 
-  if (!app.premium) return <Redirect href="/" />;
   if (!onlineEnabled) return <OnlineNotice title="Online fora do ar" text="As salas com PIN não estão disponíveis agora. Dá pra jogar no mesmo celular enquanto isso." onBack={() => router.back()} />;
 
   const create = async () => {
@@ -40,7 +39,7 @@ export default function CreateRoom() {
     setError(null);
     app.set({ name: clean });
     try {
-      const packs = app.packs.filter((id) => PACKS.some((p) => p.id === id));
+      const packs = app.packs.filter((id) => PACKS.some((p) => p.id === id && (app.premium || !p.premium)));
       const created = await createRoom(clean, {
         lives: app.lives,
         turnSeconds: app.timer,
@@ -48,14 +47,8 @@ export default function CreateRoom() {
         skip: app.avoidRepeats ? app.played.slice(-1000) : [],
       });
       setRoomId(created.roomId);
-      analytics.track('room_created', { packs: packs.length ? packs : ['classico'], lives: app.lives, timer: app.timer });
+      analytics.track('room_created', { packs: packs.length ? packs : ['classico'], lives: app.lives, timer: app.timer, premium: app.premium });
     } catch (e) {
-      if (e instanceof RoomError && e.code === 'pro_required') {
-        // o servidor não achou a assinatura (ex.: venceu): manda pro paywall
-        app.set({ premium: false });
-        router.replace({ pathname: '/paywall', params: { source: 'pin' } });
-        return;
-      }
       setError(e instanceof RoomError ? e.message : 'Sem conexão. Tenta de novo.');
       creating.current = false;
     } finally {
@@ -106,6 +99,11 @@ export default function CreateRoom() {
       <Text style={styles.hint}>
         {app.lives} vidas · {app.timer ? `${app.timer}s por vez` : 'sem timer'} · muda em Ajustes
       </Text>
+      {!app.premium && (
+        <Pressable onPress={() => router.push({ pathname: '/paywall', params: { source: 'pin' } })} hitSlop={8} accessibilityRole="button" style={{ marginTop: 6 }}>
+          <Text style={styles.unlock}>sala com o pacote clássico · liberar os {PACKS.filter((p) => p.premium).length} pacotes pro</Text>
+        </Pressable>
+      )}
       {error && <Text style={styles.error}>{error}</Text>}
       <View style={{ flex: 1 }} />
       <Btn label={busy || (roomId && !room) ? 'Abrindo a sala…' : 'Abrir sala'} right={busy ? <ActivityIndicator color={colors.ink} /> : 'arrowRight'} disabled={!name.trim() || busy || !!roomId} onPress={create} />
@@ -119,4 +117,5 @@ const styles = StyleSheet.create({
   name: { flex: 1, color: colors.ink, fontFamily: fonts.ui800, fontSize: 20, minHeight: 54 },
   hint: { fontFamily: fonts.ui600, fontSize: 14, color: colors.inkMuted, marginTop: 10 },
   error: { fontFamily: fonts.ui700, fontSize: 14, color: colors.pinkInk, marginTop: 12 },
+  unlock: { fontFamily: fonts.ui800, fontSize: 14, color: colors.pinkInk },
 });

@@ -46,7 +46,10 @@
             ]
           }
         ]
-      }
+      },
+      "associatedDomains": [
+        "applinks:idoubtit.fun"
+      ]
     },
     "android": {
       "adaptiveIcon": {

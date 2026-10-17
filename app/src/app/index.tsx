@@ -13,23 +13,24 @@ import { visits } from '@/state/visits';
 import { colors, fonts, maxScale, radii } from '@/theme';
 
 export default function Home() {
-  const { onboarded, premium, set } = useApp();
+  const { onboarded, premium, matchesFinished, set } = useApp();
   const insets = useSafeAreaInsets();
   const [easy, setEasy] = useState(false);
   const trialDays = usePlans().plans?.find((p) => p.id === 'annual')?.trialDays;
 
-  // easy paywall a cada visita, pra quem não assina
+  // easy paywall a cada visita, pra quem não assina e já jogou (antes da primeira partida, o jogo vem primeiro)
   useEffect(() => {
     if (!onboarded || premium) return;
-    if (!visits.take()) return;
+    if (!visits.take() || matchesFinished < 1) return;
     const t = setTimeout(() => setEasy(true), 650);
     return () => clearTimeout(t);
+    // só na chegada de cada visita
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onboarded, premium]);
 
   if (!onboarded) return <Redirect href="/onboarding" />;
 
   const paywall = (source: string) => router.push({ pathname: '/paywall', params: { source } });
-  const createRoom = () => (premium ? router.push('/pin/create') : paywall('pin'));
 
   return (
     <View style={styles.root}>
@@ -84,17 +85,9 @@ export default function Home() {
                 <Text style={styles.tileSub}>cada um no seu celular</Text>
               </View>
             </Raised>
-            <Raised onPress={createRoom} style={{ flex: 1 }} accessibilityLabel="Criar sala" accessibilityHint={premium ? undefined : 'Recurso do pro'}>
+            <Raised onPress={() => router.push('/pin/create')} style={{ flex: 1 }} accessibilityLabel="Criar sala" accessibilityHint="A galera entra com o PIN">
               <View style={styles.tile}>
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                  <Icon name="room" size={30} accent={colors.yellow} />
-                  {!premium && (
-                    <View style={styles.proTag}>
-                      <Icon name="crown" size={13} color={colors.yellow} accent="none" strokeWidth={2.6} />
-                      <Text style={styles.proTagText}>pro</Text>
-                    </View>
-                  )}
-                </View>
+                <Icon name="room" size={30} accent={colors.yellow} />
                 <Text style={styles.tileTitle}>Criar sala</Text>
                 <Text style={styles.tileSub}>a galera entra com o PIN</Text>
               </View>
@@ -187,8 +180,6 @@ const styles = StyleSheet.create({
   tile: { padding: 16, gap: 6, minHeight: 132 },
   tileTitle: { fontFamily: fonts.ui800, fontSize: 17, color: colors.ink, marginTop: 4 },
   tileSub: { fontFamily: fonts.ui600, fontSize: 14, lineHeight: 18, color: colors.inkMuted },
-  proTag: { flexDirection: 'row', alignItems: 'center', gap: 3, backgroundColor: colors.ink, borderRadius: 999, paddingHorizontal: 8, height: 24 },
-  proTagText: { color: colors.yellow, fontFamily: fonts.ui800, fontSize: 12 },
   sectionHead: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'baseline', marginTop: 26 },
   sectionHint: { fontFamily: fonts.ui600, fontSize: 14, color: colors.inkMuted },
   packs: { paddingHorizontal: 20, paddingTop: 12, paddingBottom: 4, gap: 10 },
