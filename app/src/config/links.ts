@@ -10,6 +10,8 @@ export const links = {
   privacy: process.env.EXPO_PUBLIC_PRIVACY_URL || `${SITE}/privacidade`,
   supportEmail: process.env.EXPO_PUBLIC_SUPPORT_EMAIL || 'giuseppe.bertholdi@gmail.com',
   appStore: APP_STORE,
+  /** O site (sem barra no fim): o link do desafio do dia mora em /d/<número>. */
+  site: 'https://idoubtit.fun',
   /** Abre direto a tela de escrever avaliação (só por iniciativa da pessoa; o pedido automático é o nativo). */
   writeReview: `${APP_STORE}?action=write-review`,
   manageSubscriptions: 'https://apps.apple.com/account/subscriptions',

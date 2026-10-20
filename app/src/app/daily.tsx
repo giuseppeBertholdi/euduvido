@@ -8,7 +8,7 @@ import { Icon } from '@/components/Icon';
 import { Enter } from '@/components/motion';
 import { Btn, Label, Raised, Title, TopBar } from '@/components/ui';
 import { links } from '@/config/links';
-import { bidText, DAILY_SIZE, dailyFinished, dailyNumber, dailyRounds, dailyShareText, dailyStreak, type DailyPick } from '@/game/daily';
+import { bidText, DAILY_SIZE, dailyFinished, dailyNumber, dailyRounds, dailyShareText, dailyShareUrl, dailyStreak, type DailyPick } from '@/game/daily';
 import { packById } from '@/game/questions';
 import { analytics } from '@/services/analytics';
 import { askReminderPermission, rescheduleReminders } from '@/services/engagement/reminders';
@@ -168,7 +168,7 @@ function Result({ n, results, streak, rounds }: { n: number; results: boolean[];
   }, []);
   const share = () => {
     analytics.track('daily_shared', { day: n, score: hits, streak });
-    void Share.share({ message: dailyShareText(n, results, streak, links.appStore) });
+    void Share.share({ message: dailyShareText(n, results, streak, dailyShareUrl(links.site, n, results), rounds[0]) });
   };
   const packs = [...new Set(rounds.map((r) => r.packId))].filter((id) => packById(id)?.premium).map((id) => packById(id)?.title);
 

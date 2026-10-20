@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { bidText, DAILY_SIZE, dailyNumber, dailyRounds, dailyShareText, dailyStreak } from './daily';
+import { bidText, DAILY_SIZE, dailyNumber, dailyRounds, dailyShareText, dailyShareUrl, dailyStreak } from './daily';
 
 test('desafio: #1 no dia de lançamento, conta pelo dia local (não pela hora)', () => {
   assert.equal(dailyNumber(new Date(2026, 9, 20, 0, 5)), 1);
@@ -60,8 +60,11 @@ test('desafio: sequência conta de hoje ou de ontem, e quebra num dia sem jogar'
   assert.equal(dailyStreak([7, 8], 10), 0, 'ontem passou em branco');
 });
 
-test('desafio: compartilhar mostra a grade, não as respostas', () => {
-  const t = dailyShareText(12, [true, true, false, true, true], 4, 'https://x');
-  assert.equal(t, 'Eu Duvido! #12 · 4/5 · 🔥 4 dias\n🟨🟨🟥🟨🟨\nduvido você fazer melhor: https://x');
-  assert.ok(!dailyShareText(1, [true], 1, 'u').includes('🔥'), 'sem fogo com 1 dia');
+test('desafio: compartilhar mostra a grade e a 1ª pergunta como isca, nunca a resposta', () => {
+  const first = { bid: 10000, question: { id: 'n3', text: 'Quantos litros de água pra 1 kg de carne?', answer: 15415, unit: 'litros' } };
+  const t = dailyShareText(12, [true, true, false, true, true], 4, 'https://x/d/12?r=11011', first);
+  assert.equal(t, 'Eu Duvido! #12 · 4/5 · 🔥 4 dias\n🟨🟨🟥🟨🟨\n\nQuantos litros de água pra 1 kg de carne?\na galera diz 10.000 litros ou mais. acredita ou duvida? 👇\nhttps://x/d/12?r=11011');
+  assert.ok(!t.includes('15.415'), 'não entrega a resposta');
+  assert.ok(!dailyShareText(1, [true], 1, 'u', first).includes('🔥'), 'sem fogo com 1 dia');
+  assert.equal(dailyShareUrl('https://idoubtit.fun', 12, [true, true, false, true, true]), 'https://idoubtit.fun/d/12?r=11011');
 });

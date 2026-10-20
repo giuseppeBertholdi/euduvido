@@ -92,12 +92,17 @@ export function dailyStreak(done: readonly number[], today: number): number {
   return streak;
 }
 
-/** O texto pra compartilhar (a grade não entrega as respostas). */
-export function dailyShareText(n: number, results: readonly boolean[], streak: number, url: string): string {
+/** O texto pra compartilhar: a grade (não entrega as respostas) e a 1ª pergunta do dia como isca, que dá pra jogar no link. */
+export function dailyShareText(n: number, results: readonly boolean[], streak: number, url: string, first: Pick<DailyRound, 'bid' | 'question'>): string {
   const hits = results.filter(Boolean).length;
   const grid = results.map((ok) => (ok ? '🟨' : '🟥')).join('');
   const fire = streak >= 2 ? ` · 🔥 ${streak} dias` : '';
-  return `Eu Duvido! #${n} · ${hits}/${results.length}${fire}\n${grid}\nduvido você fazer melhor: ${url}`;
+  return `Eu Duvido! #${n} · ${hits}/${results.length}${fire}\n${grid}\n\n${first.question.text}\na galera diz ${bidText(first)}. acredita ou duvida? 👇\n${url}`;
+}
+
+/** O link do resultado (https://idoubtit.fun/d/12?r=11011): a página mostra a grade de quem mandou e deixa jogar a 1ª pergunta. */
+export function dailyShareUrl(site: string, n: number, results: readonly boolean[]): string {
+  return `${site}/d/${n}?r=${results.map((ok) => (ok ? 1 : 0)).join('')}`;
 }
 
 /** Já terminou o desafio do dia de `date`? (`daily` é o que fica salvo no celular: acertos por número do desafio) */

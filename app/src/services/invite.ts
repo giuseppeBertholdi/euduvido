@@ -1,6 +1,7 @@
 import * as Linking from 'expo-linking';
 import { Share } from 'react-native';
 import { links } from '@/config/links';
+import { bidText, dailyNumber, dailyRounds } from '@/game/daily';
 import { analytics } from '@/services/analytics';
 
 /**
@@ -14,11 +15,13 @@ export function inviteUrl(pin: string): string {
 
 export function shareInvite(pin: string) {
   analytics.track('invite_shared', { kind: 'room' });
-  return Share.share({ message: `bora jogar eu duvido! entra na minha sala: ${inviteUrl(pin)}\n(ou abre o app e digita o PIN ${pin})\nprimeira vez no app? joga a partida até o fim e ganha 24 h de pro` });
+  return Share.share({ message: `🎯 bora jogar Eu Duvido? abri uma sala, entra aqui 👇\n${inviteUrl(pin)}\n(ou abre o app e digita o PIN ${pin})\n\nprimeira vez no app? termina a partida e ganha 24 h de Pro grátis 🎁` });
 }
 
-/** Indicar o jogo (Ajustes e fim da partida). */
+/** Indicar o jogo (Ajustes e fim da partida): a isca é a 1ª pergunta do desafio de hoje, que dá pra jogar no link sem o app. */
 export function shareApp(source: 'settings' | 'match_end' = 'settings') {
   analytics.track('invite_shared', { kind: 'app', source });
-  return Share.share({ message: `duvido você acertar quantos km de vasos sanguíneos tem no seu corpo. baixa o eu duvido! e bora jogar: ${links.appStore}` });
+  const n = dailyNumber(new Date());
+  const first = dailyRounds(n)[0];
+  return Share.share({ message: `duvido você acertar essa 😏\n${first.question.text}\na galera diz ${bidText(first)}. acredita ou duvida? 👇\n${links.site}/d/${n}` });
 }
