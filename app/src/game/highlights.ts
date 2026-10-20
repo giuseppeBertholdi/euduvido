@@ -29,7 +29,7 @@ export const HIGHLIGHTS: Record<string, string[]> = {
  * Primeira partida perfeita: as melhores do clássico (o pacote grátis) saem antes das outras enquanto não foram jogadas.
  * É o que faz quem acabou de instalar gostar do jogo (e querer os pacotes pro).
  */
-export const STARTER = ['d350', 'd249', 'd265', 'q150', 'd251', 'n3', 'd351', 'd259', 'd257', 'd264', 'd245', 'd356', 'd371', 'n8', 'd261'];
+export const STARTER = ['d350', 'd249', 'd265', 'e2', 'd251', 'n3', 'd351', 'd259', 'e15', 'd264', 'e11', 'd356', 'd371', 'e5', 'd261'];
 
 /** O baralho com as do STARTER ainda não jogadas na frente (na ordem sorteada); o resto não muda. */
 export function starterFirst<T extends { id: string }>(deck: readonly T[], played: readonly string[]): T[] {

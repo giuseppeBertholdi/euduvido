@@ -23,86 +23,6 @@ export const PACKS: Pack[] = [
     "tint": "#FFD600",
     "questions": [
       {
-        "id": "q66",
-        "text": "Em que ano o homem pisou na Lua pela primeira vez?",
-        "answer": 1969,
-        "unit": "ano",
-        "fact": "Neil Armstrong e Buzz Aldrin desembarcaram na missão Apollo 11.",
-        "source": "NASA History"
-      },
-      {
-        "id": "q67",
-        "text": "Quantos minutos a luz do Sol leva para chegar à Terra?",
-        "answer": 8,
-        "unit": "minutos",
-        "fact": "Média exata de cerca de 8 minutos e 20 segundos.",
-        "source": "NASA Solar System Exploration"
-      },
-      {
-        "id": "q73",
-        "text": "Em que ano afundou o navio Titanic?",
-        "answer": 1912,
-        "unit": "ano",
-        "fact": "Colidiu com um iceberg na noite de 14 para 15 de abril.",
-        "source": "Encyclopedia Titanica"
-      },
-      {
-        "id": "q74",
-        "text": "Quantos quilômetros tem a circunferência da Terra na linha do Equador?",
-        "answer": 40075,
-        "unit": "km",
-        "fact": "A Terra é ligeiramente achatada nos polos.",
-        "source": "NASA Earth Fact Sheet"
-      },
-      {
-        "id": "q146",
-        "text": "Quantos quilômetros por segundo percorre a luz no vácuo?",
-        "answer": 299792,
-        "unit": "km/s",
-        "fact": "Exatamente 299.792,458 km/s.",
-        "source": "NIST Physical Standards"
-      },
-      {
-        "id": "q148",
-        "text": "Em que ano foi lançada a nota de 200 reais no Brasil?",
-        "answer": 2020,
-        "unit": "ano",
-        "fact": "Traz o lobo-guará estampado no verso.",
-        "source": "Banco Central do Brasil"
-      },
-      {
-        "id": "q150",
-        "text": "Em que ano o Vesúvio soterrou a cidade de Pompeia?",
-        "answer": 79,
-        "unit": "ano",
-        "fact": "Destruiu as cidades de Pompeia e Herculano na Itália.",
-        "source": "Archaeological Park of Pompeii"
-      },
-      {
-        "id": "q240",
-        "text": "Quantos mililitros cabem em uma garrafa de vinho padrão?",
-        "answer": 750,
-        "unit": "ml",
-        "fact": "Padrão internacional estabelecido no século XIX.",
-        "source": "International Organisation of Vine and Wine"
-      },
-      {
-        "id": "q286",
-        "text": "Quantos quilômetros tem uma maratona oficial?",
-        "answer": 42,
-        "unit": "km",
-        "fact": "Exatamente 42,195 quilômetros.",
-        "source": "World Athletics"
-      },
-      {
-        "id": "n2",
-        "text": "Quantos metros de profundidade tem a Fossa das Marianas, o ponto mais fundo do oceano?",
-        "answer": 11034,
-        "unit": "metros",
-        "fact": "Se colocasse o Monte Everest lá dentro, ainda sobrava mais de 2 km de água por cima.",
-        "source": "NOAA Ocean Exploration"
-      },
-      {
         "id": "n3",
         "text": "Quantos litros de água são necessários para produzir apenas 1 kg de carne bovina?",
         "answer": 15415,
@@ -117,62 +37,6 @@ export const PACKS: Pack[] = [
         "unit": "metros",
         "fact": "Possui 163 andares habitáveis e pode ser visto a 95 km de distância.",
         "source": "CTBUH Skyscraper Center"
-      },
-      {
-        "id": "n7",
-        "text": "Quantos quilômetros tem a Grande Muralha da China em toda a sua extensão contínua e ramificações?",
-        "answer": 21196,
-        "unit": "km",
-        "fact": "Cruza 15 províncias chinesas e levou séculos para ser concluída.",
-        "source": "UNESCO World Heritage"
-      },
-      {
-        "id": "n8",
-        "text": "Quantas ilhas formam o país da Indonésia, o maior arquipélago do mundo?",
-        "answer": 17508,
-        "unit": "ilhas",
-        "fact": "Cerca de 6.000 dessas ilhas são habitadas por seres humanos.",
-        "source": "Indonesian Government"
-      },
-      {
-        "id": "n10",
-        "text": "Quantos graus Celsius faz no núcleo do Sol (em milhões)?",
-        "answer": 15,
-        "unit": "milhões",
-        "fact": "A temperatura e pressão no núcleo são suficientes para fusão nuclear de hidrogênio.",
-        "source": "NASA Solar Physics"
-      },
-      {
-        "id": "n13",
-        "text": "Quantos quilômetros tem o raio médio do planeta Terra do centro até a superfície?",
-        "answer": 6371,
-        "unit": "km",
-        "fact": "O diâmetro total da Terra é de aproximadamente 12.742 km.",
-        "source": "NASA Earth Fact Sheet"
-      },
-      {
-        "id": "n15",
-        "text": "Quantas estátuas de pedra (Moais) foram catalogadas na Ilha de Páscoa?",
-        "answer": 887,
-        "unit": "estátuas",
-        "fact": "A maioria foi esculpida em tufa vulcânica entre os anos 1100 e 1680.",
-        "source": "UNESCO / Easter Island Statue Project"
-      },
-      {
-        "id": "n16",
-        "text": "Quantos metros acima do nível do mar tem o topo do Monte Everest?",
-        "answer": 8849,
-        "unit": "metros",
-        "fact": "A altitude oficial revisada recentemente é de 8.848,86 metros.",
-        "source": "National Geographic"
-      },
-      {
-        "id": "d245",
-        "text": "Em que ano antes de Cristo Cleópatra morreu?",
-        "answer": 30,
-        "unit": "a.C.",
-        "fact": "Ela viveu mais perto da invenção do iPhone do que da construção das pirâmides.",
-        "source": "Britannica"
       },
       {
         "id": "d246",
@@ -199,14 +63,6 @@ export const PACKS: Pack[] = [
         "source": "Britannica"
       },
       {
-        "id": "d250",
-        "text": "Quantos dias durou a missão Apollo 11, da decolagem à volta?",
-        "answer": 8,
-        "unit": "dias",
-        "fact": "Os astronautas ficaram 21 dias de quarentena na volta.",
-        "source": "NASA"
-      },
-      {
         "id": "d251",
         "text": "Quantos centímetros de altura tem a Mona Lisa?",
         "answer": 77,
@@ -221,14 +77,6 @@ export const PACKS: Pack[] = [
         "unit": "letras",
         "fact": "Por isso as palavras repetem tanto: \"humuhumunukunukuapua'a\".",
         "source": "Universidade do Havaí"
-      },
-      {
-        "id": "d253",
-        "text": "Quantas letras tem o alfabeto da língua portuguesa hoje?",
-        "answer": 26,
-        "unit": "letras",
-        "fact": "K, W e Y voltaram com o Acordo Ortográfico de 2009.",
-        "source": "Acordo Ortográfico de 1990"
       },
       {
         "id": "d257",
@@ -301,22 +149,6 @@ export const PACKS: Pack[] = [
         "unit": "países",
         "fact": "É o continente com mais países.",
         "source": "ONU"
-      },
-      {
-        "id": "d268",
-        "text": "Quantos países tem a América do Sul?",
-        "answer": 12,
-        "unit": "países",
-        "fact": "A Guiana Francesa não conta: é território da França.",
-        "source": "ONU"
-      },
-      {
-        "id": "d271",
-        "text": "Quantos graus a Torre de Pisa está inclinada hoje (aproximadamente)?",
-        "answer": 4,
-        "unit": "graus",
-        "fact": "Já chegou a 5,5 graus antes da obra que a \"endireitou\".",
-        "source": "Opera della Primaziale Pisana"
       },
       {
         "id": "d272",
@@ -509,6 +341,166 @@ export const PACKS: Pack[] = [
         "unit": "vezes",
         "fact": "Só Minas Gerais já é mais de 6 Portugais.",
         "source": "IBGE / INE Portugal"
+      },
+      {
+        "id": "e2",
+        "text": "Em que ano a França usou a guilhotina pela última vez?",
+        "answer": 1977,
+        "unit": "ano",
+        "fact": "No mesmo ano em que estreou o primeiro Star Wars.",
+        "source": "Wikipedia: Hamida Djandoubi"
+      },
+      {
+        "id": "e3",
+        "text": "Em que ano foi patenteada a primeira máquina de fax?",
+        "answer": 1843,
+        "unit": "ano",
+        "fact": "Mais de 30 anos antes do telefone, que é de 1876.",
+        "source": "Patente britânica de Alexander Bain"
+      },
+      {
+        "id": "e4",
+        "text": "Em que ano a Nintendo foi fundada?",
+        "answer": 1889,
+        "unit": "ano",
+        "fact": "Vendia cartas de baralho. Mesmo ano da Proclamação da República no Brasil.",
+        "source": "Nintendo"
+      },
+      {
+        "id": "e5",
+        "text": "Em que ano inventaram a mala com rodinhas?",
+        "answer": 1970,
+        "unit": "ano",
+        "fact": "Um ano depois de o homem pisar na Lua. Antes disso, todo mundo carregava no braço.",
+        "source": "Patente de Bernard Sadow"
+      },
+      {
+        "id": "e6",
+        "text": "Por quantos anos o soldado japonês Hiroo Onoda continuou lutando na selva depois do fim da Segunda Guerra?",
+        "answer": 29,
+        "unit": "anos",
+        "fact": "Só se rendeu em 1974, quando o antigo comandante foi até as Filipinas dar a ordem pessoalmente.",
+        "source": "BBC"
+      },
+      {
+        "id": "e7",
+        "text": "Quantos anos tem o pinheiro Matusalém, uma das árvores mais velhas do mundo?",
+        "answer": 4850,
+        "unit": "anos",
+        "fact": "Já era árvore quando as pirâmides do Egito foram construídas.",
+        "source": "US Forest Service"
+      },
+      {
+        "id": "e8",
+        "text": "Quantos anos separam o primeiro voo de avião da chegada do homem à Lua?",
+        "answer": 66,
+        "unit": "anos",
+        "fact": "Uma pessoa podia ver as duas coisas na mesma vida: de 1903 a 1969.",
+        "source": "NASA / Smithsonian"
+      },
+      {
+        "id": "e9",
+        "text": "Quantos milhões de anos separam o estegossauro do tiranossauro?",
+        "answer": 80,
+        "unit": "milhões de anos",
+        "fact": "O T-rex viveu mais perto de nós do que do estegossauro.",
+        "source": "Natural History Museum (Londres)"
+      },
+      {
+        "id": "e10",
+        "text": "Em que ano a Arábia Saudita deixou as mulheres dirigirem?",
+        "answer": 2018,
+        "unit": "ano",
+        "fact": "Foi o último país do mundo a liberar.",
+        "source": "BBC"
+      },
+      {
+        "id": "e11",
+        "text": "Quantos anos depois da Grande Pirâmide nasceu Cleópatra?",
+        "answer": 2500,
+        "unit": "anos",
+        "fact": "Ela viveu mais perto da invenção do iPhone do que da construção das pirâmides.",
+        "source": "Encyclopaedia Britannica"
+      },
+      {
+        "id": "e12",
+        "text": "Em que ano a Universidade de Oxford já dava aulas?",
+        "answer": 1096,
+        "unit": "ano",
+        "fact": "Mais de 200 anos antes de os astecas fundarem a cidade deles.",
+        "source": "University of Oxford"
+      },
+      {
+        "id": "e13",
+        "text": "Em que ano foi inventado o isqueiro?",
+        "answer": 1823,
+        "unit": "ano",
+        "fact": "Três anos antes do palito de fósforo.",
+        "source": "Encyclopaedia Britannica"
+      },
+      {
+        "id": "e14",
+        "text": "Quantos dias levaria pra ir andando até a Lua, a 5 km/h, sem parar nunca?",
+        "answer": 3200,
+        "unit": "dias",
+        "fact": "Quase 9 anos de caminhada sem dormir.",
+        "source": "NASA (distância média de 384 mil km)"
+      },
+      {
+        "id": "e15",
+        "text": "Há quantos anos morreu o último mamute?",
+        "answer": 4000,
+        "unit": "anos",
+        "fact": "Ainda existiam mamutes quando as pirâmides do Egito foram construídas.",
+        "source": "Nature / Ilha de Wrangel"
+      },
+      {
+        "id": "e16",
+        "text": "Com quantos anos morreu o faraó Tutancâmon?",
+        "answer": 19,
+        "unit": "anos",
+        "fact": "O faraó mais famoso do mundo morreu adolescente.",
+        "source": "Encyclopaedia Britannica"
+      },
+      {
+        "id": "e17",
+        "text": "Em que ano morreu a última pessoa nascida nos anos 1800?",
+        "answer": 2017,
+        "unit": "ano",
+        "fact": "A italiana Emma Morano, nascida em 1899, morreu com 117 anos.",
+        "source": "Guinness World Records"
+      },
+      {
+        "id": "e18",
+        "text": "Em que ano foi tirada a fotografia mais antiga que existe?",
+        "answer": 1826,
+        "unit": "ano",
+        "fact": "Precisou de horas de exposição: é só a vista de uma janela na França.",
+        "source": "Harry Ransom Center (Universidade do Texas)"
+      },
+      {
+        "id": "e19",
+        "text": "Em que ano as mulheres puderam votar nas eleições federais da Suíça?",
+        "answer": 1971,
+        "unit": "ano",
+        "fact": "Quase 40 anos depois do Brasil, que é de 1932.",
+        "source": "Governo suíço (admin.ch)"
+      },
+      {
+        "id": "e20",
+        "text": "Quantos anos levaria um avião comercial pra chegar ao Sol, voando sem parar?",
+        "answer": 19,
+        "unit": "anos",
+        "fact": "O Sol está a 150 milhões de km. Um avião voa a uns 900 km/h.",
+        "source": "NASA"
+      },
+      {
+        "id": "e21",
+        "text": "Quantas vezes por dia os astronautas da Estação Espacial veem o Sol nascer?",
+        "answer": 16,
+        "unit": "vezes",
+        "fact": "A estação dá uma volta na Terra a cada 90 minutos.",
+        "source": "NASA"
       }
     ]
   },
@@ -2691,6 +2683,14 @@ export const PACKS: Pack[] = [
     "tint": "#FFE08A",
     "questions": [
       {
+        "id": "q240",
+        "text": "Quantos mililitros cabem em uma garrafa de vinho padrão?",
+        "answer": 750,
+        "unit": "ml",
+        "fact": "Padrão internacional estabelecido no século XIX.",
+        "source": "International Organisation of Vine and Wine"
+      },
+      {
         "id": "n182",
         "text": "Quantas calorias tem 1 grama de gordura pura?",
         "answer": 9,
@@ -3086,6 +3086,14 @@ export const PACKS: Pack[] = [
     "tint": "#A8E6FF",
     "questions": [
       {
+        "id": "q286",
+        "text": "Quantos quilômetros tem uma maratona oficial?",
+        "answer": 42,
+        "unit": "km",
+        "fact": "Exatamente 42,195 quilômetros.",
+        "source": "World Athletics"
+      },
+      {
         "id": "n223",
         "text": "Quantos títulos mundiais de Fórmula 1 o piloto Michael Schumacher conquistou?",
         "answer": 7,
@@ -3441,6 +3449,22 @@ export const PACKS: Pack[] = [
     "tint": "#D9C8FF",
     "questions": [
       {
+        "id": "q67",
+        "text": "Quantos minutos a luz do Sol leva para chegar à Terra?",
+        "answer": 8,
+        "unit": "minutos",
+        "fact": "Média exata de cerca de 8 minutos e 20 segundos.",
+        "source": "NASA Solar System Exploration"
+      },
+      {
+        "id": "q74",
+        "text": "Quantos quilômetros tem a circunferência da Terra na linha do Equador?",
+        "answer": 40075,
+        "unit": "km",
+        "fact": "A Terra é ligeiramente achatada nos polos.",
+        "source": "NASA Earth Fact Sheet"
+      },
+      {
         "id": "q78",
         "text": "Quantos elementos químicos existem na Tabela Periódica atual?",
         "answer": 118,
@@ -3455,6 +3479,30 @@ export const PACKS: Pack[] = [
         "unit": "km",
         "fact": "Definida pela Federação Aeronáutica Internacional.",
         "source": "FAI Federation"
+      },
+      {
+        "id": "q146",
+        "text": "Quantos quilômetros por segundo percorre a luz no vácuo?",
+        "answer": 299792,
+        "unit": "km/s",
+        "fact": "Exatamente 299.792,458 km/s.",
+        "source": "NIST Physical Standards"
+      },
+      {
+        "id": "n10",
+        "text": "Quantos milhões de graus faz no centro do Sol?",
+        "answer": 15,
+        "unit": "milhões de graus",
+        "fact": "A temperatura e pressão no núcleo são suficientes para fusão nuclear de hidrogênio.",
+        "source": "NASA Solar Physics"
+      },
+      {
+        "id": "n13",
+        "text": "Quantos quilômetros tem o raio médio do planeta Terra do centro até a superfície?",
+        "answer": 6371,
+        "unit": "km",
+        "fact": "O diâmetro total da Terra é de aproximadamente 12.742 km.",
+        "source": "NASA Earth Fact Sheet"
       },
       {
         "id": "n269",
@@ -3743,6 +3791,14 @@ export const PACKS: Pack[] = [
         "unit": "milhões",
         "fact": "O Brasil é o campeão mundial de raios.",
         "source": "INPE / ELAT"
+      },
+      {
+        "id": "d250",
+        "text": "Quantos dias durou a missão Apollo 11, da decolagem à volta?",
+        "answer": 8,
+        "unit": "dias",
+        "fact": "Os astronautas ficaram 21 dias de quarentena na volta.",
+        "source": "NASA"
       },
       {
         "id": "d326",
@@ -5617,6 +5673,22 @@ export const PACKS: Pack[] = [
     "tint": "#F2D6A2",
     "questions": [
       {
+        "id": "q66",
+        "text": "Em que ano o homem pisou na Lua pela primeira vez?",
+        "answer": 1969,
+        "unit": "ano",
+        "fact": "Neil Armstrong e Buzz Aldrin desembarcaram na missão Apollo 11.",
+        "source": "NASA History"
+      },
+      {
+        "id": "q73",
+        "text": "Em que ano afundou o navio Titanic?",
+        "answer": 1912,
+        "unit": "ano",
+        "fact": "Colidiu com um iceberg na noite de 14 para 15 de abril.",
+        "source": "Encyclopedia Titanica"
+      },
+      {
         "id": "q76",
         "text": "Em que ano terminou a Segunda Guerra Mundial?",
         "answer": 1945,
@@ -5663,6 +5735,22 @@ export const PACKS: Pack[] = [
         "unit": "ano",
         "fact": "Caiu na noite de 9 de novembro de 1989.",
         "source": "German Historical Museum"
+      },
+      {
+        "id": "q148",
+        "text": "Em que ano foi lançada a nota de 200 reais no Brasil?",
+        "answer": 2020,
+        "unit": "ano",
+        "fact": "Traz o lobo-guará estampado no verso.",
+        "source": "Banco Central do Brasil"
+      },
+      {
+        "id": "q150",
+        "text": "Em que ano o Vesúvio soterrou a cidade de Pompeia?",
+        "answer": 79,
+        "unit": "ano",
+        "fact": "Destruiu as cidades de Pompeia e Herculano na Itália.",
+        "source": "Archaeological Park of Pompeii"
       },
       {
         "id": "q187",
@@ -5735,6 +5823,14 @@ export const PACKS: Pack[] = [
         "unit": "ano",
         "fact": "Em 1800 o mundo tinha só 1 bilhão.",
         "source": "ONU"
+      },
+      {
+        "id": "d245",
+        "text": "Quantos anos antes de Cristo Cleópatra morreu?",
+        "answer": 30,
+        "unit": "a.C.",
+        "fact": "Ela viveu mais perto da invenção do iPhone do que da construção das pirâmides.",
+        "source": "Britannica"
       },
       {
         "id": "d247",
@@ -5811,6 +5907,38 @@ export const PACKS: Pack[] = [
     "icon": "globe",
     "tint": "#A8DCFF",
     "questions": [
+      {
+        "id": "n2",
+        "text": "Quantos metros de profundidade tem a Fossa das Marianas, o ponto mais fundo do oceano?",
+        "answer": 10935,
+        "unit": "metros",
+        "fact": "Se colocasse o Monte Everest lá dentro, ainda sobrava mais de 2 km de água por cima.",
+        "source": "NOAA Ocean Exploration"
+      },
+      {
+        "id": "n7",
+        "text": "Quantos quilômetros tem a Grande Muralha da China, contando todos os trechos?",
+        "answer": 21196,
+        "unit": "km",
+        "fact": "Cruza 15 províncias chinesas e levou séculos para ser concluída.",
+        "source": "UNESCO World Heritage"
+      },
+      {
+        "id": "n15",
+        "text": "Quantas estátuas de pedra (Moais) foram catalogadas na Ilha de Páscoa?",
+        "answer": 887,
+        "unit": "estátuas",
+        "fact": "A maioria foi esculpida em tufa vulcânica entre os anos 1100 e 1680.",
+        "source": "UNESCO / Easter Island Statue Project"
+      },
+      {
+        "id": "n16",
+        "text": "Quantos metros acima do nível do mar tem o topo do Monte Everest?",
+        "answer": 8849,
+        "unit": "metros",
+        "fact": "A altitude oficial revisada recentemente é de 8.848,86 metros.",
+        "source": "National Geographic"
+      },
       {
         "id": "d219",
         "text": "Quantos países são membros da ONU?",
@@ -6010,6 +6138,22 @@ export const PACKS: Pack[] = [
         "unit": "línguas",
         "fact": "O país mais diverso em idiomas do mundo.",
         "source": "Ethnologue"
+      },
+      {
+        "id": "d268",
+        "text": "Quantos países tem a América do Sul?",
+        "answer": 12,
+        "unit": "países",
+        "fact": "A Guiana Francesa não conta: é território da França.",
+        "source": "ONU"
+      },
+      {
+        "id": "d271",
+        "text": "Quantos graus a Torre de Pisa está inclinada hoje (aproximadamente)?",
+        "answer": 4,
+        "unit": "graus",
+        "fact": "Já chegou a 5,5 graus antes da obra que a \"endireitou\".",
+        "source": "Opera della Primaziale Pisana"
       }
     ]
   }

@@ -148,10 +148,27 @@ const FIX = {
   146: { pergunta: 'Quantos quilômetros por segundo percorre a luz no vácuo?', resposta: '299792' },
   179: { pergunta: 'Quantas horas de vídeo são enviadas ao YouTube a cada minuto?' },
   270: { pergunta: 'Quantos centímetros de comprimento tem o esôfago de um adulto?' },
+  // out/2026: o clássico fica só com perguntas de choque; as de escola vão pros pacotes do assunto
+  66: { pacote: 'história' },
+  73: { pacote: 'história' },
+  148: { pacote: 'história' },
+  150: { pergunta: 'Em que ano o Vesúvio soterrou a cidade de Pompeia?', pacote: 'história' },
+  67: { pacote: 'ciência & espaço' },
+  74: { pergunta: 'Quantos quilômetros tem a circunferência da Terra na linha do Equador?', pacote: 'ciência & espaço' },
+  146: { pergunta: 'Quantos quilômetros por segundo percorre a luz no vácuo?', resposta: '299792', pacote: 'ciência & espaço' },
+  240: { pacote: 'comida & bebida' },
+  286: { pacote: 'esporte & velocidade' },
 };
 
 /** Lote 2 do Claude: o que sai do clássico (vitrine) e vai pro pacote história. */
-const FIX_4 = Object.fromEntries([244, 247, 254, 255, 256, 258, 262, 269, 270].map((line) => [line, { pacote: 'história' }]));
+const FIX_4 = {
+  ...Object.fromEntries([244, 247, 254, 255, 256, 258, 262, 269, 270].map((line) => [line, { pacote: 'história' }])),
+  // out/2026: saem do clássico (a Cleópatra virou "quantos anos depois da Grande Pirâmide" no lote 3)
+  245: { pergunta: 'Quantos anos antes de Cristo Cleópatra morreu?', pacote: 'história' },
+  250: { pacote: 'ciência & espaço' },
+  268: { pacote: 'pelo mundo' },
+  271: { pacote: 'pelo mundo' },
+};
 
 /** Segundo arquivo (content/perguntas-2.csv). */
 const DUP = 'repetida do primeiro arquivo';
@@ -222,13 +239,20 @@ const EXCLUDE_2 = {
   290: 'óbvia (3 dimensões)',
   292: 'repetida (1 litro de água)',
   299: 'escolar (próton do hidrogênio)',
+  8: 'número desatualizado (contagem oficial de ilhas da Indonésia mudou)',
 };
 
 const FIX_2 = {
   3: { resposta: '15415' },
+  // out/2026: saem do clássico
+  2: { resposta: '10935', pacote: 'pelo mundo' },
+  7: { pergunta: 'Quantos quilômetros tem a Grande Muralha da China, contando todos os trechos?', pacote: 'pelo mundo' },
+  10: { pergunta: 'Quantos milhões de graus faz no centro do Sol?', unidade: 'milhões de graus', pacote: 'ciência & espaço' },
+  13: { pacote: 'ciência & espaço' },
+  15: { pacote: 'pelo mundo' },
   26: { pergunta: 'Quantas patas pode ter o piolho-de-cobra Illacme plenipes?' },
   253: { pergunta: 'Quantos Oscars ganhou o primeiro filme do Rocky?', unidade: 'Oscars' },
-  16: { resposta: '8849' },
+  16: { resposta: '8849', pacote: 'pelo mundo' },
   43: { pergunta: 'Quantos quilômetros uma borboleta-monarca consegue voar na migração anual?' },
   182: { pergunta: 'Quantas calorias tem 1 grama de gordura pura?' },
   236: { pergunta: 'Quantos centímetros de altura tem a rede de vôlei masculino adulto oficial?', resposta: '243', unidade: 'cm' },
@@ -241,7 +265,9 @@ const SOURCES = [
   // lote inicial escrito pelo Claude (fatos estáveis, com fonte): futebol, anos 90/2000, memes, picante
   { file: 'content/perguntas-3.csv', prefix: 'c', exclude: { 25: 'óbvia (5 Power Rangers)' }, fix: {} },
   // lote 2 do Claude (out/2026): fatos conferidos, com fonte; reforça os pacotes pequenos e cria TV, música, dinheiro e mundo
-  { file: 'content/perguntas-4.csv', prefix: 'd', exclude: {}, fix: FIX_4 },
+  { file: 'content/perguntas-4.csv', prefix: 'd', exclude: { 253: 'óbvia (26 letras)' }, fix: FIX_4 },
+  // lote 3 do Claude (out/2026): perguntas de choque pro clássico, a vitrine grátis
+  { file: 'content/perguntas-5.csv', prefix: 'e', exclude: {}, fix: {} },
 ];
 
 /** Metadados dos pacotes (ordem de exibição). */
