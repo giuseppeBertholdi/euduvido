@@ -1,19 +1,30 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { planReminders, REMINDER_DAYS, REMINDER_HOUR, shouldAskReview, shouldShowReviewCard } from './policy';
+import { DAILY_DAYS, DAILY_HOUR, planReminders, REMINDER_DAYS, REMINDER_HOUR, shouldAskReview, shouldShowReviewCard } from './policy';
 
 const DAY = 24 * 60 * 60 * 1000;
-const base = new Date(2026, 9, 11, 15, 0).getTime(); // 11/10/2026 15h (hora local)
+const base = new Date(2026, 9, 21, 9, 0).getTime(); // 21/10/2026 9h (hora local), antes do aviso do meio-dia
+const dayOf = (t: number) => Math.round((new Date(t).setHours(0, 0, 0, 0) - new Date(base).setHours(0, 0, 0, 0)) / DAY);
 
-test('lembretes: 3 por ausência, à noite, nos dias certos', () => {
+test('lembretes: desafio ao meio-dia por uma semana (com a pergunta do dia), depois só a resenha à noite', () => {
   const r = planReminders(base);
-  assert.equal(r.length, REMINDER_DAYS.length);
-  r.forEach((x, i) => {
-    const d = new Date(x.at);
-    assert.equal(d.getHours(), REMINDER_HOUR);
-    assert.equal(Math.round((new Date(d).setHours(0, 0, 0, 0) - new Date(base).setHours(0, 0, 0, 0)) / DAY), REMINDER_DAYS[i]);
+  const daily = r.filter((x) => x.url === '/daily');
+  assert.equal(daily.length, DAILY_DAYS, 'hoje (ainda antes do meio-dia) e os 6 seguintes');
+  daily.forEach((x, i) => {
+    assert.equal(new Date(x.at).getHours(), DAILY_HOUR);
+    assert.equal(dayOf(x.at), i);
+    assert.equal(x.title, `desafio do dia #${2 + i}`);
+    assert.match(x.body, /Duvida\?$/);
   });
-  assert.notEqual(r[0].title, r[1].title, 'textos variam');
+  assert.notEqual(daily[0].body, daily[1].body, 'cada dia, uma pergunta');
+  const party = r.filter((x) => !x.url);
+  assert.deepEqual(party.map((x) => dayOf(x.at)), [...REMINDER_DAYS]);
+  party.forEach((x) => assert.equal(new Date(x.at).getHours(), REMINDER_HOUR));
+});
+
+test('lembretes: quem já fez o de hoje, ou abriu depois do meio-dia, só recebe a partir de amanhã', () => {
+  assert.equal(dayOf(planReminders(base, true)[0].at), 1);
+  assert.equal(dayOf(planReminders(base + 5 * 3600 * 1000)[0].at), 1);
 });
 
 const ok = { matchesFinished: 1, reviewAsks: [] as number[] };

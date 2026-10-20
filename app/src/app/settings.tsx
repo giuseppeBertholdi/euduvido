@@ -10,6 +10,7 @@ import { Label, Raised, Title, TopBar, tapLight } from '@/components/ui';
 import { links } from '@/config/links';
 import { LIVES_OPTIONS, TIMER_OPTIONS } from '@/game/engine';
 import { analytics } from '@/services/analytics';
+import { dailyDone } from '@/game/daily';
 import { askReminderPermission, rescheduleReminders } from '@/services/engagement/reminders';
 import { shareApp } from '@/services/invite';
 import { purchases } from '@/services/purchases';
@@ -175,8 +176,8 @@ export default function Settings() {
         <Section title="lembretes">
           <Row
             icon="timer"
-            label="Lembrar da próxima resenha"
-            detail="no máximo 3 avisos à noite, só se você sumir"
+            label="Avisar do desafio do dia"
+            detail="o desafio do dia ao meio-dia; para sozinho se você parar de jogar"
             last
             right={
               <Switch
@@ -189,7 +190,7 @@ export default function Settings() {
                   }
                   const granted = await askReminderPermission();
                   app.set({ remindersOn: granted, remindersAsked: true });
-                  await rescheduleReminders(granted);
+                  await rescheduleReminders(granted, dailyDone(app.daily, new Date()));
                   if (!granted)
                     Alert.alert('Notificações desligadas', 'Libera as notificações do Eu Duvido! nos Ajustes do iPhone pra receber os lembretes.', [
                       { text: 'Agora não', style: 'cancel' },

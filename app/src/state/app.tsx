@@ -36,8 +36,10 @@ type Saved = {
   played: string[];
   /** Quando mostramos o paywall "vocês zeraram as grátis" (no máximo 1 vez a cada 20 h). */
   exhaustedOfferAt: number | null;
+  /** Desafio do dia: acertos de cada desafio feito, pelo número (#12 → [true, false, …]). */
+  daily: Record<string, boolean[]>;
 };
-const DEFAULTS: Saved = { onboarded: false, premium: false, lastPlayers: [], lives: 3, timer: null, packs: ['classico'], name: '', haptics: true, sounds: true, remindersOn: false, remindersAsked: false, matchesFinished: 0, firstOpenAt: null, reviewAsks: [], reviewCardDone: false, avoidRepeats: true, played: [], exhaustedOfferAt: null };
+const DEFAULTS: Saved = { onboarded: false, premium: false, lastPlayers: [], lives: 3, timer: null, packs: ['classico'], name: '', haptics: true, sounds: true, remindersOn: false, remindersAsked: false, matchesFinished: 0, firstOpenAt: null, reviewAsks: [], reviewCardDone: false, avoidRepeats: true, played: [], exhaustedOfferAt: null, daily: {} };
 
 type Ctx = Saved & {
   ready: boolean;

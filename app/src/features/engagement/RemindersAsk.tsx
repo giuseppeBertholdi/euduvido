@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-native';
 import { Icon } from '@/components/Icon';
+import { dailyDone } from '@/game/daily';
 import { askReminderPermission, rescheduleReminders } from '@/services/engagement/reminders';
 import { analytics } from '@/services/analytics';
 import { useApp } from '@/state/app';
@@ -20,7 +21,7 @@ export function RemindersAsk() {
     const granted = await askReminderPermission();
     app.set({ remindersAsked: true, remindersOn: granted });
     analytics.track('reminders_answered', { wanted: true, granted });
-    await rescheduleReminders(granted);
+    await rescheduleReminders(granted, dailyDone(app.daily, new Date()));
     setBusy(false);
   };
 
@@ -28,8 +29,8 @@ export function RemindersAsk() {
     <View style={styles.card} accessibilityLiveRegion="polite">
       <Icon name="timer" size={28} accent={colors.yellow} />
       <View style={{ flex: 1 }}>
-        <Text style={styles.title}>Te lembro da próxima resenha?</Text>
-        <Text style={styles.text}>No máximo 3 avisos, à noite, só se você sumir.</Text>
+        <Text style={styles.title}>Te aviso do desafio do dia?</Text>
+        <Text style={styles.text}>Um aviso ao meio-dia, com a pergunta do dia. Para sozinho se você parar de jogar.</Text>
         <View style={styles.row}>
           <Pressable onPress={yes} disabled={busy} style={({ pressed }) => [styles.btn, styles.btnYes, pressed && { opacity: 0.8 }]} accessibilityRole="button">
             {busy ? <ActivityIndicator color={colors.ink} /> : <Text style={styles.btnText}>quero</Text>}

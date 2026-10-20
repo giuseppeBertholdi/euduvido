@@ -8,13 +8,14 @@ import { Icon } from '@/components/Icon';
 import { Body, Label, Logo, Raised } from '@/components/ui';
 import { usePlans } from '@/features/paywall/usePlans';
 import { ReferralCard, useReferral } from '@/features/referral/Referral';
+import { DAILY_SIZE, dailyFinished, dailyNumber, dailyStreak } from '@/game/daily';
 import { PACKS } from '@/game/questions';
 import { useApp } from '@/state/app';
 import { visits } from '@/state/visits';
 import { colors, fonts, maxScale, radii } from '@/theme';
 
 export default function Home() {
-  const { onboarded, premium, matchesFinished, set } = useApp();
+  const { onboarded, premium, matchesFinished, set, daily } = useApp();
   const insets = useSafeAreaInsets();
   const [easy, setEasy] = useState(false);
   const trialDays = usePlans().plans?.find((p) => p.id === 'annual')?.trialDays;
@@ -56,8 +57,10 @@ export default function Home() {
           </View>
           <Body style={{ marginTop: 10, maxWidth: 260 }}>Ninguém sabe. Todo mundo jura que sabe.</Body>
 
+          <DailyCard daily={daily} />
+
           {/* cartão principal; o "!" gigante ao fundo é a marca */}
-          <View style={{ marginTop: 22 }}>
+          <View style={{ marginTop: 14 }}>
             <Raised onPress={() => router.push('/setup')} face={colors.yellow} faceStyle={{ overflow: 'hidden' }} accessibilityLabel="Jogar no mesmo celular" accessibilityHint="Um celular só, passando de mão em mão">
               <Text style={styles.watermark} accessible={false}>
                 !
@@ -170,8 +173,35 @@ export default function Home() {
   );
 }
 
+/** Desafio do dia: chama pra jogar, ou mostra o placar de hoje e a sequência. */
+function DailyCard({ daily }: { daily: Record<string, boolean[]> }) {
+  const n = dailyNumber(new Date());
+  const today = daily[String(n)] ?? [];
+  const finished = today.length >= DAILY_SIZE;
+  const streak = dailyStreak(dailyFinished(daily), n);
+  const hits = today.filter(Boolean).length;
+  return (
+    <Raised onPress={() => router.push('/daily')} face={finished ? colors.surface : colors.ink} style={{ marginTop: 18 }} accessibilityLabel={finished ? `Desafio do dia feito: ${hits} de ${DAILY_SIZE}` : `Desafio do dia número ${n}`}>
+      <View style={styles.daily}>
+        <Icon name="sparkle" size={28} accent={colors.yellow} color={finished ? colors.ink : colors.yellow} />
+        <View style={{ flex: 1 }}>
+          <Text style={[styles.dailyTitle, !finished && { color: colors.yellow }]}>{finished ? `Desafio #${n} feito: ${hits}/${DAILY_SIZE}` : `Desafio do dia #${n}`}</Text>
+          <Text style={[styles.dailySub, !finished && { color: colors.surface }]}>
+            {finished ? 'volta amanhã pra manter a sequência' : today.length > 0 ? `faltam ${DAILY_SIZE - today.length} perguntas` : `${DAILY_SIZE} perguntas · 1 minuto · todo mundo joga as mesmas`}
+          </Text>
+        </View>
+        {streak > 0 ? <Text style={[styles.dailyStreak, !finished && { color: colors.yellow }]}>🔥 {streak}</Text> : <Icon name="arrowRight" size={22} color={colors.yellow} />}
+      </View>
+    </Raised>
+  );
+}
+
 const styles = StyleSheet.create({
   root: { flex: 1, backgroundColor: colors.paper },
+  daily: { flexDirection: 'row', alignItems: 'center', gap: 14, paddingHorizontal: 16, paddingVertical: 14 },
+  dailyTitle: { fontFamily: fonts.ui800, fontSize: 17, color: colors.ink },
+  dailySub: { fontFamily: fonts.ui600, fontSize: 13, lineHeight: 17, color: colors.inkMuted, marginTop: 2 },
+  dailyStreak: { fontFamily: fonts.ui800, fontSize: 17, color: colors.ink },
   pad: { paddingHorizontal: 20 },
   header: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start' },
   gear: { width: 40, height: 40, alignItems: 'center', justifyContent: 'center' },

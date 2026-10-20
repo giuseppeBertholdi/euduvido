@@ -4,14 +4,15 @@ import { RethinkSans_700Bold } from '@expo-google-fonts/rethink-sans/700Bold';
 import { RethinkSans_800ExtraBold } from '@expo-google-fonts/rethink-sans/800ExtraBold';
 import { Syne_800ExtraBold } from '@expo-google-fonts/syne/800ExtraBold';
 import { useFonts } from 'expo-font';
-import { SplashScreen, Stack, useGlobalSearchParams, usePathname, useSegments } from 'expo-router';
+import { router, SplashScreen, Stack, useGlobalSearchParams, usePathname, useSegments } from 'expo-router';
 import { PostHogProvider } from 'posthog-react-native';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useRef, type ReactNode } from 'react';
 import { AppState } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { analytics, posthog } from '@/services/analytics';
-import { rescheduleReminders } from '@/services/engagement/reminders';
+import { dailyDone } from '@/game/daily';
+import { onReminderOpened, rescheduleReminders } from '@/services/engagement/reminders';
 import { purchases, storeMode } from '@/services/purchases';
 import { onlineEnabled } from '@/services/rooms';
 import { ensureUserId } from '@/services/supabase';
@@ -68,7 +69,7 @@ function usePerson() {
 }
 
 function Root() {
-  const { ready, remindersOn, set, premium, onboarded, matchesFinished } = useApp();
+  const { ready, remindersOn, set, premium, onboarded, matchesFinished, daily } = useApp();
   useScreenTracking();
   usePerson();
   const [fontsLoaded, fontError] = useFonts({ Syne_800ExtraBold, RethinkSans_500Medium, RethinkSans_600SemiBold, RethinkSans_700Bold, RethinkSans_800ExtraBold });
@@ -106,13 +107,23 @@ function Root() {
     void purchases.start(async () => (onlineEnabled ? ensureUserId() : null), (premium) => set({ premium }));
   }, [ready, set]);
 
-  // lembretes: refaz o plano ao abrir e ao voltar pro app (quem joga sempre nunca recebe)
+  // lembretes: refaz o plano ao abrir, ao voltar pro app e ao fazer o desafio (o de hoje para de avisar)
+  const doneToday = dailyDone(daily, new Date());
   useEffect(() => {
     if (!ready) return;
-    void rescheduleReminders(remindersOn);
-    const sub = AppState.addEventListener('change', (s) => s === 'active' && void rescheduleReminders(remindersOn));
+    void rescheduleReminders(remindersOn, doneToday);
+    const sub = AppState.addEventListener('change', (s) => s === 'active' && void rescheduleReminders(remindersOn, dailyDone(daily, new Date())));
     return () => sub.remove();
-  }, [ready, remindersOn]);
+  }, [ready, remindersOn, doneToday, daily]);
+
+  // tocou no aviso do desafio: abre o desafio
+  useEffect(() => {
+    if (!ready || !onboarded) return;
+    return onReminderOpened((url) => {
+      analytics.track('reminder_opened', { url });
+      router.push(url as '/daily');
+    });
+  }, [ready, onboarded]);
 
   useEffect(() => {
     if (loaded) void SplashScreen.hideAsync();
@@ -130,6 +141,7 @@ function Root() {
       <Stack.Screen name="pack/[id]" options={{ animation: 'slide_from_right' }} />
       <Stack.Screen name="online/[id]" options={{ gestureEnabled: false }} />
       <Stack.Screen name="settings" options={{ animation: 'slide_from_right' }} />
+      <Stack.Screen name="daily" options={{ animation: 'slide_from_right' }} />
       <Stack.Screen name="pin/join" options={{ animation: 'slide_from_right' }} />
       <Stack.Screen name="pin/create" options={{ animation: 'slide_from_right' }} />
     </Stack>
