@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { ActivityIndicator, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { BangMark, Lives } from '@/components/brand';
 import { Icon } from '@/components/Icon';
@@ -7,8 +7,10 @@ import { Enter } from '@/components/motion';
 import { Body, Btn, Chip, Label, LinkBtn, Raised, TopBar } from '@/components/ui';
 import { MIN_PLAYERS } from '@/game/engine';
 import { packById } from '@/game/questions';
+import { ReferralCard, useReferral } from '@/features/referral/Referral';
 import { shareInvite } from '@/services/invite';
 import type { Room } from '@/services/rooms';
+import { useApp } from '@/state/app';
 import { colors, fonts, radii } from '@/theme';
 
 /** Sala de espera: PIN grande, quem já entrou (ao vivo) e a config. O host começa; o resto espera. */
@@ -19,6 +21,8 @@ export function Lobby({ room, me, busy, error, onStart, onLeave }: { room: Room;
   const host = room.players.find((p) => p.userId === room.hostId);
   const share = () => void shareInvite(room.pin);
   const packs = room.config.packs.map((id) => packById(id)?.title ?? id).join(', ');
+  const { premium } = useApp();
+  const referral = useReferral();
 
   return (
     <View style={[styles.root, { paddingTop: insets.top + 6, paddingBottom: insets.bottom + 14 }]}>
@@ -45,21 +49,29 @@ export function Lobby({ room, me, busy, error, onStart, onLeave }: { room: Room;
         </Text>
       </View>
 
-      <Label color={colors.ink} style={{ marginTop: 16 }}>
-        na sala · {count}/8
-      </Label>
-      <View style={styles.chips} accessibilityLiveRegion="polite">
-        {room.players.map((p) => (
-          <Enter key={p.userId} from={8}>
-            <Chip label={`${p.name}${p.userId === me ? ' (você)' : ''}`} icon={p.userId === room.hostId ? 'crown' : undefined} bg={p.userId === room.hostId ? colors.yellow : colors.surface} border={colors.ink} />
-          </Enter>
-        ))}
-      </View>
+      <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
+        <Label color={colors.ink} style={{ marginTop: 16 }}>
+          na sala · {count}/8
+        </Label>
+        <View style={styles.chips} accessibilityLiveRegion="polite">
+          {room.players.map((p) => (
+            <Enter key={p.userId} from={8}>
+              <Chip label={`${p.name}${p.userId === me ? ' (você)' : ''}`} icon={p.userId === room.hostId ? 'crown' : undefined} bg={p.userId === room.hostId ? colors.yellow : colors.surface} border={colors.ink} />
+            </Enter>
+          ))}
+        </View>
 
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <BangMark size={88} />
-        <Body style={{ textAlign: 'center', marginTop: 14 }}>{count < MIN_PLAYERS ? 'Chama a galera: precisa de pelo menos 2.' : isHost ? 'Todo mundo dentro? Bora.' : `Esperando ${host?.name ?? 'quem criou'} começar.`}</Body>
-      </View>
+        {isHost && (
+          <View style={{ marginTop: 14 }}>
+            <ReferralCard status={referral.status} premium={premium} source="lobby" onPress={share} />
+          </View>
+        )}
+
+        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingVertical: 16 }}>
+          <BangMark size={88} />
+          <Body style={{ textAlign: 'center', marginTop: 14 }}>{count < MIN_PLAYERS ? 'Chama a galera: precisa de pelo menos 2.' : isHost ? 'Todo mundo dentro? Bora.' : `Esperando ${host?.name ?? 'quem criou'} começar.`}</Body>
+        </View>
+      </ScrollView>
 
       {error && <Text style={styles.error}>{error}</Text>}
       {isHost ? (

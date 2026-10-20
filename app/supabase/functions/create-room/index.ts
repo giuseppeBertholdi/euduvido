@@ -31,7 +31,7 @@ Deno.serve(
 
     for (let attempt = 0; attempt < 12; attempt++) {
       const pin = String(1000 + Math.floor(Math.random() * 9000));
-      const { data, error } = await db.from('rooms').insert({ pin, host_id: user.id, config }).select('id, pin').single();
+      const { data, error } = await db.from('rooms').insert({ pin, host_id: user.id, created_by: user.id, config }).select('id, pin').single();
       if (error) {
         if (error.code === '23505') continue; // PIN em uso, sorteia outro
         throw error;

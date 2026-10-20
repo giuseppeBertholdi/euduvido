@@ -32,7 +32,9 @@ export type Event =
   | 'invite_shared'
   | 'review_tapped'
   | 'setting_changed'
-  | 'reminders_answered';
+  | 'reminders_answered'
+  | 'referral_tapped'
+  | 'referral_rewarded';
 
 type Value = string | number | boolean | null | undefined | string[];
 type Props = Record<string, Value>;

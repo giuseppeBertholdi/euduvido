@@ -7,6 +7,7 @@ import { EasyPaywall } from '@/components/EasyPaywall';
 import { Icon } from '@/components/Icon';
 import { Body, Label, Logo, Raised } from '@/components/ui';
 import { usePlans } from '@/features/paywall/usePlans';
+import { ReferralCard, useReferral } from '@/features/referral/Referral';
 import { PACKS } from '@/game/questions';
 import { useApp } from '@/state/app';
 import { visits } from '@/state/visits';
@@ -17,6 +18,7 @@ export default function Home() {
   const insets = useSafeAreaInsets();
   const [easy, setEasy] = useState(false);
   const trialDays = usePlans().plans?.find((p) => p.id === 'annual')?.trialDays;
+  const referral = useReferral();
 
   // easy paywall a cada visita, pra quem não assina e já jogou (antes da primeira partida, o jogo vem primeiro)
   useEffect(() => {
@@ -92,6 +94,10 @@ export default function Home() {
                 <Text style={styles.tileSub}>a galera entra com o PIN</Text>
               </View>
             </Raised>
+          </View>
+
+          <View style={{ marginTop: 14 }}>
+            <ReferralCard status={referral.status} premium={premium} source="home" onPress={() => router.push('/pin/create')} />
           </View>
 
           <View style={styles.sectionHead}>

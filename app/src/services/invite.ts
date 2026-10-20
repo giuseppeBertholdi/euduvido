@@ -14,7 +14,7 @@ export function inviteUrl(pin: string): string {
 
 export function shareInvite(pin: string) {
   analytics.track('invite_shared', { kind: 'room' });
-  return Share.share({ message: `bora jogar eu duvido! entra na minha sala: ${inviteUrl(pin)}\n(ou abre o app e digita o PIN ${pin})` });
+  return Share.share({ message: `bora jogar eu duvido! entra na minha sala: ${inviteUrl(pin)}\n(ou abre o app e digita o PIN ${pin})\nprimeira vez no app? joga a partida até o fim e ganha 24 h de pro` });
 }
 
 /** Indicar o jogo (Ajustes e fim da partida). */

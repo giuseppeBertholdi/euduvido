@@ -3,10 +3,11 @@ import { HttpError } from './http.ts';
 import { createMatch, LIVES_OPTIONS, MAX_PLAYERS, MIN_PLAYERS, publicState, reduce, TIMER_OPTIONS, type Action, type Match } from './game/engine.ts';
 import { freshPool } from './game/played.ts';
 import { PACKS } from './game/questions.ts';
+import { creditReferrals } from './referral.ts';
 
 /** `skip`: perguntas que já saíram (no celular de quem criou + partidas anteriores da sala). */
 export type RoomConfig = { lives: number; turnSeconds: number | null; packs: string[]; skip?: string[] };
-export type RoomRow = { id: string; pin: string; host_id: string; status: string; config: RoomConfig; version: number; expires_at: string };
+export type RoomRow = { id: string; pin: string; host_id: string; created_by: string | null; status: string; config: RoomConfig; version: number; expires_at: string };
 type PlayerRow = { user_id: string; name: string; seat: number };
 
 // ───────────── validação do que vem do app (nunca confie no cliente) ─────────────
@@ -37,7 +38,7 @@ export function parseUuid(v: unknown, code = 'bad_room'): string {
 // ───────────── leitura ─────────────
 
 export async function getRoom(db: Db, roomId: string): Promise<RoomRow> {
-  const { data, error } = await db.from('rooms').select('id, pin, host_id, status, config, version, expires_at').eq('id', roomId).maybeSingle();
+  const { data, error } = await db.from('rooms').select('id, pin, host_id, created_by, status, config, version, expires_at').eq('id', roomId).maybeSingle();
   if (error) throw error;
   if (!data || data.status === 'closed') throw new HttpError(404, 'room_not_found');
   return data as RoomRow;
@@ -76,6 +77,11 @@ async function save(db: Db, room: RoomRow, engine: Match, extra: Partial<Pick<Ro
   if (!data || data.length === 0) throw new HttpError(409, 'stale_version');
   const { error: secretError } = await db.from('room_secrets').upsert({ room_id: room.id, engine });
   if (secretError) throw secretError;
+  if (status === 'finished' && room.status !== 'finished') {
+    // convite (3 pessoas novas = 1 semana de pro): se falhar, a partida segue
+    const players = await activePlayers(db, room.id);
+    await creditReferrals(db, { ...room, ...extra }, players.map((p) => p.user_id)).catch((e) => console.error('referral', e));
+  }
   return version;
 }
 

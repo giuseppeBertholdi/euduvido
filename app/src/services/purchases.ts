@@ -58,6 +58,8 @@ export interface PurchasesService {
   cachedPlans(): Plan[] | null;
   purchase(plan: Plan): Promise<PurchaseResult>;
   restore(): Promise<{ premium: boolean }>;
+  /** Busca de novo na loja (ex.: o servidor acabou de dar a semana do convite) e avisa o `onPremium`. */
+  refresh(): Promise<boolean>;
 }
 
 const wait = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -75,6 +77,9 @@ const mock: PurchasesService = {
   async restore() {
     await wait(500);
     return { premium: false };
+  },
+  async refresh() {
+    return false;
   },
 };
 
@@ -102,6 +107,7 @@ function createRevenueCat(): PurchasesService {
   let started: Promise<void> | null = null;
   let loading: Promise<Plan[]> | null = null;
   let cache: Plan[] | null = null;
+  let notify: ((premium: boolean) => void) | null = null;
 
   async function loadPlans(): Promise<Plan[]> {
     // ofertas e elegibilidade ao teste em paralelo (as duas vão na rede)
@@ -138,6 +144,7 @@ function createRevenueCat(): PurchasesService {
 
   const service: PurchasesService = {
     start(userId, onPremium) {
+      notify = onPremium;
       started ??= (async () => {
         const timeout = new Promise<null>((r) => setTimeout(() => r(null), USER_ID_WAIT_MS));
         const pending = userId().catch(() => null);
@@ -186,6 +193,18 @@ function createRevenueCat(): PurchasesService {
         return { premium: isPro(await Purchases.restorePurchases()) };
       } catch {
         return { premium: false };
+      }
+    },
+
+    async refresh() {
+      try {
+        await started;
+        await Purchases.invalidateCustomerInfoCache();
+        const premium = isPro(await Purchases.getCustomerInfo());
+        notify?.(premium);
+        return premium;
+      } catch {
+        return false;
       }
     },
   };

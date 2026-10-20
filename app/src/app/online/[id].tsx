@@ -8,8 +8,10 @@ import { RemindersAsk } from '@/features/engagement/RemindersAsk';
 import { ReviewAsk } from '@/features/engagement/ReviewAsk';
 import { useMatchEnd } from '@/features/engagement/useMatchEnd';
 import { useRoom } from '@/features/online/useRoom';
+import { ReferralCard, ReferralReward, useReferral, useReferralAfterMatch } from '@/features/referral/Referral';
 import { useZoeira, ZoeiraBar, ZoeiraLayer } from '@/features/online/zoeira';
 import type { Action } from '@/game/engine';
+import { shareApp } from '@/services/invite';
 import { act, leaveRoom, RoomError, serverNow, type RoomAction } from '@/services/rooms';
 import { useApp } from '@/state/app';
 import { colors, fonts } from '@/theme';
@@ -25,6 +27,9 @@ export default function OnlineMatch() {
   // online: momento bom = ganhou, ou cravou na mosca na última rodada
   const happy = !!st && !!me && (st.winnerId === me || (st.result?.exact === true && st.result.bid?.playerId === me));
   useMatchEnd(room && st ? `${room.id}:${st.round}:${st.question.id}` : null, st?.phase === 'end', happy, { mode: 'online', players: st?.players.length });
+  const referral = useReferral();
+  const isHost = !!me && me === room?.hostId;
+  const rewarded = useReferralAfterMatch(room && st?.phase === 'end' ? `${room.id}:${room.version}` : null, isHost, referral);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -95,6 +100,7 @@ export default function OnlineMatch() {
       onSeen={markPlayed}
         endExtra={
           <>
+            {rewarded ? <ReferralReward kind={rewarded} /> : isHost && <ReferralCard status={referral.status} premium={premium} source="match_end" onPress={() => void shareApp('match_end')} />}
             <RemindersAsk />
             <ReviewAsk />
           </>
