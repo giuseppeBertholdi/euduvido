@@ -14,7 +14,7 @@
       },
       "infoPlist": {
         "NSPhotoLibraryAddUsageDescription": "Pra salvar nas suas fotos o card da rodada que você escolher compartilhar.",
-        "CFBundleDevelopmentRegion": "pt-BR"
+        "CFBundleDevelopmentRegion": "en"
       },
       "privacyManifests": {
         "NSPrivacyAccessedAPITypes": [
@@ -104,7 +104,8 @@
     },
     "owner": "2801giuseppe",
     "locales": {
-      "pt-BR": "./locales/pt-BR.json"
+      "pt-BR": "./locales/pt-BR.json",
+      "en": "./locales/en.json"
     }
   }
 }
