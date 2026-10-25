@@ -55,3 +55,13 @@ https://idoubtit.fun (as duas; /support é a página do outro app, I Doubt It)
 
 ## Screenshots
 Gerar em inglês com o app em `EXPO_PUBLIC_LANG=en` (simulador). Ordem igual à de pt: 01 → 06-desafio → 02 → 03 → 04 → 05.
+
+---
+
+# Ficha em português (pt-BR) da 1.3.0
+
+## Novidades desta versão
+O "!" voltou a ser o ícone. E agora o jogo também fala inglês: quem tem o iPhone em inglês joga com perguntas em unidades americanas, desafio do dia próprio e salas em inglês.
+
+## Notas para a revisão (vale para as duas línguas)
+Usar o texto de "Review notes" acima.
