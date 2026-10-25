@@ -9,7 +9,7 @@
 import Constants, { ExecutionEnvironment } from 'expo-constants';
 import { Platform } from 'react-native';
 import type { CustomerInfo, PurchasesPackage } from 'react-native-purchases';
-import { t } from '@/i18n';
+import { isEn, t } from '@/i18n';
 
 export type PlanId = 'annual' | 'weekly' | 'monthly' | 'lifetime';
 /** `period: null` = compra única (vitalício). `featured`: aparece na vista principal do paywall. */
@@ -31,15 +31,22 @@ export type Plan = {
 export const ENTITLEMENT = 'pro';
 
 /**
- * Preços de referência (Brasil), usados no modo mock. Com o RevenueCat, valem os da loja.
+ * Preços de referência (Brasil; nos EUA, uma estimativa), usados no modo mock. Com o RevenueCat, valem os da loja.
  * Anual vs. semanal o ano todo (52 × R$ 9,90 = R$ 514,80): R$ 69,90 é 86% mais barato.
  */
-export const PLANS: Plan[] = [
-  { id: 'annual', title: 'anual', price: 'R$ 69,90', period: 'ano', perMonth: 'R$ 5,83/mês', perWeek: 'R$ 1,34', badge: '-86%', trialDays: 3, featured: true },
-  { id: 'weekly', title: 'semanal', price: 'R$ 9,90', period: 'semana', featured: true },
-  { id: 'monthly', title: 'mensal', price: 'R$ 19,90', period: 'mês' },
-  { id: 'lifetime', title: 'vitalício', price: 'R$ 149,90', period: null },
-];
+export const PLANS: Plan[] = isEn
+  ? [
+      { id: 'annual', title: t('anual'), price: '$29.99', period: t('ano'), perMonth: '$2.50/month', perWeek: '$0.58', badge: '-88%', trialDays: 3, featured: true },
+      { id: 'weekly', title: t('semanal'), price: '$4.99', period: t('semana'), featured: true },
+      { id: 'monthly', title: t('mensal'), price: '$9.99', period: t('mês') },
+      { id: 'lifetime', title: t('vitalício'), price: '$59.99', period: null },
+    ]
+  : [
+      { id: 'annual', title: 'anual', price: 'R$ 69,90', period: 'ano', perMonth: 'R$ 5,83/mês', perWeek: 'R$ 1,34', badge: '-86%', trialDays: 3, featured: true },
+      { id: 'weekly', title: 'semanal', price: 'R$ 9,90', period: 'semana', featured: true },
+      { id: 'monthly', title: 'mensal', price: 'R$ 19,90', period: 'mês' },
+      { id: 'lifetime', title: 'vitalício', price: 'R$ 149,90', period: null },
+    ];
 
 const iosKey = process.env.EXPO_PUBLIC_REVENUECAT_IOS_KEY;
 const inExpoGo = Constants.executionEnvironment === ExecutionEnvironment.StoreClient;
