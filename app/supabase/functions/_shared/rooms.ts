@@ -2,11 +2,14 @@ import type { Db } from './clients.ts';
 import { HttpError } from './http.ts';
 import { createMatch, LIVES_OPTIONS, MAX_PLAYERS, MIN_PLAYERS, publicState, reduce, TIMER_OPTIONS, type Action, type Match } from './game/engine.ts';
 import { freshPool } from './game/played.ts';
-import { PACKS } from './game/questions.ts';
+import { packsFor, type Lang } from './game/packs.ts';
 import { creditReferrals } from './referral.ts';
 
-/** `skip`: perguntas que já saíram (no celular de quem criou + partidas anteriores da sala). */
-export type RoomConfig = { lives: number; turnSeconds: number | null; packs: string[]; skip?: string[] };
+/**
+ * `skip`: perguntas que já saíram (no celular de quem criou + partidas anteriores da sala).
+ * `lang`: idioma das perguntas (o do celular de quem criou); salas antigas, sem ele, são em português.
+ */
+export type RoomConfig = { lives: number; turnSeconds: number | null; packs: string[]; skip?: string[]; lang?: Lang };
 export type RoomRow = { id: string; pin: string; host_id: string; created_by: string | null; status: string; config: RoomConfig; version: number; expires_at: string };
 type PlayerRow = { user_id: string; name: string; seat: number };
 
@@ -22,12 +25,14 @@ export function parseConfig(body: Record<string, unknown>): RoomConfig {
   const lives = body.lives;
   const turnSeconds = body.turnSeconds ?? null;
   const packs = body.packs;
+  const lang: Lang = body.lang === 'en' ? 'en' : 'pt';
+  const PACKS = packsFor(lang);
   if (typeof lives !== 'number' || !(LIVES_OPTIONS as readonly number[]).includes(lives)) throw new HttpError(400, 'bad_lives');
   if (!(TIMER_OPTIONS as readonly (number | null)[]).includes(turnSeconds as number | null)) throw new HttpError(400, 'bad_timer');
   if (!Array.isArray(packs) || packs.length === 0 || packs.some((p) => typeof p !== 'string' || !PACKS.some((k) => k.id === p))) throw new HttpError(400, 'bad_packs');
   const skip = body.skip ?? [];
   if (!Array.isArray(skip) || skip.length > 1000 || skip.some((s) => typeof s !== 'string' || s.length > 24)) throw new HttpError(400, 'bad_skip');
-  return { lives, turnSeconds: turnSeconds as number | null, packs: [...new Set(packs as string[])], skip: [...new Set(skip as string[])] };
+  return { lives, turnSeconds: turnSeconds as number | null, packs: [...new Set(packs as string[])], skip: [...new Set(skip as string[])], lang };
 }
 
 export function parseUuid(v: unknown, code = 'bad_room'): string {
@@ -86,7 +91,7 @@ async function save(db: Db, room: RoomRow, engine: Match, extra: Partial<Pick<Ro
 }
 
 function newMatch(config: RoomConfig, players: PlayerRow[], alsoSkip: string[] = []): Match {
-  const all = PACKS.filter((p) => config.packs.includes(p.id)).flatMap((p) => p.questions);
+  const all = packsFor(config.lang ?? 'pt').filter((p) => config.packs.includes(p.id)).flatMap((p) => p.questions);
   const { pool } = freshPool(all, [...(config.skip ?? []), ...alsoSkip], true);
   return createMatch({
     players: players.map((p) => ({ id: p.user_id, name: p.name })),

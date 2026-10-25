@@ -1,7 +1,7 @@
 import { adminClient, requireUser } from '../_shared/clients.ts';
 import { hasPro } from '../_shared/entitlement.ts';
 import { HttpError, serveJson } from '../_shared/http.ts';
-import { PACKS } from '../_shared/game/questions.ts';
+import { packsFor } from '../_shared/game/packs.ts';
 import { parseConfig, parseName } from '../_shared/rooms.ts';
 
 const MAX_OPEN_ROOMS_PER_USER = 3;
@@ -15,6 +15,7 @@ Deno.serve(
     const config = parseConfig(body);
     // qualquer um cria sala (é o que traz gente nova); sem pro, a sala só usa os pacotes grátis
     if (!(await hasPro(user.id))) {
+      const PACKS = packsFor(config.lang ?? 'pt');
       const free = config.packs.filter((id) => !PACKS.find((p) => p.id === id)?.premium);
       config.packs = free.length ? free : PACKS.filter((p) => !p.premium).map((p) => p.id);
     }

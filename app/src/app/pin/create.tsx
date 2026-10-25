@@ -12,7 +12,7 @@ import { act, createRoom, leaveRoom, onlineEnabled, RoomError } from '@/services
 import { analytics } from '@/services/analytics';
 import { useApp } from '@/state/app';
 import { colors, fonts, radii } from '@/theme';
-import { t } from '@/i18n';
+import { lang, t } from '@/i18n';
 
 /** Criar sala (qualquer um; sem pro, só os pacotes grátis): pede o nome se faltar, cria no servidor e mostra o lobby ao vivo. */
 export default function CreateRoom() {
@@ -46,6 +46,7 @@ export default function CreateRoom() {
         turnSeconds: app.timer,
         packs: packs.length ? packs : ['classico'],
         skip: app.avoidRepeats ? app.played.slice(-1000) : [],
+        lang,
       });
       setRoomId(created.roomId);
       analytics.track('room_created', { packs: packs.length ? packs : ['classico'], lives: app.lives, timer: app.timer, premium: app.premium });

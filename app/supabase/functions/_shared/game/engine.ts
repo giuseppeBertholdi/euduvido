@@ -235,16 +235,25 @@ export function standings(m: View): Player[] {
   return [...alive, ...[...m.out].reverse().map((id) => playerById(m, id))];
 }
 
-/** Número em pt-BR com ponto de milhar. */
+let thousands = '.';
+/** Separador de milhar: ponto em português (padrão), vírgula em inglês. */
+export function setThousandsSeparator(sep: string) {
+  thousands = sep;
+}
+
+/** Número com separador de milhar ("1.000" em pt-BR, "1,000" em inglês). */
 export function formatNumber(n: number): string {
   return Math.round(n)
     .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    .replace(/\B(?=(\d{3})+(?!\d))/g, thousands);
 }
 
-/** Anos não levam ponto de milhar ("1960", não "1.960"). */
+/** A unidade é "ano" (em inglês, "year"): o lance vira data, sem separador de milhar. */
+export const isYear = (unit: string) => unit === 'ano' || unit === 'year';
+
+/** Anos não levam separador de milhar ("1960", não "1.960"). */
 export function formatValue(n: number, unit: string): string {
-  return unit === 'ano' ? String(Math.round(n)) : formatNumber(n);
+  return isYear(unit) ? String(Math.round(n)) : formatNumber(n);
 }
 
 export function formatDigits(digits: string, unit = ''): string {

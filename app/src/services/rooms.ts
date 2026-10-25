@@ -9,7 +9,7 @@ import type { Action, PublicMatch } from '@/game/engine';
 import { ensureUserId, supabase } from './supabase';
 import { t } from '@/i18n';
 
-export type RoomConfig = { lives: number; turnSeconds: number | null; packs: string[]; skip?: string[] };
+export type RoomConfig = { lives: number; turnSeconds: number | null; packs: string[]; skip?: string[]; lang?: 'pt' | 'en' };
 export type RoomPlayer = { userId: string; name: string; seat: number };
 export type RoomStatus = 'lobby' | 'playing' | 'finished' | 'closed';
 export type Room = {
