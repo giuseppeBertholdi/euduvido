@@ -602,7 +602,7 @@ export const EN_QUESTIONS: Record<string, EnQuestion> = {
     "text": "How many legs can the millipede Illacme plenipes have?",
     "answer": 750,
     "unit": "legs",
-    "fact": "And despite the name 'centipede', no species has exactly 100 legs."
+    "fact": "Despite the name 'millipede' (a thousand feet), nobody found one with over 1,000 legs until 2021."
   },
   "n28": {
     "text": "How many feathers does a whooper swan have, on average?",
