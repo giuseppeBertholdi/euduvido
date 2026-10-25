@@ -12,7 +12,7 @@ import { packById } from '@/game/content';
 import { analytics } from '@/services/analytics';
 import { useApp } from '@/state/app';
 import { colors, fonts, radii } from '@/theme';
-import { plural, t } from '@/i18n';
+import { plural, t, unitAfter } from '@/i18n';
 
 /** Quantas perguntas de um pacote bloqueado dá pra espiar antes de assinar (as de destaque). */
 const PREVIEW = 3;
@@ -110,7 +110,7 @@ export default function PackDetail() {
                 {answers && !locked ? (
                   <>
                     <Text style={styles.qAnswer}>
-                      {formatValue(item.answer, item.unit)} {item.unit}
+                      {formatValue(item.answer, item.unit)} {unitAfter(item.unit)}
                     </Text>
                     {item.source && <Text style={styles.qUnit}>{t('fonte: {source}', { source: item.source })}</Text>}
                   </>

@@ -10,14 +10,14 @@ import { Enter } from '@/components/motion';
 import { ShareCard, shareCard } from '@/components/ShareCard';
 import { TurnTimer } from '@/components/TurnTimer';
 import { Body, Btn, Chip, Label, Raised, Title } from '@/components/ui';
-import { formatDigits, formatValue, isActive, lastBid, minBid, playerById, standings, type Action, type PublicMatch } from '@/game/engine';
+import { formatDigits, formatValue, isActive, isYear, lastBid, minBid, playerById, standings, type Action, type PublicMatch } from '@/game/engine';
 import { PACKS, packTitleOf } from '@/game/content';
 import { haptic } from '@/services/haptics';
 import { shareApp } from '@/services/invite';
 import { useRoundAnalytics } from '@/features/match/useRoundAnalytics';
 import { playSound } from '@/services/sound';
 import { colors, fonts, radii } from '@/theme';
-import { t } from '@/i18n';
+import { isEn, t, unitAfter } from '@/i18n';
 
 /**
  * A partida, igual no modo local e no online.
@@ -192,7 +192,7 @@ function Turn({ m, me, hostId, busy, error, now, onAction, onQuit, zoeira }: Mat
                   <Text style={styles.bidValue} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.4} maxFontSizeMultiplier={1}>
                     {formatValue(bid.value, q.unit)}
                   </Text>
-                  <Text style={styles.bidUnit}>{q.unit}</Text>
+                  <Text style={styles.bidUnit}>{unitAfter(q.unit)}</Text>
                 </View>
                 <Text style={styles.bidWho}>
                   {t('{name} diz:', { name: nameOf(m, bid.playerId) })} <Text style={{ fontFamily: fonts.ui800 }}>{t('isso ou mais')}</Text>
@@ -289,7 +289,7 @@ function BidSheet({ m, onClose, onBid }: { m: PublicMatch; onClose: () => void; 
           <Text style={[styles.displayNum, !value && { color: colors.inkMuted }]} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.5} maxFontSizeMultiplier={1}>
             {formatDigits(value, unit)}
           </Text>
-          <Text style={styles.displayUnit}>{unit}</Text>
+          <Text style={styles.displayUnit}>{unitAfter(unit)}</Text>
         </View>
         <Text style={[styles.minHint, value !== '' && !ok && { color: colors.pinkInk }]}>{bid ? t('tem que ser {n} ou mais', { n: formatValue(min, unit) }) : t('qualquer número a partir de 1')}</Text>
         {quick.length > 0 && (
@@ -366,7 +366,9 @@ function Result({ m, me, busy, error, onAction, zoeira }: MatchScreenProps) {
               ) : (
                 <>
                   <Text style={{ fontFamily: fonts.ui800 }}>{nameOf(m, r.doubterId)}</Text> {t('duvidou de')} <Text style={{ fontFamily: fonts.ui800 }}>{bidder}</Text>:{' '}
-                  {t('{value} {unit} ou mais?', { value: formatValue(r.bid?.value ?? 0, q.unit), unit: q.unit })}
+                  {isEn && isYear(q.unit)
+                    ? `${t('em {value} ou depois', { value: formatValue(r.bid?.value ?? 0, q.unit) })}?`
+                    : t('{value} {unit} ou mais?', { value: formatValue(r.bid?.value ?? 0, q.unit), unit: q.unit })}
                 </>
               )}
             </Body>
@@ -381,7 +383,7 @@ function Result({ m, me, busy, error, onAction, zoeira }: MatchScreenProps) {
                   <Label color={colors.ink}>{t('a resposta é')}</Label>
                   <View style={styles.bidRow}>
                     <CountUp to={r.answer} unit={q.unit} style={styles.answer} onDone={() => setStage(2)} />
-                    <Text style={styles.bidUnit}>{q.unit}</Text>
+                    <Text style={styles.bidUnit}>{unitAfter(q.unit)}</Text>
                   </View>
                   {stage === 2 && q.fact && <Body size={15}>{q.fact}</Body>}
                   {stage === 2 && q.source && <Text style={styles.source}>{t('fonte: {source}', { source: q.source })}</Text>}

@@ -5,7 +5,7 @@ import { captureRef } from 'react-native-view-shot';
 import { formatValue } from '@/game/engine';
 import { analytics } from '@/services/analytics';
 import { colors, fonts } from '@/theme';
-import { t } from '@/i18n';
+import { t, unitAfter } from '@/i18n';
 
 
 /**
@@ -24,7 +24,7 @@ export const ShareCard = forwardRef<View, { name: string; value: number; unit: s
       <Text style={styles.value} numberOfLines={1} adjustsFontSizeToFit>
         {formatValue(value, unit)}
       </Text>
-      <Text style={styles.unit}>{unit}</Text>
+      <Text style={styles.unit}>{unitAfter(unit)}</Text>
       <Text style={styles.question}>{question}</Text>
       <Text style={styles.foot}>
         {t('sem saber. no chute.')} <Text style={{ color: colors.pinkInk }}>{t('eu duvido!')}</Text> {t('na App Store')}

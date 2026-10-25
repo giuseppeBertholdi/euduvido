@@ -4,7 +4,7 @@ import { tapLight } from '@/components/ui';
 import { formatValue } from '@/game/engine';
 import { teasers } from '@/game/highlights';
 import { colors, fonts, radii } from '@/theme';
-import { t } from '@/i18n';
+import { t, unitAfter } from '@/i18n';
 
 const ITEMS = teasers();
 const CARD = 236;
@@ -28,7 +28,7 @@ export function Teasers() {
               }}
               style={[styles.card, on && styles.cardOn]}
               accessibilityRole="button"
-              accessibilityLabel={on ? `${q.text} ${t('Resposta:')} ${formatValue(q.answer, q.unit)} ${q.unit}` : `${q.text} ${t('Toque pra ver a resposta')}`}
+              accessibilityLabel={on ? `${q.text} ${t('Resposta:')} ${formatValue(q.answer, q.unit)} ${unitAfter(q.unit)}` : `${q.text} ${t('Toque pra ver a resposta')}`}
             >
               <Text style={styles.text}>{q.text}</Text>
               {on ? (
@@ -36,7 +36,7 @@ export function Teasers() {
                   <Text style={styles.answer} adjustsFontSizeToFit numberOfLines={1} minimumFontScale={0.6}>
                     {formatValue(q.answer, q.unit)}
                   </Text>
-                  <Text style={styles.unit}>{q.unit}</Text>
+                  <Text style={styles.unit}>{unitAfter(q.unit)}</Text>
                   <Text style={styles.more}>{t('tem centenas assim no pro')}</Text>
                 </View>
               ) : (

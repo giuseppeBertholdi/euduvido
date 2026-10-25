@@ -7,7 +7,7 @@
  * com a mesma frase como chave. Faltou a tradução, sai o português (e o `npm test` acusa).
  * Variáveis entre chaves: `t('Vez de {name}', { name })`.
  */
-import { setThousandsSeparator } from '@/game/engine';
+import { isYear, setThousandsSeparator } from '@/game/engine';
 import { EN } from './en';
 
 export type Lang = 'pt' | 'en';
@@ -35,6 +35,11 @@ if (isEn) setThousandsSeparator(',');
 export function t(pt: string, vars?: Record<string, string | number>): string {
   const s = isEn ? (EN[pt] ?? pt) : pt;
   return vars ? s.replace(/\{(\w+)\}/g, (m, k: string) => (k in vars ? String(vars[k]) : m)) : s;
+}
+
+/** Unidade depois de um número. Em inglês, ano não leva unidade ("1977", não "1977 year"). */
+export function unitAfter(unit: string): string {
+  return isEn && isYear(unit) ? '' : unit;
 }
 
 /** Singular ou plural: `plural(n, '{n} pergunta', '{n} perguntas')`. */
