@@ -12,6 +12,7 @@ import { shareInvite } from '@/services/invite';
 import type { Room } from '@/services/rooms';
 import { useApp } from '@/state/app';
 import { colors, fonts, radii } from '@/theme';
+import { t } from '@/i18n';
 
 /** Sala de espera: PIN grande, quem já entrou (ao vivo) e a config. O host começa; o resto espera. */
 export function Lobby({ room, me, busy, error, onStart, onLeave }: { room: Room; me: string; busy?: boolean; error?: string | null; onStart: () => void; onLeave: () => void }) {
@@ -27,9 +28,9 @@ export function Lobby({ room, me, busy, error, onStart, onLeave }: { room: Room;
   return (
     <View style={[styles.root, { paddingTop: insets.top + 6, paddingBottom: insets.bottom + 14 }]}>
       <StatusBar style="dark" />
-      <TopBar onBack={onLeave} backLabel={isHost ? 'fechar sala' : 'sair da sala'} />
-      <Label style={{ marginTop: 12 }}>{isHost ? 'sala aberta · passa o PIN' : 'tá dentro!'}</Label>
-      <Raised face={colors.yellow} style={{ marginTop: 10 }} onPress={share} accessibilityLabel={`PIN ${room.pin.split('').join(' ')}. Toque pra compartilhar`}>
+      <TopBar onBack={onLeave} backLabel={isHost ? t('fechar sala') : t('sair da sala')} />
+      <Label style={{ marginTop: 12 }}>{isHost ? t('sala aberta · passa o PIN') : t('tá dentro!')}</Label>
+      <Raised face={colors.yellow} style={{ marginTop: 10 }} onPress={share} accessibilityLabel={t('PIN {pin}. Toque pra compartilhar', { pin: room.pin.split('').join(' ') })}>
         <View style={styles.pinRow}>
           {room.pin.split('').map((d, i) => (
             <View key={i} style={styles.pinBox}>
@@ -40,23 +41,23 @@ export function Lobby({ room, me, busy, error, onStart, onLeave }: { room: Room;
           ))}
         </View>
       </Raised>
-      <LinkBtn label="mandar link de convite" icon="share" onPress={share} color={colors.ink} />
+      <LinkBtn label={t('mandar link de convite')} icon="share" onPress={share} color={colors.ink} />
 
       <View style={styles.config}>
         <Lives left={room.config.lives} total={room.config.lives} size={16} />
         <Text style={styles.configText}>
-          {room.config.lives} vidas · {room.config.turnSeconds ? `${room.config.turnSeconds}s por vez` : 'sem timer'} · {packs}
+          {t('{n} vidas', { n: room.config.lives })} · {room.config.turnSeconds ? t('{n}s por vez', { n: room.config.turnSeconds }) : t('sem timer')} · {packs}
         </Text>
       </View>
 
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
         <Label color={colors.ink} style={{ marginTop: 16 }}>
-          na sala · {count}/8
+          {t('na sala · {count}/8', { count })}
         </Label>
         <View style={styles.chips} accessibilityLiveRegion="polite">
           {room.players.map((p) => (
             <Enter key={p.userId} from={8}>
-              <Chip label={`${p.name}${p.userId === me ? ' (você)' : ''}`} icon={p.userId === room.hostId ? 'crown' : undefined} bg={p.userId === room.hostId ? colors.yellow : colors.surface} border={colors.ink} />
+              <Chip label={`${p.name}${p.userId === me ? ` ${t('(você)')}` : ''}`} icon={p.userId === room.hostId ? 'crown' : undefined} bg={p.userId === room.hostId ? colors.yellow : colors.surface} border={colors.ink} />
             </Enter>
           ))}
         </View>
@@ -69,17 +70,17 @@ export function Lobby({ room, me, busy, error, onStart, onLeave }: { room: Room;
 
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', paddingVertical: 16 }}>
           <BangMark size={88} />
-          <Body style={{ textAlign: 'center', marginTop: 14 }}>{count < MIN_PLAYERS ? 'Chama a galera: precisa de pelo menos 2.' : isHost ? 'Todo mundo dentro? Bora.' : `Esperando ${host?.name ?? 'quem criou'} começar.`}</Body>
+          <Body style={{ textAlign: 'center', marginTop: 14 }}>{count < MIN_PLAYERS ? t('Chama a galera: precisa de pelo menos 2.') : isHost ? t('Todo mundo dentro? Bora.') : t('Esperando {name} começar.', { name: host?.name ?? t('quem criou') })}</Body>
         </View>
       </ScrollView>
 
       {error && <Text style={styles.error}>{error}</Text>}
       {isHost ? (
-        <Btn label={count >= MIN_PLAYERS ? `Começar com ${count}` : 'Esperando a galera…'} right={count >= MIN_PLAYERS ? 'arrowRight' : null} disabled={count < MIN_PLAYERS || busy} onPress={onStart} />
+        <Btn label={count >= MIN_PLAYERS ? t('Começar com {n}', { n: count }) : t('Esperando a galera…')} right={count >= MIN_PLAYERS ? 'arrowRight' : null} disabled={count < MIN_PLAYERS || busy} onPress={onStart} />
       ) : (
         <View style={styles.waiting} accessibilityLiveRegion="polite">
           <ActivityIndicator color={colors.ink} />
-          <Text style={styles.waitingText}>aguardando a partida…</Text>
+          <Text style={styles.waitingText}>{t('aguardando a partida…')}</Text>
         </View>
       )}
     </View>
@@ -97,7 +98,7 @@ export function OnlineNotice({ title, text, onBack }: { title: string; text: str
         <Text style={styles.noticeTitle}>{title}</Text>
         <Body style={{ textAlign: 'center' }}>{text}</Body>
       </View>
-      <Btn label="Voltar" variant="secondary" right={null} onPress={onBack} />
+      <Btn label={t('Voltar')} variant="secondary" right={null} onPress={onBack} />
     </View>
   );
 }

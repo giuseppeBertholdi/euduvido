@@ -5,6 +5,7 @@ import { haptic } from '@/services/haptics';
 import { playSound, type SoundName } from '@/services/sound';
 import { supabase } from '@/services/supabase';
 import { colors, fonts } from '@/theme';
+import { t } from '@/i18n';
 
 /**
  * Zoeira: reações de provocação no online (cada um no seu celular).
@@ -14,16 +15,16 @@ import { colors, fonts } from '@/theme';
 export type Reaction = { id: string; emoji: string; label: string; sound?: SoundName };
 
 export const REACTIONS: Reaction[] = [
-  { id: 'buzina', emoji: '📣', label: 'buzina', sound: 'buzina' },
-  { id: 'trombone', emoji: '🎺', label: 'chorou', sound: 'trombone' },
-  { id: 'grilo', emoji: '🦗', label: 'cri cri', sound: 'grilo' },
-  { id: 'tambor', emoji: '🥁', label: 'tensão', sound: 'tambor' },
-  { id: 'palhaco', emoji: '🤡', label: 'palhaço', sound: 'boing' },
-  { id: 'cap', emoji: '🧢', label: 'mentira' },
-  { id: 'cobra', emoji: '🐍', label: 'traíra' },
-  { id: 'kkk', emoji: '😂', label: 'kkkkk' },
-  { id: 'fogo', emoji: '🔥', label: 'brabo' },
-  { id: 'olho', emoji: '👀', label: 'sei não' },
+  { id: 'buzina', emoji: '📣', label: t('buzina'), sound: 'buzina' },
+  { id: 'trombone', emoji: '🎺', label: t('chorou'), sound: 'trombone' },
+  { id: 'grilo', emoji: '🦗', label: t('cri cri'), sound: 'grilo' },
+  { id: 'tambor', emoji: '🥁', label: t('tensão'), sound: 'tambor' },
+  { id: 'palhaco', emoji: '🤡', label: t('palhaço'), sound: 'boing' },
+  { id: 'cap', emoji: '🧢', label: t('mentira') },
+  { id: 'cobra', emoji: '🐍', label: t('traíra') },
+  { id: 'kkk', emoji: '😂', label: t('kkkkk') },
+  { id: 'fogo', emoji: '🔥', label: t('brabo') },
+  { id: 'olho', emoji: '👀', label: t('sei não') },
 ];
 
 const byId = Object.fromEntries(REACTIONS.map((r) => [r.id, r]));
@@ -84,7 +85,7 @@ export function useZoeira(roomId: string | null, me: string | null, names: Recor
 }
 
 /** Barra de reações (rola na horizontal). */
-export function ZoeiraBar({ onSend, title = 'zoeira' }: { onSend: (r: Reaction) => void; title?: string }) {
+export function ZoeiraBar({ onSend, title = t('zoeira') }: { onSend: (r: Reaction) => void; title?: string }) {
   return (
     <View style={styles.bar}>
       <Text style={styles.barTitle}>{title}</Text>
@@ -94,7 +95,7 @@ export function ZoeiraBar({ onSend, title = 'zoeira' }: { onSend: (r: Reaction) 
             key={r.id}
             onPress={() => onSend(r)}
             accessibilityRole="button"
-            accessibilityLabel={`mandar ${r.label}`}
+            accessibilityLabel={t('mandar {name}', { name: r.label })}
             style={({ pressed }) => [styles.react, pressed && { transform: [{ scale: 0.88 }], backgroundColor: colors.yellowSoft }]}
           >
             <Text style={styles.reactEmoji}>{r.emoji}</Text>
@@ -119,10 +120,10 @@ export function ZoeiraLayer({ feed }: { feed: ZoeiraEvent[] }) {
 
 function Floating({ event, lane }: { event: ZoeiraEvent; lane: number }) {
   const reduce = useReducedMotion();
-  const [t] = useState(() => new Animated.Value(0));
+  const [anim] = useState(() => new Animated.Value(0));
   useEffect(() => {
-    Animated.timing(t, { toValue: 1, duration: 2400, easing: Easing.out(Easing.cubic), useNativeDriver: true }).start();
-  }, [t]);
+    Animated.timing(anim, { toValue: 1, duration: 2400, easing: Easing.out(Easing.cubic), useNativeDriver: true }).start();
+  }, [anim]);
   return (
     <Animated.View
       accessibilityLiveRegion="polite"
@@ -131,13 +132,13 @@ function Floating({ event, lane }: { event: ZoeiraEvent; lane: number }) {
         styles.float,
         { right: 16 + lane * 70, bottom: 150 + lane * 14 },
         {
-          opacity: t.interpolate({ inputRange: [0, 0.1, 0.75, 1], outputRange: [0, 1, 1, 0] }),
+          opacity: anim.interpolate({ inputRange: [0, 0.1, 0.75, 1], outputRange: [0, 1, 1, 0] }),
           transform: reduce
             ? []
             : [
-                { translateY: t.interpolate({ inputRange: [0, 1], outputRange: [0, -260] }) },
-                { scale: t.interpolate({ inputRange: [0, 0.12, 0.25, 1], outputRange: [0.4, 1.25, 1, 1] }) },
-                { rotate: t.interpolate({ inputRange: [0, 0.5, 1], outputRange: ['-8deg', '6deg', '-4deg'] }) },
+                { translateY: anim.interpolate({ inputRange: [0, 1], outputRange: [0, -260] }) },
+                { scale: anim.interpolate({ inputRange: [0, 0.12, 0.25, 1], outputRange: [0.4, 1.25, 1, 1] }) },
+                { rotate: anim.interpolate({ inputRange: [0, 0.5, 1], outputRange: ['-8deg', '6deg', '-4deg'] }) },
               ],
         },
       ]}

@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, View, type StyleProp, type TextStyle, type
 import { haptic } from '@/services/haptics';
 import { colors, depth, fonts, maxScale, radii } from '@/theme';
 import { Icon, type IconName } from './Icon';
+import { isEn, t } from '@/i18n';
 
 export function tapLight() {
   haptic.light();
@@ -142,7 +143,7 @@ export function Chip({ label, bg = colors.sunk, fg = colors.ink, border, icon, s
   );
 }
 
-/** "eu duvido!" com o "!" rosa. */
+/** "eu duvido!" ("i doubt it!") com o "!" rosa. */
 export function Logo({ size = 40, color = colors.ink, oneLine = false, style }: { size?: number; color?: string; oneLine?: boolean; style?: StyleProp<TextStyle> }) {
   return (
     <Text
@@ -150,12 +151,15 @@ export function Logo({ size = 40, color = colors.ink, oneLine = false, style }: 
       maxFontSizeMultiplier={1}
       style={[{ fontFamily: fonts.display, fontSize: size, lineHeight: size * 0.92, letterSpacing: -size / 24, color }, style]}
     >
-      eu{oneLine ? ' ' : '\n'}duvido<Text style={{ color: colors.pinkInk }}>!</Text>
+      {isEn ? 'i doubt' : 'eu'}
+      {oneLine ? ' ' : '\n'}
+      {isEn ? 'it' : 'duvido'}
+      <Text style={{ color: colors.pinkInk }}>!</Text>
     </Text>
   );
 }
 
-export function TopBar({ onBack, backLabel = 'voltar', right }: { onBack?: () => void; backLabel?: string; right?: ReactNode }) {
+export function TopBar({ onBack, backLabel = t('voltar'), right }: { onBack?: () => void; backLabel?: string; right?: ReactNode }) {
   return (
     <View style={styles.topbar}>
       {onBack ? (

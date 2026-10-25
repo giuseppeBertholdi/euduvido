@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { myUserId, RoomError, watchRoom, type Room } from '@/services/rooms';
+import { t } from '@/i18n';
 
 /** Sala ao vivo + quem sou eu. `room === null` depois de carregar: a sala fechou ou eu saí. */
 export function useRoom(roomId: string | null) {
@@ -11,7 +12,7 @@ export function useRoom(roomId: string | null) {
     let alive = true;
     myUserId()
       .then((id) => alive && setMe(id))
-      .catch((e: unknown) => alive && setError(e instanceof RoomError ? e.message : 'Sem conexão.'));
+      .catch((e: unknown) => alive && setError(e instanceof RoomError ? e.message : t('Sem conexão.')));
     return () => {
       alive = false;
     };

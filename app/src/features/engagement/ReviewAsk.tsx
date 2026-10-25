@@ -5,6 +5,7 @@ import { analytics } from '@/services/analytics';
 import { shouldShowReviewCard } from '@/services/engagement/policy';
 import { useApp } from '@/state/app';
 import { colors, fonts, radii } from '@/theme';
+import { t } from '@/i18n';
 
 /**
  * Convite pra avaliar, no fim da partida (regras em shouldShowReviewCard). Leva direto pra tela de escrever
@@ -24,14 +25,14 @@ export function ReviewAsk() {
     <View style={styles.card} accessibilityLiveRegion="polite">
       <Icon name="heart" size={28} accent={colors.pink} />
       <View style={{ flex: 1 }}>
-        <Text style={styles.title}>Curtiu a resenha?</Text>
-        <Text style={styles.text}>Uma avaliação na App Store ajuda demais um jogo que tá começando.</Text>
+        <Text style={styles.title}>{t('Curtiu a resenha?')}</Text>
+        <Text style={styles.text}>{t('Uma avaliação na App Store ajuda demais um jogo que tá começando.')}</Text>
         <View style={styles.row}>
           <Pressable onPress={() => answer(true)} style={({ pressed }) => [styles.btn, styles.btnYes, pressed && { opacity: 0.8 }]} accessibilityRole="button">
-            <Text style={styles.btnText}>avaliar</Text>
+            <Text style={styles.btnText}>{t('avaliar')}</Text>
           </Pressable>
           <Pressable onPress={() => answer(false)} style={styles.btn} accessibilityRole="button">
-            <Text style={[styles.btnText, { color: colors.inkSoft }]}>agora não</Text>
+            <Text style={[styles.btnText, { color: colors.inkSoft }]}>{t('agora não')}</Text>
           </Pressable>
         </View>
       </View>

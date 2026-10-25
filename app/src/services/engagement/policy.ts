@@ -2,6 +2,7 @@
  * Regras puras de engajamento (sem I/O, sem relógio próprio: `now` é injetado), testadas em policy.test.ts.
  */
 import { bidText, dailyNumber, dailyRounds } from '../../game/daily';
+import { t } from '@/i18n';
 
 // ───────────── lembretes (notificações locais) ─────────────
 
@@ -18,8 +19,8 @@ export const REMINDER_HOUR = 19;
 export const REMINDER_MINUTE = 30;
 
 const COPY: { title: string; body: string }[] = [
-  { title: 'bora uma resenha?', body: 'Junta a galera: tem pergunta nova esperando quem chuta sem saber.' },
-  { title: 'saudade da zoeira', body: 'Chama os amigos pra uma partida rapidinha. Quem perde paga o açaí.' },
+  { title: t('bora uma resenha?'), body: t('Junta a galera: tem pergunta nova esperando quem chuta sem saber.') },
+  { title: t('saudade da zoeira'), body: t('Chama os amigos pra uma partida rapidinha. Quem perde paga o açaí.') },
 ];
 
 export type PlannedReminder = { at: number; title: string; body: string; url?: string };
@@ -39,7 +40,7 @@ export function planReminders(now: number, playedToday = false): PlannedReminder
     if (when <= now) continue;
     const n = dailyNumber(new Date(when));
     const first = dailyRounds(n)[0];
-    daily.push({ at: when, title: `desafio do dia #${n}`, body: `${first.question.text} A galera diz: ${bidText(first)}. Duvida?`, url: '/daily' });
+    daily.push({ at: when, title: t('desafio do dia #{n}', { n }), body: `${first.question.text} ${t('A galera diz: {bid}. Duvida?', { bid: bidText(first) })}`, url: '/daily' });
   }
   const party = REMINDER_DAYS.map((days, i) => ({ at: at(now, days, REMINDER_HOUR, REMINDER_MINUTE), ...COPY[i % COPY.length] }));
   return [...daily, ...party];

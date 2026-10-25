@@ -7,6 +7,7 @@ import { analytics } from '@/services/analytics';
 import { purchases } from '@/services/purchases';
 import { REFERRAL_GOAL, referralStatus, type ReferralStatus } from '@/services/referral';
 import { colors, fonts } from '@/theme';
+import { plural, t } from '@/i18n';
 
 /** Progresso do convite, relido toda vez que a tela volta ao foco. */
 export function useReferral() {
@@ -39,7 +40,7 @@ export function useReferralAfterMatch(endKey: string | null, isHost: boolean, { 
   useEffect(() => {
     if (!endKey) return;
     // o servidor grava o convite logo depois de publicar o fim da partida
-    const t = setTimeout(async () => {
+    const timer = setTimeout(async () => {
       const next = await refresh();
       if (!next) return;
       const was = before.current;
@@ -50,7 +51,7 @@ export function useReferralAfterMatch(endKey: string | null, isHost: boolean, { 
       analytics.track('referral_rewarded', { reward: won, friends: next.friends });
       void purchases.refresh();
     }, 2000);
-    return () => clearTimeout(t);
+    return () => clearTimeout(timer);
   }, [endKey, isHost, refresh]);
   return rewarded;
 }
@@ -66,16 +67,16 @@ export function ReferralCard({ status, premium, source, onPress }: { status: Ref
     analytics.track('referral_tapped', { source, friends: status.friends });
     onPress();
   };
-  const cta = source === 'home' ? 'Convidar' : 'Mandar convite';
+  const cta = source === 'home' ? t('Convidar') : t('Mandar convite');
   return (
-    <Raised onPress={press} face={colors.greenSoft} accessibilityLabel={`Ganhe 1 semana de pro grátis: convide ${REFERRAL_GOAL} amigos que ainda não têm o app. Eles ganham 24 horas de pro. ${status.friends} de ${REFERRAL_GOAL}. ${cta}.`}>
+    <Raised onPress={press} face={colors.greenSoft} accessibilityLabel={`${t('Ganhe 1 semana de pro grátis: convide {goal} amigos que ainda não têm o app. Eles ganham 24 horas de pro. {n} de {goal}.', { goal: REFERRAL_GOAL, n: status.friends })} ${cta}.`}>
       <View style={styles.card}>
         <View style={styles.badge}>
           <Icon name="crown" size={16} accent={colors.yellow} />
-          <Text style={styles.badgeText}>1 SEMANA DE PRO GRÁTIS</Text>
+          <Text style={styles.badgeText}>{t('1 SEMANA DE PRO GRÁTIS')}</Text>
         </View>
-        <Text style={styles.title}>Convide {REFERRAL_GOAL} amigos que ainda não têm o app</Text>
-        <Text style={styles.sub}>Eles baixam, entram na sua sala e jogam uma partida até o fim. E ganham 24 h de pro.</Text>
+        <Text style={styles.title}>{t('Convide {goal} amigos que ainda não têm o app', { goal: REFERRAL_GOAL })}</Text>
+        <Text style={styles.sub}>{t('Eles baixam, entram na sua sala e jogam uma partida até o fim. E ganham 24 h de pro.')}</Text>
         <View style={styles.foot}>
           <View style={{ gap: 6 }}>
             <View style={styles.dots}>
@@ -83,7 +84,7 @@ export function ReferralCard({ status, premium, source, onPress }: { status: Ref
                 <View key={i} style={[styles.dot, i < status.friends && styles.dotOn]} />
               ))}
             </View>
-            <Text style={styles.count}>{status.friends === 0 ? `0 de ${REFERRAL_GOAL} amigos` : `${status.friends} de ${REFERRAL_GOAL} · falta${left === 1 ? '' : 'm'} ${left}`}</Text>
+            <Text style={styles.count}>{status.friends === 0 ? t('0 de {goal} amigos', { goal: REFERRAL_GOAL }) : `${status.friends}/${REFERRAL_GOAL} · ${plural(left, 'falta {n}', 'faltam {n}')}`}</Text>
           </View>
           <View style={styles.cta}>
             <Text style={styles.ctaText}>{cta}</Text>
@@ -101,10 +102,11 @@ export function ReferralReward({ kind }: { kind: 'week' | 'day' }) {
     <View style={styles.reward} accessibilityLiveRegion="polite">
       <Icon name="crown" size={30} accent={colors.surface} />
       <View style={{ flex: 1, gap: 4 }}>
-        <Text style={styles.rewardTitle}>{kind === 'week' ? 'Você ganhou 1 semana de pro!' : 'Você ganhou 24 h de pro!'}</Text>
+        <Text style={styles.rewardTitle}>{kind === 'week' ? t('Você ganhou 1 semana de pro!') : t('Você ganhou 24 h de pro!')}</Text>
         <Text style={styles.sub}>
-          {kind === 'week' ? `${REFERRAL_GOAL} amigos novos jogaram na sua sala.` : 'Presente de quem te chamou pra sala.'} Todos os pacotes estão liberados
-          {kind === 'day' ? ': cria a sua sala e chama a sua galera.' : '.'}
+          {kind === 'week'
+            ? t('{goal} amigos novos jogaram na sua sala. Todos os pacotes estão liberados.', { goal: REFERRAL_GOAL })
+            : t('Presente de quem te chamou pra sala. Todos os pacotes estão liberados: cria a sua sala e chama a sua galera.')}
         </Text>
       </View>
     </View>

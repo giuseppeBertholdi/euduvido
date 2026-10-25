@@ -5,6 +5,7 @@ import { captureRef } from 'react-native-view-shot';
 import { formatValue } from '@/game/engine';
 import { analytics } from '@/services/analytics';
 import { colors, fonts } from '@/theme';
+import { t } from '@/i18n';
 
 
 /**
@@ -17,16 +18,16 @@ export const ShareCard = forwardRef<View, { name: string; value: number; unit: s
         <Text style={styles.markBang}>!</Text>
       </View>
       <View style={styles.stamp}>
-        <Text style={styles.stampText}>NA MOSCA!</Text>
+        <Text style={styles.stampText}>{t('NA MOSCA!')}</Text>
       </View>
-      <Text style={styles.who}>{name} cravou</Text>
+      <Text style={styles.who}>{t('{name} cravou', { name })}</Text>
       <Text style={styles.value} numberOfLines={1} adjustsFontSizeToFit>
         {formatValue(value, unit)}
       </Text>
       <Text style={styles.unit}>{unit}</Text>
       <Text style={styles.question}>{question}</Text>
       <Text style={styles.foot}>
-        sem saber. no chute. <Text style={{ color: colors.pinkInk }}>eu duvido!</Text> na App Store
+        {t('sem saber. no chute.')} <Text style={{ color: colors.pinkInk }}>{t('eu duvido!')}</Text> {t('na App Store')}
       </Text>
     </View>
   );
@@ -37,7 +38,7 @@ export async function shareCard(ref: React.RefObject<View | null>): Promise<bool
   if (Platform.OS === 'web' || !ref.current) return false;
   if (!(await Sharing.isAvailableAsync())) return false;
   const uri = await captureRef(ref, { format: 'png', quality: 1 });
-  await Sharing.shareAsync(uri, { mimeType: 'image/png', dialogTitle: 'Compartilhar o na mosca' });
+  await Sharing.shareAsync(uri, { mimeType: 'image/png', dialogTitle: t('compartilhar o na mosca') });
   analytics.track('card_shared', { card: 'na_mosca' });
   return true;
 }

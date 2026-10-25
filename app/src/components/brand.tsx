@@ -4,6 +4,7 @@ import { haptic } from '@/services/haptics';
 import { colors, fonts } from '@/theme';
 import { formatValue } from '@/game/engine';
 import { useReducedMotion } from './motion';
+import { t } from '@/i18n';
 
 /**
  * A marca sem mascote: o "!".
@@ -25,7 +26,7 @@ export function BangMark({ size = 56, interactive = true, style }: { size?: numb
   const rotate = wob.interpolate({ inputRange: [0, 0.25, 0.5, 0.75, 1], outputRange: ['0deg', '-14deg', '10deg', '-5deg', '0deg'] });
   const scale = wob.interpolate({ inputRange: [0, 0.3, 1], outputRange: [1, 1.15, 1] });
   return (
-    <Pressable onPress={interactive ? poke : undefined} disabled={!interactive} accessibilityRole="image" accessibilityLabel="eu duvido!" style={style} hitSlop={8}>
+    <Pressable onPress={interactive ? poke : undefined} disabled={!interactive} accessibilityRole="image" accessibilityLabel={t('eu duvido!')} style={style} hitSlop={8}>
       <Animated.View style={[styles.mark, { width: size, height: size, borderRadius: size * 0.28, transform: [{ rotate }, { scale }] }]}>
         <View style={[StyleSheet.absoluteFill, styles.center, { transform: [{ translateX: size * 0.04 }, { translateY: size * 0.04 }] }]}>
           <Text style={[styles.markBang, { fontSize: size * 0.78, lineHeight: size * 0.95, color: colors.pink }]} maxFontSizeMultiplier={1}>
@@ -41,14 +42,14 @@ export function BangMark({ size = 56, interactive = true, style }: { size?: numb
 }
 
 /** Carimbo que bate: entra grande e girado, assenta com mola e vibra forte. */
-export function Stamp({ text = 'EU DUVIDO!', size = 40, style }: { text?: string; size?: number; style?: StyleProp<ViewStyle> }) {
+export function Stamp({ text = t('EU DUVIDO!'), size = 40, style }: { text?: string; size?: number; style?: StyleProp<ViewStyle> }) {
   const reduce = useReducedMotion();
-  const [t] = useState(() => new Animated.Value(reduce ? 1 : 0));
+  const [anim] = useState(() => new Animated.Value(reduce ? 1 : 0));
   useEffect(() => {
     haptic.heavy();
     if (reduce) return;
-    Animated.spring(t, { toValue: 1, friction: 5, tension: 90, useNativeDriver: true }).start();
-  }, [t, reduce]);
+    Animated.spring(anim, { toValue: 1, friction: 5, tension: 90, useNativeDriver: true }).start();
+  }, [anim, reduce]);
   return (
     <Animated.View
       accessibilityRole="text"
@@ -57,8 +58,8 @@ export function Stamp({ text = 'EU DUVIDO!', size = 40, style }: { text?: string
         styles.stamp,
         style,
         {
-          opacity: t.interpolate({ inputRange: [0, 0.3, 1], outputRange: [0, 1, 1] }),
-          transform: [{ scale: t.interpolate({ inputRange: [0, 1], outputRange: [2.6, 1] }) }, { rotate: t.interpolate({ inputRange: [0, 1], outputRange: ['-22deg', '-7deg'] }) }],
+          opacity: anim.interpolate({ inputRange: [0, 0.3, 1], outputRange: [0, 1, 1] }),
+          transform: [{ scale: anim.interpolate({ inputRange: [0, 1], outputRange: [2.6, 1] }) }, { rotate: anim.interpolate({ inputRange: [0, 1], outputRange: ['-22deg', '-7deg'] }) }],
         },
       ]}
     >
@@ -80,7 +81,7 @@ export function Lives({ left, total, size = 22, losing = false }: { left: number
   }, [losing, reduce, shake]);
   // durante `losing`, `left` já é o valor novo: a vida que está indo embora é a de índice `left`
   return (
-    <View style={styles.lives} accessible accessibilityLabel={`${left} de ${total} vidas`}>
+    <View style={styles.lives} accessible accessibilityLabel={t('{left} de {total} vidas', { left, total })}>
       {Array.from({ length: total }, (_, i) => {
         const on = i < left;
         const going = losing && i === left;

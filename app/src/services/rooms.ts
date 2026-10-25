@@ -7,6 +7,7 @@ import { FunctionsHttpError } from '@supabase/supabase-js';
 import { AppState } from 'react-native';
 import type { Action, PublicMatch } from '@/game/engine';
 import { ensureUserId, supabase } from './supabase';
+import { t } from '@/i18n';
 
 export type RoomConfig = { lives: number; turnSeconds: number | null; packs: string[]; skip?: string[] };
 export type RoomPlayer = { userId: string; name: string; seat: number };
@@ -26,26 +27,26 @@ export type RoomAction = Action | { type: 'START' } | { type: 'PLAY_AGAIN' };
 export const onlineEnabled = !!supabase;
 
 const MESSAGES: Record<string, string> = {
-  room_not_found: 'Não achei essa sala. Confere o PIN?',
-  already_started: 'Essa partida já começou.',
-  room_full: 'Sala lotada (8 pessoas).',
-  name_taken: 'Já tem alguém com esse nome na sala.',
-  bad_name: 'Bota um nome (até 12 letras).',
-  bad_pin: 'O PIN tem 4 números.',
-  not_enough_players: 'Precisa de pelo menos 2 pessoas.',
-  host_only: 'Só quem criou a sala pode fazer isso.',
-  not_your_turn: 'Calma, não é tua vez.',
-  stale_version: 'Alguém jogou antes. Atualizando…',
-  rejected: 'Essa jogada não vale agora.',
-  offline_disabled: 'O online ainda não tá ligado neste app.',
-  pro_required: 'Não deu pra criar a sala. Atualiza o app e tenta de novo.',
-  store_unavailable: 'Não deu pra conferir a assinatura agora. Tenta de novo.',
-  network: 'Sem conexão. Tenta de novo.',
+  room_not_found: t('Não achei essa sala. Confere o PIN?'),
+  already_started: t('Essa partida já começou.'),
+  room_full: t('Sala lotada (8 pessoas).'),
+  name_taken: t('Já tem alguém com esse nome na sala.'),
+  bad_name: t('Bota um nome (até 12 letras).'),
+  bad_pin: t('O PIN tem 4 números.'),
+  not_enough_players: t('Precisa de pelo menos 2 pessoas.'),
+  host_only: t('Só quem criou a sala pode fazer isso.'),
+  not_your_turn: t('Calma, não é tua vez.'),
+  stale_version: t('Alguém jogou antes. Atualizando…'),
+  rejected: t('Essa jogada não vale agora.'),
+  offline_disabled: t('O online ainda não tá ligado neste app.'),
+  pro_required: t('Não deu pra criar a sala. Atualiza o app e tenta de novo.'),
+  store_unavailable: t('Não deu pra conferir a assinatura agora. Tenta de novo.'),
+  network: t('Sem conexão. Tenta de novo.'),
 };
 
 export class RoomError extends Error {
   constructor(readonly code: string) {
-    super(MESSAGES[code] ?? 'Deu ruim. Tenta de novo.');
+    super(MESSAGES[code] ?? t('Deu ruim. Tenta de novo.'));
   }
 }
 

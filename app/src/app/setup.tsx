@@ -14,10 +14,10 @@ import { PACKS } from '@/game/content';
 import { analytics } from '@/services/analytics';
 import { useApp } from '@/state/app';
 import { colors, fonts, radii } from '@/theme';
-import { t } from '@/i18n';
+import { isEn, t } from '@/i18n';
 
 const PRO_QUESTIONS = PACKS.filter((p) => p.premium).reduce((n, p) => n + p.questions.length, 0);
-const SAMPLE = ['bia', 'léo', 'cacá', 'dudu', 'mari', 'jão', 'lua', 'nico'];
+const SAMPLE = isEn ? ['mia', 'leo', 'jake', 'zoe', 'max', 'ava', 'sam', 'nico'] : ['bia', 'léo', 'cacá', 'dudu', 'mari', 'jão', 'lua', 'nico'];
 let seq = 0;
 const newId = () => `p${Date.now().toString(36)}${(seq++).toString(36)}`;
 

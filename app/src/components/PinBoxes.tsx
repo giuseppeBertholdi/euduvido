@@ -2,12 +2,13 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { colors, fonts, radii } from '@/theme';
 import { Icon } from './Icon';
 import { tapLight } from './ui';
+import { t } from '@/i18n';
 
 export const PIN_LENGTH = 4;
 
 export function PinBoxes({ value, error }: { value: string; error?: boolean }) {
   return (
-    <View style={styles.boxes} accessible accessibilityLabel={`PIN: ${value.split('').join(' ') || 'vazio'}`}>
+    <View style={styles.boxes} accessible accessibilityLabel={`PIN: ${value.split('').join(' ') || t('vazio')}`}>
       {Array.from({ length: PIN_LENGTH }, (_, i) => {
         const ch = value[i];
         const focus = i === value.length;
@@ -37,7 +38,7 @@ export function PinPad({ value, onChange }: { value: string; onChange: (v: strin
               onChange(k === '⌫' ? value.slice(0, -1) : (value + k).slice(0, PIN_LENGTH));
             }}
             accessibilityRole="button"
-            accessibilityLabel={k === '⌫' ? 'apagar' : k}
+            accessibilityLabel={k === '⌫' ? t('apagar') : k}
             style={styles.keyWrap}
           >
             {({ pressed }) => (

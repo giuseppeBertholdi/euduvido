@@ -12,6 +12,7 @@ import { joinRoom, leaveRoom, onlineEnabled, RoomError } from '@/services/rooms'
 import { analytics } from '@/services/analytics';
 import { useApp } from '@/state/app';
 import { colors, fonts, radii } from '@/theme';
+import { t } from '@/i18n';
 
 /** Entrar com PIN: nome + 4 números → lobby ao vivo → partida quando o host começar. */
 export default function JoinPin() {
@@ -36,7 +37,7 @@ export default function JoinPin() {
     if (v.length !== PIN_LENGTH) return;
     const clean = name.trim();
     if (!clean) {
-      setError('Bota teu nome primeiro.');
+      setError(t('Bota teu nome primeiro.'));
       setPin('');
       return;
     }
@@ -49,7 +50,7 @@ export default function JoinPin() {
         analytics.track('room_joined', { invited: !!invited });
       })
       .catch((e: unknown) => {
-        setError(e instanceof RoomError ? e.message : 'Sem conexão. Tenta de novo.');
+        setError(e instanceof RoomError ? e.message : t('Sem conexão. Tenta de novo.'));
         setPin('');
       })
       .finally(() => setBusy(false));
@@ -60,11 +61,11 @@ export default function JoinPin() {
   useEffect(() => {
     if (!invited || autoJoined.current || !app.name.trim() || !onlineEnabled) return;
     autoJoined.current = true;
-    const t = setTimeout(() => onPin(invited), 0);
-    return () => clearTimeout(t);
+    const timer = setTimeout(() => onPin(invited), 0);
+    return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [invited]);
-  if (!onlineEnabled) return <OnlineNotice title="Online fora do ar" text="As salas com PIN não estão disponíveis agora. Dá pra jogar no mesmo celular enquanto isso." onBack={() => router.back()} />;
+  if (!onlineEnabled) return <OnlineNotice title={t('Online fora do ar')} text={t('As salas com PIN não estão disponíveis agora. Dá pra jogar no mesmo celular enquanto isso.')} onBack={() => router.back()} />;
 
 
   if (roomId && room && me)
@@ -85,25 +86,23 @@ export default function JoinPin() {
     <View style={[styles.root, { paddingTop: insets.top + 6, paddingBottom: insets.bottom + 18 }]}>
       <StatusBar style="dark" />
       <TopBar onBack={() => router.back()} />
-      <Label style={{ marginTop: 10 }}>cada um no seu celular</Label>
+      <Label style={{ marginTop: 10 }}>{t('cada um no seu celular')}</Label>
       <Title size={invited ? 36 : 44} style={{ marginTop: 6 }}>
-        {invited ? 'te chamaram' : 'manda'}
-        {'\n'}
-        {invited ? 'pra sala' : 'o PIN'}<Text style={{ color: colors.pinkInk }}>.</Text>
+        {invited ? t('te chamaram\npra sala') : t('manda\no PIN')}<Text style={{ color: colors.pinkInk }}>.</Text>
       </Title>
       <View style={styles.nameRow}>
         <Icon name="users" size={22} accent={colors.yellow} />
-        <TextInput value={name} onChangeText={(t) => setName(t.slice(0, 12))} placeholder="teu nome" placeholderTextColor={colors.inkMuted} style={styles.name} autoCapitalize="words" accessibilityLabel="teu nome" />
+        <TextInput value={name} onChangeText={(text) => setName(text.slice(0, 12))} placeholder={t('teu nome')} placeholderTextColor={colors.inkMuted} style={styles.name} autoCapitalize="words" accessibilityLabel={t('teu nome')} />
       </View>
       <View style={{ marginTop: 14 }}>
         <PinBoxes value={pin} error={!!error} />
       </View>
       <View style={styles.status} accessibilityLiveRegion="polite">
-        {busy || (roomId && !room) ? <ActivityIndicator color={colors.ink} /> : <Text style={[styles.statusText, error ? { color: colors.pinkInk } : null]}>{error ?? 'Quem criou a sala vê o PIN na tela.'}</Text>}
+        {busy || (roomId && !room) ? <ActivityIndicator color={colors.ink} /> : <Text style={[styles.statusText, error ? { color: colors.pinkInk } : null]}>{error ?? t('Quem criou a sala vê o PIN na tela.')}</Text>}
       </View>
       <View style={{ flex: 1 }} />
       {pin.length === PIN_LENGTH && !busy && !roomId ? (
-        <Btn label="Entrar na sala" disabled={!name.trim()} onPress={() => onPin(pin)} />
+        <Btn label={t('Entrar na sala')} disabled={!name.trim()} onPress={() => onPin(pin)} />
       ) : (
         <PinPad value={pin} onChange={onPin} />
       )}

@@ -6,6 +6,7 @@ import { askReminderPermission, rescheduleReminders } from '@/services/engagemen
 import { analytics } from '@/services/analytics';
 import { useApp } from '@/state/app';
 import { colors, fonts, radii } from '@/theme';
+import { t } from '@/i18n';
 
 /**
  * Convite pros lembretes, no fim da primeira partida (nunca antes: a pessoa já sabe que o jogo é bom).
@@ -29,17 +30,17 @@ export function RemindersAsk() {
     <View style={styles.card} accessibilityLiveRegion="polite">
       <Icon name="timer" size={28} accent={colors.yellow} />
       <View style={{ flex: 1 }}>
-        <Text style={styles.title}>Te aviso do desafio do dia?</Text>
-        <Text style={styles.text}>Um aviso ao meio-dia, com a pergunta do dia. Para sozinho se você parar de jogar.</Text>
+        <Text style={styles.title}>{t('Te aviso do desafio do dia?')}</Text>
+        <Text style={styles.text}>{t('Um aviso ao meio-dia, com a pergunta do dia. Para sozinho se você parar de jogar.')}</Text>
         <View style={styles.row}>
           <Pressable onPress={yes} disabled={busy} style={({ pressed }) => [styles.btn, styles.btnYes, pressed && { opacity: 0.8 }]} accessibilityRole="button">
-            {busy ? <ActivityIndicator color={colors.ink} /> : <Text style={styles.btnText}>quero</Text>}
+            {busy ? <ActivityIndicator color={colors.ink} /> : <Text style={styles.btnText}>{t('quero')}</Text>}
           </Pressable>
           <Pressable onPress={() => {
             analytics.track('reminders_answered', { wanted: false, granted: false });
             app.set({ remindersAsked: true });
           }} style={styles.btn} accessibilityRole="button">
-            <Text style={[styles.btnText, { color: colors.inkSoft }]}>agora não</Text>
+            <Text style={[styles.btnText, { color: colors.inkSoft }]}>{t('agora não')}</Text>
           </Pressable>
         </View>
       </View>

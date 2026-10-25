@@ -12,6 +12,7 @@ import { act, createRoom, leaveRoom, onlineEnabled, RoomError } from '@/services
 import { analytics } from '@/services/analytics';
 import { useApp } from '@/state/app';
 import { colors, fonts, radii } from '@/theme';
+import { t } from '@/i18n';
 
 /** Criar sala (qualquer um; sem pro, só os pacotes grátis): pede o nome se faltar, cria no servidor e mostra o lobby ao vivo. */
 export default function CreateRoom() {
@@ -29,7 +30,7 @@ export default function CreateRoom() {
     if (room && room.status === 'playing') router.replace(`/online/${room.id}`);
   }, [room]);
 
-  if (!onlineEnabled) return <OnlineNotice title="Online fora do ar" text="As salas com PIN não estão disponíveis agora. Dá pra jogar no mesmo celular enquanto isso." onBack={() => router.back()} />;
+  if (!onlineEnabled) return <OnlineNotice title={t('Online fora do ar')} text={t('As salas com PIN não estão disponíveis agora. Dá pra jogar no mesmo celular enquanto isso.')} onBack={() => router.back()} />;
 
   const create = async () => {
     const clean = name.trim();
@@ -49,7 +50,7 @@ export default function CreateRoom() {
       setRoomId(created.roomId);
       analytics.track('room_created', { packs: packs.length ? packs : ['classico'], lives: app.lives, timer: app.timer, premium: app.premium });
     } catch (e) {
-      setError(e instanceof RoomError ? e.message : 'Sem conexão. Tenta de novo.');
+      setError(e instanceof RoomError ? e.message : t('Sem conexão. Tenta de novo.'));
       creating.current = false;
     } finally {
       setBusy(false);
@@ -75,7 +76,7 @@ export default function CreateRoom() {
           try {
             await act(room.id, room.version, { type: 'START' });
           } catch (e) {
-            setError(e instanceof RoomError ? e.message : 'Deu ruim. Tenta de novo.');
+            setError(e instanceof RoomError ? e.message : t('Deu ruim. Tenta de novo.'));
           } finally {
             setBusy(false);
           }
@@ -87,26 +88,26 @@ export default function CreateRoom() {
     <KeyboardAvoidingView style={[styles.root, { paddingTop: insets.top + 6, paddingBottom: insets.bottom + 14 }]} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <StatusBar style="dark" />
       <TopBar onBack={() => router.back()} />
-      <Label style={{ marginTop: 12 }}>criar sala · cada um no seu celular</Label>
+      <Label style={{ marginTop: 12 }}>{t('criar sala · cada um no seu celular')}</Label>
       <Title size={42} style={{ marginTop: 6 }}>
-        como te{'\n'}chamam?
+        {t('como te\nchamam?')}
       </Title>
-      <Body style={{ marginTop: 8 }}>É o nome que a galera vê na sala.</Body>
+      <Body style={{ marginTop: 8 }}>{t('É o nome que a galera vê na sala.')}</Body>
       <View style={styles.nameRow}>
         <Icon name="users" size={22} accent={colors.yellow} />
-        <TextInput value={name} onChangeText={(t) => setName(t.slice(0, 12))} placeholder="teu nome" placeholderTextColor={colors.inkMuted} style={styles.name} autoCapitalize="words" autoFocus returnKeyType="go" onSubmitEditing={create} accessibilityLabel="teu nome" />
+        <TextInput value={name} onChangeText={(text) => setName(text.slice(0, 12))} placeholder={t('teu nome')} placeholderTextColor={colors.inkMuted} style={styles.name} autoCapitalize="words" autoFocus returnKeyType="go" onSubmitEditing={create} accessibilityLabel={t('teu nome')} />
       </View>
       <Text style={styles.hint}>
-        {app.lives} vidas · {app.timer ? `${app.timer}s por vez` : 'sem timer'} · muda em Ajustes
+        {t('{n} vidas', { n: app.lives })} · {app.timer ? t('{n}s por vez', { n: app.timer }) : t('sem timer')} · {t('muda em Ajustes')}
       </Text>
       {!app.premium && (
         <Pressable onPress={() => router.push({ pathname: '/paywall', params: { source: 'pin' } })} hitSlop={8} accessibilityRole="button" style={{ marginTop: 6 }}>
-          <Text style={styles.unlock}>sala com o pacote clássico · liberar os {PACKS.filter((p) => p.premium).length} pacotes pro</Text>
+          <Text style={styles.unlock}>{t('sala com o pacote clássico · liberar os {n} pacotes pro', { n: PACKS.filter((p) => p.premium).length })}</Text>
         </Pressable>
       )}
       {error && <Text style={styles.error}>{error}</Text>}
       <View style={{ flex: 1 }} />
-      <Btn label={busy || (roomId && !room) ? 'Abrindo a sala…' : 'Abrir sala'} right={busy ? <ActivityIndicator color={colors.ink} /> : 'arrowRight'} disabled={!name.trim() || busy || !!roomId} onPress={create} />
+      <Btn label={busy || (roomId && !room) ? t('Abrindo a sala…') : t('Abrir sala')} right={busy ? <ActivityIndicator color={colors.ink} /> : 'arrowRight'} disabled={!name.trim() || busy || !!roomId} onPress={create} />
     </KeyboardAvoidingView>
   );
 }

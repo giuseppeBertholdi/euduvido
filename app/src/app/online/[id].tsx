@@ -15,6 +15,7 @@ import { shareApp } from '@/services/invite';
 import { act, leaveRoom, RoomError, serverNow, type RoomAction } from '@/services/rooms';
 import { useApp } from '@/state/app';
 import { colors, fonts } from '@/theme';
+import { t } from '@/i18n';
 
 /** Partida online: o estado vem do servidor (Realtime); jogadas vão pela Edge Function `room-action`. */
 export default function OnlineMatch() {
@@ -36,8 +37,8 @@ export default function OnlineMatch() {
   // erro de jogada some sozinho
   useEffect(() => {
     if (!error) return;
-    const t = setTimeout(() => setError(null), 3500);
-    return () => clearTimeout(t);
+    const timer = setTimeout(() => setError(null), 3500);
+    return () => clearTimeout(timer);
   }, [error]);
 
   if (!id) return <Redirect href="/" />;
@@ -52,8 +53,8 @@ export default function OnlineMatch() {
     return (
       <View style={styles.center}>
         <BangMark size={72} />
-        <Text style={styles.text}>Essa sala fechou.</Text>
-        <Btn label="Voltar pro início" variant="secondary" right={null} onPress={() => router.replace('/')} style={{ alignSelf: 'stretch' }} />
+        <Text style={styles.text}>{t('Essa sala fechou.')}</Text>
+        <Btn label={t('Voltar pro início')} variant="secondary" right={null} onPress={() => router.replace('/')} style={{ alignSelf: 'stretch' }} />
       </View>
     );
   if (!room.state) return <Redirect href="/" />;
@@ -66,7 +67,7 @@ export default function OnlineMatch() {
     } catch (e) {
       // timeout: vários celulares avisam ao mesmo tempo; só um vale, o resto é esperado
       const code = e instanceof RoomError ? e.code : '';
-      if (!quiet && code !== 'stale_version') setError(e instanceof Error ? e.message : 'Deu ruim.');
+      if (!quiet && code !== 'stale_version') setError(e instanceof Error ? e.message : t('Deu ruim.'));
     } finally {
       setBusy(false);
     }
@@ -77,9 +78,9 @@ export default function OnlineMatch() {
     router.replace('/');
   };
   const quit = () =>
-    Alert.alert('Sair da sala?', room.state?.phase === 'end' ? 'Você sai da sala.' : 'Quem sai no meio perde todos os “!”.', [
-      { text: 'Ficar', style: 'cancel' },
-      { text: 'Sair', style: 'destructive', onPress: home },
+    Alert.alert(t('Sair da sala?'), room.state?.phase === 'end' ? t('Você sai da sala.') : t('Quem sai no meio perde todos os “!”.'), [
+      { text: t('Ficar'), style: 'cancel' },
+      { text: t('Sair'), style: 'destructive', onPress: home },
     ]);
 
   return (

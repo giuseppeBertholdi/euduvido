@@ -11,13 +11,13 @@ import { analytics } from '@/services/analytics';
 import { useApp } from '@/state/app';
 import { visits } from '@/state/visits';
 import { colors, fonts } from '@/theme';
-import { t } from '@/i18n';
+import { isEn, t } from '@/i18n';
 
 const LAST = 2;
 const DEMO_BIDS: [string, string][] = [
-  ['bia', '30'],
-  ['léo', '42'],
-  ['cacá', '55'],
+  [isEn ? 'mia' : 'bia', '30'],
+  [isEn ? 'leo' : 'léo', '42'],
+  [isEn ? 'jake' : 'cacá', '55'],
 ];
 
 /** Mostra o filho depois de `ms` (pra encenar a demo). */

@@ -5,7 +5,7 @@
  */
 import { formatValue, isYear } from './engine';
 import { PACKS, type Question } from './content';
-import { t } from '@/i18n';
+import { lang, t } from '@/i18n';
 
 export const DAILY_SIZE = 5;
 /** O #1 é 20/10/2026 (data local), quando o desafio foi criado. */
@@ -103,8 +103,10 @@ export function dailyShareText(n: number, results: readonly boolean[], streak: n
 }
 
 /** O link do resultado (https://idoubtit.fun/d/12?r=11011): a página mostra a grade de quem mandou e deixa jogar a 1ª pergunta. */
-export function dailyShareUrl(site: string, n: number, results: readonly boolean[]): string {
-  return `${site}/d/${n}?r=${results.map((ok) => (ok ? 1 : 0)).join('')}`;
+export function dailyShareUrl(site: string, n: number, results?: readonly boolean[]): string {
+  // o desafio em inglês tem outras perguntas: a página precisa saber qual mostrar
+  const params = [results && `r=${results.map((ok) => (ok ? 1 : 0)).join('')}`, lang === 'en' && 'l=en'].filter(Boolean);
+  return `${site}/d/${n}${params.length ? `?${params.join('&')}` : ''}`;
 }
 
 /** Já terminou o desafio do dia de `date`? (`daily` é o que fica salvo no celular: acertos por número do desafio) */

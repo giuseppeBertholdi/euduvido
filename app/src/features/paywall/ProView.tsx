@@ -9,6 +9,7 @@ import { Body, Btn, IconBtn, Label, Title } from '@/components/ui';
 import { links } from '@/config/links';
 import { PACKS } from '@/game/content';
 import { colors, fonts, radii } from '@/theme';
+import { t } from '@/i18n';
 
 /** "Paywall" de quem já assina: nada de oferta; mostra o que está liberado e como gerenciar. */
 export function ProView({ onClose, onRestore, busy }: { onClose: () => void; onRestore: () => void; busy: boolean }) {
@@ -19,39 +20,39 @@ export function ProView({ onClose, onRestore, busy }: { onClose: () => void; onR
     <View style={[styles.root, { paddingTop: insets.top + 6 }]}>
       <StatusBar style="dark" />
       <View style={styles.top}>
-        <IconBtn name="close" label="fechar" onPress={onClose} />
+        <IconBtn name="close" label={t('fechar')} onPress={onClose} />
       </View>
       <ScrollView contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 24 }} showsVerticalScrollIndicator={false}>
         <Enter>
           <View style={{ alignItems: 'center', marginTop: 10 }}>
             <BangMark size={96} />
-            <Label style={{ marginTop: 18 }}>eu duvido! pro</Label>
+            <Label style={{ marginTop: 18 }}>{t('eu duvido! pro')}</Label>
             <Title size={40} style={{ textAlign: 'center', marginTop: 4 }}>
-              você é pro<Text style={{ color: colors.pinkInk }}>!</Text>
+              {t('você é pro')}<Text style={{ color: colors.pinkInk }}>!</Text>
             </Title>
-            <Body style={{ textAlign: 'center', marginTop: 6 }}>Valeu por apoiar o jogo. Tá tudo liberado.</Body>
+            <Body style={{ textAlign: 'center', marginTop: 6 }}>{t('Valeu por apoiar o jogo. Tá tudo liberado.')}</Body>
           </View>
         </Enter>
         <Enter delay={120}>
           <View style={styles.stats}>
             <View style={styles.stat}>
               <Text style={styles.statNum}>{PACKS.length}</Text>
-              <Text style={styles.statLabel}>pacotes</Text>
+              <Text style={styles.statLabel}>{t('pacotes')}</Text>
             </View>
             <View style={styles.stat}>
               <Text style={styles.statNum}>{total}</Text>
-              <Text style={styles.statLabel}>perguntas</Text>
+              <Text style={styles.statLabel}>{t('perguntas')}</Text>
             </View>
             <View style={styles.stat}>
               <Text style={styles.statNum}>∞</Text>
-              <Text style={styles.statLabel}>salas com PIN</Text>
+              <Text style={styles.statLabel}>{t('salas com PIN')}</Text>
             </View>
           </View>
         </Enter>
         <Enter delay={200}>
           <View style={styles.packs}>
             {premiumPacks.map((p) => (
-              <Pressable key={p.id} onPress={() => router.push(`/pack/${p.id}`)} style={[styles.pack, { backgroundColor: p.tint }]} accessibilityRole="button" accessibilityLabel={`${p.title}, liberado`}>
+              <Pressable key={p.id} onPress={() => router.push(`/pack/${p.id}`)} style={[styles.pack, { backgroundColor: p.tint }]} accessibilityRole="button" accessibilityLabel={`${p.title}, ${t('liberado')}`}>
                 <Icon name={p.icon} size={18} accent={colors.surface} />
                 <Text style={styles.packText}>{p.title}</Text>
                 <Icon name="check" size={14} strokeWidth={3} />
@@ -62,18 +63,18 @@ export function ProView({ onClose, onRestore, busy }: { onClose: () => void; onR
         <View style={{ gap: 4, marginTop: 18 }}>
           <Pressable onPress={() => void Linking.openURL(links.manageSubscriptions)} style={styles.row} accessibilityRole="button">
             <Icon name="timer" size={22} accent={colors.yellow} />
-            <Text style={styles.rowText}>Gerenciar assinatura</Text>
+            <Text style={styles.rowText}>{t('Gerenciar assinatura')}</Text>
             <Icon name="arrowRight" size={18} accent="none" />
           </Pressable>
           <Pressable onPress={onRestore} style={styles.row} accessibilityRole="button">
             <Icon name="refresh" size={22} accent={colors.yellow} />
-            <Text style={styles.rowText}>Restaurar compras</Text>
+            <Text style={styles.rowText}>{t('Restaurar compras')}</Text>
             {busy ? <ActivityIndicator color={colors.ink} /> : <Icon name="arrowRight" size={18} accent="none" />}
           </Pressable>
         </View>
       </ScrollView>
       <View style={[styles.footer, { paddingBottom: Math.max(insets.bottom + 10, 24) }]}>
-        <Btn label="Bora jogar" onPress={() => (router.canGoBack() ? router.back() : router.replace('/'))} />
+        <Btn label={t('Bora jogar')} onPress={() => (router.canGoBack() ? router.back() : router.replace('/'))} />
       </View>
     </View>
   );

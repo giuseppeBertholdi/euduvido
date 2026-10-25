@@ -3,12 +3,13 @@ import { colors, fonts, radii, space } from '@/theme';
 import { Icon } from './Icon';
 import { applyMagnitude, pressKey } from './keypadRules';
 import { tapLight } from './ui';
+import { t } from '@/i18n';
 
 const KEYS = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'C', '0', '⌫'];
 const MAGS: [string, number, string][] = [
-  ['× mil', 3, 'vezes mil'],
-  ['× milhão', 6, 'vezes um milhão'],
-  ['× bilhão', 9, 'vezes um bilhão'],
+  [t('× mil'), 3, t('vezes mil')],
+  [t('× milhão'), 6, t('vezes um milhão')],
+  [t('× bilhão'), 9, t('vezes um bilhão')],
 ];
 
 /** Teclado claro com teclas em relevo (afundam ao apertar). */
@@ -41,7 +42,7 @@ export function Keypad({ value, onChange, compact }: { value: string; onChange: 
               onChange(pressKey(value, k));
             }}
             accessibilityRole="button"
-            accessibilityLabel={k === '⌫' ? 'apagar' : k === 'C' ? 'limpar' : k}
+            accessibilityLabel={k === '⌫' ? t('apagar') : k === 'C' ? t('limpar') : k}
             style={styles.keyWrap}
           >
             {({ pressed }) => (

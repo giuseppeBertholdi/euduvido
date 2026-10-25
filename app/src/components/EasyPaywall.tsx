@@ -11,11 +11,12 @@ import { Icon, type IconName } from './Icon';
 import { BangMark } from './brand';
 import { DelayedClose } from './DelayedClose';
 import { Btn, Title } from './ui';
+import { t } from '@/i18n';
 
 const PERKS: [IconName, string][] = [
-  ['sparkle', `+${PACKS.filter((p) => p.premium).length} pacotes (absurdos BR, ciência, comida…)`],
-  ['room', 'todos os pacotes na sala com PIN'],
-  ['refresh', 'perguntas novas sem parar'],
+  ['sparkle', t('+{n} pacotes (absurdos BR, ciência, comida…)', { n: PACKS.filter((p) => p.premium).length })],
+  ['room', t('todos os pacotes na sala com PIN')],
+  ['refresh', t('perguntas novas sem parar')],
 ];
 
 /**
@@ -58,9 +59,9 @@ export function EasyPaywall({ visible, onClose, onSeeAll, onPurchased }: { visib
             <DelayedClose delayMs={0} onClose={close} ready={!!annual || plansError} />
           </View>
 
-          <Text style={styles.kicker}>eu duvido! pro</Text>
+          <Text style={styles.kicker}>{t('eu duvido! pro')}</Text>
           <Title size={36}>
-            libera o jogo{'\n'}inteiro<Text style={{ color: colors.pinkInk }}>.</Text>
+            {t('libera o jogo\ninteiro')}<Text style={{ color: colors.pinkInk }}>.</Text>
           </Title>
           <View style={styles.perks}>
             {PERKS.map(([icon, p]) => (
@@ -75,9 +76,9 @@ export function EasyPaywall({ visible, onClose, onSeeAll, onPurchased }: { visib
             <Icon name="timer" size={28} accent={colors.surface} />
             {annual ? (
               <View style={{ flex: 1 }}>
-                {annual.trialDays ? <Text style={styles.offerKicker}>{annual.trialDays} dias grátis, depois</Text> : null}
-                <Text style={styles.offerBig}>{annual.price}/ano</Text>
-                {annual.perWeek ? <Text style={styles.offerWeek}>só {annual.perWeek} por semana</Text> : null}
+                {annual.trialDays ? <Text style={styles.offerKicker}>{t('{n} dias grátis, depois', { n: annual.trialDays })}</Text> : null}
+                <Text style={styles.offerBig}>{annual.price}/{t('ano')}</Text>
+                {annual.perWeek ? <Text style={styles.offerWeek}>{t('só {price} por semana', { price: annual.perWeek })}</Text> : null}
               </View>
             ) : (
               <ActivityIndicator color={colors.ink} style={{ flex: 1 }} />
@@ -85,23 +86,23 @@ export function EasyPaywall({ visible, onClose, onSeeAll, onPurchased }: { visib
           </View>
 
           <Btn
-            label={!annual ? 'Carregando…' : annual.trialDays ? `Testar ${annual.trialDays} dias grátis` : `Assinar por ${annual.price}`}
+            label={!annual ? t('Carregando…') : annual.trialDays ? t('Testar {n} dias grátis', { n: annual.trialDays }) : t('Assinar por {price}', { price: annual.price })}
             onPress={buy}
             disabled={busy || !annual}
             busy={busy ? <ActivityIndicator color={colors.ink} /> : undefined}
             height={62}
           />
           <Pressable onPress={onSeeAll} hitSlop={10} style={styles.linkBtn} accessibilityRole="button">
-            <Text style={styles.link}>ver todos os planos</Text>
+            <Text style={styles.link}>{t('ver todos os planos')}</Text>
           </Pressable>
           <Text style={styles.legal}>
-            {annual ? `${annual.trialDays ? `${annual.trialDays} dias grátis, depois ` : ''}${annual.price}/ano. ` : ''}Renova sozinho até você cancelar nos Ajustes do iPhone.{' '}
+            {annual ? `${annual.trialDays ? `${t('{n} dias grátis, depois', { n: annual.trialDays })} ` : ''}${annual.price}/${t('ano')}. ` : ''}{t('Renova sozinho até você cancelar nos Ajustes do iPhone.')}{' '}
             <Text style={styles.legalLink} onPress={() => void Linking.openURL(links.terms)} accessibilityRole="link">
-              Termos de Uso
+              {t('Termos de Uso')}
             </Text>
             {' · '}
             <Text style={styles.legalLink} onPress={() => void Linking.openURL(links.privacy)} accessibilityRole="link">
-              Privacidade
+              {t('Privacidade')}
             </Text>
           </Text>
         </View>

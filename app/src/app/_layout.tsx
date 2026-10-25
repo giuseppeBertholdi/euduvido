@@ -19,6 +19,7 @@ import { ensureUserId } from '@/services/supabase';
 import { AppProvider, useApp } from '@/state/app';
 import { NEW_VISIT_AFTER_MS, visits } from '@/state/visits';
 import { colors } from '@/theme';
+import { lang } from '@/i18n';
 
 void SplashScreen.preventAutoHideAsync();
 
@@ -80,9 +81,9 @@ function Root() {
     return () => sub.remove();
   }, []);
 
-  // funil: uma abertura por visita (do zero, ou voltando depois de 30 min); "pro" vai junto em todo evento
+  // funil: uma abertura por visita (do zero, ou voltando depois de 30 min); "pro" e o idioma vão junto em todo evento
   useEffect(() => {
-    analytics.register({ premium });
+    analytics.register({ premium, lang });
   }, [premium]);
   useEffect(() => {
     if (!ready) return;

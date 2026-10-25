@@ -12,6 +12,7 @@ import { packById } from '@/game/content';
 import { analytics } from '@/services/analytics';
 import { useApp } from '@/state/app';
 import { colors, fonts, radii } from '@/theme';
+import { plural, t } from '@/i18n';
 
 /** Quantas perguntas de um pacote bloqueado dá pra espiar antes de assinar (as de destaque). */
 const PREVIEW = 3;
@@ -51,26 +52,26 @@ export default function PackDetail() {
                   tapLight();
                   if (answers) return setAnswers(false);
                   // spoiler: confirma antes, e oferece tirar essas perguntas das próximas partidas
-                  Alert.alert('Ver as respostas?', `Spoiler das ${pack.questions.length} perguntas de “${pack.title}”. Quem vê a resposta não consegue blefar direito depois.`, [
-                    { text: 'Cancelar', style: 'cancel' },
+                  Alert.alert(t('Ver as respostas?'), t('Spoiler das {n} perguntas de “{pack}”. Quem vê a resposta não consegue blefar direito depois.', { n: pack.questions.length, pack: pack.title }), [
+                    { text: t('Cancelar'), style: 'cancel' },
                     {
-                      text: 'Ver e não sortear mais',
+                      text: t('Ver e não sortear mais'),
                       onPress: () => {
                         pack.questions.forEach((q) => app.markPlayed(q.id));
                         if (!app.avoidRepeats) app.set({ avoidRepeats: true });
                         setAnswers(true);
                       },
                     },
-                    { text: 'Só ver', style: 'destructive', onPress: () => setAnswers(true) },
+                    { text: t('Só ver'), style: 'destructive', onPress: () => setAnswers(true) },
                   ]);
                 }}
                 style={[styles.toggle, answers && { backgroundColor: colors.ink }]}
                 accessibilityRole="switch"
                 accessibilityState={{ checked: answers }}
-                accessibilityLabel="mostrar respostas"
+                accessibilityLabel={t('mostrar respostas')}
               >
                 <Icon name="eye" size={18} color={answers ? colors.yellow : colors.ink} accent="none" />
-                <Text style={[styles.toggleText, answers && { color: colors.yellow }]}>{answers ? 'esconder respostas' : 'mostrar respostas'}</Text>
+                <Text style={[styles.toggleText, answers && { color: colors.yellow }]}>{answers ? t('esconder respostas') : t('mostrar respostas')}</Text>
               </Pressable>
             ) : undefined
           }
@@ -93,8 +94,8 @@ export default function PackDetail() {
                 <Title size={32}>{pack.title}</Title>
                 <Text style={styles.tagline}>{pack.tagline}</Text>
                 <View style={{ flexDirection: 'row', gap: 6, marginTop: 8 }}>
-                  <Chip label={`${pack.questions.length} perguntas`} bg={colors.sunk} />
-                  {pack.premium ? <Chip label="pro" icon="crown" bg={colors.ink} fg={colors.yellow} /> : <Chip label="grátis" bg={colors.greenSoft} />}
+                  <Chip label={plural(pack.questions.length, '{n} pergunta', '{n} perguntas')} bg={colors.sunk} />
+                  {pack.premium ? <Chip label={t('pro')} icon="crown" bg={colors.ink} fg={colors.yellow} /> : <Chip label={t('grátis')} bg={colors.greenSoft} />}
                 </View>
               </View>
             </View>
@@ -111,10 +112,10 @@ export default function PackDetail() {
                     <Text style={styles.qAnswer}>
                       {formatValue(item.answer, item.unit)} {item.unit}
                     </Text>
-                    {item.source && <Text style={styles.qUnit}>fonte: {item.source}</Text>}
+                    {item.source && <Text style={styles.qUnit}>{t('fonte: {source}', { source: item.source })}</Text>}
                   </>
                 ) : (
-                  <Text style={styles.qUnit}>resposta em {item.unit}</Text>
+                  <Text style={styles.qUnit}>{item.unit ? t('resposta em {unit}', { unit: item.unit }) : t('a resposta é um número')}</Text>
                 )}
               </View>
             </View>
@@ -122,7 +123,7 @@ export default function PackDetail() {
         )}
         ListFooterComponent={
           locked ? (
-            <View style={{ marginTop: 4, gap: 10 }} accessible accessibilityLabel={`mais ${hidden} perguntas bloqueadas`}>
+            <View style={{ marginTop: 4, gap: 10 }} accessible accessibilityLabel={t('mais {n} perguntas bloqueadas', { n: hidden })}>
               {Array.from({ length: Math.min(hidden, 4) }, (_, i) => (
                 <View key={i} style={[styles.q, { opacity: 1 - i * 0.2 }]}>
                   <Text style={styles.qNum}>{String(PREVIEW + i + 1).padStart(2, '0')}</Text>
@@ -133,16 +134,16 @@ export default function PackDetail() {
                   <Icon name="lock" size={20} accent={colors.yellow} />
                 </View>
               ))}
-              <Text style={styles.more}>+ {hidden} perguntas no pro</Text>
+              <Text style={styles.more}>{t('+ {n} perguntas no pro', { n: hidden })}</Text>
             </View>
           ) : null
         }
       />
       <View style={[styles.footer, { paddingBottom: insets.bottom + 12 }]}>
         {locked ? (
-          <Btn label="Liberar com o pro" icon="crown" right={null} onPress={() => router.push({ pathname: '/paywall', params: { source: pack.id === 'absurdos-br' ? 'pack' : 'browse' } })} />
+          <Btn label={t('Liberar com o pro')} icon="crown" right={null} onPress={() => router.push({ pathname: '/paywall', params: { source: pack.id === 'absurdos-br' ? 'pack' : 'browse' } })} />
         ) : (
-          <Btn label="Jogar com esse pacote" icon="passPhones" right={null} variant="dark" onPress={play} />
+          <Btn label={t('Jogar com esse pacote')} icon="passPhones" right={null} variant="dark" onPress={play} />
         )}
       </View>
     </View>

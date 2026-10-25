@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Animated, Easing, StyleSheet, Text, View } from 'react-native';
 import { haptic } from '@/services/haptics';
 import { colors, fonts } from '@/theme';
+import { t } from '@/i18n';
 
 /**
  * Barra do tempo da vez. Componente folha: o segundo atual não sobe pra estado global.
@@ -44,12 +45,12 @@ export function TurnTimer({ deadline, seconds, now, onExpire }: { deadline: numb
   const sec = Math.ceil(left / 1000);
   const late = sec <= 5;
   return (
-    <View style={styles.wrap} accessible accessibilityRole="timer" accessibilityLabel={sec > 0 ? `${sec} segundos` : 'tempo esgotado'}>
+    <View style={styles.wrap} accessible accessibilityRole="timer" accessibilityLabel={sec > 0 ? t('{n} segundos', { n: sec }) : t('tempo esgotado')}>
       <View style={styles.track}>
         <Animated.View style={[styles.fill, { backgroundColor: late ? colors.pink : colors.ink, width: bar.interpolate({ inputRange: [0, 1], outputRange: ['0%', '100%'] }) }]} />
       </View>
       <Text style={[styles.sec, late && { color: colors.pinkInk }]} maxFontSizeMultiplier={1.2}>
-        {sec > 0 ? `${sec}s` : 'já!'}
+        {sec > 0 ? `${sec}s` : t('já!')}
       </Text>
     </View>
   );
