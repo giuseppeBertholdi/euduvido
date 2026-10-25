@@ -17,6 +17,7 @@ import { shareApp } from '@/services/invite';
 import { useRoundAnalytics } from '@/features/match/useRoundAnalytics';
 import { playSound } from '@/services/sound';
 import { colors, fonts, radii } from '@/theme';
+import { t } from '@/i18n';
 
 /**
  * A partida, igual no modo local e no online.
@@ -64,9 +65,9 @@ const nameOf = (m: PublicMatch, id: string | null | undefined) => (id ? playerBy
 
 function Quit({ onPress }: { onPress: () => void }) {
   return (
-    <Pressable onPress={onPress} hitSlop={10} accessibilityRole="button" accessibilityLabel="sair da partida" style={({ pressed }) => [styles.quit, pressed && { backgroundColor: colors.sunk }]}>
+    <Pressable onPress={onPress} hitSlop={10} accessibilityRole="button" accessibilityLabel={t('sair da partida')} style={({ pressed }) => [styles.quit, pressed && { backgroundColor: colors.sunk }]}>
       <Icon name="close" size={16} accent="none" strokeWidth={2.6} />
-      <Text style={styles.quitText}>sair</Text>
+      <Text style={styles.quitText}>{t('sair')}</Text>
     </Pressable>
   );
 }
@@ -91,7 +92,7 @@ function Board({ m, current, losingId, me }: { m: PublicMatch; current?: string;
           <View key={p.id} style={[styles.seat, now && styles.seatNow, !alive && { opacity: 0.4 }]}>
             <Text style={[styles.seatName, !alive && { textDecorationLine: 'line-through' }]} numberOfLines={1}>
               {p.name}
-              {me === p.id ? ' (você)' : ''}
+              {me === p.id ? t(' (você)') : ''}
             </Text>
             <Lives left={m.lives[p.id]} total={m.startLives} size={16} losing={p.id === losingId} />
           </View>
@@ -122,7 +123,7 @@ function Intro({ m, me, hostId, busy, error, onAction, onQuit, onSeen }: MatchSc
     <View style={[styles.screen, { paddingTop: insets.top + 8, paddingBottom: insets.bottom + 14 }]}>
       <StatusBar style="dark" />
       <View style={styles.rowBetween}>
-        <Label color={colors.ink}>rodada {m.round}</Label>
+        <Label color={colors.ink}>{t('rodada {n}', { n: m.round })}</Label>
         <Quit onPress={onQuit} />
       </View>
       <Board m={m} current={m.openerId} me={me} />
@@ -137,21 +138,21 @@ function Intro({ m, me, hostId, busy, error, onAction, onQuit, onSeen }: MatchSc
         </Enter>
         <Enter delay={200}>
           <Text style={styles.unitHint}>
-            responde em <Text style={{ color: colors.pinkInk }}>{m.question.unit}</Text>
-            {m.turnSeconds ? ` · ${m.turnSeconds}s por vez` : ''}
+            {t('responde em')} <Text style={{ color: colors.pinkInk }}>{m.question.unit}</Text>
+            {m.turnSeconds ? ` · ${t('{n}s por vez', { n: m.turnSeconds })}` : ''}
           </Text>
         </Enter>
       </View>
       <Enter delay={320}>
         <View style={styles.tip}>
           <Icon name="megaphone" size={22} accent={colors.yellow} />
-          <Text style={styles.tipText}>Cada lance diz “é isso ou mais”. Aumenta ou duvida. Errou, perde um “!”.</Text>
+          <Text style={styles.tipText}>{t('Cada lance diz “é isso ou mais”. Aumenta ou duvida. Errou, perde um “!”.')}</Text>
         </View>
         <ErrorLine error={error} />
         {canStart ? (
-          <Btn label={me === m.openerId ? 'Você começa' : `${opener} começa`} disabled={busy} onPress={() => onAction({ type: 'START_TURN' })} />
+          <Btn label={me === m.openerId ? t('Você começa') : t('{name} começa', { name: opener })} disabled={busy} onPress={() => onAction({ type: 'START_TURN' })} />
         ) : (
-          <Waiting text={`esperando ${opener} começar…`} />
+          <Waiting text={t('esperando {name} começar…', { name: opener })} />
         )}
       </Enter>
     </View>
@@ -172,7 +173,7 @@ function Turn({ m, me, hostId, busy, error, now, onAction, onQuit, zoeira }: Mat
       <StatusBar style="dark" />
       <View style={styles.rowBetween}>
         <View style={{ flexDirection: 'row', gap: 6 }}>
-          <Chip label={`rodada ${m.round}`} bg={colors.ink} fg={colors.yellow} />
+          <Chip label={t('rodada {n}', { n: m.round })} bg={colors.ink} fg={colors.yellow} />
           <Chip label={packTitleOf(q.id)} bg={colors.pink} />
         </View>
         <Quit onPress={onQuit} />
@@ -184,7 +185,7 @@ function Turn({ m, me, hostId, busy, error, now, onAction, onQuit, zoeira }: Mat
       <View style={{ marginTop: 16 }}>
         <Raised face={bid ? colors.yellow : colors.surface}>
           <View style={styles.table}>
-            <Label color={colors.ink}>lance na mesa</Label>
+            <Label color={colors.ink}>{t('lance na mesa')}</Label>
             {bid ? (
               <Enter key={m.bids.length} from={10}>
                 <View style={styles.bidRow}>
@@ -194,18 +195,18 @@ function Turn({ m, me, hostId, busy, error, now, onAction, onQuit, zoeira }: Mat
                   <Text style={styles.bidUnit}>{q.unit}</Text>
                 </View>
                 <Text style={styles.bidWho}>
-                  {nameOf(m, bid.playerId)} diz: <Text style={{ fontFamily: fonts.ui800 }}>isso ou mais</Text>
+                  {t('{name} diz:', { name: nameOf(m, bid.playerId) })} <Text style={{ fontFamily: fonts.ui800 }}>{t('isso ou mais')}</Text>
                 </Text>
               </Enter>
             ) : (
-              <Text style={styles.empty}>ninguém chutou ainda. abre o jogo!</Text>
+              <Text style={styles.empty}>{t('ninguém chutou ainda. abre o jogo!')}</Text>
             )}
           </View>
         </Raised>
       </View>
 
       {m.bids.length > 1 && (
-        <View style={styles.ladder} accessibilityLabel="lances anteriores">
+        <View style={styles.ladder} accessibilityLabel={t('lances anteriores')}>
           {m.bids
             .slice(-5, -1)
             .reverse()
@@ -223,9 +224,9 @@ function Turn({ m, me, hostId, busy, error, now, onAction, onQuit, zoeira }: Mat
 
       <View style={{ flex: 1 }} />
       <Enter key={m.turnId} from={10}>
-        <Text style={styles.vezLabel}>{me !== null && mine ? 'é a' : 'vez de'}</Text>
+        <Text style={styles.vezLabel}>{me !== null && mine ? t('é a') : t('vez de')}</Text>
         <Text style={styles.vezName} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.5} maxFontSizeMultiplier={1} accessibilityRole="header">
-          {me !== null && mine ? 'sua vez!' : nameOf(m, m.turnId)}
+          {me !== null && mine ? t('sua vez!') : nameOf(m, m.turnId)}
         </Text>
       </Enter>
       {m.deadline !== null && m.turnSeconds && (
@@ -237,11 +238,11 @@ function Turn({ m, me, hostId, busy, error, now, onAction, onQuit, zoeira }: Mat
       <ErrorLine error={error} />
       {mine ? (
         <View style={styles.actions}>
-          <Btn label="EU DUVIDO!" variant="pink" right={null} disabled={!bid || busy} onPress={() => onAction({ type: 'DOUBT' })} style={{ flex: 1 }} />
-          <Btn label={bid ? 'Aumentar' : 'Dar lance'} right="arrowRight" disabled={busy} onPress={() => setBidding(true)} style={{ flex: 1 }} />
+          <Btn label={t('EU DUVIDO!')} variant="pink" right={null} disabled={!bid || busy} onPress={() => onAction({ type: 'DOUBT' })} style={{ flex: 1 }} />
+          <Btn label={bid ? t('Aumentar') : t('Dar lance')} right="arrowRight" disabled={busy} onPress={() => setBidding(true)} style={{ flex: 1 }} />
         </View>
       ) : (
-        <Waiting text={`${nameOf(m, m.turnId)} tá pensando…`} />
+        <Waiting text={t('{name} tá pensando…', { name: nameOf(m, m.turnId) })} />
       )}
       {bidding && mine && (
         <BidSheet
@@ -269,28 +270,28 @@ function BidSheet({ m, onClose, onBid }: { m: PublicMatch; onClose: () => void; 
   const unit = m.question.unit;
   const quick: [string, number][] = bid
     ? [
-        ['mínimo', min],
+        [t('mínimo'), min],
         ['+10%', Math.max(min, Math.ceil(bid.value * 1.1))],
         ['×2', Math.max(min, bid.value * 2)],
       ]
     : [];
   return (
     <Modal visible transparent animationType="slide" onRequestClose={onClose} statusBarTranslucent>
-      <Pressable style={styles.scrim} onPress={onClose} accessibilityLabel="fechar" />
+      <Pressable style={styles.scrim} onPress={onClose} accessibilityLabel={t('fechar')} />
       <View style={[styles.sheet, { paddingBottom: insets.bottom + 12 }]} accessibilityViewIsModal>
         <View style={styles.rowBetween}>
-          <Label color={colors.ink}>teu lance, {nameOf(m, m.turnId)}</Label>
-          <Pressable onPress={onClose} hitSlop={10} accessibilityRole="button" accessibilityLabel="cancelar" style={styles.closeBtn}>
+          <Label color={colors.ink}>{t('teu lance, {name}', { name: nameOf(m, m.turnId) })}</Label>
+          <Pressable onPress={onClose} hitSlop={10} accessibilityRole="button" accessibilityLabel={t('cancelar')} style={styles.closeBtn}>
             <Icon name="close" size={18} accent="none" />
           </Pressable>
         </View>
-        <View style={styles.display} accessible accessibilityLabel={`lance: ${value || 'vazio'} ${unit}`}>
+        <View style={styles.display} accessible accessibilityLabel={t('lance: {value} {unit}', { value: value || t('vazio'), unit })}>
           <Text style={[styles.displayNum, !value && { color: colors.inkMuted }]} numberOfLines={1} adjustsFontSizeToFit minimumFontScale={0.5} maxFontSizeMultiplier={1}>
             {formatDigits(value, unit)}
           </Text>
           <Text style={styles.displayUnit}>{unit}</Text>
         </View>
-        <Text style={[styles.minHint, value !== '' && !ok && { color: colors.pinkInk }]}>{bid ? `tem que ser ${formatValue(min, unit)} ou mais` : 'qualquer número a partir de 1'}</Text>
+        <Text style={[styles.minHint, value !== '' && !ok && { color: colors.pinkInk }]}>{bid ? t('tem que ser {n} ou mais', { n: formatValue(min, unit) }) : t('qualquer número a partir de 1')}</Text>
         {quick.length > 0 && (
           <View style={styles.quick}>
             {quick.map(([l, v]) => (
@@ -306,7 +307,7 @@ function BidSheet({ m, onClose, onBid }: { m: PublicMatch; onClose: () => void; 
         <View style={{ marginTop: 10 }}>
           <Keypad value={value} onChange={setValue} compact={height < 800} />
         </View>
-        <Btn label={ok ? `Lançar ${formatValue(n, unit)}` : 'Lançar'} icon="check" right={null} disabled={!ok} onPress={() => onBid(n)} style={{ marginTop: 12 }} />
+        <Btn label={ok ? t('Lançar {n}', { n: formatValue(n, unit) }) : t('Lançar')} icon="check" right={null} disabled={!ok} onPress={() => onBid(n)} style={{ marginTop: 12 }} />
       </View>
     </Modal>
   );
@@ -320,8 +321,8 @@ function Result({ m, me, busy, error, onAction, zoeira }: MatchScreenProps) {
   const r = m.result;
   useEffect(() => {
     playSound(r?.outcome === 'timeout' ? 'buzina' : 'duvido');
-    const t = setTimeout(() => setStage(1), 1100);
-    return () => clearTimeout(t);
+    const timer = setTimeout(() => setStage(1), 1100);
+    return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   useEffect(() => {
@@ -337,32 +338,35 @@ function Result({ m, me, busy, error, onAction, zoeira }: MatchScreenProps) {
   const over = r.outcome === 'over';
   const loser = nameOf(m, r.loserId);
   const bidder = nameOf(m, r.bid?.playerId);
-  const title = r.exact ? `${bidder} cravou na mosca!` : timeout ? 'Estourou o tempo!' : over ? `${bidder} blefou!` : 'O lance tava certo!';
+  const title = r.exact ? t('{name} cravou na mosca!', { name: bidder }) : timeout ? t('Estourou o tempo!') : over ? t('{name} blefou!', { name: bidder }) : t('O lance tava certo!');
   const why = r.exact
     ? r.bonusId
-      ? `Lance exato: ${me === r.bonusId ? 'você recupera' : `${bidder} recupera`} um “!”.`
-      : `Lance exato! ${bidder} já tava com todos os “!”.`
+      ? me === r.bonusId
+        ? t('Lance exato: você recupera um “!”.')
+        : t('Lance exato: {name} recupera um “!”.', { name: bidder })
+      : t('Lance exato! {name} já tava com todos os “!”.', { name: bidder })
     : timeout
-      ? `${loser} enrolou demais.`
+      ? t('{name} enrolou demais.', { name: loser })
       : over
-        ? `${formatValue(r.bid?.value ?? 0, q.unit)} passou da resposta.`
-        : `${nameOf(m, r.doubterId)} duvidou à toa.`;
+        ? t('{n} passou da resposta.', { n: formatValue(r.bid?.value ?? 0, q.unit) })
+        : t('{name} duvidou à toa.', { name: nameOf(m, r.doubterId) });
+  const lost = me === r.loserId ? (r.eliminated ? t('Você perdeu o último “!” e tá fora.') : t('Você perde um “!”.')) : r.eliminated ? t('{name} perdeu o último “!” e tá fora.', { name: loser }) : t('{name} perde um “!”.', { name: loser });
   return (
     <View style={[styles.screen, { paddingTop: insets.top + 8, paddingBottom: insets.bottom + 14 }]}>
       <StatusBar style="dark" />
       <ScrollView style={{ flex: 1 }} contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false}>
         <View style={{ marginTop: 34 }}>
-          <Stamp size={34} text={timeout ? 'TEMPO!' : 'EU DUVIDO!'} />
+          <Stamp size={34} text={timeout ? t('TEMPO!') : t('EU DUVIDO!')} />
           <Enter delay={250}>
             <Body color={colors.ink} style={{ textAlign: 'center', marginTop: 14 }}>
               {timeout ? (
                 <>
-                  <Text style={{ fontFamily: fonts.ui800 }}>{loser}</Text> não jogou a tempo.
+                  <Text style={{ fontFamily: fonts.ui800 }}>{loser}</Text> {t('não jogou a tempo.')}
                 </>
               ) : (
                 <>
-                  <Text style={{ fontFamily: fonts.ui800 }}>{nameOf(m, r.doubterId)}</Text> duvidou de <Text style={{ fontFamily: fonts.ui800 }}>{bidder}</Text>:{' '}
-                  {formatValue(r.bid?.value ?? 0, q.unit)} {q.unit} ou mais?
+                  <Text style={{ fontFamily: fonts.ui800 }}>{nameOf(m, r.doubterId)}</Text> {t('duvidou de')} <Text style={{ fontFamily: fonts.ui800 }}>{bidder}</Text>:{' '}
+                  {t('{value} {unit} ou mais?', { value: formatValue(r.bid?.value ?? 0, q.unit), unit: q.unit })}
                 </>
               )}
             </Body>
@@ -374,16 +378,16 @@ function Result({ m, me, busy, error, onAction, zoeira }: MatchScreenProps) {
             <Enter>
               <Raised face={r.exact && stage === 2 ? colors.yellow : colors.surface}>
                 <View style={{ padding: 18 }}>
-                  <Label color={colors.ink}>a resposta é</Label>
+                  <Label color={colors.ink}>{t('a resposta é')}</Label>
                   <View style={styles.bidRow}>
                     <CountUp to={r.answer} unit={q.unit} style={styles.answer} onDone={() => setStage(2)} />
                     <Text style={styles.bidUnit}>{q.unit}</Text>
                   </View>
                   {stage === 2 && q.fact && <Body size={15}>{q.fact}</Body>}
-                  {stage === 2 && q.source && <Text style={styles.source}>fonte: {q.source}</Text>}
+                  {stage === 2 && q.source && <Text style={styles.source}>{t('fonte: {source}', { source: q.source })}</Text>}
                 </View>
               </Raised>
-              {r.exact && stage === 2 && <Stamp size={24} text="NA MOSCA!" style={styles.moscaStamp} />}
+              {r.exact && stage === 2 && <Stamp size={24} text={t('NA MOSCA!')} style={styles.moscaStamp} />}
             </Enter>
           )}
           {stage === 2 && (
@@ -391,17 +395,17 @@ function Result({ m, me, busy, error, onAction, zoeira }: MatchScreenProps) {
               <View style={[styles.verdict, { backgroundColor: r.exact ? colors.yellowSoft : over || timeout ? colors.pinkSoft : colors.greenSoft }]} accessibilityLiveRegion="polite">
                 <Text style={styles.verdictTitle}>{title}</Text>
                 <Text style={styles.verdictText}>
-                  {why} {me === r.loserId ? 'Você' : loser} {r.eliminated ? 'perdeu o último “!” e tá fora.' : 'perde um “!”.'}
+                  {why} {lost}
                 </Text>
                 {r.exact && r.bid && (
                   <Pressable
                     onPress={() => void shareCard(cardRef)}
                     style={({ pressed }) => [styles.shareBtn, pressed && { backgroundColor: colors.yellow }]}
                     accessibilityRole="button"
-                    accessibilityLabel="compartilhar o na mosca"
+                    accessibilityLabel={t('compartilhar o na mosca')}
                   >
                     <Icon name="share" size={18} accent="none" />
-                    <Text style={styles.shareText}>compartilhar o print</Text>
+                    <Text style={styles.shareText}>{t('compartilhar o print')}</Text>
                   </Pressable>
                 )}
               </View>
@@ -415,7 +419,7 @@ function Result({ m, me, busy, error, onAction, zoeira }: MatchScreenProps) {
           <Board m={m} losingId={r.loserId} me={me} />
           {zoeira}
           <ErrorLine error={error} />
-          <Btn label={m.winnerId ? 'Ver quem ganhou' : 'Próxima rodada'} icon={m.winnerId ? 'trophy' : undefined} variant="dark" disabled={busy} onPress={() => onAction({ type: 'NEXT_ROUND' })} style={{ marginTop: 12 }} />
+          <Btn label={m.winnerId ? t('Ver quem ganhou') : t('Próxima rodada')} icon={m.winnerId ? 'trophy' : undefined} variant="dark" disabled={busy} onPress={() => onAction({ type: 'NEXT_ROUND' })} style={{ marginTop: 12 }} />
         </Enter>
       )}
       {r.exact && r.bid && <ShareCard ref={cardRef} name={bidder} value={r.bid.value} unit={q.unit} question={q.text} />}
@@ -435,15 +439,13 @@ function End({ m, me, hostId, busy, onRematch, onHome, showUpsell, onUpsell, zoe
         <BangMark size={84} />
         <Enter delay={150}>
           <Title size={44} style={{ textAlign: 'center', marginTop: 18 }}>
-            {me === winner?.id ? 'você' : winner?.name}
-            {'\n'}
-            {me === winner?.id ? 'ganhou' : 'levou'}
+            {me === winner?.id ? t('você\nganhou') : t('{name}\nlevou', { name: winner?.name ?? '' })}
             <Text style={{ color: colors.pinkInk }}>!</Text>
           </Title>
         </Enter>
         <Enter delay={300}>
           <Body style={{ textAlign: 'center', marginTop: 6 }}>
-            {m.round} {m.round === 1 ? 'rodada' : 'rodadas'} · sobrou com {winner ? m.lives[winner.id] : 0} “!”
+            {m.round === 1 ? t('1 rodada') : t('{n} rodadas', { n: m.round })} · {t('sobrou com {n} “!”', { n: winner ? m.lives[winner.id] : 0 })}
           </Body>
         </Enter>
       </View>
@@ -454,24 +456,24 @@ function End({ m, me, hostId, busy, onRematch, onHome, showUpsell, onUpsell, zoe
               {i === 0 ? <Icon name="trophy" size={24} accent={colors.surface} /> : <Text style={styles.rank}>{i + 1}</Text>}
               <Text style={styles.rankName}>
                 {p.name}
-                {me === p.id ? ' (você)' : ''}
+                {me === p.id ? t(' (você)') : ''}
               </Text>
               <Lives left={m.lives[p.id]} total={m.startLives} size={16} />
             </View>
           </Enter>
         ))}
-        <Pressable onPress={() => void shareApp('match_end')} style={({ pressed }) => [styles.shareBtn, styles.shareApp, pressed && { backgroundColor: colors.sunk }]} accessibilityRole="button" accessibilityHint="Manda o link do jogo pra quem não tem">
+        <Pressable onPress={() => void shareApp('match_end')} style={({ pressed }) => [styles.shareBtn, styles.shareApp, pressed && { backgroundColor: colors.sunk }]} accessibilityRole="button" accessibilityHint={t('Manda o link do jogo pra quem não tem')}>
           <Icon name="share" size={18} accent="none" strokeWidth={2.4} />
-          <Text style={styles.shareText}>chamar mais gente pra próxima</Text>
+          <Text style={styles.shareText}>{t('chamar mais gente pra próxima')}</Text>
         </Pressable>
         {endExtra}
         {showUpsell && onUpsell && (
-          <Raised onPress={onUpsell} face={colors.pinkSoft} style={{ marginTop: 6 }} accessibilityLabel="Conhecer os pacotes pro">
+          <Raised onPress={onUpsell} face={colors.pinkSoft} style={{ marginTop: 6 }} accessibilityLabel={t('Conhecer os pacotes pro')}>
             <View style={styles.upsell}>
               <Icon name="sparkle" size={28} accent={colors.yellow} />
               <View style={{ flex: 1 }}>
-                <Text style={styles.upsellTitle}>curtiu? tem mais {PACKS.filter((p) => p.premium).length} pacotes</Text>
-                <Text style={styles.upsellText}>{PACKS.filter((p) => p.premium).reduce((n, p) => n + p.questions.length, 0)} perguntas novas te esperando no pro.</Text>
+                <Text style={styles.upsellTitle}>{t('curtiu? tem mais {n} pacotes', { n: PACKS.filter((p) => p.premium).length })}</Text>
+                <Text style={styles.upsellText}>{t('{n} perguntas novas te esperando no pro.', { n: PACKS.filter((p) => p.premium).reduce((n, p) => n + p.questions.length, 0) })}</Text>
               </View>
             </View>
           </Raised>
@@ -479,8 +481,8 @@ function End({ m, me, hostId, busy, onRematch, onHome, showUpsell, onUpsell, zoe
       </ScrollView>
       {zoeira}
       <View style={{ gap: 8, marginTop: 12 }}>
-        {onRematch ? <Btn label="Revanche" icon="refresh" right={null} disabled={busy} onPress={onRematch} /> : <Waiting text={`esperando ${nameOf(m, hostId)} chamar a revanche…`} />}
-        <Btn label="Voltar pro início" variant="secondary" right={null} height={54} onPress={onHome} />
+        {onRematch ? <Btn label={t('Revanche')} icon="refresh" right={null} disabled={busy} onPress={onRematch} /> : <Waiting text={t('esperando {name} chamar a revanche…', { name: nameOf(m, hostId) })} />}
+        <Btn label={t('Voltar pro início')} variant="secondary" right={null} height={54} onPress={onHome} />
       </View>
     </View>
   );

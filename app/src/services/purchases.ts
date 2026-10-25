@@ -9,6 +9,7 @@
 import Constants, { ExecutionEnvironment } from 'expo-constants';
 import { Platform } from 'react-native';
 import type { CustomerInfo, PurchasesPackage } from 'react-native-purchases';
+import { t } from '@/i18n';
 
 export type PlanId = 'annual' | 'weekly' | 'monthly' | 'lifetime';
 /** `period: null` = compra única (vitalício). `featured`: aparece na vista principal do paywall. */
@@ -87,10 +88,10 @@ const mock: PurchasesService = {
 
 const ORDER: PlanId[] = ['annual', 'weekly', 'monthly', 'lifetime'];
 const META: Record<PlanId, { title: string; period: string | null; type: string }> = {
-  annual: { title: 'anual', period: 'ano', type: 'ANNUAL' },
-  weekly: { title: 'semanal', period: 'semana', type: 'WEEKLY' },
-  monthly: { title: 'mensal', period: 'mês', type: 'MONTHLY' },
-  lifetime: { title: 'vitalício', period: null, type: 'LIFETIME' },
+  annual: { title: t('anual'), period: t('ano'), type: 'ANNUAL' },
+  weekly: { title: t('semanal'), period: t('semana'), type: 'WEEKLY' },
+  monthly: { title: t('mensal'), period: t('mês'), type: 'MONTHLY' },
+  lifetime: { title: t('vitalício'), period: null, type: 'LIFETIME' },
 };
 const UNIT_DAYS: Record<string, number> = { DAY: 1, WEEK: 7, MONTH: 30, YEAR: 365 };
 /** Ids dos produtos na App Store: dá pra checar o teste grátis junto com as ofertas, sem esperar uma pela outra. */
@@ -132,7 +133,7 @@ function createRevenueCat(): PurchasesService {
         title: META[id].title,
         price: p.priceString,
         period: META[id].period,
-        perMonth: id === 'annual' && p.pricePerMonthString ? `${p.pricePerMonthString}/mês` : undefined,
+        perMonth: id === 'annual' && p.pricePerMonthString ? `${p.pricePerMonthString}/${t('mês')}` : undefined,
         perWeek: id === 'annual' ? (p.pricePerWeekString ?? undefined) : undefined,
         badge: savings > 0 ? `-${savings}%` : undefined,
         trialDays,

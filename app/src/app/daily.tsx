@@ -10,12 +10,14 @@ import { Btn, Label, Raised, Title, TopBar } from '@/components/ui';
 import { links } from '@/config/links';
 import { bidText, DAILY_SIZE, dailyFinished, dailyNumber, dailyRounds, dailyShareText, dailyShareUrl, dailyStreak, type DailyPick } from '@/game/daily';
 import { packById } from '@/game/content';
+import { isYear } from '@/game/engine';
 import { analytics } from '@/services/analytics';
 import { askReminderPermission, rescheduleReminders } from '@/services/engagement/reminders';
 import { haptic } from '@/services/haptics';
 import { playSound } from '@/services/sound';
 import { useApp } from '@/state/app';
 import { colors, fonts, maxScale, radii } from '@/theme';
+import { plural, t } from '@/i18n';
 
 /**
  * Desafio do dia: 5 perguntas, um lance da galera em cada, e a pessoa decide ACREDITO ou EU DUVIDO!
@@ -60,7 +62,7 @@ export default function Daily() {
       <StatusBar style="dark" />
       <TopBar onBack={() => (router.canGoBack() ? router.back() : router.replace('/'))} />
       <View style={styles.head}>
-        <Label color={colors.ink}>desafio do dia #{n}</Label>
+        <Label color={colors.ink}>{t('desafio do dia #{n}', { n })}</Label>
         <Dots results={results} current={done ? -1 : index} />
       </View>
       {done ? (
@@ -76,7 +78,7 @@ export default function Daily() {
 
 function Dots({ results, current }: { results: boolean[]; current: number }) {
   return (
-    <View style={styles.dots} accessibilityLabel={`${results.length} de ${DAILY_SIZE} respondidas`}>
+    <View style={styles.dots} accessibilityLabel={t('{done} de {total} respondidas', { done: results.length, total: DAILY_SIZE })}>
       {Array.from({ length: DAILY_SIZE }, (_, i) => (
         <View key={i} style={[styles.dot, i === current && i >= results.length && styles.dotNow, i < results.length && { backgroundColor: results[i] ? colors.yellow : colors.pink }]} />
       ))}
@@ -105,17 +107,17 @@ function Ask({ round, onPick }: { round: Round; onPick: (p: DailyPick) => void }
       </Enter>
       <Enter delay={120}>
         <View style={styles.bid}>
-          <Text style={styles.bidLabel}>a galera diz</Text>
+          <Text style={styles.bidLabel}>{t('a galera diz')}</Text>
           <Text style={styles.bidValue} maxFontSizeMultiplier={maxScale.display} adjustsFontSizeToFit numberOfLines={2}>
             {bidText(round)}
           </Text>
         </View>
       </Enter>
       <View style={{ flex: 1 }} />
-      <Text style={styles.hint}>A resposta é isso ou mais? Se acha que é menos, duvida.</Text>
+      <Text style={styles.hint}>{t('A resposta é isso ou mais? Se acha que é menos, duvida.')}</Text>
       <View style={{ gap: 10 }}>
-        <Btn label="Acredito" right="check" onPress={() => onPick('believe')} />
-        <Btn label="EU DUVIDO!" variant="pink" right={null} onPress={() => onPick('doubt')} />
+        <Btn label={t('Acredito')} right="check" onPress={() => onPick('believe')} />
+        <Btn label={t('EU DUVIDO!')} variant="pink" right={null} onPress={() => onPick('doubt')} />
       </View>
     </ScrollView>
   );
@@ -128,14 +130,14 @@ function Reveal({ round, pick, last, onNext }: { round: Round; pick: DailyPick; 
     <ScrollView contentContainerStyle={{ flexGrow: 1, gap: 14, paddingTop: 12 }} showsVerticalScrollIndicator={false}>
       <QuestionCard round={round} />
       <View style={[styles.verdict, { backgroundColor: ok ? colors.greenSoft : colors.pinkSoft }]} accessibilityLiveRegion="polite">
-        <Text style={styles.verdictTitle}>{ok ? (pick === 'doubt' ? 'Duvidou e acertou!' : 'Acreditou e acertou!') : pick === 'doubt' ? 'Duvidou à toa.' : 'Caiu no lance.'}</Text>
-        <Text style={styles.verdictSub}>a galera disse {bidText(round)}</Text>
+        <Text style={styles.verdictTitle}>{ok ? (pick === 'doubt' ? t('Duvidou e acertou!') : t('Acreditou e acertou!')) : pick === 'doubt' ? t('Duvidou à toa.') : t('Caiu no lance.')}</Text>
+        <Text style={styles.verdictSub}>{t('a galera disse {bid}', { bid: bidText(round) })}</Text>
       </View>
       <View style={styles.answer}>
-        <Text style={styles.bidLabel}>a resposta é</Text>
+        <Text style={styles.bidLabel}>{t('a resposta é')}</Text>
         <View style={styles.answerRow}>
           <CountUp to={round.question.answer} unit={round.question.unit} style={styles.answerValue} onDone={() => setCounted(true)} />
-          {round.question.unit !== 'ano' && <Text style={styles.answerUnit}>{round.question.unit}</Text>}
+          {!isYear(round.question.unit) && <Text style={styles.answerUnit}>{round.question.unit}</Text>}
         </View>
         {counted && round.question.fact && (
           <Enter>
@@ -144,7 +146,7 @@ function Reveal({ round, pick, last, onNext }: { round: Round; pick: DailyPick; 
         )}
       </View>
       <View style={{ flex: 1 }} />
-      <Btn label={last ? 'Ver resultado' : 'Próxima'} onPress={onNext} />
+      <Btn label={last ? t('Ver resultado') : t('Próxima')} onPress={onNext} />
     </ScrollView>
   );
 }
@@ -163,8 +165,8 @@ function Result({ n, results, streak, rounds }: { n: number; results: boolean[];
   const hits = results.filter(Boolean).length;
   const [left, setLeft] = useState(untilTomorrow);
   useEffect(() => {
-    const t = setInterval(() => setLeft(untilTomorrow()), 30_000);
-    return () => clearInterval(t);
+    const timer = setInterval(() => setLeft(untilTomorrow()), 30_000);
+    return () => clearInterval(timer);
   }, []);
   const share = () => {
     analytics.track('daily_shared', { day: n, score: hits, streak });
@@ -180,33 +182,33 @@ function Result({ n, results, streak, rounds }: { n: number; results: boolean[];
             {hits}/{DAILY_SIZE}
           </Title>
         </Enter>
-        <Text style={styles.resultLine}>{hits === DAILY_SIZE ? 'Ninguém te engana.' : hits >= 3 ? 'Faro bom pra blefe.' : 'A galera te enrolou hoje.'}</Text>
+        <Text style={styles.resultLine}>{hits === DAILY_SIZE ? t('Ninguém te engana.') : hits >= 3 ? t('Faro bom pra blefe.') : t('A galera te enrolou hoje.')}</Text>
         <View style={styles.grid}>
           {results.map((ok, i) => (
             <View key={i} style={[styles.square, { backgroundColor: ok ? colors.yellow : colors.pink }]} />
           ))}
         </View>
-        {streak >= 1 && <Text style={styles.streak}>🔥 {streak} {streak === 1 ? 'dia' : 'dias seguidos'}</Text>}
-        <Text style={styles.next}>próximo desafio em {left}</Text>
+        {streak >= 1 && <Text style={styles.streak}>🔥 {plural(streak, '{n} dia', '{n} dias seguidos')}</Text>}
+        <Text style={styles.next}>{t('próximo desafio em {left}', { left })}</Text>
       </View>
 
-      <Btn label="Compartilhar resultado" icon="share" right={null} onPress={share} />
+      <Btn label={t('Compartilhar resultado')} icon="share" right={null} onPress={share} />
       {!app.remindersOn && <TomorrowAsk />}
 
       {!app.premium && packs.length > 0 ? (
-        <Raised onPress={() => router.push({ pathname: '/paywall', params: { source: 'daily' } })} face={colors.pinkSoft} accessibilityLabel="Conhecer os pacotes pro">
+        <Raised onPress={() => router.push({ pathname: '/paywall', params: { source: 'daily' } })} face={colors.pinkSoft} accessibilityLabel={t('Conhecer os pacotes pro')}>
           <View style={styles.upsell}>
             <Icon name="sparkle" size={28} accent={colors.yellow} />
             <View style={{ flex: 1 }}>
-              <Text style={styles.upsellTitle}>Curtiu? Hoje caiu {packs.join(', ')}.</Text>
-              <Text style={styles.upsellText}>São pacotes do pro: centenas de perguntas assim pra jogar com a galera.</Text>
+              <Text style={styles.upsellTitle}>{t('Curtiu? Hoje caiu {packs}.', { packs: packs.join(', ') })}</Text>
+              <Text style={styles.upsellText}>{t('São pacotes do pro: centenas de perguntas assim pra jogar com a galera.')}</Text>
             </View>
           </View>
         </Raised>
       ) : (
-        <Btn label="Jogar com a galera" variant="secondary" onPress={() => router.replace('/setup')} />
+        <Btn label={t('Jogar com a galera')} variant="secondary" onPress={() => router.replace('/setup')} />
       )}
-      <Btn label="Voltar pro início" variant="secondary" right={null} height={54} onPress={() => router.replace('/')} />
+      <Btn label={t('Voltar pro início')} variant="secondary" right={null} height={54} onPress={() => router.replace('/')} />
     </ScrollView>
   );
 }
@@ -227,10 +229,10 @@ function TomorrowAsk() {
     <View style={styles.ask}>
       <Icon name="timer" size={28} accent={colors.yellow} />
       <View style={{ flex: 1, gap: 8 }}>
-        <Text style={styles.upsellTitle}>Te aviso quando sair o de amanhã?</Text>
-        <Text style={styles.upsellText}>Um aviso ao meio-dia, com a primeira pergunta. Para sozinho se você parar de jogar.</Text>
+        <Text style={styles.upsellTitle}>{t('Te aviso quando sair o de amanhã?')}</Text>
+        <Text style={styles.upsellText}>{t('Um aviso ao meio-dia, com a primeira pergunta. Para sozinho se você parar de jogar.')}</Text>
         <Pressable onPress={yes} disabled={busy} style={({ pressed }) => [styles.askBtn, pressed && { opacity: 0.8 }]} accessibilityRole="button">
-          {busy ? <ActivityIndicator color={colors.ink} /> : <Text style={styles.askText}>me avisa</Text>}
+          {busy ? <ActivityIndicator color={colors.ink} /> : <Text style={styles.askText}>{t('me avisa')}</Text>}
         </Pressable>
       </View>
     </View>

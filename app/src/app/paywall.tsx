@@ -16,25 +16,26 @@ import { analytics } from '@/services/analytics';
 import { purchases, type PlanId } from '@/services/purchases';
 import { useApp } from '@/state/app';
 import { colors, fonts } from '@/theme';
+import { t } from '@/i18n';
 
 /** O ✕ só demora na primeira vez (fim da introdução); nas outras telas já vem pronto. */
 const ONBOARDING_CLOSE_MS = 2000;
 
 const TITLES: Record<string, string> = {
-  pack: 'absurdos BR\nte espera',
-  match_end: 'absurdos BR\nte espera',
-  exhausted: 'vocês zeraram\nas grátis',
-  pin: 'todos os pacotes\nna sua sala',
+  pack: t('absurdos BR\nte espera'),
+  match_end: t('absurdos BR\nte espera'),
+  exhausted: t('vocês zeraram\nas grátis'),
+  pin: t('todos os pacotes\nna sua sala'),
 };
 
 const PRO_PACKS = PACKS.filter((p) => p.premium);
 const PRO_QUESTIONS = PRO_PACKS.reduce((n, p) => n + p.questions.length, 0);
 
 const PERKS: [IconName, string][] = [
-  ['sparkle', `+${PRO_PACKS.length} pacotes, +${PRO_QUESTIONS} perguntas desse naipe`],
-  ['room', 'todos os pacotes também na sala com PIN'],
-  ['refresh', 'pacotes novos chegando direto'],
-  ['users', 'na sua sala, a galera toda joga os pacotes pro'],
+  ['sparkle', t('+{packs} pacotes, +{questions} perguntas desse naipe', { packs: PRO_PACKS.length, questions: PRO_QUESTIONS })],
+  ['room', t('todos os pacotes também na sala com PIN')],
+  ['refresh', t('pacotes novos chegando direto')],
+  ['users', t('na sua sala, a galera toda joga os pacotes pro')],
 ];
 
 export default function Paywall() {
@@ -77,8 +78,8 @@ export default function Paywall() {
     setBusy(false);
     if (r.ok && r.premium) bought.current = true;
     analytics.track(r.ok && r.premium ? 'purchase_completed' : 'purchase_failed', { ...track, cancelled: !!r.cancelled, activated: r.premium });
-    if (!r.ok && !r.cancelled) setBuyError('A compra não foi concluída. Tenta de novo?');
-    if (r.ok && !r.premium) setBuyError('Compra feita, mas o pro ainda não ativou. Toque em restaurar compras.');
+    if (!r.ok && !r.cancelled) setBuyError(t('A compra não foi concluída. Tenta de novo?'));
+    if (r.ok && !r.premium) setBuyError(t('Compra feita, mas o pro ainda não ativou. Toque em restaurar compras.'));
     if (r.ok && r.premium) {
       set({ premium: true, ...(onboarding ? { onboarded: true } : null) });
       leave();
@@ -105,16 +106,16 @@ export default function Paywall() {
       <View style={styles.topRow}>
         <DelayedClose delayMs={onboarding ? ONBOARDING_CLOSE_MS : 0} onClose={leave} ready={!!plans || plansError} />
         <Pressable onPress={restore} hitSlop={10} style={{ minHeight: 44, justifyContent: 'center' }} accessibilityRole="button">
-          <Text style={styles.restore}>restaurar compras</Text>
+          <Text style={styles.restore}>{t('restaurar compras')}</Text>
         </Pressable>
       </View>
 
       <ScrollView contentContainerStyle={styles.scroll} showsVerticalScrollIndicator={false}>
         <View style={styles.hero}>
           <View style={{ flex: 1 }}>
-            <Label>eu duvido! pro</Label>
+            <Label>{t('eu duvido! pro')}</Label>
             <Title size={32} style={{ marginTop: 6 }}>
-              {TITLES[source] ?? 'toda noite\nde jogo,\nliberada'}
+              {TITLES[source] ?? t('toda noite\nde jogo,\nliberada')}
               <Text style={{ color: colors.pinkInk }}>.</Text>
             </Title>
           </View>
@@ -126,10 +127,10 @@ export default function Paywall() {
         <Teasers />
 
         <View style={styles.perks}>
-          {PERKS.map(([icon, t]) => (
-            <View key={t} style={styles.perk}>
+          {PERKS.map(([icon, text]) => (
+            <View key={text} style={styles.perk}>
               <Icon name={icon} size={22} accent={colors.yellow} />
-              <Text style={styles.perkText}>{t}</Text>
+              <Text style={styles.perkText}>{text}</Text>
             </View>
           ))}
         </View>
@@ -138,8 +139,8 @@ export default function Paywall() {
           <View style={styles.loadingPlans}>
             {plansError ? (
               <Pressable onPress={reload} accessibilityRole="button" style={{ alignItems: 'center', gap: 4 }}>
-                <Text style={styles.planTitle}>Não deu pra carregar os preços.</Text>
-                <Text style={styles.allPlans}>tentar de novo</Text>
+                <Text style={styles.planTitle}>{t('Não deu pra carregar os preços.')}</Text>
+                <Text style={styles.allPlans}>{t('tentar de novo')}</Text>
               </Pressable>
             ) : (
               <ActivityIndicator color={colors.ink} />
@@ -156,27 +157,27 @@ export default function Paywall() {
                 face={on ? colors.yellow : colors.surface}
                 plate={on ? colors.ink : colors.line}
                 border={on ? colors.ink : colors.line}
-                accessibilityLabel={`plano ${p.title}, ${p.price}${p.period ? ` por ${p.period}` : ', pagamento único'}${p.perWeek ? `, equivale a ${p.perWeek} por semana` : ''}${p.trialDays ? `, ${p.trialDays} dias grátis` : ''}`}
+                accessibilityLabel={`${t('plano {name}', { name: p.title })}, ${p.price}${p.period ? ` ${t('por {period}', { period: p.period })}` : `, ${t('pagamento único')}`}${p.perWeek ? `, ${t('equivale a {price} por semana', { price: p.perWeek })}` : ''}${p.trialDays ? `, ${t('{n} dias grátis', { n: p.trialDays })}` : ''}`}
                 accessibilityState={{ selected: on }}
               >
                 <View style={styles.plan}>
                   <View style={[styles.radio, on && styles.radioOn]}>{on && <Icon name="check" size={14} color={colors.yellow} strokeWidth={3.2} />}</View>
                   <View style={{ flex: 1 }}>
                     <Text style={styles.planTitle}>{p.title}</Text>
-                    <Text style={styles.planSub}>{p.trialDays ? `${p.trialDays} dias grátis` : p.period ? `cobrado por ${p.period}` : 'paga uma vez, é seu pra sempre'}</Text>
+                    <Text style={styles.planSub}>{p.trialDays ? t('{n} dias grátis', { n: p.trialDays }) : p.period ? t('cobrado por {period}', { period: p.period }) : t('paga uma vez, é seu pra sempre')}</Text>
                   </View>
                   <View style={{ alignItems: 'flex-end' }}>
                     <Text style={styles.planPrice}>{p.price}</Text>
-                    <Text style={styles.planSub}>{p.period ? `por ${p.period}` : 'uma vez'}</Text>
+                    <Text style={styles.planSub}>{p.period ? t('por {period}', { period: p.period }) : t('uma vez')}</Text>
                   </View>
                 </View>
                 {p.perWeek && (
                   <View style={[styles.weekStrip, on && styles.weekStripOn]}>
                     <Text style={styles.perWeek}>
-                      sai {p.perWeek} por semana
+                      {t('sai {price} por semana', { price: p.perWeek })}
                       {weekly ? (
                         <Text style={styles.perWeekVs}>
-                          {'  '}no semanal, <Text style={styles.strike}>{weekly.price}</Text>
+                          {'  '}{t('no semanal,')} <Text style={styles.strike}>{weekly.price}</Text>
                         </Text>
                       ) : null}
                     </Text>
@@ -184,7 +185,7 @@ export default function Paywall() {
                 )}
                 {p.badge && (
                   <View style={styles.badge}>
-                    <Text style={styles.badgeText}>economiza {p.badge.replace('-', '')}</Text>
+                    <Text style={styles.badgeText}>{t('economiza {n}', { n: p.badge.replace('-', '') })}</Text>
                   </View>
                 )}
               </Raised>
@@ -192,7 +193,7 @@ export default function Paywall() {
           })}
           {!allPlans && (
             <Pressable onPress={() => setAllPlans(true)} hitSlop={8} style={{ minHeight: 40, justifyContent: 'center' }} accessibilityRole="button">
-              <Text style={styles.allPlans}>ver todos os planos</Text>
+              <Text style={styles.allPlans}>{t('ver todos os planos')}</Text>
             </Pressable>
           )}
         </View>
@@ -200,14 +201,14 @@ export default function Paywall() {
         {selected?.trialDays ? (
           <View style={styles.timeline}>
             {[
-              ['hoje', 'libera tudo, nada a pagar agora'],
-              [`dia ${selected.trialDays - 1}`, 'cancela até aqui e não paga nada'],
-              [`dia ${selected.trialDays}`, `cobra ${selected.price}/${selected.period ?? ''}`],
-            ].map(([d, t], k) => (
+              [t('hoje'), t('libera tudo, nada a pagar agora')],
+              [t('dia {n}', { n: selected.trialDays - 1 }), t('cancela até aqui e não paga nada')],
+              [t('dia {n}', { n: selected.trialDays }), t('cobra {price}/{period}', { price: selected.price, period: selected.period ?? '' })],
+            ].map(([d, text], k) => (
               <View key={d} style={styles.tlRow}>
                 <View style={[styles.tlDot, k === 0 && { backgroundColor: colors.yellow }]} />
                 <Text style={styles.tlDay}>{d}</Text>
-                <Text style={styles.tlText}>{t}</Text>
+                <Text style={styles.tlText}>{text}</Text>
               </View>
             ))}
           </View>
@@ -217,7 +218,7 @@ export default function Paywall() {
       <View style={[styles.footer, { paddingBottom: insets.bottom + 12 }]}>
         {buyError && <Text style={styles.buyError}>{buyError}</Text>}
         <Btn
-          label={!selected ? 'Carregando…' : selected.trialDays ? `Testar ${selected.trialDays} dias grátis` : selected.period ? `Assinar por ${selected.price}` : `Comprar por ${selected.price}`}
+          label={!selected ? t('Carregando…') : selected.trialDays ? t('Testar {n} dias grátis', { n: selected.trialDays }) : selected.period ? t('Assinar por {price}', { price: selected.price }) : t('Comprar por {price}', { price: selected.price })}
           onPress={buy}
           disabled={busy || !selected}
           busy={busy ? <ActivityIndicator color={colors.ink} /> : undefined}
@@ -225,15 +226,15 @@ export default function Paywall() {
         />
         {selected && (
         <Text style={styles.legal}>
-          {!selected.period ? `${selected.price}, pagamento único. ` : selected.trialDays ? `${selected.trialDays} dias grátis, depois ${selected.price}/${selected.period}. ` : `${selected.price}/${selected.period}. `}
-          {selected.period ? 'Renova sozinho até você cancelar nos Ajustes do iPhone.' : 'Sem renovação.'}
+          {!selected.period ? `${selected.price}, ${t('pagamento único')}. ` : selected.trialDays ? `${t('{n} dias grátis, depois {price}/{period}.', { n: selected.trialDays, price: selected.price, period: selected.period })} ` : `${selected.price}/${selected.period}. `}
+          {selected.period ? t('Renova sozinho até você cancelar nos Ajustes do iPhone.') : t('Sem renovação.')}
           {' '}
           <Text style={styles.legalLink} onPress={() => void Linking.openURL(links.terms)} accessibilityRole="link">
-            Termos de Uso
+            {t('Termos de Uso')}
           </Text>
           {' · '}
           <Text style={styles.legalLink} onPress={() => void Linking.openURL(links.privacy)} accessibilityRole="link">
-            Privacidade
+            {t('Privacidade')}
           </Text>
         </Text>
         )}

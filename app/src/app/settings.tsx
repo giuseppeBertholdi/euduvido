@@ -16,6 +16,7 @@ import { shareApp } from '@/services/invite';
 import { purchases } from '@/services/purchases';
 import { useApp } from '@/state/app';
 import { colors, fonts, radii } from '@/theme';
+import { t } from '@/i18n';
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
@@ -88,7 +89,7 @@ export default function Settings() {
     const r = await purchases.restore().catch(() => ({ premium: false }));
     setRestoring(false);
     if (r.premium) app.set({ premium: true });
-    Alert.alert(r.premium ? 'Pro restaurado!' : 'Nada pra restaurar', r.premium ? 'Tudo liberado de novo.' : 'Não achamos uma assinatura nesta conta da App Store.');
+    Alert.alert(r.premium ? t('Pro restaurado!') : t('Nada pra restaurar'), r.premium ? t('Tudo liberado de novo.') : t('Não achamos uma assinatura nesta conta da App Store.'));
   };
 
   return (
@@ -99,55 +100,55 @@ export default function Settings() {
       </View>
       <ScrollView contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: insets.bottom + 40 }} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
         <Title size={42} style={{ marginTop: 8 }}>
-          ajustes
+          {t('ajustes')}
         </Title>
 
-        <Section title="você">
+        <Section title={t('você')}>
           <View style={styles.row}>
             <Icon name="users" size={22} accent={colors.yellow} />
             <View style={{ flex: 1 }}>
-              <Text style={styles.rowDetail}>nome nas salas online</Text>
+              <Text style={styles.rowDetail}>{t('nome nas salas online')}</Text>
               <TextInput
                 value={name}
-                onChangeText={(t) => setName(t.slice(0, 12))}
+                onChangeText={(text) => setName(text.slice(0, 12))}
                 onEndEditing={() => name.trim() !== app.name && change({ name: name.trim() })}
-                placeholder="teu nome"
+                placeholder={t('teu nome')}
                 placeholderTextColor={colors.inkMuted}
                 style={styles.input}
                 autoCapitalize="words"
                 returnKeyType="done"
-                accessibilityLabel="nome nas salas online"
+                accessibilityLabel={t('nome nas salas online')}
               />
             </View>
           </View>
         </Section>
 
-        <Section title="partida">
+        <Section title={t('partida')}>
           <View style={[styles.block, styles.rowLine]}>
-            <Text style={styles.rowLabel}>Vidas de cada um</Text>
+            <Text style={styles.rowLabel}>{t('Vidas de cada um')}</Text>
             <Segment
               options={LIVES_OPTIONS}
               value={app.lives as (typeof LIVES_OPTIONS)[number]}
               onChange={(v) => change({ lives: v })}
-              label={(v) => `${v} vidas`}
+              label={(v) => t('{n} vidas', { n: v })}
               render={(v) => <Lives left={v} total={v} size={16} />}
             />
           </View>
           <View style={[styles.block, styles.rowLine]}>
-            <Text style={styles.rowLabel}>Tempo por vez</Text>
-            <Text style={styles.rowDetail}>estourou, perde um “!”</Text>
+            <Text style={styles.rowLabel}>{t('Tempo por vez')}</Text>
+            <Text style={styles.rowDetail}>{t('estourou, perde um “!”')}</Text>
             <Segment
               options={TIMER_OPTIONS}
               value={app.timer as (typeof TIMER_OPTIONS)[number]}
               onChange={(v) => change({ timer: v })}
-              label={(v) => (v ? `${v} segundos` : 'sem timer')}
-              render={(v) => <Text style={styles.segText}>{v ? `${v}s` : 'sem'}</Text>}
+              label={(v) => (v ? t('{n} segundos', { n: v }) : t('sem timer'))}
+              render={(v) => <Text style={styles.segText}>{v ? `${v}s` : t('sem')}</Text>}
             />
           </View>
           <Row
             icon="refresh"
-            label="Pular perguntas que já saíram"
-            detail={`${app.played.length} já saíram neste celular`}
+            label={t('Pular perguntas que já saíram')}
+            detail={t('{n} já saíram neste celular', { n: app.played.length })}
             right={
               <Switch
                 value={app.avoidRepeats}
@@ -155,29 +156,29 @@ export default function Settings() {
                 trackColor={{ true: colors.ink, false: colors.line }}
                 thumbColor={app.avoidRepeats ? colors.yellow : colors.surface}
                 ios_backgroundColor={colors.line}
-                accessibilityLabel="pular perguntas que já saíram"
+                accessibilityLabel={t('pular perguntas que já saíram')}
               />
             }
           />
           <Row
             icon="close"
-            label="Zerar perguntas jogadas"
-            detail="todas voltam a contar como novas"
+            label={t('Zerar perguntas jogadas')}
+            detail={t('todas voltam a contar como novas')}
             last
             onPress={() =>
-              Alert.alert('Zerar perguntas jogadas?', `As ${app.played.length} que já saíram voltam a contar como novas neste celular.`, [
-                { text: 'Cancelar', style: 'cancel' },
-                { text: 'Zerar', style: 'destructive', onPress: () => change({ played: [] }) },
+              Alert.alert(t('Zerar perguntas jogadas?'), t('As {n} que já saíram voltam a contar como novas neste celular.', { n: app.played.length }), [
+                { text: t('Cancelar'), style: 'cancel' },
+                { text: t('Zerar'), style: 'destructive', onPress: () => change({ played: [] }) },
               ])
             }
           />
         </Section>
 
-        <Section title="lembretes">
+        <Section title={t('lembretes')}>
           <Row
             icon="timer"
-            label="Avisar do desafio do dia"
-            detail="o desafio do dia ao meio-dia; para sozinho se você parar de jogar"
+            label={t('Avisar do desafio do dia')}
+            detail={t('o desafio do dia ao meio-dia; para sozinho se você parar de jogar')}
             last
             right={
               <Switch
@@ -192,25 +193,25 @@ export default function Settings() {
                   app.set({ remindersOn: granted, remindersAsked: true });
                   await rescheduleReminders(granted, dailyDone(app.daily, new Date()));
                   if (!granted)
-                    Alert.alert('Notificações desligadas', 'Libera as notificações do Eu Duvido! nos Ajustes do iPhone pra receber os lembretes.', [
-                      { text: 'Agora não', style: 'cancel' },
-                      { text: 'Abrir Ajustes', onPress: () => void Linking.openSettings() },
+                    Alert.alert(t('Notificações desligadas'), t('Libera as notificações do Eu Duvido! nos Ajustes do iPhone pra receber os lembretes.'), [
+                      { text: t('Agora não'), style: 'cancel' },
+                      { text: t('Abrir Ajustes'), onPress: () => void Linking.openSettings() },
                     ]);
                 }}
                 trackColor={{ true: colors.ink, false: colors.line }}
                 thumbColor={app.remindersOn ? colors.yellow : colors.surface}
                 ios_backgroundColor={colors.line}
-                accessibilityLabel="lembretes"
+                accessibilityLabel={t('lembretes')}
               />
             }
           />
         </Section>
 
-        <Section title="sensações">
+        <Section title={t('sensações')}>
           <Row
             icon="megaphone"
-            label="Sons"
-            detail="carimbo, na mosca e zoeira (respeita o silencioso)"
+            label={t('Sons')}
+            detail={t('carimbo, na mosca e zoeira (respeita o silencioso)')}
             right={
               <Switch
                 value={app.sounds}
@@ -218,14 +219,14 @@ export default function Settings() {
                 trackColor={{ true: colors.ink, false: colors.line }}
                 thumbColor={app.sounds ? colors.yellow : colors.surface}
                 ios_backgroundColor={colors.line}
-                accessibilityLabel="sons"
+                accessibilityLabel={t('sons')}
               />
             }
           />
           <Row
             icon="sparkle"
-            label="Vibração"
-            detail="nos toques, no carimbo e no timer"
+            label={t('Vibração')}
+            detail={t('nos toques, no carimbo e no timer')}
             last
             right={
               <Switch
@@ -234,24 +235,24 @@ export default function Settings() {
                 trackColor={{ true: colors.ink, false: colors.line }}
                 thumbColor={app.haptics ? colors.yellow : colors.surface}
                 ios_backgroundColor={colors.line}
-                accessibilityLabel="vibração"
+                accessibilityLabel={t('vibração')}
               />
             }
           />
         </Section>
 
-        <Section title="pro">
-          <Row icon="crown" label={app.premium ? 'Você é pro' : 'Conhecer o pro'} detail={app.premium ? 'todos os pacotes liberados' : 'todos os pacotes, também na sala com PIN'} onPress={() => router.push({ pathname: '/paywall', params: { source: 'settings' } })} />
-          <Row icon="refresh" label="Restaurar compras" onPress={restore} right={restoring ? <ActivityIndicator color={colors.ink} /> : undefined} />
-          <Row icon="timer" label="Gerenciar assinatura" detail="cancelar ou trocar de plano" onPress={() => void Linking.openURL(links.manageSubscriptions)} last />
+        <Section title={t('pro')}>
+          <Row icon="crown" label={app.premium ? t('Você é pro') : t('Conhecer o pro')} detail={app.premium ? t('todos os pacotes liberados') : t('todos os pacotes, também na sala com PIN')} onPress={() => router.push({ pathname: '/paywall', params: { source: 'settings' } })} />
+          <Row icon="refresh" label={t('Restaurar compras')} onPress={restore} right={restoring ? <ActivityIndicator color={colors.ink} /> : undefined} />
+          <Row icon="timer" label={t('Gerenciar assinatura')} detail={t('cancelar ou trocar de plano')} onPress={() => void Linking.openURL(links.manageSubscriptions)} last />
         </Section>
 
-        <Section title="espalha aí">
-          <Row icon="share" label="Mandar o jogo pra galera" detail="quanto mais gente, melhor a resenha" onPress={() => void shareApp()} />
+        <Section title={t('espalha aí')}>
+          <Row icon="share" label={t('Mandar o jogo pra galera')} detail={t('quanto mais gente, melhor a resenha')} onPress={() => void shareApp()} />
           <Row
             icon="heart"
-            label="Avaliar na App Store"
-            detail="ajuda demais quem tá começando"
+            label={t('Avaliar na App Store')}
+            detail={t('ajuda demais quem tá começando')}
             onPress={() => {
               analytics.track('review_tapped', { source: 'settings', action: 'rate' });
               void Linking.openURL(links.writeReview);
@@ -260,14 +261,14 @@ export default function Settings() {
           />
         </Section>
 
-        <Section title="sobre">
-          <Row icon="help" label="Como joga" onPress={() => router.push('/how-to-play')} />
-          <Row icon="lock" label="Termos de uso" onPress={() => void Linking.openURL(links.terms)} />
-          <Row icon="lock" label="Privacidade" onPress={() => void Linking.openURL(links.privacy)} />
-          <Row icon="megaphone" label="Fale com a gente" detail={links.supportEmail} onPress={() => void Linking.openURL(`mailto:${links.supportEmail}?subject=Eu%20Duvido!`)} last />
+        <Section title={t('sobre')}>
+          <Row icon="help" label={t('Como joga')} onPress={() => router.push('/how-to-play')} />
+          <Row icon="lock" label={t('Termos de uso')} onPress={() => void Linking.openURL(links.terms)} />
+          <Row icon="lock" label={t('Privacidade')} onPress={() => void Linking.openURL(links.privacy)} />
+          <Row icon="megaphone" label={t('Fale com a gente')} detail={links.supportEmail} onPress={() => void Linking.openURL(`mailto:${links.supportEmail}?subject=${encodeURIComponent(t('Eu Duvido!'))}`)} last />
         </Section>
 
-        <Text style={styles.version}>eu duvido! · versão {version}</Text>
+        <Text style={styles.version}>{t('eu duvido! · versão {version}', { version })}</Text>
       </ScrollView>
     </View>
   );
