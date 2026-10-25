@@ -104,9 +104,9 @@ export function dailyShareText(n: number, results: readonly boolean[], streak: n
 
 /** O link do resultado (https://idoubtit.fun/d/12?r=11011): a página mostra a grade de quem mandou e deixa jogar a 1ª pergunta. */
 export function dailyShareUrl(site: string, n: number, results?: readonly boolean[]): string {
-  // o desafio em inglês tem outras perguntas: a página precisa saber qual mostrar
-  const params = [results && `r=${results.map((ok) => (ok ? 1 : 0)).join('')}`, lang === 'en' && 'l=en'].filter(Boolean);
-  return `${site}/d/${n}${params.length ? `?${params.join('&')}` : ''}`;
+  // o desafio em inglês tem outras perguntas (e a prévia do link é em inglês): página própria em /en/d
+  const path = `${site}${lang === 'en' ? '/en' : ''}/d/${n}`;
+  return results ? `${path}?r=${results.map((ok) => (ok ? 1 : 0)).join('')}` : path;
 }
 
 /** Já terminou o desafio do dia de `date`? (`daily` é o que fica salvo no celular: acertos por número do desafio) */

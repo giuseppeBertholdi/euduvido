@@ -13,6 +13,9 @@ import { EN } from './en';
 export type Lang = 'pt' | 'en';
 
 function detect(): Lang {
+  // forçar um idioma (testar o inglês no simulador, gerar o desafio do site): EXPO_PUBLIC_LANG=en
+  const forced = process.env.EXPO_PUBLIC_LANG;
+  if (forced === 'pt' || forced === 'en') return forced;
   try {
     // require pra os testes em Node (sem módulo nativo) caírem no padrão
     // eslint-disable-next-line @typescript-eslint/no-require-imports
