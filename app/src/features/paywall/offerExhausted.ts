@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import type { Question } from '@/game/questions';
+import type { Question } from '@/game/content';
 import { analytics } from '@/services/analytics';
 import { freeExhausted, shouldOfferExhausted } from './exhausted';
 

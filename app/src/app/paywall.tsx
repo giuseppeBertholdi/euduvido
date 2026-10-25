@@ -8,7 +8,7 @@ import { BangMark } from '@/components/brand';
 import { DelayedClose } from '@/components/DelayedClose';
 import { Btn, Label, Raised, Title } from '@/components/ui';
 import { links } from '@/config/links';
-import { PACKS } from '@/game/questions';
+import { PACKS } from '@/game/content';
 import { ProView } from '@/features/paywall/ProView';
 import { Teasers } from '@/features/paywall/Teasers';
 import { usePlans } from '@/features/paywall/usePlans';

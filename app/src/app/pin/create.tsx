@@ -7,7 +7,7 @@ import { Icon } from '@/components/Icon';
 import { Body, Btn, Label, Title, TopBar } from '@/components/ui';
 import { Lobby, OnlineNotice } from '@/features/online/Lobby';
 import { useRoom } from '@/features/online/useRoom';
-import { PACKS } from '@/game/questions';
+import { PACKS } from '@/game/content';
 import { act, createRoom, leaveRoom, onlineEnabled, RoomError } from '@/services/rooms';
 import { analytics } from '@/services/analytics';
 import { useApp } from '@/state/app';

@@ -371,4 +371,35 @@ export function packTitleOf(questionId: string): string {
 }
 `;
 writeFileSync('src/game/questions.ts', out);
+
+// inglês: content/en.csv traduz por id (id,question,answer,unit,fact). Pergunta sem tradução fica fora do jogo em inglês;
+// a resposta pode mudar junto com a unidade (metros → pés). A fonte e o pacote vêm do português.
+const allIds = new Set(packs.flatMap((p) => p.questions.map((q) => q.id)));
+const [enHeader, ...enLines] = parseCsv(readFileSync('content/en.csv', 'utf8'));
+const ec = Object.fromEntries(enHeader.map((h, i) => [h.trim(), i]));
+for (const k of ['id', 'question', 'answer', 'unit', 'fact']) if (!(k in ec)) throw new Error(`content/en.csv: coluna faltando: ${k}`);
+const en = {};
+const enProblems = [];
+enLines.forEach((cells, idx) => {
+  const where = `content/en.csv:${idx + 2}`;
+  const get = (k) => (cells[ec[k]] ?? '').trim();
+  const id = get('id');
+  if (!allIds.has(id)) return enProblems.push(`${where}: id "${id}" não existe (ou foi excluído) em português`);
+  if (en[id]) return enProblems.push(`${where}: id "${id}" repetido`);
+  if (!/^\d+$/.test(get('answer')) || Number(get('answer')) <= 0) return enProblems.push(`${where}: resposta não é inteiro positivo`);
+  if (!get('question').endsWith('?')) enProblems.push(`${where}: pergunta sem "?"`);
+  en[id] = { text: get('question'), answer: Number(get('answer')), unit: get('unit'), ...(get('fact') ? { fact: get('fact') } : {}) };
+});
+if (enProblems.length) {
+  console.error(enProblems.join('\n'));
+  process.exit(1);
+}
+const enOut = `// GERADO por scripts/import-questions.mjs a partir de content/en.csv. Não edite aqui: edite o CSV.
+// Tradução por id das perguntas de questions.ts; o que não está aqui não sai em inglês.
+export type EnQuestion = { text: string; answer: number; unit: string; fact?: string };
+
+export const EN_QUESTIONS: Record<string, EnQuestion> = ${JSON.stringify(en, null, 2)};
+`;
+writeFileSync('src/game/questions.en.ts', enOut);
+console.log(`inglês: ${Object.keys(en).length} perguntas traduzidas`);
 console.log(`${total} perguntas (${read - total} fora): ` + packs.map((p) => `${p.title} ${p.questions.length}`).join(', '));

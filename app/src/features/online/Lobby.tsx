@@ -6,7 +6,7 @@ import { Icon } from '@/components/Icon';
 import { Enter } from '@/components/motion';
 import { Body, Btn, Chip, Label, LinkBtn, Raised, TopBar } from '@/components/ui';
 import { MIN_PLAYERS } from '@/game/engine';
-import { packById } from '@/game/questions';
+import { packById } from '@/game/content';
 import { ReferralCard, useReferral } from '@/features/referral/Referral';
 import { shareInvite } from '@/services/invite';
 import type { Room } from '@/services/rooms';

@@ -9,10 +9,11 @@ import { Body, Label, Logo, Raised } from '@/components/ui';
 import { usePlans } from '@/features/paywall/usePlans';
 import { ReferralCard, useReferral } from '@/features/referral/Referral';
 import { DAILY_SIZE, dailyFinished, dailyNumber, dailyStreak } from '@/game/daily';
-import { PACKS } from '@/game/questions';
+import { PACKS } from '@/game/content';
 import { useApp } from '@/state/app';
 import { visits } from '@/state/visits';
 import { colors, fonts, maxScale, radii } from '@/theme';
+import { t } from '@/i18n';
 
 export default function Home() {
   const { onboarded, premium, matchesFinished, set, daily } = useApp();
@@ -25,8 +26,8 @@ export default function Home() {
   useEffect(() => {
     if (!onboarded || premium) return;
     if (!visits.take() || matchesFinished < 1) return;
-    const t = setTimeout(() => setEasy(true), 650);
-    return () => clearTimeout(t);
+    const timer = setTimeout(() => setEasy(true), 650);
+    return () => clearTimeout(timer);
     // só na chegada de cada visita
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [onboarded, premium]);
@@ -43,25 +44,25 @@ export default function Home() {
           <View style={styles.header}>
             <Logo size={44} />
             <View style={{ flexDirection: 'row', gap: 8 }}>
-              <Raised onPress={() => paywall('home')} face={premium ? colors.yellow : colors.surface} radius={radii.pill} lift={3} accessibilityLabel={premium ? 'você é pro' : 'conhecer o pro'}>
+              <Raised onPress={() => paywall('home')} face={premium ? colors.yellow : colors.surface} radius={radii.pill} lift={3} accessibilityLabel={premium ? t('você é pro') : t('conhecer o pro')}>
                 <View style={styles.gear}>
                   <Icon name="crown" size={22} accent={premium ? colors.surface : colors.yellow} />
                 </View>
               </Raised>
-              <Raised onPress={() => router.push('/settings')} radius={radii.pill} lift={3} accessibilityLabel="ajustes">
+              <Raised onPress={() => router.push('/settings')} radius={radii.pill} lift={3} accessibilityLabel={t('ajustes')}>
                 <View style={styles.gear}>
                   <Icon name="gear" size={22} accent={colors.pinkSoft} />
                 </View>
               </Raised>
             </View>
           </View>
-          <Body style={{ marginTop: 10, maxWidth: 260 }}>Ninguém sabe. Todo mundo jura que sabe.</Body>
+          <Body style={{ marginTop: 10, maxWidth: 260 }}>{t('Ninguém sabe. Todo mundo jura que sabe.')}</Body>
 
           <DailyCard daily={daily} />
 
           {/* cartão principal; o "!" gigante ao fundo é a marca */}
           <View style={{ marginTop: 14 }}>
-            <Raised onPress={() => router.push('/setup')} face={colors.yellow} faceStyle={{ overflow: 'hidden' }} accessibilityLabel="Jogar no mesmo celular" accessibilityHint="Um celular só, passando de mão em mão">
+            <Raised onPress={() => router.push('/setup')} face={colors.yellow} faceStyle={{ overflow: 'hidden' }} accessibilityLabel={t('Jogar no mesmo celular')} accessibilityHint={t('Um celular só, passando de mão em mão')}>
               <Text style={styles.watermark} accessible={false}>
                 !
               </Text>
@@ -70,10 +71,10 @@ export default function Home() {
                   <Icon name="passPhones" size={30} accent={colors.pink} />
                 </View>
                 <Text style={styles.heroTitle} maxFontSizeMultiplier={maxScale.display}>
-                  Jogar no{'\n'}mesmo celular
+                  {t('Jogar no\nmesmo celular')}
                 </Text>
                 <View style={styles.heroFoot}>
-                  <Text style={styles.heroSub}>passa de mão em mão · 2 a 8 pessoas</Text>
+                  <Text style={styles.heroSub}>{t('passa de mão em mão · 2 a 8 pessoas')}</Text>
                   <View style={styles.go}>
                     <Icon name="arrowRight" size={22} color={colors.yellow} />
                   </View>
@@ -83,18 +84,18 @@ export default function Home() {
           </View>
 
           <View style={styles.row}>
-            <Raised onPress={() => router.push('/pin/join')} style={{ flex: 1 }} accessibilityLabel="Entrar com PIN" accessibilityHint="Cada um no seu celular">
+            <Raised onPress={() => router.push('/pin/join')} style={{ flex: 1 }} accessibilityLabel={t('Entrar com PIN')} accessibilityHint={t('Cada um no seu celular')}>
               <View style={styles.tile}>
                 <Icon name="pin" size={30} accent={colors.pink} />
-                <Text style={styles.tileTitle}>Entrar com PIN</Text>
-                <Text style={styles.tileSub}>cada um no seu celular</Text>
+                <Text style={styles.tileTitle}>{t('Entrar com PIN')}</Text>
+                <Text style={styles.tileSub}>{t('cada um no seu celular')}</Text>
               </View>
             </Raised>
-            <Raised onPress={() => router.push('/pin/create')} style={{ flex: 1 }} accessibilityLabel="Criar sala" accessibilityHint="A galera entra com o PIN">
+            <Raised onPress={() => router.push('/pin/create')} style={{ flex: 1 }} accessibilityLabel={t('Criar sala')} accessibilityHint={t('A galera entra com o PIN')}>
               <View style={styles.tile}>
                 <Icon name="room" size={30} accent={colors.yellow} />
-                <Text style={styles.tileTitle}>Criar sala</Text>
-                <Text style={styles.tileSub}>a galera entra com o PIN</Text>
+                <Text style={styles.tileTitle}>{t('Criar sala')}</Text>
+                <Text style={styles.tileSub}>{t('a galera entra com o PIN')}</Text>
               </View>
             </Raised>
           </View>
@@ -104,8 +105,8 @@ export default function Home() {
           </View>
 
           <View style={styles.sectionHead}>
-            <Label color={colors.ink}>pacotes</Label>
-            <Text style={styles.sectionHint}>{PACKS.reduce((n, p) => n + p.questions.length, 0)} perguntas</Text>
+            <Label color={colors.ink}>{t('pacotes')}</Label>
+            <Text style={styles.sectionHint}>{t('{n} perguntas', { n: PACKS.reduce((n, p) => n + p.questions.length, 0) })}</Text>
           </View>
         </View>
 
@@ -113,8 +114,8 @@ export default function Home() {
           {PACKS.map((p) => {
             const locked = p.premium && !premium;
             return (
-              <Raised key={p.id} onPress={() => router.push(`/pack/${p.id}`)} lift={3} radius={radii.tile} face={p.tint} style={{ width: 150 }} accessibilityLabel={`${p.title}, ${p.questions.length} perguntas${locked ? ', bloqueado' : ''}`}
-                accessibilityHint="Ver as perguntas">
+              <Raised key={p.id} onPress={() => router.push(`/pack/${p.id}`)} lift={3} radius={radii.tile} face={p.tint} style={{ width: 150 }} accessibilityLabel={`${p.title}, ${t('{n} perguntas', { n: p.questions.length })}${locked ? t(', bloqueado') : ''}`}
+                accessibilityHint={t('Ver as perguntas')}>
                 <View style={styles.pack}>
                   <View style={styles.packIcon}>
                     <Icon name={p.icon} size={26} accent={p.tint} />
@@ -123,12 +124,12 @@ export default function Home() {
                     {p.title}
                   </Text>
                   <View style={styles.packFoot}>
-                    <Text style={styles.packCount}>{p.questions.length} perguntas</Text>
+                    <Text style={styles.packCount}>{t('{n} perguntas', { n: p.questions.length })}</Text>
                     {locked && <Icon name="lock" size={16} accent="none" strokeWidth={2.4} />}
                   </View>
                   {p.isNew && (
                     <View style={styles.newTag}>
-                      <Text style={styles.newText}>novo</Text>
+                      <Text style={styles.newText}>{t('novo')}</Text>
                     </View>
                   )}
                 </View>
@@ -138,19 +139,19 @@ export default function Home() {
         </ScrollView>
 
         <View style={styles.pad}>
-          <Raised onPress={() => router.push('/how-to-play')} style={{ marginTop: 18 }} accessibilityLabel="Como joga">
+          <Raised onPress={() => router.push('/how-to-play')} style={{ marginTop: 18 }} accessibilityLabel={t('Como joga')}>
             <View style={styles.how}>
               <Icon name="help" size={28} accent={colors.pinkSoft} />
               <View style={{ flex: 1 }}>
-                <Text style={styles.tileTitle}>Como joga?</Text>
-                <Text style={styles.tileSub}>4 passos, 1 minuto, zero calculadora</Text>
+                <Text style={styles.tileTitle}>{t('Como joga?')}</Text>
+                <Text style={styles.tileSub}>{t('4 passos, 1 minuto, zero calculadora')}</Text>
               </View>
               <Icon name="arrowRight" size={22} />
             </View>
           </Raised>
           {!premium && (
             <Pressable onPress={() => paywall('home')} style={styles.footBtn} hitSlop={8} accessibilityRole="button">
-              <Text style={styles.footLink}>{trialDays ? `✦ ${trialDays} dias grátis de pro` : '✦ conhecer o pro'}</Text>
+              <Text style={styles.footLink}>{trialDays ? `✦ ${t('{n} dias grátis de pro', { n: trialDays })}` : `✦ ${t('conhecer o pro')}`}</Text>
             </Pressable>
           )}
         </View>
@@ -181,13 +182,13 @@ function DailyCard({ daily }: { daily: Record<string, boolean[]> }) {
   const streak = dailyStreak(dailyFinished(daily), n);
   const hits = today.filter(Boolean).length;
   return (
-    <Raised onPress={() => router.push('/daily')} face={finished ? colors.surface : colors.ink} style={{ marginTop: 18 }} accessibilityLabel={finished ? `Desafio do dia feito: ${hits} de ${DAILY_SIZE}` : `Desafio do dia número ${n}`}>
+    <Raised onPress={() => router.push('/daily')} face={finished ? colors.surface : colors.ink} style={{ marginTop: 18 }} accessibilityLabel={finished ? t('Desafio do dia feito: {hits} de {total}', { hits, total: DAILY_SIZE }) : t('Desafio do dia número {n}', { n })}>
       <View style={styles.daily}>
         <Icon name="sparkle" size={28} accent={colors.yellow} color={finished ? colors.ink : colors.yellow} />
         <View style={{ flex: 1 }}>
-          <Text style={[styles.dailyTitle, !finished && { color: colors.yellow }]}>{finished ? `Desafio #${n} feito: ${hits}/${DAILY_SIZE}` : `Desafio do dia #${n}`}</Text>
+          <Text style={[styles.dailyTitle, !finished && { color: colors.yellow }]}>{finished ? t('Desafio #{n} feito: {hits}/{total}', { n, hits, total: DAILY_SIZE }) : t('Desafio do dia #{n}', { n })}</Text>
           <Text style={[styles.dailySub, !finished && { color: colors.surface }]}>
-            {finished ? 'volta amanhã pra manter a sequência' : today.length > 0 ? `faltam ${DAILY_SIZE - today.length} perguntas` : `${DAILY_SIZE} perguntas · 1 minuto · todo mundo joga as mesmas`}
+            {finished ? t('volta amanhã pra manter a sequência') : today.length > 0 ? t('faltam {n} perguntas', { n: DAILY_SIZE - today.length }) : t('{n} perguntas · 1 minuto · todo mundo joga as mesmas', { n: DAILY_SIZE })}
           </Text>
         </View>
         {streak > 0 ? <Text style={[styles.dailyStreak, !finished && { color: colors.yellow }]}>🔥 {streak}</Text> : <Icon name="arrowRight" size={22} color={colors.yellow} />}

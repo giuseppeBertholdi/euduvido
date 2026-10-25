@@ -1,0 +1,549 @@
+id,question,answer,unit,fact
+n3,How many gallons of water does it take to produce just 1 pound of beef?,1847,gallons,"Counts the water used to grow pasture and feed, plus what the animal drinks."
+n5,"How many feet tall is the Burj Khalifa in Dubai, the tallest building in the world?",2717,feet,It has 163 floors and can be seen from 60 miles away.
+d246,How many feet long was the Titanic?,882,feet,Almost three football fields end to end.
+d248,How many feet deep is the wreck of the Titanic?,12500,feet,The pressure down there is almost 400 times what it is at the surface.
+d249,How many inches tall was Napoleon?,67,inches,Totally normal for his time: the 'tiny Napoleon' thing was British propaganda.
+d251,How many inches tall is the Mona Lisa?,30,inches,Way smaller than almost everyone imagines.
+d252,How many letters are in the Hawaiian alphabet?,13,letters,"That's why words repeat so much: ""humuhumunukunukuapua'a""."
+d257,In what year did the Wright brothers make the first airplane flight?,1903,year,Three years before Santos-Dumont flew in Paris. Brazilians still argue about who was first.
+d259,"How many years did Jeanne Calment live, the oldest person ever recorded?",122,years,"As a teenager, she met Van Gogh."
+d260,"How many pounds did Jon Brower Minnoch weigh, the heaviest man ever recorded?",1400,pounds,It took 13 people to roll him over in his hospital bed.
+d261,"How many inches tall was Robert Wadlow, the tallest man in history?",107,inches,"He was still growing when he died, at 22."
+d263,"Since what year has the world's oldest light bulb been on, in a California fire station?",1901,year,It even has a webcam to prove it's still glowing.
+d264,How many tons does an ordinary puffy cloud (cumulus) weigh?,550,tons,It floats because all that water is spread out in tiny droplets.
+d265,"How many years would it take to count to 1 billion, one number per second, without stopping?",32,years,Counting to 1 million would take just 12 days.
+d266,"How many feet tall is the tallest tree in the world, the redwood called Hyperion?",380,feet,Its location is kept secret to protect it.
+d267,How many countries are in Africa?,54,countries,It's the continent with the most countries.
+d272,"How many minutes did Yuri Gagarin's flight last, the first human in space?",108,minutes,He went all the way around the Earth once.
+d273,In what year was the first World Cup played?,1930,year,"In Uruguay, which also won it."
+d350,How many people need to be in a room for the chance that two share a birthday to pass 50%?,23,people,"With 70 people, the chance goes above 99.9%."
+d351,How many times would you need to fold a sheet of paper in half for the stack to reach the Moon?,42,folds,"Every fold doubles the thickness: a paper-thin sheet ends up 270,000 miles thick."
+d352,How many quintillion combinations does a Rubik's Cube have?,43,quintillion,"At one twist per second, going through them all would take longer than the age of the Universe."
+d353,How many moves are enough to solve any scrambled Rubik's Cube?,20,moves,"It's called ""God's number"", proven by computer in 2010."
+d354,"How many billion people have ever lived on Earth, since the dawn of humanity?",117,billion,Everyone alive today is only about 7% of everyone who ever existed.
+d355,How many babies are born in the world every minute?,250,babies,That's more than 130 million a year.
+d356,How many inches does the Eiffel Tower grow in the summer?,6,inches,The iron expands in the heat.
+d357,"How many feet tall is the Eiffel Tower, antennas included?",1083,feet,It was the tallest structure in the world for 41 years.
+d358,All the gold ever mined in history would fit in a cube how many feet on each side?,72,feet,Roughly the size of a 7-story building.
+d359,How many gallons of fuel does a Boeing 747 burn per mile?,5,gallons,"But it carries over 400 people: per passenger, that's less than a car."
+d360,At how many feet does a commercial jet usually cruise?,35000,feet,Above almost all clouds and storms.
+d361,What's the maximum number of passengers an Airbus A380 can carry?,853,passengers,It's the biggest passenger plane in the world.
+d362,"How many days did the longest flight in history last, without ever landing?",64,days,"In 1958, refueling from a car racing underneath the plane."
+d363,"How many mph does a skydiver reach in free fall, before opening the parachute?",120,mph,"Diving head-down, they go over 180."
+d364,How many years does a plastic bottle take to break down in the ocean?,450,years,And it never really disappears: it turns into microplastic.
+d365,Roughly how many languages are spoken in the world today?,7000,languages,Half of them may disappear by the end of the century.
+d366,"What is the average life expectancy in the United States, in years?",78,years,"In 1900, it was 47."
+d367,"How many mph did the Concorde fly, the supersonic jet?",1354,mph,It flew Paris to New York in three and a half hours.
+d368,How many zeros are in a googol?,100,zeros,Google got its name from it (misspelled).
+d369,For how many billion years will the Sun keep shining?,5,billion years,Then it becomes a red giant and swallows Mercury and Venus.
+e2,In what year did France use the guillotine for the last time?,1977,year,The same year the first Star Wars came out.
+e3,In what year was the first fax machine patented?,1843,year,"More than 30 years before the telephone, which came in 1876."
+e4,In what year was Nintendo founded?,1889,year,It sold playing cards. Same year the Eiffel Tower opened.
+e5,In what year was the rolling suitcase invented?,1970,year,"A year after humans walked on the Moon. Before that, everyone carried their bags."
+e6,For how many years did Japanese soldier Hiroo Onoda keep fighting in the jungle after World War II ended?,29,years,"He only surrendered in 1974, when his old commander flew to the Philippines to give the order in person."
+e7,"How old is the Methuselah pine, one of the oldest trees in the world?",4850,years,It was already a tree when the Egyptian pyramids were built.
+e8,How many years passed between the first airplane flight and humans landing on the Moon?,66,years,One person could have seen both in a single lifetime: 1903 to 1969.
+e9,How many million years separate the stegosaurus from the T. rex?,80,million years,The T. rex lived closer to us than to the stegosaurus.
+e10,In what year did Saudi Arabia let women drive?,2018,year,It was the last country in the world to allow it.
+e11,How many years after the Great Pyramid was Cleopatra born?,2500,years,She lived closer to the invention of the iPhone than to the building of the pyramids.
+e12,By what year was the University of Oxford already teaching?,1096,year,More than 200 years before the Aztecs founded their capital.
+e13,In what year was the lighter invented?,1823,year,Three years before the match.
+e14,"How many days would it take to walk to the Moon at 3 mph, without ever stopping?",3300,days,Over 9 years of walking without sleep.
+e15,How many years ago did the last mammoth die?,4000,years,There were still mammoths when the Egyptian pyramids were built.
+e16,How old was the pharaoh Tutankhamun when he died?,19,years,The most famous pharaoh in the world died a teenager.
+e17,In what year did the last person born in the 1800s die?,2017,year,"Italy's Emma Morano, born in 1899, died at 117."
+e18,In what year was the oldest surviving photograph taken?,1826,year,It needed hours of exposure: it's just the view from a window in France.
+e19,In what year were women allowed to vote in Swiss federal elections?,1971,year,"More than 50 years after American women, in 1920."
+e20,"How many years would it take a passenger jet to reach the Sun, flying nonstop?",19,years,The Sun is 93 million miles away. A jet flies at about 560 mph.
+e21,How many times a day do astronauts on the Space Station see the sunrise?,16,times,The station circles the Earth every 90 minutes.
+q20,How many teeth does a Virginia opossum have?,50,teeth,It's the North American land mammal with the most teeth.
+q22,How many hearts does an octopus have?,3,hearts,Two pump blood to the gills and one to the rest of the body.
+q23,How many teeth can a great white shark go through in its lifetime?,30000,teeth,"They replace teeth nonstop, like a conveyor belt."
+q24,How many compartments does a cow's stomach have?,4,compartments,"Rumen, reticulum, omasum and abomasum."
+q25,"How many days does an African elephant's pregnancy last, on average?",645,days,"Almost 22 months, the longest of any land mammal."
+q26,How many eyes does a typical tarantula have?,8,eyes,"Even with 8 eyes, most of them see really badly."
+q27,How many vertebrae are in a giraffe's neck?,7,vertebrae,The same number of neck vertebrae as a human!
+q29,"How many arms and tentacles, combined, does a squid have?",10,arms and tentacles,8 regular arms and 2 longer tentacles for catching prey.
+q30,How many pounds of bamboo does an adult giant panda eat per day?,66,pounds,They spend up to 12 hours a day just eating.
+q33,How many hearts (aortic arches) does an earthworm have?,5,hearts,5 pairs of aortic arches that work like hearts.
+q34,How many teeth does a garden snail have on its radula?,14000,teeth,They sit on a microscopic scraping tongue.
+q35,"How many days does a worker honeybee live in the summer, on average?",45,days,They literally work themselves to death.
+q95,How many legs does a crab have?,10,legs,The front two are claws.
+q96,How many wings does a dragonfly have?,4,wings,It can move each wing independently.
+q97,How many pounds can an adult whale shark weigh?,42000,pounds,It's the biggest fish alive.
+q98,"How many eggs does a sea turtle lay per nest, on average?",110,eggs,"Only about 1 in 1,000 hatchlings makes it to adulthood."
+q99,How many mph can a cheetah hit at top speed?,75,mph,It gets there in under 3 seconds.
+q100,How many feet long can an adult green anaconda get?,30,feet,It's one of the heaviest snakes on the planet.
+q101,"How many years does a Galápagos tortoise live in the wild, on average?",100,years,Some have lived past 150.
+q102,How many eyelids does a camel's eye have?,3,eyelids,"The third one is see-through, to keep the sand out."
+q106,"How many hours a day does a koala sleep, on average?",20,hours,A diet of eucalyptus leaves gives very little energy.
+q108,How many gallons of milk does a blue whale make per day for its calf?,50,gallons,The milk is so fatty it looks like toothpaste.
+q109,How many vertebrae are in an owl's neck?,14,vertebrae,That's how it turns its head up to 270 degrees.
+q163,How many feet deep can an emperor penguin dive?,1640,feet,They can stay underwater for more than 20 minutes.
+q165,How many times per second does a hummingbird beat its wings while hovering?,80,times,It can hit 200 times per second during a dive.
+q166,How many eyes does a honeybee have?,5,eyes,Two big compound eyes and three simple ones on top of the head.
+q168,How many stomach compartments does a camel have?,3,compartments,"Unlike cows, camels have 3 stomach compartments."
+q204,How many feet can a wandering albatross's wingspan reach?,11,feet,The biggest wingspan of any living bird.
+q206,How many hours a day can a lion spend resting or sleeping?,20,hours,Saving energy for the night hunts.
+q208,How many tentacles does a lion's mane jellyfish have in its clusters?,1200,tentacles,It's one of the biggest jellyfish on the planet.
+q210,How many days does it take a chicken egg to hatch?,21,days,Best at about 99.5 °F.
+q211,How many pairs of legs does a decapod shrimp have?,5,pairs,Decapod literally means 'ten feet'.
+q212,How many feet deep can a sperm whale dive to hunt giant squid?,6500,feet,It can hold its breath for more than 90 minutes.
+q254,How many pounds of food does an adult African elephant eat per day?,330,pounds,They can spend up to 18 hours a day eating.
+q255,How many feet can an Andean condor's wingspan reach?,10,feet,One of the biggest flying birds in the world.
+q256,How many sharp claws does a three-toed sloth have on each front limb?,3,claws,Used to hang on tight to high branches.
+q257,How many chambers does a fish's heart have?,2,chambers,One atrium and one ventricle.
+q258,"How many days does a dog's pregnancy last, on average?",63,days,It can range from 58 to 68 days.
+q261,How many times per minute does a hummingbird's heart beat in flight?,1200,bpm,Its heart is up to 2.5% of its body weight.
+q262,How many legs does a scorpion have?,8,legs,"It's an arachnid, just like spiders."
+n24,How many eggs can a termite queen lay in a single day?,30000,eggs,She spends her entire adult life doing nothing but laying eggs.
+n26,How many legs can the millipede Illacme plenipes have?,750,legs,"And despite the name 'centipede', no species has exactly 100 legs."
+n28,"How many feathers does a whooper swan have, on average?",25000,feathers,More than 80% of them are on the head and neck.
+n30,How many ants are there on Earth for every human (in millions)?,2,million,There are an estimated 20 quadrillion ants on the planet.
+n38,How many pounds can an adult blue whale's tongue weigh?,6000,pounds,The tongue alone weighs as much as a whole elephant.
+n42,"How many pounds does a sperm whale's brain weigh, the biggest brain on the planet?",17,pounds,About 5 times heavier than a human brain.
+n43,How many miles can a monarch butterfly fly on its yearly migration?,2500,miles,They fly from Canada to the forests of Mexico every fall.
+n44,How many bee stings would it take to kill an adult human through the venom alone?,1000,stings,"For people without allergies, the lethal dose is about 10 stings per kilogram of body weight."
+n47,How many feet can a red kangaroo cover in a single leap?,30,feet,They can hit 35 mph hopping.
+n48,How many suckers are there in total on the eight arms of a giant Pacific octopus?,2200,suckers,Every sucker can taste and grip hard.
+n49,How many tons of krill does a blue whale eat per day?,4,tons,Filtered from the ocean through its baleen.
+n50,How many times per second does a housefly beat its wings?,200,times,That's the buzzing you hear next to your ear.
+n59,"How many grams does the smallest bird in the world weigh, Cuba's bee hummingbird?",2,grams,"Less than a penny, and under 2.5 inches from beak to tail."
+n61,How many mph can an ostrich run at a sustained pace?,43,mph,"It's the fastest bird on land, and has only two toes on each foot."
+d274,How many years can a Greenland shark live?,400,years,It's the longest-living vertebrate we know of.
+d275,How many mph does a peregrine falcon hit in a dive?,240,mph,It's the fastest animal in the world.
+d276,How many pounds does a blue whale's heart weigh?,400,pounds,"About the size of a golf cart, not a car."
+d277,"How many gallons of water can a camel drink at once, in 10 minutes?",26,gallons,The water isn't stored in the hump: that's fat.
+d278,How many times per minute does a blue whale's heart beat on a deep dive?,2,beats,Measured with a sensor stuck on with a suction cup.
+d279,How many eyes does a five-armed starfish have?,5,eyes,One at the tip of each arm.
+d280,How many legs does a butterfly have?,6,legs,"Some walk on only 4, which confuses a lot of people."
+d281,How many times a week does a sloth climb down from its tree to poop?,1,time,It's the most dangerous moment of its life.
+d282,How many teeth does a great white shark have in its mouth at the same time?,300,teeth,"In several rows: when one falls out, the one behind moves forward."
+d283,How many inches high can a flea jump?,7,inches,That's more than 100 times its own size.
+d284,How many hours a day does an elephant sleep in the wild?,2,hours,It's the mammal that sleeps the least.
+d285,How many inches long can a giraffe's tongue be?,20,inches,"It's dark, probably so it doesn't get sunburned."
+d286,How many mph can a hippo run on land?,19,mph,Faster than a lot of humans.
+d287,How many chicken eggs equal one ostrich egg?,24,eggs,It takes about an hour to hard-boil.
+d288,How many tons does an adult male African elephant weigh?,6,tons,It's the biggest land animal.
+q2,How many bones are in the adult human body?,206,bones,"Babies are born with about 270 bones, but many fuse together as they grow."
+q3,How many teeth does an adult with a full set have?,32,teeth,Including the 4 wisdom teeth.
+q4,How many pairs of ribs does a typical human have?,12,pairs,About 1 in 200 people is born with an extra rib.
+q6,"How many bones are in the human hand, wrist included?",27,bones,"8 in the wrist, 5 in the palm and 14 in the fingers."
+q7,How many bones are in a single human foot?,26,bones,Your two feet hold a quarter of all the bones in your body.
+q8,How many pints of blood does an average adult have?,10,pints,That's about 7 to 8% of your total body weight.
+q9,How many muscles are in the human body?,600,muscles,Somewhere between 600 and 640 named skeletal muscles.
+q10,"How many days does a red blood cell live, on average?",120,days,Your body makes about 2 million red blood cells every second.
+q11,How many chromosomes are in a normal human body cell?,46,chromosomes,Arranged in 23 pairs.
+q12,"How many taste buds does an adult have on the tongue, on average?",10000,taste buds,They're replaced about every two weeks.
+q13,How many hours did Randy Gardner stay awake in his famous 1964 record?,264,hours,He went 11 days without sleep.
+q14,"How many quarts of saliva does a person make per day, on average?",1,quart,"Over a lifetime, that could fill a couple of swimming pools."
+q15,What percentage of the human brain is water?,73,%,And the brain burns 20% of all your body's energy.
+q16,"How many eyelashes are on the upper eyelid, on average?",150,eyelashes,The lower eyelid has about half that.
+q17,How many miles of blood vessels are in the adult human body?,60000,miles,Enough to wrap around the Earth more than twice.
+q18,How many main chemical elements make up 99% of the human body's mass?,6,elements,"Oxygen, carbon, hydrogen, nitrogen, calcium and phosphorus."
+q110,"How many gallons of air does a person breathe in per day, on average?",2900,gallons,"We breathe in and out about 20,000 times a day."
+q111,How many hairs are on the average human scalp?,100000,hairs,"Blondes usually have more, redheads fewer."
+q112,"How many pounds does the adult human brain weigh, on average?",3,pounds,About 2% of your body weight.
+q117,"How many times per minute do we blink, on average?",15,times,"Staring at screens, we blink less than half that."
+q118,How many ounces does the average adult heart weigh?,10,ounces,About the size of a closed fist.
+q119,How many feet long is an adult's small intestine?,20,feet,"It's thin, but folded up tight to absorb nutrients."
+q121,"How many times does the human heart beat in a day, on average?",100000,beats,More than 35 million beats a year.
+q122,"How many sweat glands does a person have, on average?",3000000,glands,Most of them are on the soles of the feet and the palms.
+q123,How many days does it take for the outer layer of your skin to fully renew itself?,28,days,We shed thousands of dead skin cells every minute.
+q151,How many bones are in an adult human spine?,26,bones,24 separate vertebrae plus the sacrum and the tailbone.
+q152,"How many gallons of blood does the heart pump per day, on average?",2000,gallons,"Nonstop work, without ever taking a break."
+q153,"What percentage of the adult human body is water, on average?",60,%,Babies can be up to 75% water.
+q154,How many floating ribs does a person have in total?,4,ribs,Two pairs of ribs that don't attach to the breastbone.
+q155,How many milliliters of air go into your lungs in a normal breath at rest?,500,ml,It's called the tidal volume.
+q156,"How many bones make up the adult human skull, face included?",22,bones,8 cranial bones and 14 facial bones.
+q213,How many bones make up the human rib cage?,25,bones,24 ribs and 1 breastbone.
+q214,How many valves does the human heart have?,4,valves,"Tricuspid, pulmonary, mitral and aortic."
+q215,"How many ounces does each kidney of a healthy adult weigh, on average?",5,ounces,Together they filter about 50 gallons of blood a day.
+q219,How many liters of air fit in the total lung capacity of an average adult?,6,liters,It varies a lot with body size and athletic training.
+q220,How many bones are in the human ankle (the tarsal bones)?,7,bones,Including the talus and the calcaneus (your heel).
+q222,How many billion neurons are estimated to be in the human brain?,86,billion,Connected by trillions of synapses.
+q264,How many major salivary glands does the human body have?,6,glands,"Three pairs: parotid, submandibular and sublingual."
+q266,How many true ribs (attached directly to the breastbone) does a human have?,14,ribs,Seven pairs of true ribs.
+q267,How many baby teeth does a child get in total?,20,teeth,Ten on top and ten on the bottom.
+q269,What percentage of the body's energy does the human brain use?,20,%,Even though it's only about 2% of your body mass.
+q270,How many inches long is an adult's esophagus?,10,inches,It connects the throat to the stomach.
+n65,"How many gallons of saliva does a person make over a lifetime, on average?",6600,gallons,Enough to fill a couple of backyard swimming pools.
+n69,How many dead skin cells does the human body shed per minute?,30000,cells,They make up most of the dust that piles up in your house.
+n94,How many pints of sweat can the soles of your feet produce per day?,1,pint,"Your feet have about 250,000 sweat glands."
+d289,"How many feet of DNA are in each cell of your body, stretched out?",6,feet,And it fits in a nucleus a few micrometers wide.
+d290,"How many millimeters long is the stapes, the smallest bone in the body?",3,mm,It's inside your ear.
+d291,"How many inches does hair grow per year, on average?",6,inches,About half an inch a month.
+d292,In how many years does your whole skeleton renew itself?,10,years,Bone is living tissue: it's broken down and rebuilt all the time.
+d293,How many trillion bacteria live in the human body?,38,trillion,More than our own cells.
+d294,How many trillion cells are in the human body?,30,trillion,Most of them are red blood cells.
+d295,"How many centimeters taller are we in the morning than at night, on average?",1,cm,Almost half an inch: the discs in your spine flatten during the day.
+d296,"How many days can a person survive without drinking water, on average?",3,days,"Without food, you can last weeks."
+d297,How many billion times does the heart beat in a lifetime?,3,billion,Without ever stopping to rest.
+d298,How many mph can a nerve impulse travel?,270,mph,"In the fastest fibers, about 400 feet per second."
+d299,"How many years does a person spend sleeping over a lifetime, on average?",25,years,About a third of your life.
+d300,"How many hours a day does a newborn sleep, on average?",16,hours,But in chunks of 2 to 3 hours.
+q52,In what year was YouTube created?,2005,year,"The first video ever uploaded was 'Me at the zoo', in April 2005."
+q53,In what year did Instagram launch on iOS?,2010,year,Created by Kevin Systrom and Mike Krieger.
+q54,How many characters was the original limit of a tweet?,140,characters,Inspired by the 160-character limit of text messages.
+q55,In what year did 'The Matrix' hit theaters?,1999,year,It changed visual effects forever with 'bullet time'.
+q57,In what year did TikTok launch globally outside China?,2017,year,It merged with Musical.ly in 2018.
+q59,In what year did Facebook rename itself Meta?,2021,year,Mark Zuckerberg announced the change in October 2021.
+q61,In what year did Steve Jobs announce the first iPhone?,2007,year,"Unveiled at Macworld on January 9, 2007."
+q63,In what year did Minecraft come out in its public alpha?,2009,year,Created by Markus 'Notch' Persson.
+q65,In what year was the Nyan Cat meme posted?,2011,year,A pixel cat flying through space with a rainbow trail.
+q124,In what year did Ray Tomlinson send the first email in history?,1971,year,He used the '@' symbol to separate the user from the machine.
+q125,In what year did Tim Berners-Lee create the World Wide Web?,1989,year,Proposed while he was working at CERN.
+q126,How many likes did the famous 'Instagram egg' (world_record_egg) get?,60000000,likes,It broke the Instagram world record in 2019.
+q127,In what year did English Wikipedia officially launch?,2001,year,Founded by Jimmy Wales and Larry Sanger.
+q128,"In what year did 'Pokémon GO' come out, sending people running through the streets?",2016,year,It passed 500 million downloads in its first year.
+q130,In what year was WhatsApp sold to Facebook for US$19 billion?,2014,year,One of the biggest tech acquisitions in history.
+q131,How many episodes of the American 'The Office' were released?,201,episodes,Aired over 9 seasons.
+q132,In what year did Spotify first launch in Sweden?,2008,year,It changed the music industry with streaming.
+q133,How many GB of free storage does a Google account get by default?,15,GB,"Shared across Gmail, Photos and Drive."
+q134,In what year did the classic 'Super Mario Bros.' come out for the Famicom/NES?,1985,year,Created by Shigeru Miyamoto.
+q136,In what year did Twitter officially change its name to 'X'?,2023,year,The change came after Elon Musk bought it.
+q179,How many hours of video are uploaded to YouTube every minute?,500,hours,More than 500 hours of content every single minute.
+q180,"In what year did the first 'Iron Man' come out, kicking off the MCU?",2008,year,Starring Robert Downey Jr.
+q181,How many seasons does 'Friends' have?,10,seasons,"236 episodes in total, aired from 1994 to 2004."
+q182,In what year did 'League of Legends' come out?,2009,year,Developed and published by Riot Games.
+q183,How many episodes does the anime 'Dragon Ball Z' have in the original Japanese run?,291,episodes,Originally aired from 1989 to 1996.
+q184,In what year did Netflix start streaming video?,2007,year,"Before that, the company mailed DVDs."
+q223,In what year did 'GTA V' first come out for PS3 and Xbox 360?,2013,year,It became one of the most profitable entertainment products in history.
+q224,How many episodes of 'Breaking Bad' were made?,62,episodes,Critically acclaimed over 5 seasons.
+q225,In what year did the first 'Star Wars' movie (Episode IV) come out?,1977,year,Directed by George Lucas.
+q226,How many seasons does the sitcom 'The Big Bang Theory' have?,12,seasons,279 episodes in total.
+q227,In what year did the first PlayStation launch in Japan?,1994,year,"Released by Sony on December 3, 1994."
+q228,How many songs are on Michael Jackson's album 'Thriller'?,9,tracks,The best-selling album of all time.
+q229,In what year did WhatsApp first launch?,2009,year,Created by Jan Koum and Brian Acton.
+q230,How many minutes long is 'The Lord of the Rings: The Return of the King' in its theatrical cut?,201,minutes,It won 11 Oscars.
+q231,In what year did Jeff Bezos found Amazon?,1994,year,It started as an online bookstore in a garage.
+q273,In what year did the first 'Lord of the Rings' movie come out?,2001,year,'The Fellowship of the Ring' premiered in December 2001.
+q274,How many episodes does the animated series 'Avatar: The Last Airbender' have?,61,episodes,"Split into 3 books (Water, Earth and Fire)."
+q275,In what year did programmer Alexey Pajitnov release 'Tetris'?,1984,year,Made in the Soviet Union.
+q276,How many seasons does 'Lost' have?,6,seasons,121 episodes aired on ABC.
+q277,In what year did Spotify pass 500 million monthly active users?,2023,year,Reached in the first quarter of 2023.
+q278,How many tracks are on the Beatles' famous 'Abbey Road'?,17,tracks,"Released in 1969, with the famous crosswalk photo."
+q279,In what year did Microsoft release the first Xbox?,2001,year,Launched in North America in November 2001.
+q280,How many 'Avengers' movies has Marvel released in theaters?,4,movies,"Avengers, Age of Ultron, Infinity War and Endgame."
+n145,How many blocks tall is the full height of a Minecraft world?,384,blocks,From the bottom of the bedrock to the top of the sky.
+n153,How many Pokémon were in the original First Generation (Kanto)?,151,Pokémon,From Bulbasaur (#001) to the secret Mew (#151).
+n155,How many Infinity Stones are there in Marvel comics and movies?,6,stones,"Space, Mind, Reality, Power, Time and Soul."
+n157,How many Gold Saints guard the zodiac temples in 'Saint Seiya' (Knights of the Zodiac)?,12,Gold Saints,One for each sign of the zodiac.
+n158,How many chapters does Akira Toriyama's original 'Dragon Ball' manga have?,519,chapters,Published in Weekly Shōnen Jump.
+n159,How many Ballon d'Or trophies has Lionel Messi won?,8,trophies,The all-time record for the award.
+n164,How many playable fighters were in the 1991 'Street Fighter II'?,8,fighters,"Ryu, Ken, Chun-Li, Guile, Blanka, Dhalsim, Zangief and E. Honda."
+n172,How many colors were in the original Google logo?,4,colors,"Blue, red, yellow and green."
+n173,How many ghosts chase Pac-Man in the original arcade game?,4,ghosts,"Blinky (red), Pinky (pink), Inky (blue) and Clyde (orange)."
+n181,How many episodes were made of HBO's miniseries 'Chernobyl'?,5,episodes,One of the highest-rated miniseries in IMDb history.
+d301,How old was Mark Zuckerberg when he created Facebook?,19,years,He built it in his Harvard dorm room.
+d302,"For how many hours were Facebook, Instagram and WhatsApp down in the 2021 outage?",6,hours,Employees couldn't even get into the building.
+d303,In what year did Gmail launch?,2004,year,It launched on April 1st: lots of people thought it was a joke.
+d304,How many MB of storage did Gmail give you when it launched?,1000,MB,"1 GB, which was insane at the time."
+d305,How many MB of free storage did Hotmail give when Gmail arrived?,2,MB,Gmail gave 500 times more.
+d306,In what year was the first text message sent?,1992,year,"It said ""Merry Christmas""."
+d307,"In what year were the first emojis created, in Japan?",1999,year,"Today they're in the collection of MoMA, in New York."
+d308,"How many emojis were in the very first set, created in Japan?",176,emojis,Each one was 12 by 12 pixels.
+d309,In what year did the first website in history go live?,1991,year,"It's still online, at CERN's original address."
+d310,In what year did Free Fire come out?,2017,year,Brazil became the game's biggest market.
+d311,In what year did Among Us come out?,2018,year,"It only blew up two years later, during the pandemic."
+d312,In what year did Fortnite come out?,2017,year,The battle royale mode arrived a few months later.
+d313,In what year did the first Pokémon games come out in Japan?,1996,year,"Red and Green, for Game Boy."
+q240,How many milliliters are in a standard wine bottle?,750,ml,An international standard set back in the 19th century.
+n182,How many calories are in 1 gram of pure fat?,9,calories,Carbs and protein have 4 calories per gram.
+n183,How many gallons of milk does it take to make just 1 pound of hard Parmesan cheese?,2,gallons,Because of its low moisture and long aging.
+n186,How many grams of sugar are in a 12-ounce can of Coca-Cola?,39,grams,About 10 teaspoons of sugar.
+n187,How many seeds (beans) are inside an average cacao pod?,40,seeds,"Usually between 30 and 50, wrapped in pulp."
+n188,"What's the minimum alcohol percentage of Brazilian cachaça, by law?",38,%,Cachaça must be between 38% and 48% alcohol by volume.
+n190,How many ounces are in a single shot of espresso?,1,ounce,A single espresso uses about an ounce of water.
+n191,Roughly how many grapes does it take to make one bottle of wine?,600,grapes,About 2.5 pounds of grapes.
+n194,How many pounds of green coffee are in a standard export sack?,132,pounds,The 60 kg sack is the official measure of the global market.
+n195,How many tablespoons are in 1 standard measuring cup?,16,tablespoons,The standard for kitchen measurement charts.
+n196,How many ounces of tequila go into a classic Margarita?,2,ounces,With an ounce of orange liqueur and some lime juice.
+n197,How many folds is a traditional chef's hat (toque blanche) supposed to have?,100,folds,They stood for the 100 ways to cook an egg.
+n200,"How many grams of protein are in a large chicken egg, on average?",6,grams,Split between the white and the yolk.
+n202,How many ingredients are in a traditional Genoese pesto?,7,ingredients,"Basil, olive oil, pine nuts, garlic, Parmesan, pecorino and salt."
+n204,How many milliliters of beer are in a traditional British pint?,568,ml,An American pint is just 473 ml.
+n205,How many calories are in 1 tablespoon of pure olive oil?,120,calories,Olive oil is a concentrated source of healthy fats.
+n206,How many pounds of chocolate does the average Swiss person eat per year (the world record)?,22,pounds,The highest chocolate consumption per person on the planet.
+n208,How many milliliters of whisky are in a standard shot at UK bars?,25,ml,An official measure set by law in the UK.
+n209,What's the minimum number of days a Parmigiano-Reggiano must age before it's sold?,365,days,A mandatory 12 months of aging.
+n211,How many gallons of beer does the average person drink per year in Czechia (the world leader)?,37,gallons,Czechia has led the world in beer per person for decades.
+n217,How many milliliters are in a 'Magnum' bottle of champagne?,1500,ml,Exactly two regular 750 ml bottles.
+n219,How many calories are in a medium apple with the skin on?,95,calories,Full of fiber and natural sugar.
+d93,In what year was Coca-Cola invented?,1886,year,It started as a 'medicine' sold at pharmacies.
+d94,In what year were instant noodles invented in Japan?,1958,year,"The inventor, Momofuku Ando, lived to 96."
+d95,How many gallons of maple sap does it take to make 1 gallon of maple syrup?,40,gallons,The sap is almost all water.
+d96,Roughly how many flowers does it take to make 1 pound of saffron?,70000,flowers,Each flower gives just 3 tiny threads.
+d97,How many gallons of water does it take to produce one cup of coffee?,37,gallons,Counting the water from the coffee plant all the way to the cup.
+d98,"How many Scoville units does Pepper X have, the hottest pepper in the world?",2693000,SHU,"A jalapeño tops out at around 8,000."
+d99,"In what year was the Margherita pizza created, named after the queen of Italy?",1889,year,The colors copy the Italian flag.
+d106,"How many seeds does a strawberry have, on average?",200,seeds,It's the only fruit with its seeds on the outside.
+d108,How old was the still-edible honey found in Egyptian tombs?,3000,years,Honey stored well basically never goes bad.
+d109,In what year was Fanta created?,1940,year,"It was born in Germany, cut off from Coke syrup during the war."
+d110,In what year was the popsicle invented?,1905,year,By an 11-year-old boy who left his soda out in the cold.
+d111,"In what year was Nestlé founded, in Switzerland?",1866,year,It started out making baby formula.
+d344,"In what year was the sandwich born, named after an English earl?",1762,year,The Earl of Sandwich didn't want to leave his card game to eat.
+d345,"How many kernels are on an ear of corn, on average?",800,kernels,The number of rows is always even.
+d346,In what year did Heinz launch its ketchup?,1876,year,"The original ketchup, in Asia, was a fish sauce."
+d347,In what year did Nutella launch?,1964,year,"It exists because cocoa was expensive, so they mixed in hazelnuts."
+d348,In what year did Doritos come out?,1966,year,They were born at a restaurant in Disneyland.
+d349,How many gallons of water does it take to produce 1 pound of chocolate?,2000,gallons,Most of it goes into growing the cacao.
+q286,How many miles long is an official marathon?,26,miles,Exactly 26.2 miles.
+n223,How many Formula 1 world titles did Michael Schumacher win?,7,titles,Tied with Lewis Hamilton for the all-time record.
+n227,"How many yards long is an NFL football field, end line to end line?",120,yards,100 yards of field plus 10 yards in each end zone.
+n228,How many balls in total are used on the table in a game of snooker?,22,balls,"15 reds, 6 colors and 1 cue ball."
+n229,How many laps do the cars run in the famous Indianapolis 500?,200,laps,On the 2.5-mile oval.
+n230,How many points is a try worth in rugby union?,5,points,The conversion right after is worth 2 more.
+n236,How many inches tall is an official men's volleyball net?,96,inches,Just under 8 feet.
+n240,How many laps do the cars run at the Monaco Formula 1 Grand Prix?,78,laps,The slowest and trickiest race on the F1 calendar.
+n243,How many players are on a water polo team in the pool?,7,players,6 field players and 1 goalie.
+n245,How many seconds is the shot clock in the NBA?,24,seconds,"If you don't shoot in 24 seconds, you lose the ball."
+n249,How many millimeters across is an official ping-pong ball?,40,mm,Bumped up from 38 mm to slow the game down.
+n251,How much horsepower does a modern hybrid Formula 1 car have?,1000,hp,The turbo V6 plus the electric motors.
+n252,How many minutes is each of the 4 quarters in an NBA game?,12,minutes,48 minutes of regulation time in total.
+n253,How many Oscars did the first Rocky movie win?,3,Oscars,"The 1976 film won Best Picture, Director and Editing."
+n254,How many yards is the penalty spot from the goal line in soccer?,12,yards,In most of the world it's known as the '11-meter mark'.
+n255,How many holes make up a full round on a standard golf course?,18,holes,Players go around the course completing every hole.
+n256,How many seconds is a knockout count in boxing?,10,seconds,"If the fighter doesn't get up within 10 seconds, the fight is over."
+n260,"How many pounds does the men's Olympic weightlifting bar weigh, without plates?",44,pounds,The women's bar weighs 33 pounds.
+d112,"What was Usain Bolt's top speed in his 100 m world record, in mph?",28,mph,He hit 27.8 mph between the 60 and 80 meter marks.
+d113,How many Olympic medals did Michael Phelps win?,28,medals,23 of them gold.
+d115,How many points did Kobe Bryant score in the best game of his career?,81,points,"Against Toronto, in 2006."
+d116,How many points did Wilt Chamberlain score in a single NBA game?,100,points,In 1962. The game wasn't even on TV.
+d117,How old was George Foreman when he became heavyweight champion again?,45,years,Twenty years after losing the title to Ali.
+d118,How many fights in a row did Anderson Silva win in the UFC?,16,wins,The streak lasted almost 7 years.
+d119,How many surfing world titles does Gabriel Medina have?,3,titles,"2014, 2018 and 2021."
+d121,How many Formula 1 races did Ayrton Senna win?,41,wins,And he took 65 pole positions.
+d122,How many hours did the longest tennis match in history last (Isner vs. Mahut)?,11,hours,It took 3 days at Wimbledon; the last set ended 70-68.
+d314,How many seconds did the fastest fight in UFC history last?,5,seconds,"A flying knee by Jorge Masvidal, in 2019."
+d315,How many mph was the fastest serve ever recognized by the ATP?,157,mph,"John Isner, in 2016."
+d319,How many mph did the shuttlecock hit in the fastest badminton smash?,351,mph,It's the fastest object in any racket sport.
+d320,How many feet is the long jump world record?,29,feet,"Mike Powell, in 1991. Nobody has beaten it since."
+d323,How old was Nadia Comaneci when she scored the first perfect 10 in Olympic gymnastics?,14,years,"The scoreboard only had 3 digits, so it showed 1.00."
+q67,How many minutes does sunlight take to reach Earth?,8,minutes,"About 8 minutes and 20 seconds, on average."
+q74,How many miles around is the Earth at the equator?,24901,miles,The Earth is slightly flattened at the poles.
+q78,How many chemical elements are on the Periodic Table today?,118,elements,The most recent one named is oganesson (Og).
+q142,At how many miles up is the Kármán line (the edge of space)?,62,miles,Defined by the International Aeronautical Federation.
+q146,How many miles per second does light travel in a vacuum?,186282,miles per second,"Exactly 299,792.458 km/s."
+n10,How many million degrees Fahrenheit is it at the center of the Sun?,27,million degrees,The heat and pressure in the core are enough for hydrogen fusion.
+n13,"How many miles is the Earth's average radius, from the center to the surface?",3959,miles,"The Earth's full diameter is about 7,918 miles."
+n269,How many degrees below zero Fahrenheit is absolute zero?,460,degrees,"Exactly -459.67 °F (0 Kelvin), where atoms stop moving."
+n270,How many astronauts usually make up the crew of the International Space Station?,7,astronauts,It can go up for a while during crew swaps.
+n271,How many mph does the International Space Station travel around the Earth?,17150,mph,It goes all the way around the planet every 90 minutes.
+n272,How many planets in the Solar System have rings?,4,planets,"Saturn, Jupiter, Uranus and Neptune all have ring systems."
+n274,How many hours is a day on Jupiter (the fastest spin in the Solar System)?,10,hours,Jupiter spins once on its axis in just 9 hours and 55 minutes.
+n275,What percentage of the mass of the whole Solar System is in the Sun alone?,99,%,The Sun is about 99.86% of all the mass in the solar system.
+n276,How many days does Mercury take to go around the Sun?,88,days,"Being the closest planet to the Sun, it has the shortest year."
+n277,How many people have ever walked on the Moon?,12,people,"All during NASA's Apollo program, between 1969 and 1972."
+n278,How many pounds of Moon rocks and samples did the Apollo missions bring back to Earth?,842,pounds,Collected on the six missions that landed on the Moon.
+n279,How many light-years away is the closest star to the Sun (Proxima Centauri)?,4,light-years,About 4.24 light-years from Earth.
+n280,How many natural satellites (moons) orbit Mars?,2,moons,"Phobos and Deimos, two small, lumpy moons."
+n281,How many miles across is the Moon?,2159,miles,About a quarter of the Earth's diameter.
+n282,How many million years does the Sun take to go around the center of the galaxy (a galactic year)?,230,million,The time it takes the Solar System to circle the Milky Way.
+n283,What percentage of Earth's atmosphere is nitrogen?,78,%,Oxygen is about 21% of the atmosphere.
+n285,"How many miles high is Olympus Mons on Mars, the biggest mountain in the Solar System?",13,miles,Almost three times as tall as Mount Everest.
+n287,How many seconds does moonlight take to reach our eyes on Earth?,1,second,"About 1.3 seconds to cover 239,000 miles."
+n288,What percentage of the Universe is made of normal matter (atoms)?,5,%,The other 95% is dark matter and dark energy.
+n294,"What percentage of all the water on Earth is salty, in the oceans?",97,%,Only about 3% of Earth's water is fresh.
+n295,How many days did record-holding cosmonaut Valeri Polyakov spend in space in a single stretch?,437,days,More than 14 straight months aboard the Mir space station.
+n296,How many telescopes made up the Event Horizon Telescope network that photographed a black hole?,8,telescopes,"Spread around the world, working together as one giant telescope."
+n297,How many hexagonal mirrors make up the James Webb Space Telescope's main mirror?,18,mirrors,Coated in gold to reflect infrared light.
+n298,How many degrees Fahrenheit is the average surface temperature on Venus?,869,degrees,"The hottest planet in the Solar System, thanks to its thick greenhouse effect."
+n300,How many official constellations does the International Astronomical Union recognize?,88,constellations,"Covering the whole night sky, north and south."
+n301,How many mph is the Earth's surface spinning at the equator?,1040,mph,That's how fast the ground under your feet is moving.
+d123,"In what year was Voyager 1 launched, the probe that still sends signals today?",1977,year,It's the farthest human-made object from Earth.
+d124,"How many miles is the Moon from Earth, on average?",238900,miles,All the planets in the Solar System would fit side by side in that gap.
+d125,How many degrees Fahrenheit is the surface of the Sun?,9900,°F,Its outer corona goes over 1.8 million degrees.
+d126,How many Earths would fit inside the Sun?,1300000,Earths,About 1.3 million.
+d127,How many pounds does the International Space Station weigh?,925000,pounds,"It was put together in orbit, piece by piece."
+d128,How many light-years across is the Milky Way?,100000,light-years,"Light takes 100,000 years to cross it."
+d129,How many million years old is the Universe?,13800,million years,13.8 billion years.
+d130,How many Earth days long is a day on Venus?,243,days,A day on Venus is longer than its year (225 days).
+d131,How many years does Neptune take to go around the Sun?,165,years,It only finished its first lap since being discovered in 2011.
+d132,How many degrees Fahrenheit can a lightning bolt reach?,54000,°F,Five times hotter than the surface of the Sun.
+d133,In what year did Pluto stop being considered a planet?,2006,year,It became a 'dwarf planet'.
+d250,"How many days did the Apollo 11 mission last, from launch to return?",8,days,The astronauts spent 21 days in quarantine afterward.
+d326,How many times wider is the Sun than the Moon?,400,times,And it's 400 times farther away: that's why eclipses line up perfectly.
+d327,How many mph does the Earth travel around the Sun?,67000,mph,More than 100 times the speed of a jet.
+d328,How many pounds would a 150-pound person weigh on the Moon?,25,pounds,Gravity there is about 1/6 of ours.
+d329,How many degrees below zero Fahrenheit does it get on the Moon at night?,280,°F below zero,"During the day, it goes over 250 °F."
+d330,"In what year was Sputnik launched, the first artificial satellite?",1957,year,It kicked off the space race.
+d331,In what year was the Hubble telescope launched?,1990,year,It went to space with a flawed mirror and needed 'glasses'.
+d332,How many miles up does the International Space Station orbit?,250,miles,Less than the drive from Los Angeles to Las Vegas.
+d333,How many dwarf planets are officially recognized?,5,dwarf planets,"Pluto, Ceres, Eris, Haumea and Makemake."
+c17,In what year did the Tamagotchi launch in Japan?,1996,year,It sold more than 80 million units.
+c18,In what year did the first Toy Story movie come out?,1995,year,It was the first feature film made entirely with computer graphics.
+c19,In what year did Titanic hit theaters?,1997,year,It was the highest-grossing movie in history for 12 years.
+c20,How many Oscars did Titanic win?,11,Oscars,Tied with Ben-Hur and The Return of the King.
+c21,In what year did MSN Messenger launch?,1999,year,It started as Microsoft's MSN Messenger Service.
+c23,In what year did the Nokia 3310 come out?,2000,year,It sold about 126 million units.
+c24,In what year did the Game Boy Color come out?,1998,year,The first Game Boy with a color screen.
+c26,In what year did the last episode of Friends air?,2004,year,The finale drew more than 52 million viewers in the US.
+c27,In what year did Windows 95 come out?,1995,year,It's the one that brought us the Start button.
+c28,In what year did the PlayStation 2 launch in Japan?,2000,year,It's the best-selling console in history.
+c29,How many members did the Spice Girls have?,5,members,"Baby, Ginger, Scary, Sporty and Posh."
+c30,In what year did the first Shrek movie come out?,2001,year,It won the first-ever Oscar for Best Animated Feature.
+c31,In what year was Google founded?,1998,year,It started in a garage in California.
+d30,In what year did the Nintendo 64 come out?,1996,year,Super Mario 64 came with it at launch.
+d31,In what year was the first Harry Potter book published?,1997,year,It was turned down by 12 publishers first.
+d32,In what year did Napster launch?,1999,year,It shut down in 2001 after lawsuits from the record labels.
+d33,In what year did the first iPod come out?,2001,year,"The slogan was ""1,000 songs in your pocket""."
+d34,"How many songs fit on the first iPod, according to Apple's ad?",1000,songs,It had 5 GB and a mechanical scroll wheel.
+d35,How many kilobytes fit on a regular 3.5-inch floppy disk?,1440,KB,"The ""1.44 MB"" on the label is actually 1,440 KB."
+d36,How many minutes of music fit on a CD in the original standard?,74,minutes,Legend says it was so Beethoven's 9th Symphony would fit.
+d39,In what year did Windows XP come out?,2001,year,It got official support until 2014.
+d40,In what year did SpongeBob SquarePants premiere in the US?,1999,year,Its creator was a marine biologist.
+d41,How many episodes of 'Everybody Hates Chris' were made?,88,episodes,"4 seasons, narrated by Chris Rock himself."
+d42,In what year did the Furby come out?,1998,year,It sold 40 million in 3 years.
+d43,In what year was MSN Messenger shut down (outside China)?,2013,year,Users were moved over to Skype.
+d45,In what year did the Pokémon anime premiere in Japan?,1997,year,It reached the US the following year.
+d49,How many seasons did 'The Fresh Prince of Bel-Air' run?,6,seasons,Will Smith was 21 when it premiered.
+d50,In what year did the first GTA come out?,1997,year,"It was top-down, in 2D."
+d51,In what year did The Lion King (the animated one) come out?,1994,year,It was the highest-grossing animated movie up to then.
+c32,"How many seconds long is 'Me at the zoo', the first YouTube video?",19,seconds,"Posted by Jawed Karim, one of the founders."
+c33,"In what year did 'Never Gonna Give You Up', the Rickroll song, come out?",1987,year,The Rickroll only became a meme in 2007.
+c34,In what year was the 'Charlie bit my finger' video posted?,2007,year,The video was sold as an NFT in 2021.
+c35,In what year was the photo of Kabosu that became the Doge meme taken?,2010,year,Kabosu was a Shiba Inu from Japan.
+c36,How old was Kabosu (the Doge dog) when she died in 2024?,18,years,The meme even inspired a cryptocurrency.
+c37,In what year did the 'Gangnam Style' video come out?,2012,year,It was the first video to pass 1 billion views.
+c38,How many views did 'Gangnam Style' have when it broke YouTube's view counter?,2147483647,views,It's the biggest number that fits in a 32-bit integer.
+c39,In what year did the Harlem Shake go viral?,2013,year,Thousands of versions were posted in just a few weeks.
+c40,In what year did the Ice Bucket Challenge go viral?,2014,year,It raised more than 100 million dollars for ALS research.
+c41,How many years did Grumpy Cat live?,7,years,Her real name was Tardar Sauce.
+c42,In what year did the blue-and-black (or white-and-gold) dress go viral?,2015,year,The dress was blue and black.
+c43,In what year did the 'Baby Shark Dance' video come out?,2016,year,It became the most-watched video in YouTube history.
+c44,In what year did Pepe the Frog first appear in comics?,2005,year,In Matt Furie's comic Boy's Club.
+c45,In what year was the 'Distracted Boyfriend' photo taken?,2015,year,"The photographer is Antonio Guillem, from Barcelona."
+d56,In what year was the 'Numa Numa' video posted?,2004,year,"One of the first internet viral videos, before YouTube even existed."
+d57,"In what year did the Dancing Baby, one of the first internet memes, show up?",1996,year,It was a 3D GIF that went around by email.
+d58,In what year did 'Chuck Norris facts' start?,2005,year,Chuck himself wrote a book responding to them.
+d59,In what year was the original Trololo performance recorded?,1976,year,"It only went viral in 2010, 34 years later."
+d60,In what year did the Ghana coffin dancers become a worldwide meme?,2020,year,The 'coffin dance' became the soundtrack of the pandemic.
+d61,How many seconds was the limit for a Vine video?,6,seconds,It launched a whole generation of influencers.
+d62,In what year was Vine shut down?,2017,year,Twitter had bought it before it even launched.
+d63,In what year did Rebecca Black release 'Friday'?,2011,year,It became the most-disliked video on YouTube at the time.
+d64,In what year was 'Leave Britney Alone' posted?,2007,year,Chris Crocker recorded it crying in bed.
+d65,In what year did 'What Does the Fox Say?' come out?,2013,year,It was meant to be a joke song.
+d66,In what year did the Rickroll prank start?,2007,year,It started on the 4chan forum.
+d67,In what year did WhatsApp launch stickers?,2018,year,Family group chats were never the same.
+d68,In what year was the 😂 emoji named Oxford Dictionaries' 'word of the year'?,2015,year,The first time an emoji won.
+d69,In what year was the 'This is fine' dog comic published?,2013,year,The artist is KC Green.
+d70,In what year was the Success Kid photo taken (the baby with a fist full of sand)?,2007,year,Money from the meme helped pay for his dad's kidney transplant.
+d71,In what year was the Mayan calendar 'end of the world' that became a worldwide joke?,2012,year,December 21. Nothing happened.
+c46,How many hours did the longest kiss in the world last (Guinness record)?,58,hours,"A couple in Thailand, in 2013. They even won cash."
+c47,In what year was Viagra approved in the United States?,1998,year,The drug came out of heart research.
+c48,In what year was the first birth control pill approved in the United States?,1960,year,It changed the history of 20th-century behavior.
+c49,How many sex positions does the Kama Sutra describe in its most famous list?,64,positions,They're actually 64 arts of love; the book is way more about relationships.
+c50,In what year did Tinder launch?,2012,year,'Swipe' became a verb in a bunch of languages.
+c51,In what year did the movie Fifty Shades of Grey hit theaters?,2015,year,The book sold more than 150 million copies.
+c52,In what year did Sex and the City premiere?,1998,year,6 seasons and 94 episodes.
+c53,In what year did the first issue of Playboy come out?,1953,year,Marilyn Monroe was on the cover.
+c54,How old was Marilyn Monroe when she was on the cover of the first Playboy?,27,years,"The photos had been taken years before, for a calendar."
+c55,In what year did Grindr launch?,2009,year,One of the first location-based dating apps.
+c56,In what year was the latex condom invented?,1920,year,"Before that, they were made of thick rubber or animal gut."
+d72,"How many minutes does sex last, on average (in a study of 500 couples)?",5,minutes,"The median was 5.4 minutes; the fastest, 33 seconds."
+d73,How many condoms were handed out in the Olympic Village at Rio 2016?,450000,condoms,Three times more than at London 2012.
+d74,In what year was the female condom approved in the US?,1993,year,Today the FDA calls it the 'internal condom'.
+d75,"How old was Hugh Hefner, Playboy's founder, when he died?",91,years,He lived at the Playboy Mansion until the end.
+d76,In what year did OnlyFans launch?,2016,year,It blew up during the 2020 pandemic.
+d77,In what year did Bridgerton premiere on Netflix?,2020,year,82 million households watched it in the first month.
+d78,In what year did American Playboy stop publishing nudes (and then backtrack)?,2016,year,They went back in 2017.
+d79,In what year did '9½ Weeks' come out?,1986,year,The fridge scene went down in history.
+d80,"In what year did 'Basic Instinct' come out, with Sharon Stone's famous leg cross?",1992,year,She says she didn't know what was being filmed.
+d81,In what year did 'Dirty Dancing' come out?,1987,year,"""Nobody puts Baby in a corner."""
+d82,How many hours did Britney Spears' 2004 Las Vegas marriage last?,55,hours,It was annulled the following Monday.
+d83,How many days did Kim Kardashian's marriage to Kris Humphries last?,72,days,The wedding was broadcast on TV.
+d84,How many times did Elizabeth Taylor get married?,8,times,"Twice to the same man, Richard Burton."
+d85,How many wives did King Henry VIII have?,6,wives,Two were beheaded.
+d86,"In what year did Bumble launch, the app where women send the first message?",2014,year,Its founder had left Tinder.
+d90,How old was Juliet in 'Romeo and Juliet'?,13,years,Shakespeare says she wasn't 14 yet.
+d91,In what year did the series Sex Education premiere?,2019,year,It ran for 4 seasons.
+q77,How many keys does a standard acoustic piano have?,88,keys,52 white and 36 black.
+d172,How old was Mozart when he composed his first pieces?,5,years,He died at 35 and left more than 600 works.
+d173,How many symphonies did Beethoven compose?,9,symphonies,He wrote the last one completely deaf.
+d175,In what year was 'The Girl from Ipanema' written?,1962,year,It's one of the most recorded songs in the world.
+d177,In what year did Michael Jackson release 'Thriller'?,1982,year,It's the best-selling album in history.
+d178,How many people went to the Rolling Stones' free show on Copacabana beach in 2006?,1500000,people,"Free, on the sand, in front of the Copacabana Palace hotel."
+d179,How many people went to Madonna's free show on Copacabana beach in 2024?,1600000,people,"Free, on the sand, in Rio de Janeiro."
+d180,How many people went to Lady Gaga's free show on Copacabana beach in 2025?,2100000,people,She broke Madonna's record a year later.
+d183,How many weeks did 'Despacito' spend at No. 1 on the US charts?,16,weeks,A record for a Spanish-language song.
+d184,How many weeks did 'Old Town Road' spend at No. 1 on the US charts?,19,weeks,It set the Billboard Hot 100 record.
+d187,In what year did Michel Teló release 'Ai Se Eu Te Pego'?,2011,year,Cristiano Ronaldo danced to it after a goal and the whole world copied.
+d188,How many strings does a cavaquinho (the Brazilian mini guitar) have?,4,strings,It's a cousin of the Hawaiian ukulele.
+d191,How many minutes long is Queen's 'Bohemian Rhapsody' (rounded)?,6,minutes,The label thought it was way too long for radio.
+d193,How old was Mozart when he died?,35,years,He left his Requiem unfinished.
+d197,How many dollars did the first iPhone cost in the US?,499,dollars,That was the 4 GB model.
+d198,What are the odds of hitting the Powerball jackpot? 1 in how many?,292201338,,You're way more likely to get struck by lightning.
+d199,For how many billion dollars did Elon Musk buy Twitter?,44,billion dollars,In 2022. It became X a year later.
+d200,For how many million dollars did Facebook buy Instagram in 2012?,1000,million dollars,Instagram had 13 employees.
+d201,For how many million dollars did Google buy YouTube in 2006?,1650,million dollars,YouTube was a year and a half old.
+d202,For how many billion dollars did Disney buy Lucasfilm (Star Wars)?,4,billion dollars,In 2012; it made it back with the new movies alone.
+d203,How many bitcoins did a programmer pay for 2 pizzas in 2010?,10000,bitcoins,Today that would be hundreds of millions of dollars.
+d207,How many million dollars did a 30-second Super Bowl ad cost in 2025?,8,million dollars,More than 250 thousand dollars per second.
+d208,"For how many million dollars was Salvator Mundi sold, the most expensive painting in the world?",450,million dollars,Attributed to Leonardo da Vinci; where it is now is a mystery.
+d209,How many million pounds sterling did Brazil pay Portugal to recognize its independence?,2,million pounds,The money was borrowed from England.
+d210,For how many million dollars did the US buy Alaska from Russia?,7,million dollars,"7.2 million, in 1867. People called it 'Seward's Folly'."
+d211,For how many billion dollars did Microsoft buy Activision (Call of Duty)?,69,billion dollars,The biggest acquisition in gaming history.
+d213,"How many dollars did the Apple I, Apple's first computer, sell for?",666,dollars,Exactly US$666.66. Wozniak liked repeating digits.
+d214,How many dollars a year did WhatsApp charge before it went free?,1,dollar,The fee ended in 2016.
+d215,For how many million dollars was the banana duct-taped to a wall (Comedian) auctioned?,6,million dollars,In 2024. The buyer ate the banana.
+d216,How many million dollars did it cost to make the movie Titanic?,200,million dollars,It was the most expensive movie in history up to then.
+d217,How many million Swedish kronor is a Nobel Prize worth?,11,million kronor,About 1 million dollars.
+d218,For how many billion dollars did Facebook try to buy Snapchat (and get turned down)?,3,billion dollars,In 2013. Snapchat was 2 years old.
+q66,In what year did humans first walk on the Moon?,1969,year,Neil Armstrong and Buzz Aldrin landed on the Apollo 11 mission.
+q73,In what year did the Titanic sink?,1912,year,It hit an iceberg on the night of April 14 to 15.
+q76,In what year did World War II end?,1945,year,Germany surrendered in May and Japan in September.
+q79,In what year did World War I begin?,1914,year,It started after the assassination of Archduke Franz Ferdinand.
+q138,In what year was the Bastille stormed in the French Revolution?,1789,year,"It happened on July 14, 1789."
+q140,In what year did Albert Einstein publish the Special Theory of Relativity?,1905,year,Known as his 'Miracle Year' (Annus Mirabilis).
+q143,In what year did the Eiffel Tower open in Paris?,1889,year,Built for the 1889 World's Fair.
+q145,"In what year did the Berlin Wall fall, marking the end of the Cold War?",1989,year,"It fell on the night of November 9, 1989."
+q150,In what year did Mount Vesuvius bury the city of Pompeii?,79,year,"It destroyed Pompeii and Herculaneum, in Italy."
+q187,In what year did the Soviet Union (USSR) collapse?,1991,year,Dissolved in December 1991.
+q190,In what year did Columbus reach the Americas?,1492,year,He landed on the island of Guanahani in October.
+q234,In what year did the Vietnam War end?,1975,year,With the fall of Saigon on April 30.
+q237,In what year did the Russian Revolution overthrow the Tsar?,1917,year,Known for its February and October phases.
+q242,In what year did Albert Einstein win the Nobel Prize in Physics?,1921,year,Awarded for explaining the photoelectric effect.
+q283,In what year was the atomic bomb dropped on Hiroshima?,1945,year,"It happened on August 6, 1945."
+q288,In what year did the Panama Canal open?,1914,year,Connecting the Atlantic Ocean to the Pacific.
+d244,In what year did the world population reach 8 billion people?,2022,year,"In 1800, the world had just 1 billion."
+d245,How many years before Christ did Cleopatra die?,30,BC,She lived closer to the invention of the iPhone than to the building of the pyramids.
+d247,In what year was the wreck of the Titanic found?,1985,year,73 years after it sank.
+d254,In what year did Alexander Graham Bell patent the telephone?,1876,year,Many people credit the invention to the Italian Antonio Meucci.
+d255,In what year did Edison patent the electric light bulb?,1879,year,"He tested thousands of filaments, even bamboo."
+d256,In what year did Karl Benz patent the first gas-powered car?,1886,year,"His wife made the first long road trip in it, without telling him."
+d258,In what year did the Western Roman Empire fall?,476,year,The Eastern Empire lasted another thousand years.
+d262,In what year did Brazil abolish slavery?,1888,year,It was the last country in the Americas to do it.
+d269,In what year did Post-it notes hit stores?,1980,year,They came from a glue that 'failed' for being too weak.
+d270,In what year were blue jeans patented?,1873,year,They were workwear for miners.
+n2,"How many feet deep is the Mariana Trench, the deepest point in the ocean?",35876,feet,"If you dropped Mount Everest in, there'd still be more than a mile of water above it."
+n7,"How many miles long is the Great Wall of China, counting every section?",13171,miles,It crosses 15 Chinese provinces and took centuries to finish.
+n15,How many stone statues (moai) have been cataloged on Easter Island?,887,statues,Most were carved from volcanic tuff between the years 1100 and 1680.
+n16,How many feet above sea level is the top of Mount Everest?,29032,feet,"The officially revised height is 29,031.7 feet."
+d219,How many countries are members of the UN?,193,countries,"The last to join was South Sudan, in 2011."
+d220,"How many time zones does France have, counting its overseas territories?",12,time zones,It's the country with the most time zones in the world.
+d221,How many time zones does China officially use?,1,time zone,Even though it's wide enough for 5.
+d222,How many official languages does South Africa have?,12,languages,"The 12th is sign language, since 2023."
+d223,How many miles long is the Nile River?,4132,miles,It battles the Amazon for the title of longest river.
+d224,How many countries have Portuguese as an official language?,9,countries,From Brazil to East Timor.
+d225,How many steps does the Eiffel Tower have to the top?,1665,steps,The public can only climb 674 of them.
+d226,"How many feet tall is the Statue of Liberty, pedestal included?",305,feet,It was a gift from France.
+d227,In what year did construction of the Sagrada Família in Barcelona begin?,1882,year,And it still isn't finished.
+d228,How many miles long is the Suez Canal?,120,miles,One stuck ship blocked world trade in 2021.
+d229,How many countries does the Danube River flow through?,10,countries,A world record.
+d230,Roughly how many years ago was the Great Pyramid of Giza built?,4500,years,"It was the tallest structure in the world for almost 4,000 years."
+d231,How many floors does the Burj Khalifa have?,163,floors,The elevator climbs at 22 mph.
+d232,"How many feet deep is Lake Baikal, the deepest lake in the world?",5387,feet,It holds 20% of the planet's liquid fresh water.
+d234,How many years did the Hundred Years' War last?,116,years,From 1337 to 1453.
+d235,How many minutes did the shortest war in history last (Britain vs. Zanzibar)?,38,minutes,In 1896.
+d236,How many miles long is the Trans-Siberian Railway?,5772,miles,The trip from Moscow to Vladivostok takes 7 days.
+d237,"How many feet is the drop of Angel Falls, the tallest waterfall in the world?",3212,feet,It's in Venezuela.
+d238,How many acres is Vatican City?,109,acres,About 80 football fields.
+d239,How many countries does China share a border with?,14,countries,Tied with Russia for the most.
+d240,In what year was the Berlin Wall built?,1961,year,It stood for 28 years.
+d241,How many years was Nelson Mandela in prison?,27,years,He got out and became president 4 years later.
+d242,For how many years was Elizabeth II queen?,70,years,The longest reign in British history.
+d243,How many languages are spoken in Papua New Guinea?,840,languages,The most linguistically diverse country in the world.
+d268,How many countries are in South America?,12,countries,French Guiana doesn't count: it's part of France.
+d271,Roughly how many degrees does the Leaning Tower of Pisa lean today?,4,degrees,It reached 5.5 degrees before the work that 'straightened' it.

@@ -8,7 +8,7 @@ import { Enter } from '@/components/motion';
 import { Btn, Chip, Raised, Title, TopBar, tapLight } from '@/components/ui';
 import { formatValue } from '@/game/engine';
 import { showcase } from '@/game/highlights';
-import { packById } from '@/game/questions';
+import { packById } from '@/game/content';
 import { analytics } from '@/services/analytics';
 import { useApp } from '@/state/app';
 import { colors, fonts, radii } from '@/theme';

@@ -7,12 +7,13 @@ import { Icon, type IconName } from '@/components/Icon';
 import { Enter } from '@/components/motion';
 import { Body, Btn, Raised, Title, TopBar } from '@/components/ui';
 import { colors, fonts } from '@/theme';
+import { t } from '@/i18n';
 
-const STEPS: { icon: IconName; n: string; title: string; text: string; tint: string }[] = [
-  { icon: 'help', n: '01', title: 'Chega a pergunta', text: 'Todo mundo lê. A resposta é sempre um número.', tint: colors.yellowSoft },
-  { icon: 'sparkle', n: '02', title: 'Quem abre dá um lance', text: '“É 30 ou mais.” Não precisa saber, só parecer que sabe.', tint: colors.pinkSoft },
-  { icon: 'arrowRight', n: '03', title: 'Passa o celular', text: 'O próximo aumenta o lance (no mínimo +1) ou…', tint: colors.greenSoft },
-  { icon: 'megaphone', n: '04', title: 'Grita “eu duvido!”', text: 'Revela a resposta. Lance passou? Quem lançou perde um “!”. Não passou? Perde quem duvidou.', tint: colors.yellow },
+const STEPS = (): { icon: IconName; n: string; title: string; text: string; tint: string }[] => [
+  { icon: 'help', n: '01', title: t('Chega a pergunta'), text: t('Todo mundo lê. A resposta é sempre um número.'), tint: colors.yellowSoft },
+  { icon: 'sparkle', n: '02', title: t('Quem abre dá um lance'), text: t('“É 30 ou mais.” Não precisa saber, só parecer que sabe.'), tint: colors.pinkSoft },
+  { icon: 'arrowRight', n: '03', title: t('Passa o celular'), text: t('O próximo aumenta o lance (no mínimo +1) ou…'), tint: colors.greenSoft },
+  { icon: 'megaphone', n: '04', title: t('Grita “eu duvido!”'), text: t('Revela a resposta. Lance passou? Quem lançou perde um “!”. Não passou? Perde quem duvidou.'), tint: colors.yellow },
 ];
 
 export default function HowToPlay() {
@@ -27,14 +28,14 @@ export default function HowToPlay() {
       <ScrollView contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 130 }} showsVerticalScrollIndicator={false}>
         <View style={styles.head}>
           <View style={{ flex: 1 }}>
-            <Title size={42}>como joga</Title>
-            <Body style={{ marginTop: 6 }}>Um minuto de leitura. Zero calculadora.</Body>
+            <Title size={42}>{t('como joga')}</Title>
+            <Body style={{ marginTop: 6 }}>{t('Um minuto de leitura. Zero calculadora.')}</Body>
           </View>
           <BangMark size={64} style={{ transform: [{ rotate: '-8deg' }] }} />
         </View>
 
         <View style={{ gap: 12, marginTop: 18 }}>
-          {STEPS.map((s, i) => (
+          {STEPS().map((s, i) => (
             <Enter key={s.n} delay={i * 80}>
               <Raised face={s.tint}>
                 <View style={styles.step}>
@@ -53,30 +54,30 @@ export default function HowToPlay() {
         </View>
 
         <Title size={26} style={{ marginTop: 28 }}>
-          as vidas
+          {t('as vidas')}
         </Title>
         <Raised style={{ marginTop: 10 }}>
           <View style={{ padding: 16, gap: 12 }}>
             <View style={styles.lifeRow}>
               <Lives left={3} total={3} size={26} />
-              <Text style={styles.lifeText}>cada um começa com seus “!” (2, 3 ou 5)</Text>
+              <Text style={styles.lifeText}>{t('cada um começa com seus “!” (2, 3 ou 5)')}</Text>
             </View>
             <View style={styles.lifeRow}>
               <Lives left={2} total={3} size={26} />
-              <Text style={styles.lifeText}>perdeu a dúvida, apaga um</Text>
+              <Text style={styles.lifeText}>{t('perdeu a dúvida, apaga um')}</Text>
             </View>
             <View style={styles.lifeRow}>
               <Lives left={0} total={3} size={26} />
-              <Text style={styles.lifeText}>sem “!”, tá fora. o último que sobrar ganha</Text>
+              <Text style={styles.lifeText}>{t('sem “!”, tá fora. o último que sobrar ganha')}</Text>
             </View>
           </View>
         </Raised>
         <Body size={15} style={{ marginTop: 12 }}>
-          Dica: lance igual à resposta conta como certo. Quem perde abre a próxima rodada.
+          {t('Dica: lance igual à resposta conta como certo. Quem perde abre a próxima rodada.')}
         </Body>
       </ScrollView>
       <View style={[styles.cta, { paddingBottom: insets.bottom + 14 }]}>
-        <Btn label="Saquei, bora" variant="dark" onPress={back} />
+        <Btn label={t('Saquei, bora')} variant="dark" onPress={back} />
       </View>
     </View>
   );

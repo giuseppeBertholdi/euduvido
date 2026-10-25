@@ -3,8 +3,9 @@
  * Em cada uma, a galera dá um lance ("15.000 litros ou mais") e a pessoa decide: ACREDITO ou EU DUVIDO!
  * Tudo aqui é puro (a data entra de fora), testado em daily.test.ts.
  */
-import { formatValue } from './engine';
-import { PACKS, type Question } from './questions';
+import { formatValue, isYear } from './engine';
+import { PACKS, type Question } from './content';
+import { t } from '@/i18n';
 
 export const DAILY_SIZE = 5;
 /** O #1 é 20/10/2026 (data local), quando o desafio foi criado. */
@@ -43,7 +44,7 @@ const YEAR_OFFSETS = [-60, -25, -10, -4, 3, 8, 20, 45];
 /** O lance da galera pra essa pergunta nesse dia. Nunca é a resposta exata. */
 export function dailyBid(q: Question, n: number): number {
   const h = hash(`bid:${n}:${q.id}`);
-  if (q.unit === 'ano') {
+  if (isYear(q.unit)) {
     const off = YEAR_OFFSETS[h % YEAR_OFFSETS.length];
     return q.answer + off;
   }
@@ -64,8 +65,8 @@ export function dailyRounds(n: number): DailyRound[] {
   const all = pool();
   const rank = (x: { q: Question }) => hash(`day:${n}:${x.q.id}`);
   const byRank = (a: { q: Question }, b: { q: Question }) => rank(a) - rank(b);
-  const numbers = all.filter((x) => x.q.unit !== 'ano').sort(byRank).slice(0, DAILY_SIZE - 1);
-  const year = all.filter((x) => x.q.unit === 'ano').sort(byRank).slice(0, 1);
+  const numbers = all.filter((x) => !isYear(x.q.unit)).sort(byRank).slice(0, DAILY_SIZE - 1);
+  const year = all.filter((x) => isYear(x.q.unit)).sort(byRank).slice(0, 1);
   // o ano entra numa posição do meio (a primeira é a da notificação: tem que chocar)
   const at = 1 + (hash(`pos:${n}`) % (DAILY_SIZE - 1));
   const picked = [...numbers.slice(0, at), ...year, ...numbers.slice(at)];
@@ -77,7 +78,8 @@ export function dailyRounds(n: number): DailyRound[] {
 
 /** "15.000 litros ou mais" / "em 1980 ou depois". */
 export function bidText(r: Pick<DailyRound, 'bid' | 'question'>): string {
-  return r.question.unit === 'ano' ? `em ${formatValue(r.bid, 'ano')} ou depois` : `${formatValue(r.bid, r.question.unit)} ${r.question.unit} ou mais`;
+  const value = formatValue(r.bid, r.question.unit);
+  return isYear(r.question.unit) ? t('em {value} ou depois', { value }) : t('{value} {unit} ou mais', { value, unit: r.question.unit }).replace('  ', ' ');
 }
 
 /** Dias seguidos com o desafio feito, contando de hoje (ou de ontem, se hoje ainda não jogou). */
@@ -96,8 +98,8 @@ export function dailyStreak(done: readonly number[], today: number): number {
 export function dailyShareText(n: number, results: readonly boolean[], streak: number, url: string, first: Pick<DailyRound, 'bid' | 'question'>): string {
   const hits = results.filter(Boolean).length;
   const grid = results.map((ok) => (ok ? '🟨' : '🟥')).join('');
-  const fire = streak >= 2 ? ` · 🔥 ${streak} dias` : '';
-  return `Eu Duvido! #${n} · ${hits}/${results.length}${fire}\n${grid}\n\n${first.question.text}\na galera diz ${bidText(first)}. acredita ou duvida? 👇\n${url}`;
+  const fire = streak >= 2 ? ` · 🔥 ${t('{n} dias', { n: streak })}` : '';
+  return `${t('Eu Duvido!')} #${n} · ${hits}/${results.length}${fire}\n${grid}\n\n${first.question.text}\n${t('a galera diz {bid}. acredita ou duvida? 👇', { bid: bidText(first) })}\n${url}`;
 }
 
 /** O link do resultado (https://idoubtit.fun/d/12?r=11011): a página mostra a grade de quem mandou e deixa jogar a 1ª pergunta. */

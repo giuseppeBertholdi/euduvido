@@ -11,6 +11,7 @@ import { analytics } from '@/services/analytics';
 import { useApp } from '@/state/app';
 import { visits } from '@/state/visits';
 import { colors, fonts } from '@/theme';
+import { t } from '@/i18n';
 
 const LAST = 2;
 const DEMO_BIDS: [string, string][] = [
@@ -23,8 +24,8 @@ const DEMO_BIDS: [string, string][] = [
 function After({ ms, children }: { ms: number; children: React.ReactNode }) {
   const [on, setOn] = useState(false);
   useEffect(() => {
-    const t = setTimeout(() => setOn(true), ms);
-    return () => clearTimeout(t);
+    const timer = setTimeout(() => setOn(true), ms);
+    return () => clearTimeout(timer);
   }, [ms]);
   return on ? <>{children}</> : null;
 }
@@ -55,13 +56,13 @@ export default function Onboarding() {
     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={[styles.root, { paddingTop: insets.top + 8 }]}>
       <StatusBar style="dark" />
       <View style={styles.top}>
-        <View style={styles.dots} accessible accessibilityLabel={`passo ${i + 1} de ${LAST + 1}`}>
+        <View style={styles.dots} accessible accessibilityLabel={t('passo {n} de {total}', { n: i + 1, total: LAST + 1 })}>
           {[0, 1, 2].map((k) => (
             <View key={k} style={[styles.dot, { opacity: k <= i ? 1 : 0.2, width: k === i ? 24 : 8 }]} />
           ))}
         </View>
         <Pressable onPress={finish} hitSlop={12} accessibilityRole="button" style={styles.skip}>
-          <Text style={styles.skipText}>pular</Text>
+          <Text style={styles.skipText}>{t('pular')}</Text>
         </Pressable>
       </View>
 
@@ -77,30 +78,30 @@ export default function Onboarding() {
               </Enter>
               <Enter delay={280}>
                 <Body size={18} style={{ textAlign: 'center', marginTop: 14, maxWidth: 300 }}>
-                  O jogo de chutar números com a cara mais lavada do mundo.
+                  {t('O jogo de chutar números com a cara mais lavada do mundo.')}
                 </Body>
               </Enter>
             </View>
-            <Text style={styles.hint}>(pode cutucar o “!”)</Text>
+            <Text style={styles.hint}>{t('(pode cutucar o “!”)')}</Text>
           </>
         )}
 
         {i === 1 && (
           <>
             <Enter>
-              <Label>como funciona</Label>
+              <Label>{t('como funciona')}</Label>
               <Title size={40} style={{ marginTop: 6 }}>
-                aumenta{'\n'}ou duvida<Text style={{ color: colors.pinkInk }}>!</Text>
+                {t('aumenta\nou duvida')}<Text style={{ color: colors.pinkInk }}>!</Text>
               </Title>
             </Enter>
             <Enter delay={100}>
-              <Body style={{ marginTop: 10 }}>Chega a pergunta. Cada um, na sua vez, diz um número maior, ou grita “eu duvido!” do último lance.</Body>
+              <Body style={{ marginTop: 10 }}>{t('Chega a pergunta. Cada um, na sua vez, diz um número maior, ou grita “eu duvido!” do último lance.')}</Body>
             </Enter>
             <View style={styles.demo}>
               <Enter delay={200}>
                 <Raised>
                   <View style={{ padding: 16 }}>
-                    <Text style={styles.qText}>Quantos dentes tem um gambá?</Text>
+                    <Text style={styles.qText}>{t('Quantos dentes tem um gambá?')}</Text>
                   </View>
                 </Raised>
               </Enter>
@@ -110,7 +111,7 @@ export default function Onboarding() {
                     <Enter from={12}>
                       <View style={[styles.bid, compact && { paddingVertical: 4 }, { alignSelf: k % 2 ? 'flex-end' : 'flex-start' }]}>
                         <Text style={styles.bidWho}>{who}</Text>
-                        <Text style={[styles.bidVal, compact && { fontSize: 18 }]}>{n} ou mais</Text>
+                        <Text style={[styles.bidVal, compact && { fontSize: 18 }]}>{t('{n} ou mais', { n })}</Text>
                       </View>
                     </Enter>
                   </After>
@@ -126,46 +127,46 @@ export default function Onboarding() {
         {i === 2 && (
           <>
             <Enter>
-              <Label>e aí</Label>
+              <Label>{t('e aí')}</Label>
               <Title size={36} style={{ marginTop: 6 }}>
-                errou?{'\n'}perde um “!”
+                {t('errou?\nperde um “!”')}
               </Title>
             </Enter>
             <Enter delay={100}>
-              <Body style={{ marginTop: 10 }}>Revela a resposta. Se o lance passou, quem lançou perde. Se não, perde quem duvidou. O último com “!” ganha.</Body>
+              <Body style={{ marginTop: 10 }}>{t('Revela a resposta. Se o lance passou, quem lançou perde. Se não, perde quem duvidou. O último com “!” ganha.')}</Body>
             </Enter>
             <Enter delay={200}>
               <View style={styles.livesDemo}>
                 <Lives left={2} total={3} size={34} losing />
-                <Text style={styles.livesText}>léo blefou: 55 dentes? é 50.</Text>
+                <Text style={styles.livesText}>{t('léo blefou: 55 dentes? é 50.')}</Text>
               </View>
             </Enter>
             <Enter delay={300}>
               <Label color={colors.ink} style={{ marginTop: 26 }}>
-                e você, como te chamam?
+                {t('e você, como te chamam?')}
               </Label>
               <View style={styles.nameRow}>
                 <Icon name="users" size={22} accent={colors.yellow} />
                 <TextInput
                   value={name}
-                  onChangeText={(t) => setName(t.slice(0, 12))}
-                  placeholder="teu nome"
+                  onChangeText={(v) => setName(v.slice(0, 12))}
+                  placeholder={t('teu nome')}
                   placeholderTextColor={colors.inkMuted}
                   style={styles.name}
                   autoCapitalize="words"
                   returnKeyType="done"
                   onSubmitEditing={next}
-                  accessibilityLabel="teu nome"
+                  accessibilityLabel={t('teu nome')}
                 />
               </View>
-              <Text style={styles.nameHint}>Vai na roda e nas salas com PIN. Dá pra trocar em Ajustes.</Text>
+              <Text style={styles.nameHint}>{t('Vai na roda e nas salas com PIN. Dá pra trocar em Ajustes.')}</Text>
             </Enter>
           </>
         )}
       </ScrollView>
 
       <View style={[styles.footer, { paddingBottom: bottom }]}>
-        <Btn label={i === 0 ? 'Bora' : i === LAST ? 'Começar' : 'Saquei'} variant={i === 0 ? 'primary' : 'dark'} disabled={i === LAST && !name.trim()} onPress={next} height={62} />
+        <Btn label={i === 0 ? t('Bora') : i === LAST ? t('Começar') : t('Saquei')} variant={i === 0 ? 'primary' : 'dark'} disabled={i === LAST && !name.trim()} onPress={next} height={62} />
       </View>
     </KeyboardAvoidingView>
   );

@@ -4,7 +4,7 @@
  *  - TEASERS: as do paywall, com a resposta escondida até a pessoa tocar.
  * Os ids precisam existir no pacote (o teste confere).
  */
-import { PACKS, type Pack, type Question } from './questions';
+import { PACKS, type Pack, type Question } from './content';
 
 export const HIGHLIGHTS: Record<string, string[]> = {
   'absurdos-br': ['n108', 'q172', 'q84'],

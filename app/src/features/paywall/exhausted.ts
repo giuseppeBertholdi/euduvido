@@ -1,5 +1,5 @@
 import { MIN_FRESH } from '../../game/played';
-import type { Question } from '../../game/questions';
+import type { Question } from '../../game/content';
 
 /**
  * "Vocês zeraram as grátis": quem não assina e já jogou (quase) todas as perguntas liberadas vê o paywall nesse momento,

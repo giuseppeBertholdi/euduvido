@@ -8,9 +8,10 @@ import { createMatch, publicState, reduce, type Action } from '@/game/engine';
 import { offerIfExhausted } from '@/features/paywall/offerExhausted';
 import { starterFirst } from '@/game/highlights';
 import { freshPool } from '@/game/played';
-import { PACKS } from '@/game/questions';
+import { PACKS } from '@/game/content';
 import { analytics } from '@/services/analytics';
 import { useApp } from '@/state/app';
+import { t } from '@/i18n';
 
 const localNow = () => Date.now();
 
@@ -27,9 +28,9 @@ export default function Game() {
     router.replace('/');
   };
   const quit = () =>
-    Alert.alert('Largar a partida?', 'O placar dessa partida vai embora.', [
-      { text: 'Continuar jogando', style: 'cancel' },
-      { text: 'Sair', style: 'destructive', onPress: home },
+    Alert.alert(t('Largar a partida?'), t('O placar dessa partida vai embora.'), [
+      { text: t('Continuar jogando'), style: 'cancel' },
+      { text: t('Sair'), style: 'destructive', onPress: home },
     ]);
   const rematch = () => {
     const all = PACKS.filter((p) => packs.includes(p.id) && (premium || !p.premium)).flatMap((p) => p.questions);

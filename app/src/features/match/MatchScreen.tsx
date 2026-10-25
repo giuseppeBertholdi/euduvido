@@ -11,7 +11,7 @@ import { ShareCard, shareCard } from '@/components/ShareCard';
 import { TurnTimer } from '@/components/TurnTimer';
 import { Body, Btn, Chip, Label, Raised, Title } from '@/components/ui';
 import { formatDigits, formatValue, isActive, lastBid, minBid, playerById, standings, type Action, type PublicMatch } from '@/game/engine';
-import { PACKS, packTitleOf } from '@/game/questions';
+import { PACKS, packTitleOf } from '@/game/content';
 import { haptic } from '@/services/haptics';
 import { shareApp } from '@/services/invite';
 import { useRoundAnalytics } from '@/features/match/useRoundAnalytics';

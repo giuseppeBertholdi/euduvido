@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { ActivityIndicator, Linking, Modal, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { links } from '@/config/links';
-import { PACKS } from '@/game/questions';
+import { PACKS } from '@/game/content';
 import { usePlans } from '@/features/paywall/usePlans';
 import { analytics } from '@/services/analytics';
 import { purchases } from '@/services/purchases';

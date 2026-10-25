@@ -7,7 +7,7 @@ import { Icon } from '@/components/Icon';
 import { Enter } from '@/components/motion';
 import { Body, Btn, IconBtn, Label, Title } from '@/components/ui';
 import { links } from '@/config/links';
-import { PACKS } from '@/game/questions';
+import { PACKS } from '@/game/content';
 import { colors, fonts, radii } from '@/theme';
 
 /** "Paywall" de quem já assina: nada de oferta; mostra o que está liberado e como gerenciar. */

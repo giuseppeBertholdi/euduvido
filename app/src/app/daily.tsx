@@ -9,7 +9,7 @@ import { Enter } from '@/components/motion';
 import { Btn, Label, Raised, Title, TopBar } from '@/components/ui';
 import { links } from '@/config/links';
 import { bidText, DAILY_SIZE, dailyFinished, dailyNumber, dailyRounds, dailyShareText, dailyShareUrl, dailyStreak, type DailyPick } from '@/game/daily';
-import { packById } from '@/game/questions';
+import { packById } from '@/game/content';
 import { analytics } from '@/services/analytics';
 import { askReminderPermission, rescheduleReminders } from '@/services/engagement/reminders';
 import { haptic } from '@/services/haptics';

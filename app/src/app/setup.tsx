@@ -10,10 +10,11 @@ import { createMatch, LIVES_OPTIONS, MAX_PLAYERS, MIN_PLAYERS, TIMER_OPTIONS, ty
 import { starterFirst } from '@/game/highlights';
 import { freshPool } from '@/game/played';
 import { offerIfExhausted } from '@/features/paywall/offerExhausted';
-import { PACKS } from '@/game/questions';
+import { PACKS } from '@/game/content';
 import { analytics } from '@/services/analytics';
 import { useApp } from '@/state/app';
 import { colors, fonts, radii } from '@/theme';
+import { t } from '@/i18n';
 
 const PRO_QUESTIONS = PACKS.filter((p) => p.premium).reduce((n, p) => n + p.questions.length, 0);
 const SAMPLE = ['bia', 'léo', 'cacá', 'dudu', 'mari', 'jão', 'lua', 'nico'];
@@ -62,11 +63,11 @@ export default function Setup() {
         <TopBar onBack={() => router.back()} />
       </View>
       <ScrollView contentContainerStyle={styles.scroll} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false}>
-        <Label>um celular · passa de mão em mão</Label>
+        <Label>{t('um celular · passa de mão em mão')}</Label>
         <Title size={42} style={{ marginTop: 6 }}>
-          quem tá{'\n'}na roda?
+          {t('quem tá\nna roda?')}
         </Title>
-        <Text style={styles.sub}>Na ordem em que vocês tão sentados: o celular gira assim.</Text>
+        <Text style={styles.sub}>{t('Na ordem em que vocês tão sentados: o celular gira assim.')}</Text>
 
         <View style={{ gap: 10, marginTop: 16 }}>
           {players.map((p, i) => (
@@ -77,15 +78,15 @@ export default function Setup() {
               <TextInput
                 value={p.name}
                 onChangeText={(name) => rename(p.id, name.slice(0, 12))}
-                placeholder={SAMPLE[i] ?? 'nome'}
+                placeholder={SAMPLE[i] ?? t('nome')}
                 placeholderTextColor={colors.inkMuted}
                 style={styles.input}
                 autoCapitalize="words"
                 returnKeyType="next"
-                accessibilityLabel={`nome do jogador ${i + 1}`}
+                accessibilityLabel={t('nome do jogador {n}', { n: i + 1 })}
               />
               {players.length > MIN_PLAYERS && (
-                <Pressable onPress={() => setPlayers((ps) => ps.filter((x) => x.id !== p.id))} hitSlop={8} style={styles.remove} accessibilityRole="button" accessibilityLabel={`remover jogador ${i + 1}`}>
+                <Pressable onPress={() => setPlayers((ps) => ps.filter((x) => x.id !== p.id))} hitSlop={8} style={styles.remove} accessibilityRole="button" accessibilityLabel={t('remover jogador {n}', { n: i + 1 })}>
                   <Icon name="close" size={18} color={colors.inkSoft} />
                 </Pressable>
               )}
@@ -94,41 +95,41 @@ export default function Setup() {
           {players.length < MAX_PLAYERS && (
             <Pressable onPress={() => setPlayers((ps) => [...ps, { id: newId(), name: '' }])} style={({ pressed }) => [styles.add, pressed && { backgroundColor: colors.sunk }]} accessibilityRole="button">
               <Icon name="users" size={22} accent={colors.yellow} />
-              <Text style={styles.addText}>mais gente</Text>
+              <Text style={styles.addText}>{t('mais gente')}</Text>
             </Pressable>
           )}
         </View>
 
         <Label color={colors.ink} style={{ marginTop: 28 }}>
-          vidas de cada um
+          {t('vidas de cada um')}
         </Label>
         <View style={styles.seg}>
           {LIVES_OPTIONS.map((n) => (
-            <Raised key={n} onPress={() => setLives(n)} face={lives === n ? colors.yellow : colors.surface} radius={radii.key} lift={3} style={{ flex: 1 }} accessibilityLabel={`${n} vidas`} accessibilityState={{ selected: lives === n }}>
+            <Raised key={n} onPress={() => setLives(n)} face={lives === n ? colors.yellow : colors.surface} radius={radii.key} lift={3} style={{ flex: 1 }} accessibilityLabel={t('{n} vidas', { n })} accessibilityState={{ selected: lives === n }}>
               <View style={styles.segItem}>
                 <Lives left={n} total={n} size={18} />
-                <Text style={styles.segText}>{n === 2 ? 'rapidinho' : n === 3 ? 'normal' : 'longo'}</Text>
+                <Text style={styles.segText}>{n === 2 ? t('rapidinho') : n === 3 ? t('normal') : t('longo')}</Text>
               </View>
             </Raised>
           ))}
         </View>
 
         <Label color={colors.ink} style={{ marginTop: 28 }}>
-          tempo por vez
+          {t('tempo por vez')}
         </Label>
         <View style={styles.seg}>
-          {TIMER_OPTIONS.map((t) => (
-            <Raised key={String(t)} onPress={() => setTimer(t)} face={timer === t ? colors.yellow : colors.surface} radius={radii.key} lift={3} style={{ flex: 1 }} accessibilityLabel={t ? `${t} segundos por vez` : 'sem timer'} accessibilityState={{ selected: timer === t }}>
+          {TIMER_OPTIONS.map((s) => (
+            <Raised key={String(s)} onPress={() => setTimer(s)} face={timer === s ? colors.yellow : colors.surface} radius={radii.key} lift={3} style={{ flex: 1 }} accessibilityLabel={s ? t('{n} segundos por vez', { n: s }) : t('sem timer')} accessibilityState={{ selected: timer === s }}>
               <View style={styles.segItem}>
-                <Icon name="timer" size={20} accent={timer === t ? colors.surface : t ? colors.yellow : 'none'} />
-                <Text style={styles.segText}>{t ? `${t}s` : 'sem'}</Text>
+                <Icon name="timer" size={20} accent={timer === s ? colors.surface : s ? colors.yellow : 'none'} />
+                <Text style={styles.segText}>{s ? `${s}s` : t('sem')}</Text>
               </View>
             </Raised>
           ))}
         </View>
 
         <Label color={colors.ink} style={{ marginTop: 28 }}>
-          pacotes
+          {t('pacotes')}
         </Label>
         <View style={styles.packs}>
           {PACKS.map((p) => {
@@ -142,7 +143,7 @@ export default function Setup() {
                 plate={on ? colors.ink : colors.line}
                 border={on ? colors.ink : colors.line}
                 lift={3}
-                accessibilityLabel={`${p.title}, ${p.questions.length} perguntas${locked ? ', bloqueado, recurso do pro' : ''}`}
+                accessibilityLabel={`${p.title}, ${t('{n} perguntas', { n: p.questions.length })}${locked ? t(', bloqueado, recurso do pro') : ''}`}
                 accessibilityState={{ checked: on }}
               >
                 <View style={styles.pack}>
@@ -152,7 +153,7 @@ export default function Setup() {
                   <View style={{ flex: 1 }}>
                     <Text style={styles.packTitle}>{p.title}</Text>
                     <Text style={styles.packSub}>
-                      {p.questions.length} perguntas · {p.tagline}
+                      {t('{n} perguntas', { n: p.questions.length })} · {p.tagline}
                     </Text>
                   </View>
                   {locked ? (
@@ -167,17 +168,17 @@ export default function Setup() {
         </View>
         <View style={styles.repeat}>
           <View style={{ flex: 1 }}>
-            <Text style={styles.repeatTitle}>Pular perguntas que já saíram</Text>
+            <Text style={styles.repeatTitle}>{t('Pular perguntas que já saíram')}</Text>
             <Text style={[styles.repeatText, app.avoidRepeats && fresh.recycled && { color: colors.pinkInk }]}>
               {!app.avoidRepeats
-                ? 'desligado: pode repetir pergunta'
+                ? t('desligado: pode repetir pergunta')
                 : fresh.recycled
-                  ? 'as novas acabaram nesses pacotes: vai repetir'
-                  : `${fresh.fresh} novas de ${pool.length} nesses pacotes`}
+                  ? t('as novas acabaram nesses pacotes: vai repetir')
+                  : t('{fresh} novas de {total} nesses pacotes', { fresh: fresh.fresh, total: pool.length })}
             </Text>
             {!app.premium && app.avoidRepeats && fresh.recycled && (
               <Pressable onPress={() => router.push({ pathname: '/paywall', params: { source: 'exhausted' } })} hitSlop={8} accessibilityRole="button" style={{ marginTop: 4 }}>
-                <Text style={styles.unlock}>liberar +{PRO_QUESTIONS} perguntas novas</Text>
+                <Text style={styles.unlock}>{t('liberar +{n} perguntas novas', { n: PRO_QUESTIONS })}</Text>
               </Pressable>
             )}
           </View>
@@ -187,27 +188,27 @@ export default function Setup() {
             trackColor={{ true: colors.ink, false: colors.line }}
             thumbColor={app.avoidRepeats ? colors.yellow : colors.surface}
             ios_backgroundColor={colors.line}
-            accessibilityLabel="pular perguntas que já saíram"
+            accessibilityLabel={t('pular perguntas que já saíram')}
           />
         </View>
         {playedHere > 0 && (
           <Pressable
             onPress={() =>
-              Alert.alert('Zerar perguntas jogadas?', 'Todas voltam a contar como novas neste celular.', [
-                { text: 'Cancelar', style: 'cancel' },
-                { text: 'Zerar', style: 'destructive', onPress: () => app.set({ played: [] }) },
+              Alert.alert(t('Zerar perguntas jogadas?'), t('Todas voltam a contar como novas neste celular.'), [
+                { text: t('Cancelar'), style: 'cancel' },
+                { text: t('Zerar'), style: 'destructive', onPress: () => app.set({ played: [] }) },
               ])
             }
             hitSlop={8}
             style={styles.resetBtn}
             accessibilityRole="button"
           >
-            <Text style={styles.reset}>zerar as {app.played.length} já jogadas</Text>
+            <Text style={styles.reset}>{t('zerar as {n} já jogadas', { n: app.played.length })}</Text>
           </Pressable>
         )}
       </ScrollView>
       <View style={[styles.footer, { paddingBottom: insets.bottom + 12 }]}>
-        <Btn label={ready ? `Começar com ${named.length}` : `Bota pelo menos ${MIN_PLAYERS} nomes`} right={ready ? 'arrowRight' : null} disabled={!ready} onPress={start} height={62} />
+        <Btn label={ready ? t('Começar com {n}', { n: named.length }) : t('Bota pelo menos {n} nomes', { n: MIN_PLAYERS })} right={ready ? 'arrowRight' : null} disabled={!ready} onPress={start} height={62} />
       </View>
     </KeyboardAvoidingView>
   );

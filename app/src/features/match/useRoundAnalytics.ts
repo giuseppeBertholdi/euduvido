@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import type { PublicMatch } from '@/game/engine';
-import { PACKS } from '@/game/questions';
+import { PACKS } from '@/game/content';
 import { analytics } from '@/services/analytics';
 
 const packOf = (questionId: string) => PACKS.find((p) => p.questions.some((q) => q.id === questionId))?.id ?? null;
