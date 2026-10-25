@@ -1,0 +1,33 @@
+# O que vai pro EAS Build: só o app. Substitui os .gitignore no upload, então repete o que eles ignoram.
+# Fora do app
+/marketing/
+/design_handoff_eu_duvido_gamba/
+/*.png
+/*.csv
+/*.md
+# Materiais da loja (artes, vídeos) não entram no binário
+/app/store/
+# do app/.gitignore
+node_modules/
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+.kotlin/
+*.orig.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+.metro-health-check*
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+.DS_Store
+*.pem
+.env*.local
+*.tsbuildinfo
+/app/ios
+/app/android
+/app/.env
