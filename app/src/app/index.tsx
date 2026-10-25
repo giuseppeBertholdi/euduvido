@@ -13,7 +13,8 @@ import { PACKS } from '@/game/content';
 import { useApp } from '@/state/app';
 import { visits } from '@/state/visits';
 import { colors, fonts, maxScale, radii } from '@/theme';
-import { t } from '@/i18n';
+import { BangMark } from '@/components/brand';
+import { isEn, t } from '@/i18n';
 
 export default function Home() {
   const { onboarded, premium, matchesFinished, set, daily } = useApp();
@@ -42,7 +43,8 @@ export default function Home() {
       <ScrollView contentContainerStyle={{ paddingTop: insets.top + 12, paddingBottom: insets.bottom + 28 }} showsVerticalScrollIndicator={false}>
         <View style={styles.pad}>
           <View style={styles.header}>
-            <Logo size={44} />
+            {/* em inglês a marca é só o “!” (o mesmo do ícone) */}
+            {isEn ? <BangMark size={56} /> : <Logo size={44} />}
             <View style={{ flexDirection: 'row', gap: 8 }}>
               <Raised onPress={() => paywall('home')} face={premium ? colors.yellow : colors.surface} radius={radii.pill} lift={3} accessibilityLabel={premium ? t('você é pro') : t('conhecer o pro')}>
                 <View style={styles.gear}>
